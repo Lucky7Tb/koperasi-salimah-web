@@ -1,0 +1,56 @@
+.footer{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	left: 15%;
+	display: grid;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+	padding: 30px 15px 0 15px;
+	background-color: #491369;
+	color: white;
+}
+.footer2{
+	padding: 0 5px 0 5px;
+	margin: 0 5px 0 5px;
+}
+.ungu{
+	background-color: #491369;
+}
+.emas{
+	background-color: #DAA353;
+}
+.tengah{
+	text-align: center;
+}
+.desc1{
+	display: grid;
+	grid-template-columns: 40% 60%;
+}
+.putih{
+	color: white;
+}
+.hitam{
+	color: black;
+}
+.apa{
+	text-decoration: none;
+	color: black;
+}
+.dua{
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+@media (max-width: 768px){
+	.dua{
+		grid-template-columns: 100%;
+	}
+	.hilang{
+		display: none;
+	}
+	.footer{
+		grid-template-columns: 100%;
+	}
+	.desc1{
+		grid-template-columns: 100%;
+	}
+}
