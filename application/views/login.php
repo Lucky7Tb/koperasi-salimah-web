@@ -59,7 +59,7 @@
 					formData.append('password', password);
 
 					$.ajax({
-						url: '<?= base_url('Login/doLogin') ?>',
+						url: '<?= base_url('Auth/login') ?>',
 						processData: false,
 						contentType: false,
 						type: "POST",
@@ -67,7 +67,14 @@
 						success: function(response) {
 							response = JSON.parse(response);
 							if (response.code === 200) {
-								window.location.href = '<?= base_url('admin') ?>';
+								if (response.data.level === "admin") {
+									window.location.href = '<?= base_url('/admin') ?>';
+									return;
+								}
+								window.location.href = '<?= base_url('/') ?>';
+								return;
+							}else {
+								toastr.error(response.message);
 							}
 						}
 					});

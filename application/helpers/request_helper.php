@@ -1,12 +1,21 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 if (!function_exists('request')) {
-	function request($endpoint, $method, $data)
+	function request($endpoint, $method, $data, $optionHeader)
 	{
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, '213.190.4.40/koperasi-salimah-backend/index.php'.$endpoint);
+		$url = 'http://213.190.4.40/koperasi-salimah-backend/index.php'. $endpoint;
+
+		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		$headers = [];
+		foreach ($optionHeader as $key => $value) {
+			$headers[] = $key . ':' . $value;
+		}
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
@@ -15,10 +24,6 @@ if (!function_exists('request')) {
 		} else {
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 		}
-
-		$headers = array();
-		$headers[] = 'Content-Type: application/json';
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 		$result = curl_exec($ch);
 		if (curl_errno($ch)) {

@@ -1,6 +1,10 @@
 <?php
 	$css = base_url('dist/css');
-	$this->load->view('admin/template/header');
+	$this->load->view('admin/template/header', [
+		'css' => '
+			<link rel="stylesheet" href="'.$css.'/style.css">
+		'
+	]);
 ?>
 <div class="container-fluid site-width">
 	<div class="row">
@@ -16,5 +20,9 @@
 <?php
 	$js = base_url('dist/js');
 	$plugin = base_url('dist/vendors');
-	$this->load->view('admin/template/footer');
+	$this->load->view('admin/template/footer', [
+		'js' => '
+			<script src="'.$js.'/script.js"></script>
+		'
+	]);
 ?>

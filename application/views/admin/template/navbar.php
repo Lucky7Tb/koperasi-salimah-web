@@ -35,7 +35,7 @@
 								<span class="icon-globe mr-2 h6 mb-0"></span> Forum
 							</a>
 							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item px-2 text-danger align-self-center d-flex">
+							<a href="<?= base_url('auth/logout') ?>" class="dropdown-item px-2 text-danger align-self-center d-flex">
 								<span class="icon-logout mr-2 h6  mb-0"></span> Keluar
 							</a>
 						</div>

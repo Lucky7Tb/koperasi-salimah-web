@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ProductCategories extends CI_Controller {
+class Product_Categories extends CI_Controller {
 
 	public function __construct()
 	{
