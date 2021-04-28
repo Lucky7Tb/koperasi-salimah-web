@@ -54,19 +54,21 @@
 				} else if (password.length == "") {
 					toastr.warning('Harap masukan password')
 				} else {
+					const formData = new FormData();
+					formData.append('username', usermail);
+					formData.append('password', password);
+
 					$.ajax({
-						url: `${global.base_url}/api/v1/auth/user/login`,
-						contentType: 'application/json',
-						"headers": {
-							"Access-Control-Allow-Origin": "*"
-						},
+						url: '<?= base_url('Login/doLogin') ?>',
+						processData: false,
+						contentType: false,
 						type: "POST",
-						data: JSON.stringify({
-							'username': usermail,
-							'password': password
-						}),
+						data: formData,
 						success: function(response) {
-							console.log(response);
+							response = JSON.parse(response);
+							if (response.code === 200) {
+								window.location.href = '<?= base_url('admin') ?>';
+							}
 						}
 					});
 				}

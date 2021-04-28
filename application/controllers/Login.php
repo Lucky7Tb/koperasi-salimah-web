@@ -3,10 +3,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		//Do your magic here
+	}
+	
 	public function index()
 	{
 		$this->load->view('login');
+	}
 
+	public function doLogin()
+	{
+		$data = json_encode($this->input->post());
+
+		$response = request('/api/v1/auth/user/login', 'POST', $data);
+
+		$response = json_decode($response, true);
+
+		$userData = $response['data'];
+		$userData['login'] = true;
+
+		$this->session->set_userdata($userData);
+
+		die(
+			json_encode($response)
+		);
 	}
 	
 	public function cek_login(){

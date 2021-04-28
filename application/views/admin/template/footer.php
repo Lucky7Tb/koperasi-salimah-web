@@ -47,7 +47,7 @@
 	<!-- END: Template JS-->
 
 	<!-- START: APP JS-->
-	<script src="../dist/js/app.js"></script>
+	<script src="<?= base_url('dist/js/app.js') ?>"></script>
 	<!-- END: APP JS-->
 
 	<!-- Other js -->
