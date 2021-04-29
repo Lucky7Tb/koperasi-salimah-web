@@ -37,11 +37,10 @@ $this->load->view('admin/template/header');
 										<th rowspan="2">Gender</th>
 										<th rowspan="2">No telp</th>
 										<th rowspan="2">Level</th>
-										<th colspan="2">Aksi</th>
+										<th>Aksi</th>
 									</tr>
 									<tr>
 										<th>Update</th>
-										<th>Delete</th>
 									</tr>
 								</thead>
 								<tbody id="user-data-content">

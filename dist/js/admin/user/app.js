@@ -25,29 +25,24 @@ function renderUserData(users) {
 			content += /*html*/ `
 				<tr>
 					<td>${user.full_name}</td>
-					<td>${user.gender}</td>
+					<td>${user.gender === 'l' ? 'Laki-laki' : 'Perempuan'}</td>
 					<td>${user.phone_number ? user.phone_number : '-'}</td>
 					<td>
 						<span class="badge badge-pill badge-${user.type == 'Admin' ? 'primary' : 'secondary'}">${user.type}</span>
 					</td>
 					<td>
-						<button class='btn btn-warning'>	
+						<a class='btn btn-warning text-white'>	
 							<i class='icon-pencil'></i>
-						</button>
-					</td>
-					<td>
-						<button class='btn btn-danger'>	
-							<i class='icon-trash'></i>
-						</button>
+						</a>
 					</td>
 				</tr>
 			`;
 		});
 	}else {
 		content += /*html*/ `
-			<>
+			<tr>
 				<td colspan='6' class='text-center'>Tidak ada data</td>
-			</>
+			</tr>
 		`;
 		paginate -= 1;
 	}
