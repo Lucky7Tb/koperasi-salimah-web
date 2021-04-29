@@ -12,10 +12,27 @@ if (!function_exists('request')) {
 
 		$headers = [];
 		foreach ($optionHeader as $key => $value) {
-			$headers[] = $key . ':' . $value;
+			if ($value == 'multipart/form-data') {
+				$delimiter = "-------------" . uniqid();
+				$headers[] = $key . ': ' . $value. '; boundary='. $delimiter;
+			}
+			$headers[] = $key .': '. $value;
 		}
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		if (isset($optionHeader['Content-Type'])) {
+			if ($optionHeader['Content-Type'] == 'application/json') {
+				$data = json_encode($data);
+			} elseif($optionHeader['Content-Type'] == 'multipart/form-data') {
+				$key = $data['file_key'];
+				$tmpName =  $_FILES[$key]['tmp_name'];
+				$fileName =  $_FILES[$key]['name'];
+				$fileType =  $_FILES[$key]['type'];
+				$data['photo'] = curl_file_create($tmpName, $fileType, $fileName);
+				unset($data['file_key']);
+			}
+		}
 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 

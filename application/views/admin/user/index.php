@@ -28,7 +28,7 @@ $this->load->view('admin/template/header');
 									Search:
 									<input type="search" class="form-control form-control-sm" id="input-search-user">
 								</label>
-								<button onclick="searchUser()" class="btn btn-primary">search</button>
+								<button class="btn btn-primary" id="button-search">search</button>
 							</div>
 							<table id="user-table" class="display table table-striped table-bordered" role="grid">
 								<thead>
@@ -50,12 +50,12 @@ $this->load->view('admin/template/header');
 							<div id="example_paginate">
 								<ul class="pagination">
 									<li class="paginate_button page-item previous">
-										<button class="page-link" onclick="prevPagination()">
+										<button class="page-link" id="prev-button">
 											Previous
 										</button>
 									</li>
 									<li class="paginate_button page-item next">
-										<button class="page-link" onclick="nextPagination()">
+										<button class="page-link" id="next-button">
 											Next
 										</button>
 									</li>

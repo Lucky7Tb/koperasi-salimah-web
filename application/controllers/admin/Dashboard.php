@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
 		$this->load->helper('login_helper');
 			
 		if (isNotLogin()) {
-			redirect('/login','refresh');
+			redirect('auth');
 		}
 	}
 

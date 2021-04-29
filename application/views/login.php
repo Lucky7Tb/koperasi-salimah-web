@@ -59,11 +59,11 @@
 					formData.append('password', password);
 
 					$.ajax({
+						type: "POST",
 						url: '<?= base_url('Auth/login') ?>',
+						data: formData,
 						processData: false,
 						contentType: false,
-						type: "POST",
-						data: formData,
 						success: function(response) {
 							response = JSON.parse(response);
 							if (response.code === 200) {
@@ -73,7 +73,7 @@
 								}
 								window.location.href = '<?= base_url('/') ?>';
 								return;
-							}else {
+							} else {
 								toastr.error(response.message);
 							}
 						}

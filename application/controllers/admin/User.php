@@ -10,7 +10,7 @@ class User extends CI_Controller {
 		$this->load->helper('login_helper');
 
 		if (isNotLogin()) {
-			redirect('/login', 'refresh');
+			redirect('auth');
 		}
 	}
 	
@@ -22,7 +22,6 @@ class User extends CI_Controller {
 	public function getUser()
 	{
 		$headers = [
-			'accept' => 'application/json',
 			'authorization' => $this->session->userdata('token')
 		];
 
@@ -42,6 +41,25 @@ class User extends CI_Controller {
 	public function create()
 	{
 		$this->load->view('admin/user/create');
+	}
+
+	public function insert()
+	{
+		$headers = [
+			'authorization' => $this->session->userdata('token'),
+			'Content-Type' => 'multipart/form-data'
+		];
+
+		$endpoint = '/api/v1/admin/dashboard/user/create';
+		$data = $this->input->post(null, true);
+		$data['file_key'] = 'photo';
+		
+		$result = request($endpoint, 'POST', $data, $headers);
+
+		var_dump($result);
+		die;
+
+		response($data, true);
 	}
 
 }
