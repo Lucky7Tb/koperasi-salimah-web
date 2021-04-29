@@ -1,78 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<!-- START: Head-->
+
+<!-- Mirrored from html.designstream.co.in/pick/html/page-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Jul 2020 02:12:38 GMT -->
 
 <head>
 	<meta charset="UTF-8">
 	<title>Masuk</title>
-	<link rel="shortcut icon" href="<?= base_url('img/logo2.jpeg') ?>" />
+	<link rel="shortcut icon" href="../img/logo2.png"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" href="<?= base_url('dist/vendors/bootstrap/css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
-	<link rel="stylesheet" href="<?= base_url('dist/css/main.css') ?>">
+
+	<?php include_once('templates-css.php') ?>
+
+	<!-- START: Page CSS-->
+	<link rel="stylesheet" href="../dist/vendors/social-button/bootstrap-social.css"/>
+	<!-- END: Page CSS-->
+
+	<!-- START: Custom CSS-->
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<!-- END: Custom CSS-->
 </head>
+<!-- END Head-->
 
+<!-- START: Body-->
 <body id="main-container" class="default">
-	<div class="container">
-		<div class="row vh-100 justify-content-between align-items-center">
-			<div class="col-12">
-				<form action="post" class="row row-eq-height lockscreen  mt-5 mb-5">
-					<div class="lock-image col-12 col-sm-5" style="background-image: url('<?= base_url('img/salimah pattern 1.png') ?>');"></div>
-					<div class="login-form col-12 col-sm-7">
-						<h4>Masuk</h4>
-						<div class="form-group mb-3">
-							<label for="usermail">Email/Username</label>
-							<input class="form-control" type="text" id="usermail" required="" placeholder="Masukkan email/username">
-						</div>
-
-						<div class="form-group mb-3">
-							<label for="password">Password</label>
-							<input class="form-control" type="password" required="" id="password" placeholder="Masukkan Password">
-						</div>
-						<div class="form-group mb-0">
-							<button type="button" class="btn btn-primary btn-block mb-2" id="tombol_login">Masuk</button>
-						</div>
-						<div class="mt-2">Lupa password? <a href="<?= base_url('/Forget_Password') ?>">Klik disini</a></div>
-						<div class="mt-2">Belum punya akun? <a href="<?= base_url('/Register') ?>">Daftar</a></div>
+<!-- START: Main Content-->
+<?= $this->session->flashdata('pesan') ?>
+<div class="container">
+	<div class="row vh-100 justify-content-between align-items-center">
+		<div class="col-12">
+			<form method="post" class="row row-eq-height lockscreen  mt-5 mb-5">
+				<div class="lock-image col-12 col-sm-5" style="background-image: url('../img/salimah pattern 1.png');"></div>
+				<div class="login-form col-12 col-sm-7">
+					<h4>Masuk</h4>
+					<div class="form-group mb-3">
+						<label for="usermail">Email/Username</label>
+						<input class="form-control" type="text" id="usermail" placeholder="Masukkan email/username" name="usermail"
+									 value="<?= set_value('usermail') ?>">
+						<?= form_error('usermail', '<small class="text-danger">', '</small>') ?>
 					</div>
-				</form>
-			</div>
+
+					<div class="form-group mb-3">
+						<label for="password">Password</label>
+						<input class="form-control" type="password" id="password" placeholder="Masukkan Password" name="password">
+						<?= form_error('password', '<small class="text-danger">', '</small>') ?>
+					</div>
+
+					<div class="form-group mb-3">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="checkbox-signin" name="remember">
+							<label class="custom-control-label" for="checkbox-signin">Ingat saya</label>
+						</div>
+					</div>
+
+					<div class="form-group mb-0">
+						<button type="submit" class="btn btn-primary btn-block mb-2" id="tombol_login">Masuk</button>
+					</div>
+
+					<div class="mt-2">Lupa password? <a href="<?= base_url(index_page() . '/forget_password') ?>">Klik disini</a>
+					</div>
+					<div class="mt-2">Belum punya akun? <a href="<?= base_url(index_page() . '/register') ?>">Daftar</a></div>
+				</div>
+			</form>
 		</div>
+
 	</div>
+</div>
+<!-- END: Content-->
 
-	<script src="<?= base_url('dist/vendors/jquery/jquery-3.3.1.min.js') ?>"></script>
-	<script src="<?= base_url('dist/vendors/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-	<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
-	<script src="<?= base_url('dist/js/global.js') ?>"></script>
-	<script>
-		$(document).ready(function() {
-			$("#tombol_login").on('click', function() {
-				var usermail = $("#usermail").val();
-				var password = $("#password").val();
+<?php include_once('templates-js.php') ?>
 
-				if (usermail.length == "") {
-					toastr.warning('Harap masukan username/email')
-				} else if (password.length == "") {
-					toastr.warning('Harap masukan password')
-				} else {
-					$.ajax({
-						url: `${global.base_url}/api/v1/auth/user/login`,
-						contentType: 'application/json',
-						"headers": {
-							"Access-Control-Allow-Origin": "*"
-						},
-						type: "POST",
-						data: JSON.stringify({
-							'username': usermail,
-							'password': password
-						}),
-						success: function(response) {
-							console.log(response);
-						}
-					});
-				}
-			});
-		});
-	</script>
 </body>
+<!-- END: Body-->
+
+<!-- Mirrored from html.designstream.co.in/pick/html/page-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Jul 2020 02:12:38 GMT -->
 
 </html>

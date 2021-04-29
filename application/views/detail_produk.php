@@ -192,6 +192,10 @@
                                         <div class="mr-3">
                                             <a href="#" class="btn btn-primary">Tambah ke Wishlist <i
                                                 class="icon-heart"></i></a>
+                                        </div><br>
+                                        <div class="mr-3">
+                                            <a href="#" class="btn btn-success">Chat via WhatsApp <i
+                                                class="icon-bubbles"></i></a>
                                         </div>
                                     </div>
                                 </div>

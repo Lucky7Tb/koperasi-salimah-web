@@ -1,7 +1,4 @@
 .footer{
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
 	left: 15%;
 	display: grid;
 	grid-template-columns: 20% 20% 20% 20% 20%;

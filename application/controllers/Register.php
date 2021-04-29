@@ -1,8 +1,7 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Register extends CI_Controller
-{
+class Register extends CI_Controller {
 
 	public function index()
 	{
@@ -37,14 +36,16 @@ class Register extends CI_Controller
 				'status' => "user",
 			);
 
-			if ($this->user->registerUser($data)) {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Akun berhasil dibuat</div>');
+        $register = $this->m_user->simpan_register($data);
 
-				redirect(base_url( index_page().'/login'));
-			}
-			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Akun gagal dibuat</div>');
+        if($register) {
 
-			redirect(base_url( index_page().'/login'));
-		}
+            echo "success";
+
+        } else {
+
+            echo "error";
+
+        }
 	}
 }

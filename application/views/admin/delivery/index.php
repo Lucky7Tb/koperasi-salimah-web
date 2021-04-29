@@ -9,6 +9,19 @@ $this->load->view('admin/template/header');
 				<div class="w-sm-100 mr-auto">
 					<h1>Pengiriman</h1>
 				</div>
+				<ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+					<!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
+					<li class="breadcrumb-item active">Delivery</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<div id="carouselExampleSlidesOnly" class="carousel slide pointer-event" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="../../../img/tes6.png" alt="First slide">
+				</div>
 			</div>
 		</div>
 	</div>

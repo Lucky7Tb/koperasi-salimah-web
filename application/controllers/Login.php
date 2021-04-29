@@ -56,10 +56,11 @@ class Login extends CI_Controller
 				'token' => $result['data']['token'],
 				'level' => $result['data']['level']
 			);
+
 			$this->session->set_userdata($data);
 
 			if ($result['data']['level'] == 'admin') {
-				redirect(base_url(index_page().'/admin/dashboard'));
+				redirect(base_url(index_page().'/admin'));
 			} else {
 				redirect(base_url(index_page().'/'));
 			}

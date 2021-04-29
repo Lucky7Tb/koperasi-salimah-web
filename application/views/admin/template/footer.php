@@ -46,8 +46,10 @@
 	<script src="<?= base_url('dist/vendors/slimscroll/jquery.slimscroll.min.js') ?>"></script>
 	<!-- END: Template JS-->
 
+	<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
+
 	<!-- START: APP JS-->
-	<script src="../dist/js/app.js"></script>
+	<script src="<?= base_url('dist/js/app.js') ?>"></script>
 	<!-- END: APP JS-->
 
 	<!-- Other js -->
