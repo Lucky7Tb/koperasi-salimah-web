@@ -6,14 +6,14 @@ class Category_model extends CI_Model
 	// get
 	public function getAllCategories($token, $params = null)
 	{
-		$end = 'admin/dashboard/category/getCategories';
+		$end = 'api/v1/admin/dashboard/category/getCategories';
 
 		return get_curl($end, $token, $params);
 	}
 
 	public function getCategory($id, $token, $params)
 	{
-		$end = 'admin/dashboard/category/getCategory/'.$id;
+		$end = 'api/v1/admin/dashboard/category/getCategory/'.$id;
 
 		return get_curl($end, $token);
 	}
@@ -21,7 +21,7 @@ class Category_model extends CI_Model
 	// post
 	public function createCategory($data, $token)
 	{
-		$end = 'admin/dashboard/category/create';
+		$end = 'api/v1/admin/dashboard/category/create';
 
 		return post_curl($end, $data, $token);
 	}
@@ -29,7 +29,7 @@ class Category_model extends CI_Model
 	// put
 	public function updateCategory($id, $data, $token)
 	{
-		$end = 'admin/dashboard/category/update';
+		$end = 'api/v1/admin/dashboard/category/update';
 
 		return put_curl($end, $id, $data, $token);
 	}
@@ -37,7 +37,7 @@ class Category_model extends CI_Model
 	// delete
 	public function deactiveCategory($id, $token)
 	{
-		$end = 'admin/dashboard/category/deactiveCategory';
+		$end = 'api/v1/admin/dashboard/category/deactiveCategory';
 
 		return delete_curl($end, $id, $token);
 	}

@@ -4,7 +4,7 @@
 			<li class="dropdown"><a href="#"><i class="icon-home mr-1"></i> Dashboard</a>
 				<ul>
 					<li class="<?= ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == null) ? 'active' : '' ?>">
-						<a href="<?= base_url('/admin') ?>" class="<?= ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == null) ? '' : 'text-white' ?>">
+						<a href="<?= base_url('/admin/dashboard') ?>" class="<?= ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == null) ? '' : 'text-white' ?>">
 							<i class="icon-home"></i>
 							Dashboard
 						</a>

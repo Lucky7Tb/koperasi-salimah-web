@@ -8,7 +8,7 @@ $this->load->view('admin/template/header');
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
 				<div class="w-sm-100 mr-auto">
-					<h1>Management User</h1>
+					<h1><?= $title ?></h1>
 				</div>
 			</div>
 		</div>
@@ -28,21 +28,20 @@ $this->load->view('admin/template/header');
 									Search:
 									<input type="search" class="form-control form-control-sm" id="input-search-user">
 								</label>
-								<button onclick="searchUser()" class="btn btn-primary">search</button>
+								<button class="btn btn-primary" id="button-search">search</button>
 							</div>
 							<table id="user-table" class="display table table-striped table-bordered" role="grid">
 								<thead>
-									<tr role="row">
-										<th rowspan="2">Nama</th>
-										<th rowspan="2">Gender</th>
-										<th rowspan="2">No telp</th>
-										<th rowspan="2">Level</th>
-										<th colspan="2">Aksi</th>
-									</tr>
-									<tr>
-										<th>Update</th>
-										<th>Delete</th>
-									</tr>
+								<tr role="row">
+									<th rowspan="2">Nama</th>
+									<th rowspan="2">Gender</th>
+									<th rowspan="2">No telp</th>
+									<th rowspan="2">Level</th>
+									<th>Aksi</th>
+								</tr>
+								<tr>
+									<th>Update</th>
+								</tr>
 								</thead>
 								<tbody id="user-data-content">
 
@@ -51,12 +50,12 @@ $this->load->view('admin/template/header');
 							<div id="example_paginate">
 								<ul class="pagination">
 									<li class="paginate_button page-item previous">
-										<button class="page-link" onclick="prevPagination()">
+										<button class="page-link" id="prev-button">
 											Previous
 										</button>
 									</li>
 									<li class="paginate_button page-item next">
-										<button class="page-link" onclick="nextPagination()">
+										<button class="page-link" id="next-button">
 											Next
 										</button>
 									</li>

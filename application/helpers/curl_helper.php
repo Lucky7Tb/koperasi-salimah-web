@@ -6,12 +6,11 @@ function get_curl($endpoints, $token, array $params = null)
 	if ($params != null) {
 		$url = API . '/' . $endpoints . '?';
 
-		$key = array_keys($params);
 		$i = 0;
+		foreach ($params as $k => $v) {
+			$url .= $k . '=' . $v;
 
-		foreach ($key as $k) {
-			$url .= $k . '=' . $params[$k];
-			if ($i < count($params)-1) {
+			if ($i < count($params) - 1) {
 				$url .= '&';
 			}
 		}
@@ -22,10 +21,10 @@ function get_curl($endpoints, $token, array $params = null)
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => $url,
 		CURLOPT_HTTPHEADER => array(
-			'authorization:' . $token
+			'authorization:' . $token,
 		),
 		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_RETURNTRANSFER => 1
+		CURLOPT_RETURNTRANSFER => 1,
 	));
 
 	$result = json_decode(curl_exec($curl), 1);
@@ -35,7 +34,7 @@ function get_curl($endpoints, $token, array $params = null)
 	return $result;
 }
 
-function post_curl($endpoints, $data, $token)
+function post_curl($endpoints, $data, $token = null)
 {
 	$url = API . '/' . $endpoints;
 
@@ -46,9 +45,10 @@ function post_curl($endpoints, $data, $token)
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => $url,
 		CURLOPT_HTTPHEADER => array(
-			'authorization:' . $token
+			'authorization:' . $token,
 		),
 		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POST => 1,
 		CURLOPT_POSTFIELDS => $data,
 		CURLOPT_BUFFERSIZE => 10,
 		CURLOPT_RETURNTRANSFER => 1
@@ -72,13 +72,13 @@ function put_curl($endpoints, $id, $data, $token)
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => $url,
 		CURLOPT_HTTPHEADER => array(
-			'authorization:' . $token
+			'authorization:' . $token,
 		),
 		CURLOPT_CUSTOMREQUEST => 'PUT',
 		CURLOPT_POSTFIELDS => $data,
 		CURLOPT_BUFFERSIZE => 10,
 		CURLOPT_POST => 1,
-		CURLOPT_RETURNTRANSFER => 1
+		CURLOPT_RETURNTRANSFER => 1,
 	));
 
 	$result = json_decode(curl_exec($curl), 1);
@@ -97,11 +97,11 @@ function delete_curl($endpoints, $id, $token)
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => $url,
 		CURLOPT_HTTPHEADER => array(
-			'authorization:' . $token
+			'authorization:' . $token,
 		),
 		CURLOPT_CUSTOMREQUEST => 'DELETE',
 		CURLOPT_BUFFERSIZE => 10,
-		CURLOPT_RETURNTRANSFER => 1
+		CURLOPT_RETURNTRANSFER => 1,
 	));
 
 	$result = json_decode(curl_exec($curl), 1);

@@ -1,8 +1,9 @@
-<?php 
+<?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends CI_Controller
+{
 
 	public function __construct()
 	{
@@ -10,19 +11,19 @@ class User extends CI_Controller {
 		$this->load->helper('login_helper');
 
 		if (isNotLogin()) {
-			redirect('/login', 'refresh');
+			redirect('auth');
 		}
 	}
-	
+
 	public function index()
 	{
-		$this->load->view('admin/user/index');
+		$data['title'] = 'Manajemen Pengguna';
+		$this->load->view('admin/user/index', $data);
 	}
 
 	public function getUser()
 	{
 		$headers = array(
-			'accept' => 'application/json',
 			'authorization' => $this->session->userdata('token')
 		);
 
@@ -42,6 +43,22 @@ class User extends CI_Controller {
 	public function create()
 	{
 		$this->load->view('admin/user/create');
+	}
+
+	public function insert()
+	{
+		$headers = array(
+			'authorization' => $this->session->userdata('token'),
+			'Content-Type' => 'multipart/form-data'
+		);
+
+		$endpoint = '/api/v1/admin/dashboard/user/create';
+		$data = $this->input->post(null, true);
+		$data['file_key'] = 'photo';
+
+		$result = request($endpoint, 'POST', $data, $headers);
+
+		response($data, true);
 	}
 
 }

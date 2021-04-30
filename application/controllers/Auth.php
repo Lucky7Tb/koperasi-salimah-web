@@ -12,9 +12,9 @@ class Auth extends CI_Controller {
 			$userLevel = $this->session->userdata('level');
 
 			if ($userLevel == 'admin') {
-				redirect('/admin', 'refresh');
+				redirect('/admin');
 			}
-			redirect('/', 'refresh');
+			redirect('/');
 		}
 		
 		$this->load->view('login');
@@ -22,28 +22,30 @@ class Auth extends CI_Controller {
 
 	public function login()
 	{
-		$data = json_encode($this->input->post(null, true));
+		$data = $this->input->post(null, true);
 
-		$headers = [
-			"Content-Type" => "application/json"
-		];
+		$headers = array(
+			'Content-Type' => 'application/json'
+		);
 
 		$result = request('/api/v1/auth/user/login', 'POST', $data, $headers);
 
 		$result = json_decode($result, true);
 
-		$userData = $result['data'];
-		$userData['login'] = true;
+		if ($result['code'] == 200) {
+			$userData = $result['data'];
+			$userData['login'] = true;
+	
+			$this->session->set_userdata($userData);
+		}
 
-		$this->session->set_userdata($userData);
-
-		die(json_encode($result));
+		response($result, true);
 	}
 
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('/Auth', 'refresh');
+		redirect('/auth', 'refresh');
 	}
 
 }

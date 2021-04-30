@@ -10,13 +10,21 @@ class Delivery extends CI_Controller {
 		$this->load->helper('login_helper');
 
 		if (isNotLogin()) {
-			redirect('/login', 'refresh');
+			redirect('auth');
 		}
 	}
 	
 	public function index()
 	{
-		$this->load->view('admin/delivery/index');
+		$data['title'] = 'Pengiriman';
+
+		$this->load->model('Delivery_model', 'delivery');
+
+		$token = $this->session->userdata('token');
+
+		$data['pengiriman'] = $this->delivery->getAllDelivery($token);
+
+		$this->load->view('admin/delivery/index', $data);
 	}
 
 }

@@ -10,14 +10,15 @@ class Transaction extends CI_Controller {
 		$this->load->helper('login_helper');
 
 		if (isNotLogin()) {
-			redirect('/login', 'refresh');
+			redirect('auth');
 		}
 	}
 	
 
 	public function index()
 	{
-		$this->load->view('admin/transaction/index');
+		$data['title'] = 'Transaksi';
+		$this->load->view('admin/transaction/index', $data);
 	}
 
 }

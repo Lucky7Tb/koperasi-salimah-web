@@ -5,8 +5,8 @@
                 <div class="navbar-header  h-200 h4 mb-0 align-self-center logo-bar text-left">
                     <a href="" class="horizontal-logo text-left">
                         <div class="media">
-                            <a href="<?= base_url( index_page().'/') ?>">
-                                <img src="../img/tes4.png" alt="" class="d-flex img-fluid" width="150">
+                            <a href="http://localhost/Salimah_CI/">
+                                <img src="img/tes4.png" alt="" class="d-flex img-fluid" width="150">
                             </a>
                         </div>
 
@@ -46,7 +46,7 @@
                         <li class="dropdown user-profile align-self-center d-inline-block" style="background-color: white;">
                             <a href="#" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
                                 <div class="media">
-                                    <img src="../dist/images/author.jpg" alt="" class="d-flex img-fluid rounded-circle"
+                                    <img src="dist/images/author.jpg" alt="" class="d-flex img-fluid rounded-circle"
                                         width="29">
                                 </div>
                             </a>
@@ -60,7 +60,7 @@
                                 <a href="http://localhost/Salimah_CI/Wishlist" class="dropdown-item px-2 align-self-center d-flex">
                                     <span class="icon-heart mr-2 h6 mb-0"></span> Wishlist</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="<?= base_url( index_page().'/logout')?>" class="dropdown-item px-2 text-danger align-self-center d-flex">
+                                <a href="http://localhost/Salimah_CI/Login" class="dropdown-item px-2 text-danger align-self-center d-flex">
                                     <span class="icon-logout mr-2 h6  mb-0"></span> Keluar</a>
                             </div>
 

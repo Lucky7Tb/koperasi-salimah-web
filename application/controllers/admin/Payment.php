@@ -10,13 +10,14 @@ class Payment extends CI_Controller {
 		$this->load->helper('login_helper');
 
 		if (isNotLogin()) {
-			redirect('/login', 'refresh');
+			redirect('auth');
 		}
 	}
 	
 	public function index()
 	{
-		$this->load->view('admin/payment/index');
+		$data['title'] = 'Pembayaran';
+		$this->load->view('admin/payment/index', $data);
 	}
 
 }

@@ -92,4 +92,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 */
 
  define('SITE_NAME', 'Koperasi Salimah Kota Bandung');
- define('API', 'http://213.190.4.40/koperasi-salimah-backend/index.php/api/v1');
+ define('API', 'http://213.190.4.40/koperasi-salimah-backend/index.php/');
