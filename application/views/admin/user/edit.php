@@ -13,7 +13,7 @@ $this->load->view('admin/template/header', [
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
 				<div class="w-sm-100 mr-auto">
-					<h1>Tambah User</h1>
+					<h1>Edit User</h1>
 				</div>
 			</div>
 		</div>
@@ -27,18 +27,6 @@ $this->load->view('admin/template/header', [
 						<div class="form-group">
 							<label for="full_name">Nama lengkap</label>
 							<input type="text" name="full_name" id="full_name" class="form-control" placeholder="Masukan nama" required>
-						</div>
-						<div class="form-group">
-							<label for="email">Email</label>
-							<input type="email" name="email" id="email" class="form-control" placeholder="Masukan email" required>
-						</div>
-						<div class="form-group">
-							<label for="username">Username</label>
-							<input type="username" name="username" id="username" class="form-control" placeholder="Masukan username" required>
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" name="password" id="password" class="form-control" placeholder="Masukan password" required>
 						</div>
 						<div class="form-group">
 							<div>
@@ -91,10 +79,6 @@ $this->load->view('admin/template/header', [
 								</label>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="photo">Foto user</label>
-							<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
-						</div>
 						<button type="submit" class="btn-lg btn-block btn-primary">Submit</button>
 						<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
 					</form>
@@ -109,11 +93,11 @@ $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
 		<script src="' . $js . '/global.js"></script>
-		<script src="' . $js . '/admin/user/create.js"></script>
+		<script src="' . $js . '/admin/user/edit.js"></script>
 		<script>
 			initOptionPlugin();
+			getUser();
 		</script>
 	'
 ]);

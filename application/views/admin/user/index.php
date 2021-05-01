@@ -24,11 +24,13 @@ $this->load->view('admin/template/header');
 					<div class="table-responsive">
 						<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
 							<div id="example_filter" class="dataTables_filter">
-								<label>
-									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-user">
-								</label>
-								<button class="btn btn-primary" id="button-search">search</button>
+								<div class="float-right">
+									<label>
+										Search:
+										<input type="search" class="form-control form-control-sm" id="input-search-user">
+									</label>
+									<button class="btn btn-primary" id="button-search">search</button>
+								</div>
 							</div>
 							<table id="user-table" class="display table table-striped table-bordered" role="grid">
 								<thead>

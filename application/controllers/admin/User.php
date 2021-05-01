@@ -19,21 +19,40 @@ class User extends CI_Controller {
 		$this->load->view('admin/user/index');
 	}
 
-	public function getUser()
+	public function getAllUsers()
 	{
 		$headers = [
+			'accept' => 'application/json',
 			'authorization' => $this->session->userdata('token')
 		];
 
-		$endpoint = "/api/v1/admin/dashboard/user/getAllUsers?";
 		$data = $this->input->get();
+		$endPoint = "/api/v1/admin/dashboard/user/getAllUsers?";
 
-		$endpoint = $endpoint . 'search=' . $data['search'];
-		$endpoint = $endpoint . '&page=' . $data['page'];
-		$endpoint = $endpoint . '&order-by=' . $data['order-by'];
-		$endpoint = $endpoint . '&order-direction=' . $data['order-direction'];
+		if (isset($data['search'])) {
+			$endPoint = $endPoint . 'search=' . $data['search'];
+		} else {
+			$endPoint = $endPoint . 'page=' . $data['page'];
+		}
+		$endPoint = $endPoint . '&order-by=' . $data['order-by'];
+		$endPoint = $endPoint . '&order-direction=' . $data['order-direction'];
 
-		$result = request($endpoint, 'GET', null, $headers);
+		$result = request($endPoint, 'GET', null, $headers);
+
+		response($result);
+	}
+
+	public function getUser()
+	{
+		$headers = [
+			'accept' => 'application/json',
+			'authorization' => $this->session->userdata('token')
+		];
+
+		$userId = $this->input->get('id');
+		$endPoint = '/api/v1/admin/dashboard/user/getUser/'.$userId;
+
+		$result = request($endPoint, 'GET', null, $headers);
 
 		response($result);
 	}
@@ -46,22 +65,45 @@ class User extends CI_Controller {
 	public function insert()
 	{
 		$headers = [
+			'accept' => 'application/json',
 			'authorization' => $this->session->userdata('token'),
 			'Content-Type' => 'multipart/form-data'
 		];
 
-		$endpoint = '/api/v1/admin/dashboard/user/create';
 		$data = $this->input->post(null, true);
-		$data['file_key'] = 'photo';
-		
+		$endpoint = '/api/v1/admin/dashboard/user/create';
+
+		$tmpName =  $_FILES['photo']['tmp_name'];
+		$fileName =  $_FILES['photo']['name'];
+		$fileType =  $_FILES['photo']['type'];
+		$data['photo'] = curl_file_create($tmpName, $fileType, $fileName);
+
 		$result = request($endpoint, 'POST', $data, $headers);
 
-		var_dump($result);
-		die;
-
-		response($data, true);
+		response($result);
 	}
 
+
+	public function edit()
+	{
+		$this->load->view('admin/user/edit');
+	}
+
+	public function update($id)
+	{
+		$headers = [
+			'accept' => 'application/json',
+			'authorization' => $this->session->userdata('token'),
+			'Content-Type' => 'application/json'
+		];
+
+		$data = $this->input->post(null, true);
+		$endpoint = '/api/v1/admin/dashboard/user/update/'.$id;
+
+		$result = request($endpoint, 'PUT', $data, $headers);
+
+		response($result);
+	}
 }
 
 /* End of file User.php */
