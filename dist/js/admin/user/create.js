@@ -23,6 +23,9 @@ $("#user-form").on("submit", function (e) {
 		data: formData,
 		processData: false,
 		contentType: false,
+		beforeSend: function () {
+			global.loading("btn-add-user", "primary", true, null);
+		},
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
@@ -31,6 +34,9 @@ $("#user-form").on("submit", function (e) {
 			} else {
 				toastr.error(response.message);
 			}
+		},
+		complete: function () {
+			global.loading("btn-add-user", "primary", false, null);
 		},
 	});
 });

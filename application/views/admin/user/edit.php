@@ -79,7 +79,7 @@ $this->load->view('admin/template/header', [
 								</label>
 							</div>
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary">Submit</button>
+						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-add-user">Submit</button>
 						<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
 					</form>
 				</div>
