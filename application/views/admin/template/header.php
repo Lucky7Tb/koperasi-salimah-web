@@ -3,8 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Dashboard Salimah</title>
-	<link rel="shortcut icon" href="<?= base_url('img/logo2.png') ?>" />
+	<title><?= SITE_NAME . ' | ' . $title ?></title>
+	<link rel="shortcut icon" href="<?= base_url('img/logo2.png') ?>"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 	<input type="hidden" value="<?= base_url() ?>" id="base-url">
@@ -30,19 +30,19 @@
 
 <body id="main-container" class="default">
 
-	<!-- START: Pre Loader-->
-	<div class="se-pre-con">
-		<div class="loader"></div>
-	</div>
-	<!-- END: Pre Loader-->
+<!-- START: Pre Loader-->
+<div class="se-pre-con">
+	<div class="loader"></div>
+</div>
+<!-- END: Pre Loader-->
 
-	<!-- START: Navbar-->
-	<?php $this->load->view('admin/template/navbar'); ?>
-	<!-- END: Navbar-->
+<!-- START: Navbar-->
+<?php $this->load->view('admin/template/navbar'); ?>
+<!-- END: Navbar-->
 
-	<!-- START: Sidenav -->
-	<?php $this->load->view('admin/template/sidebar'); ?>
-	<!-- END: Sidenav -->
+<!-- START: Sidenav -->
+<?php $this->load->view('admin/template/sidebar'); ?>
+<!-- END: Sidenav -->
 
-	<!-- START: Main Content-->
-	<main>
+<!-- START: Main Content-->
+<main>

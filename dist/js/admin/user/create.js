@@ -19,7 +19,7 @@ $("#user-form").on("submit", function (e) {
 	const formData = new FormData(this);
 	$.ajax({
 		type: "POST",
-		url: `${global.base_url}admin/user/insert`,
+		url: `${global.base_url}admin/user/insertUser`,
 		data: formData,
 		processData: false,
 		contentType: false,

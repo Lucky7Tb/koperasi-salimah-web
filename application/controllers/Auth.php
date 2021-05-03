@@ -6,8 +6,6 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->helper('login_helper');
-
 		if (!isNotLogin()) {
 			$userLevel = $this->session->userdata('level');
 
@@ -29,7 +27,7 @@ class Auth extends CI_Controller {
 			'Content-Type' => 'application/json'
 		];
 
-		$result = request('/api/v1/auth/user/login', 'POST', $data, $headers);
+		$result = request('api/v1/auth/user/login', 'POST', $data, $headers);
 
 		$result = json_decode($result, true);
 

@@ -7,7 +7,6 @@ class Transaction extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('login_helper');
 
 		if (isNotLogin()) {
 			redirect('auth');
@@ -17,7 +16,8 @@ class Transaction extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/transaction/index');
+		$data['title'] = 'Transaksi';
+		$this->load->view('admin/transaction/index', $data);
 	}
 
 }

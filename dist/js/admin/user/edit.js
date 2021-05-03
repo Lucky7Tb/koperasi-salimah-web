@@ -27,7 +27,7 @@ $('#user-form').on('submit', function (e) {
 	
 	$.ajax({
 		type: 'POST',
-		url: `${global.base_url}admin/user/update/${id}`,
+		url: `${global.base_url}admin/user/updateUser/${id}`,
 		data: formData,
 		processData: false,
 		contentType: false,

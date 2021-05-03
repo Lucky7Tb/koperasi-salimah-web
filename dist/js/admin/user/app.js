@@ -1,7 +1,7 @@
 let paginate = 0;
 
 function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC') {
-	let query = "";
+	let query = '';
 	if (search) {
 		query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
 	}else {
@@ -9,7 +9,7 @@ function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC'
 	}
 
 	$.ajax({
-		type: "GET",
+		type: 'GET',
 		url: `${global.base_url}admin/user/getAllUsers?${query}`,
 		success: function (response) {
 			response = JSON.parse(response);
@@ -25,7 +25,7 @@ function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC'
 function renderUserData(users) {
 	let content = '';
 	$('#user-data-content').html('');
-	$("#prev-button").attr("disabled", paginate === 0);
+	$('#prev-button').attr('disabled', paginate === 0);
 
 	if (users.length > 0) {
 		users.forEach(user => {
@@ -52,7 +52,7 @@ function renderUserData(users) {
 				<td colspan='6' class='text-center'>Tidak ada data</td>
 			</tr>
 		`;
-		$("#next-button").attr("disabled", true);
+		$('#next-button').attr('disabled', true);
 	}
 
 	$('#user-data-content').append(content);
@@ -67,8 +67,8 @@ $('#prev-button').on('click', function () {
 			paginate -= 1;
 		}
 
-		if ($("#input-search-user").val()) {
-			getUsers($("#input-search-user").val(), paginate);
+		if ($('#input-search-user').val()) {
+			getUsers($('#input-search-user').val(), paginate);
 			return;
 		}
 		getUsers('', paginate);
@@ -77,8 +77,8 @@ $('#prev-button').on('click', function () {
 $('#next-button').on('click', function () {
 	paginate += 1;
 	
-	if ($("#input-search-user").val()) {
-		getUsers($("#input-search-user").val(), paginate);
+	if ($('#input-search-user').val()) {
+		getUsers($('#input-search-user').val(), paginate);
 		return;
 	}
 

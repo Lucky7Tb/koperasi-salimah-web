@@ -11,6 +11,10 @@ insert_final_newline = true
 [*]
 charset = utf-8
 
+
 # Tab indentation (no size specified)
 indent_style = tab
 indent_size = 2
+
+#Quotes
+quote_type = single

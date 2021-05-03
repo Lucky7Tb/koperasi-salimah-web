@@ -1,33 +1,34 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Register extends CI_Controller {
-
+class Register extends CI_Controller
+{
 	public function index()
 	{
 		$this->load->view('register');
 	}
 
-	public function simpan(){
+	public function simpan()
+	{
 		$this->load->model('m_user');
 
-        $data = array(
-			'username'       => $this->input->post('username'),
-			'email'          => $this->input->post('email'),
-			'password'       => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-			'status'		 => "user",    
-        );
+		$data = array(
+			'username' => $this->input->post('username'),
+			'email' => $this->input->post('email'),
+			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+			'status' => "user",
+		);
 
-        $register = $this->m_user->simpan_register($data);
+		$register = $this->m_user->simpan_register($data);
 
-        if($register) {
+		if ($register) {
 
-            echo "success";
+			echo "success";
 
-        } else {
+		} else {
 
-            echo "error";
+			echo "error";
 
-        }
+		}
 	}
 }
