@@ -23,7 +23,7 @@ class Category_model extends CI_Model
 	{
 		$end = 'api/v1/admin/dashboard/category/create';
 
-		return post_curl($end, $data, $token);
+		return post_curl($end, $data, $token, true);
 	}
 
 	// put

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Product_model extends CI_Model
 {
@@ -13,7 +13,7 @@ class Product_model extends CI_Model
 
 	public function getProduct($id, $token)
 	{
-		$end = 'api/v1/admin/dashboard/product/getDetailProduct/'.$id;
+		$end = 'api/v1/admin/dashboard/product/getDetailProduct/' . $id;
 
 		return get_curl($end, $token);
 	}
@@ -22,14 +22,18 @@ class Product_model extends CI_Model
 	public function createProduct($data, $token)
 	{
 		$end = 'api/v1/admin/dashboard/product/create';
-		
+
 		return post_curl($end, $data, $token);
+//		return request($end, 'POST', $data, array(
+//			'Authorization' => $token,
+//			'Content-Type' => 'multipart/form-data'
+//		));
 	}
 
 	public function addProductPhotos($data, $token)
 	{
 		$end = 'api/v1/admin/dashboard/product/productPhotos';
-		
+
 		return post_curl($end, $data, $token);
 	}
 
@@ -47,7 +51,7 @@ class Product_model extends CI_Model
 
 		return delete_curl($end, $id, $token);
 	}
-	
+
 	//put
 	public function changeProductCover($id, $data, $token)
 	{

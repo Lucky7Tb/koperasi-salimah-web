@@ -13,11 +13,18 @@ $this->load->view('admin/template/header');
 		</div>
 	</div>
 
+	<?php
+	if (isset($_SESSION['pesan'])) {
+		echo $this->session->flashdata('pesan');
+		unset($_SESSION['pesan']);
+	}
+	?>
+
 	<div class="row">
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/user/create') ?>">Tambah <?= $title ?></a>
+					<a type="button" class="btn btn-primary" href="<?= base_url('admin/product_categories/tambah') ?>">Tambah <?= $title ?></a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
@@ -99,6 +106,40 @@ $this->load->view('admin/template/header');
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="tambahKategoriModal" tabindex="-1" aria-labelledby="tambahKategoriModalLabel"
+		 aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="tambahKategoriModalLabel">Tambah <?= $title ?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="post" id="user-form">
+					<div class="form-group">
+						<label for="full_name">Nama kategori</label>
+						<input type="text" name="nama_kategori" id="nama_kategori" class="form-control"
+									 placeholder="Masukan nama kategori">
+
+					</div>
+					<div class="form-group">
+						<label for="full_name">Deskripsi kategori</label>
+						<input type="text" name="deskripsi" id="deskripsi" class="form-control"
+									 placeholder="Masukan deskripsi kategori">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+						<button type="submit" class="btn btn-primary">Tambah</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 <?php
 $js = base_url('dist/js');
 $plugin = base_url('dist/vendors');
@@ -111,7 +152,6 @@ $this->load->view('admin/template/footer', [
 				// $("#main").slimScroll({
 				// 	height: "350px"
 				// });
-				getCategory();
 			</script>
 		'
 ]);

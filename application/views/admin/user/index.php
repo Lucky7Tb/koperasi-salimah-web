@@ -8,7 +8,7 @@ $this->load->view('admin/template/header');
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
 				<div class="w-sm-100 mr-auto">
-					<h1><?= $title ?></h1>
+					<h1>Management User</h1>
 				</div>
 			</div>
 		</div>
