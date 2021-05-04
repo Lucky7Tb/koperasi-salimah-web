@@ -16,6 +16,9 @@ function get_curl($endpoints, $token, array $params = null)
 		}
 	}
 
+//	echo $url;
+//	die;
+
 	$curl = curl_init();
 
 	curl_setopt_array($curl, array(
@@ -115,12 +118,11 @@ function delete_curl($endpoints, $id, $token)
 
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => $url,
-		CURLOPT_HTTPHEADER => array(
-			'authorization:' . $token,
-		),
-		CURLOPT_CUSTOMREQUEST => 'DELETE',
-		CURLOPT_BUFFERSIZE => 10,
 		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_CUSTOMREQUEST => 'DELETE',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization:' . $token,
+		),
 	));
 
 	$result = json_decode(curl_exec($curl), 1);

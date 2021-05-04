@@ -16,15 +16,15 @@ class Delivery extends CI_Controller
 		}
 
 		$this->token = $this->session->userdata('token');
+
+		$this->load->model('Delivery_model', 'pengiriman');
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Pengiriman';
 
-		$this->load->model('Delivery_model', 'delivery');
-
-		$data['pengiriman'] = $this->delivery->getAllDelivery($this->token);
+		$data['pengiriman'] = $this->pengiriman->getAllDelivery($this->token);
 
 		$this->load->view('admin/delivery/index', $data);
 	}
@@ -32,8 +32,6 @@ class Delivery extends CI_Controller
 	public function tambah()
 	{
 		$data['title'] = 'Tambah Pengiriman';
-
-		$this->load->model('Delivery_model', 'pengiriman');
 
 		$this->form_validation->set_rules('name_expedition', 'Nama ekspedisi', 'required|trim');
 		$this->form_validation->set_rules('courier_code', 'Nama ekspedisi', 'required|trim');
@@ -54,6 +52,18 @@ class Delivery extends CI_Controller
 				redirect('admin/delivery');
 			}
 		}
+	}
+
+	public function hapus($id)
+	{
+		if ($this->pengiriman->deactiveDelivery($id, $this->token)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Pengiriman berhasil dihapus</div>');
+
+			redirect('admin/delivery');
+		}
+		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Pengiriman gagal dihapus</div>');
+
+		redirect('admin/delivery');
 	}
 }
 

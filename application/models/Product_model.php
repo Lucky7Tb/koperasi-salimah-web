@@ -8,7 +8,7 @@ class Product_model extends CI_Model
 	{
 		$end = 'api/v1/admin/dashboard/product/getProducts';
 
-		return get_curl($end, $token);
+		return get_curl($end, $token, $params);
 	}
 
 	public function getProduct($id, $token)

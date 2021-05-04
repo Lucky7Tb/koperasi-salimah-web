@@ -58,6 +58,18 @@ class Product_Categories extends CI_Controller
 		}
 	}
 
+	public function hapus($id)
+	{
+		if ($this->category->deactiveCategory($id, $this->token)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori produk berhasil dihapus</div>');
+
+			redirect( 'admin/product_categories');
+		}
+		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Kategori produk gagal dihapus</div>');
+
+		redirect( 'admin/product_categories');
+	}
+
 	public function cari()
 	{
 //		$keyword = $this->input->post('keywords');

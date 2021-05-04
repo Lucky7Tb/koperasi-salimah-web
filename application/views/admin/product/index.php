@@ -73,9 +73,9 @@ $this->load->view('admin/template/header');
 												<button type="button" class="btn btn-warning text-white" data-id="<?= $p['id_m_products'] ?>">
 													<i class="icon-pencil mr-2 h6 mb-0"></i> Edit
 												</button>
-												<button type="button" class="btn btn-danger text-white" data-id="<?= $p['id_m_products'] ?>">
+												<a href="<?= base_url('admin/product/') ?>hapus/<?= $p['id_m_products']?>" class="btn btn-danger text-white">
 													<i class="icon-trash mr-2 h6 mb-0"></i> Hapus
-												</button>
+												</a>
 											</td>
 										</tr>
 										<?php
@@ -109,7 +109,6 @@ $this->load->view('admin/template/header');
 			</div>
 		</div>
 	</div>
-
 </div>
 <?php
 $js = base_url('dist/js');

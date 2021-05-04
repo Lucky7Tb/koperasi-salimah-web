@@ -69,9 +69,9 @@ $this->load->view('admin/template/header');
 												</button>
 											</td>
 											<td>
-												<button type="button" class="btn btn-danger text-white" data-id="<?= $k['id'] ?>">
+												<a href="<?= base_url('admin/product_categories/hapus') ?>/<?= $k['id'] ?>" class="btn btn-danger text-white">
 													<i class='icon-trash'></i>
-												</button>
+												</a>
 											</td>
 										</tr>
 										<?php
