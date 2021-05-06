@@ -20,11 +20,11 @@ function initOptionPlugin() {
 function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC') {
 	$.ajax({
 		type: 'GET',
-		url: `${global.base_url}/admin/user/getUser?search=${search}&page=${page}0&order-by=${orderBy}&order-direction=${orderDirection}`,
+		url: `${global.base_url}/admin/product/getProducts?search=${search}&page=${page}0&order-by=${orderBy}&order-direction=${orderDirection}`,
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				renderUserData(response.data);
+				renderProductData(response.data);
 			}else {
 				toastr.error(response.message);
 			}
@@ -32,7 +32,7 @@ function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC'
 	});
 }
 
-function renderUserData(users) {
+function renderProductData(users) {
 	let content = '';
 	$('#user-data-content').html('');
 

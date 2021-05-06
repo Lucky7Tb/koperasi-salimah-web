@@ -11,7 +11,7 @@ class Category_model extends CI_Model
 		return get_curl($end, $token, $params);
 	}
 
-	public function getCategory($id, $token, $params)
+	public function getCategory($id, $token)
 	{
 		$end = 'api/v1/admin/dashboard/category/getCategory/'.$id;
 

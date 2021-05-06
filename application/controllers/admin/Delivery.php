@@ -65,6 +65,38 @@ class Delivery extends CI_Controller
 
 		redirect('admin/delivery');
 	}
+
+	public function ubah($id)
+	{
+		$data['title'] = 'Ubah Pengiriman';
+
+		$data['pengiriman'] = $this->pengiriman->getDelivery($id, $this->token);
+
+		$this->form_validation->set_rules('name_expedition', 'Nama ekspedisi', 'required|trim');
+		$this->form_validation->set_rules('courier_code', 'Nama ekspedisi', 'required|trim');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('admin/delivery/edit', $data);
+		} else {
+			$data = $this->input->post(null, true);
+			$img['file_key'] = 'photo';
+
+			if ($this->pengiriman->updateCourier($id, $data, $this->token)) {
+
+				if (isset($_FILES) && $_FILES[$img['file_key']]['size'] > 0) {
+					$this->pengiriman->changeCourierPhoto($id, $img, $this->token);
+				}
+
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Layanan pengiriman berhasil diubah</div>');
+
+				redirect('admin/delivery');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Layanan pengiriman gagal diubah</div>');
+
+				redirect('admin/delivery');
+			}
+		}
+	}
 }
 
 /* End of file Delivery.php */

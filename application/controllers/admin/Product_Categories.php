@@ -49,11 +49,11 @@ class Product_Categories extends CI_Controller
 			if ($this->category->createCategory($data, $this->token)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori produk berhasil ditambah</div>');
 
-				redirect( 'admin/product_categories');
+				redirect('admin/product_categories');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Kategori produk gagal ditambah</div>');
 
-				redirect( 'admin/product_categories');
+				redirect('admin/product_categories');
 			}
 		}
 	}
@@ -63,14 +63,45 @@ class Product_Categories extends CI_Controller
 		if ($this->category->deactiveCategory($id, $this->token)) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori produk berhasil dihapus</div>');
 
-			redirect( 'admin/product_categories');
+			redirect('admin/product_categories');
 		}
 		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Kategori produk gagal dihapus</div>');
 
-		redirect( 'admin/product_categories');
+		redirect('admin/product_categories');
 	}
 
-	public function cari()
+	public function ubah($id)
+	{
+		$data['title'] = 'Ubah Kategori Produk';
+
+		$data['category'] = $this->category->getCategory($id, $this->token);
+
+		$this->form_validation->set_rules('nama_kategori', 'Nama kategori', 'trim|required');
+		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('admin/product_categories/edit', $data);
+		} else {
+			$data['category'] = $this->input->post('nama_kategori');
+			$data['slug'] = strtolower($this->input->post('nama_kategori'));
+			$data['description'] = $this->input->post('deskripsi');
+			$data['is_visible'] = 1;
+
+			if ($this->category->updateCategory($id, $data, $this->token)) {
+//
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori Produk berhasil diubah</div>');
+
+				redirect('admin/product_categories');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori Produk gagal diubah</div>');
+
+				redirect('admin/product_categories');
+			}
+		}
+	}
+
+	public
+	function cari()
 	{
 //		$keyword = $this->input->post('keywords');
 		echo "ok";

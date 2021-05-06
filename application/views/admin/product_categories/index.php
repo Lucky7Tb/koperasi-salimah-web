@@ -64,9 +64,9 @@ $this->load->view('admin/template/header');
 											<td><?= date('d-M-Y H:s ', strtotime($k['created_at'])) ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($k['updated_at'])) ?></td>
 											<td>
-												<button type="button" class="btn btn-warning text-white" data-id="<?= $k['id'] ?>">
+												<a href="<?= base_url('admin/product_categories/ubah/') ?><?= $k['id'] ?>" class="btn btn-warning text-white">
 													<i class='icon-pencil'></i>
-												</button>
+												</a>
 											</td>
 											<td>
 												<a href="<?= base_url('admin/product_categories/hapus') ?>/<?= $k['id'] ?>" class="btn btn-danger text-white">

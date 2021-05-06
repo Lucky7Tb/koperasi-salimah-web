@@ -33,7 +33,8 @@ $this->load->view('admin/template/header');
 							<div id="example_filter" class="dataTables_filter">
 								<label>
 									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-user">
+									<input type="search" class="form-control form-control-sm" id="input-search-product"
+												 autocomplete="off">
 								</label>
 								<button class="btn btn-primary" id="button-search" type="submit">search</button>
 							</div>
@@ -51,7 +52,7 @@ $this->load->view('admin/template/header');
 									<th>Aksi</th>
 								</tr>
 								</thead>
-								<tbody id="user-data-content">
+								<tbody id="product-data-content">
 								<?php
 								if ($produk['data'] != null) :
 									$i = 1;
@@ -70,10 +71,12 @@ $this->load->view('admin/template/header');
 											<td><?= $p['created_at'] ?></td>
 											<td><?= $p['updated_at'] ?></td>
 											<td>
-												<button type="button" class="btn btn-warning text-white" data-id="<?= $p['id_m_products'] ?>">
+												<a href="<?= base_url('admin/product/ubah/') ?><?= $p['id_m_products'] ?>"
+													 class="btn btn-warning text-white">
 													<i class="icon-pencil mr-2 h6 mb-0"></i> Edit
-												</button>
-												<a href="<?= base_url('admin/product/') ?>hapus/<?= $p['id_m_products']?>" class="btn btn-danger text-white">
+												</a>
+												<a href="<?= base_url('admin/product/') ?>hapus/<?= $p['id_m_products'] ?>"
+													 class="btn btn-danger text-white">
 													<i class="icon-trash mr-2 h6 mb-0"></i> Hapus
 												</a>
 											</td>
@@ -113,5 +116,9 @@ $this->load->view('admin/template/header');
 <?php
 $js = base_url('dist/js');
 $plugin = base_url('dist/vendors');
-$this->load->view('admin/template/footer');
+$this->load->view('admin/template/footer', array(
+		'js' => '<script src="' . $js . '/admin/product/app.js"></script>
+		<script>getProduct()</script>'
+	)
+);
 ?>

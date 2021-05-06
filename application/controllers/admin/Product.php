@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Product extends CI_Controller
@@ -25,9 +24,7 @@ class Product extends CI_Controller
 	{
 		$data['title'] = 'Produk';
 
-		$params = array('page' => '0');
-
-		$data['produk'] = $this->produk->getAllProducts($this->token, $params);
+		$data['produk'] = $this->produk->getAllProducts($this->token);
 
 		$this->load->view('admin/product/index', $data);
 	}
@@ -40,10 +37,10 @@ class Product extends CI_Controller
 
 		$error = array(
 			'required' => '{field} harus diisi',
-			'numeric' => '{filed} harus angka'
+			'numeric' => '{filed} harus angka',
 		);
 
-		$this->form_validation->set_rules('product_name', 'Nama produk', 'trim|required|alpha_numeric', $error);
+		$this->form_validation->set_rules('product_name', 'Nama produk', 'trim|required', $error);
 		$this->form_validation->set_rules('price', 'Harga', 'trim|required|numeric', $error);
 		$this->form_validation->set_rules('stock', 'Stok', 'trim|required|numeric', $error);
 		$this->form_validation->set_rules('weight', 'Berat', 'trim|required|numeric', $error);
@@ -79,10 +76,74 @@ class Product extends CI_Controller
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Produk berhasil dihapus</div>');
 
 			redirect('admin/product');
-		}
-		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Produk gagal dihapus</div>');
+		} else {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Produk gagal dihapus</div>');
 
-		redirect('admin/product');
+			redirect('admin/product');
+		}
+	}
+
+	public function ubah($id)
+	{
+		$data['title'] = 'Ubah Produk';
+
+		$data['produk'] = $this->produk->getProduct($id, $this->token);
+		$data['category'] = $this->category->getAllCategories($this->token);
+
+		$error = array(
+			'required' => '{field} harus diisi',
+			'numeric' => '{filed} harus angka'
+		);
+
+		$this->form_validation->set_rules('product_name', 'Nama produk', 'trim|required', $error);
+		$this->form_validation->set_rules('price', 'Harga', 'trim|required|numeric', $error);
+		$this->form_validation->set_rules('stock', 'Stok', 'trim|required|numeric', $error);
+		$this->form_validation->set_rules('weight', 'Berat', 'trim|required|numeric', $error);
+		$this->form_validation->set_rules('description', 'Deskripsi', 'trim|required', $error);
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('admin/product/edit', $data);
+		} else {
+			$data = $this->input->post(array('product_name', 'price', 'stock', 'weight', 'description'), true);
+			$data['slug'] = strtolower($this->input->post('product_name'));
+			$data['width'] = 1;
+			$data['length'] = 1;
+			$data['height'] = 1;
+
+			$kategori['categories'] = array($this->input->post('categories'));
+
+			$photo['file_key'] = 'cover';
+
+			if ($this->produk->updateProduct($id, $data, $this->token) &&
+				$this->produk->updateProductCategory($id, $kategori, $this->token)) {
+
+				if (isset($_FILES) && $_FILES[$photo['file_key']]['size'] > 0) {
+					$this->produk->changeProductCover($id, $photo, $this->token);
+				}
+
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Produk berhasil diubah</div>');
+
+				redirect('admin/product');
+
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Produk gagal diubah</div>');
+
+				redirect('admin/product');
+			}
+		}
+	}
+
+	public function cari()
+	{
+		$data['title'] = 'Produk';
+
+		$keyword = $this->input->post('keyword');
+
+		$params = array('search' => $keyword);
+
+		$data['produk'] = $this->produk->getAllProducts($this->token, $params);
+
+		echo $this->load->view('admin/product/index', $data);
 	}
 }
 

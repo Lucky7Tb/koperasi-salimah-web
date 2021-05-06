@@ -24,10 +24,6 @@ class Product_model extends CI_Model
 		$end = 'api/v1/admin/dashboard/product/create';
 
 		return post_curl($end, $data, $token);
-//		return request($end, 'POST', $data, array(
-//			'Authorization' => $token,
-//			'Content-Type' => 'multipart/form-data'
-//		));
 	}
 
 	public function addProductPhotos($data, $token)
@@ -55,9 +51,9 @@ class Product_model extends CI_Model
 	//put
 	public function changeProductCover($id, $data, $token)
 	{
-		$end = 'api/v1/admin/dashboard/product/changeProductCover';
+		$end = 'api/v1/admin/dashboard/product/changeProductCover/' . $id;
 
-		return put_curl($end, $id, $data, $token);
+		return post_curl($end, $data, $token);
 	}
 
 	public function updateProduct($id, $data, $token)
