@@ -17,7 +17,7 @@
 					<li class="dropdown user-profile align-self-center d-inline-block">
 						<a href="#" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
 							<div class="media">
-								<img src="<?= base_url('dist/images/author.jpg') ?>" alt="" class="d-flex img-fluid rounded-circle" width="29">
+								<img src="<?= $this->session->userdata('profile_picture'); ?>" alt="" class="d-flex img-fluid rounded-circle" width="29">
 							</div>
 						</a>
 						<div class="dropdown-menu border dropdown-menu-right p-0">
