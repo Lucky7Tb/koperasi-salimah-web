@@ -1,5 +1,6 @@
 let paginate = 0;
-let paymentId = null;
+let numbering = 0;
+let isNoData = false;
 
 function getPayments(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC') {
 	let query = '';
@@ -29,9 +30,13 @@ function renderPaymentData(payments) {
 	$('#prev-button').attr('disabled', paginate === 0);
 
 	if (payments.length > 0) {
+		isNoData = false;
 		payments.forEach((payment) => {
+			let disabledButton = payment.is_visible === '0' ? 'disabled' : null;
+
 			content += /*html*/ `
 				<tr>
+					<td>${++numbering}</td>
 					<td>
 						<a href='${payment.uri}' data-fancybox data-caption='${payment.label}'>
 							<div style="width: 64px; height: 64px; background-size: cover; background-image: url('${payment.uri}'); background-position: center;" class='mx-auto'></div>
@@ -52,15 +57,17 @@ function renderPaymentData(payments) {
 						</a>
 					</td>
 					<td>
-						<a href='#' onclick="confirmDeletePayment(${payment.id})" class='btn btn-danger text-white'>	
-							<i class='icon-trash'></i>
-						</a>
+						<button onclick="confirmDeletePayment(${payment.id})" class='btn btn-danger text-white' ${disabledButton}>	
+							<i class='icon-power'></i>
+						</button>
 					</td>
 				</tr>
 			`;
 		});
 		$('#next-button').attr('disabled', false);
 	} else {
+		isNoData = true;
+		numbering -= numbering % 10;
 		content += /*html*/ `
 			<tr>
 				<td colspan='8' class='text-center'>Tidak ada data</td>
@@ -85,6 +92,7 @@ $('#btn-delete-payment').on('click', function () {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
+				$('#payment-delete-modal').modal('hide');
 				getPayments();
 				toastr.success(response.message);
 			} else {
@@ -102,6 +110,8 @@ $('#prev-button').on('click', function () {
 	if (paginate > 0) {
 		paginate -= 1;
 	}
+
+	decNumbering();
 
 	if ($('#input-search-payment').val()) {
 		getPayments($('#input-search-payment').val(), paginate);
@@ -121,3 +131,15 @@ $('#next-button').on('click', function () {
 
 	getPayments('', paginate);
 });
+
+function decNumbering() {
+	const row = $('#user-data-content td').closest('tr').length;
+
+	if (numbering % 10 === 0) {
+		if (!isNoData) {
+			numbering = numbering - row * 2;
+		}
+	} else {
+		numbering = numbering - row - 10;
+	}
+}

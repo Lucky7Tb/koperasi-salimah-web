@@ -35,6 +35,7 @@ $this->load->view('admin/template/header');
 							<table id="user-table" class="display table table-striped table-bordered" role="grid">
 								<thead>
 									<tr role="row">
+										<th rowspan="2">#</th>
 										<th rowspan="2">Nama</th>
 										<th rowspan="2">Gender</th>
 										<th rowspan="2">No telp</th>

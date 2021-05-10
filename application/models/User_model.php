@@ -11,17 +11,17 @@ class User_model extends CI_Model {
 			'authorization' => $this->session->userdata('token')
 		];
 
-		$endPoint = "api/v1/admin/dashboard/user/getAllUsers?";
+		$endpoint = "/api/v1/admin/dashboard/user/getAllUsers?";
 
 		if (isset($data['search'])) {
-			$endPoint = $endPoint . 'search=' . $data['search'];
+			$endpoint = $endpoint . 'search=' . $data['search'];
 		} else {
-			$endPoint = $endPoint . 'page=' . $data['page'];
+			$endpoint = $endpoint . 'page=' . $data['page'];
 		}
-		$endPoint = $endPoint . '&order-by=' . $data['order-by'];
-		$endPoint = $endPoint . '&order-direction=' . $data['order-direction'];
+		$endpoint = $endpoint . '&order-by=' . $data['order-by'];
+		$endpoint = $endpoint . '&order-direction=' . $data['order-direction'];
 
-		$result = request($endPoint, 'GET', null, $headers);
+		$result = request($endpoint, 'GET', null, $headers);
 
 		return $result;
 	}
@@ -33,9 +33,9 @@ class User_model extends CI_Model {
 			'authorization' => $this->session->userdata('token')
 		];
 
-		$endPoint = 'api/v1/admin/dashboard/user/getUser/' . $userId;
+		$endpoint = '/api/v1/admin/dashboard/user/getUser/' . $userId;
 
-		$result = request($endPoint, 'GET', null, $headers);
+		$result = request($endpoint, 'GET', null, $headers);
 
 		return $result;
 	}
@@ -48,7 +48,7 @@ class User_model extends CI_Model {
 			'Content-Type' => 'multipart/form-data'
 		];
 
-		$endpoint = 'api/v1/admin/dashboard/user/create';
+		$endpoint = '/api/v1/admin/dashboard/user/create';
 
 		$result = request($endpoint, 'POST', $data, $headers);
 
@@ -63,7 +63,7 @@ class User_model extends CI_Model {
 			'Content-Type' => 'application/json'
 		];
 
-		$endpoint = 'api/v1/admin/dashboard/user/update/' . $userId;
+		$endpoint = '/api/v1/admin/dashboard/user/update/' . $userId;
 
 		$result = request($endpoint, 'PUT', $data, $headers);
 

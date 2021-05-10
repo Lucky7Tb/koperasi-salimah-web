@@ -20,16 +20,12 @@ class Auth extends CI_Controller {
 
 	public function login()
 	{
+
+		$this->load->model('Login_model', 'login');
+		
 		$data = $this->input->post(null, true);
 
-		$headers = [
-			'accept' => 'application/json',
-			'Content-Type' => 'application/json'
-		];
-
-		$result = request('api/v1/auth/user/login', 'POST', $data, $headers);
-
-		$result = json_decode($result, true);
+		$result = $this->login->doLogin($data);
 
 		if ($result['code'] == 200) {
 			$userData = $result['data'];

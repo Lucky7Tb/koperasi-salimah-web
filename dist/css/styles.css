@@ -3,6 +3,7 @@
 }
 
 .footer{
+	margin-top: 5%;
 	display: grid;
 	grid-template-columns: 20% 20% 20% 20% 20%;
 	padding: 30px 15px 0 15px;

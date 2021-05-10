@@ -3,7 +3,6 @@ $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-		<link rel="stylesheet" href="' . $css . '/styles.css">
 		<link rel="stylesheet" href="' . $plugin . '/fancybox/jquery.fancybox.min.css">
 	'
 ]);
@@ -63,6 +62,7 @@ $this->load->view('admin/template/header', [
 							<table id="user-table" class="display table table-striped table-bordered" role="grid">
 								<thead>
 									<tr role="row">
+										<th rowspan="2">#</th>
 										<th rowspan="2">Foto</th>
 										<th rowspan="2">Nama bank</th>
 										<th rowspan="2">Akun bank</th>

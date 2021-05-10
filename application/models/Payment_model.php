@@ -11,17 +11,17 @@ class Payment_model extends CI_Model {
 			'authorization' => $this->session->userdata('token')
 		];
 
-		$endPoint = "api/v1/admin/dashboard/payment/getPayments?";
+		$endpoint = "/api/v1/admin/dashboard/payment/getPayments?";
 
 		if (isset($data['search'])) {
-			$endPoint = $endPoint . 'search=' . $data['search'];
+			$endpoint = $endpoint . 'search=' . $data['search'];
 		} else {
-			$endPoint = $endPoint . 'page=' . $data['page'];
+			$endpoint = $endpoint . 'page=' . $data['page'];
 		}
-		$endPoint = $endPoint . '&order-by=' . $data['order-by'];
-		$endPoint = $endPoint . '&order-direction=' . $data['order-direction'];
+		$endpoint = $endpoint . '&order-by=' . $data['order-by'];
+		$endpoint = $endpoint . '&order-direction=' . $data['order-direction'];
 
-		$result = request($endPoint, 'GET', null, $headers);
+		$result = request($endpoint, 'GET', null, $headers);
 
 		return $result;
 	}
@@ -33,9 +33,9 @@ class Payment_model extends CI_Model {
 			'authorization' => $this->session->userdata('token')
 		];
 
-		$endPoint = 'api/v1/admin/dashboard/payment/getPayment/'. $paymentId;
+		$endpoint = '/api/v1/admin/dashboard/payment/getPayment/'. $paymentId;
 
-		$result = request($endPoint, 'GET', null, $headers);
+		$result = request($endpoint, 'GET', null, $headers);
 
 		return $result;
 	}
@@ -48,7 +48,7 @@ class Payment_model extends CI_Model {
 			'Content-Type' => 'multipart/form-data'
 		];
 
-		$endpoint = 'api/v1/admin/dashboard/payment/create';
+		$endpoint = '/api/v1/admin/dashboard/payment/create';
 
 		$result = request($endpoint, 'POST', $data, $headers);
 
@@ -63,7 +63,7 @@ class Payment_model extends CI_Model {
 			'Content-Type' => 'application/json'
 		];
 
-		$endpoint = 'api/v1/admin/dashboard/payment/update/'. $paymentId;
+		$endpoint = '/api/v1/admin/dashboard/payment/update/'. $paymentId;
 
 		$result = request($endpoint, 'PUT', $data, $headers);
 
@@ -78,7 +78,7 @@ class Payment_model extends CI_Model {
 			'Content-Type' => 'multipart/form-data'
 		];
 
-		$endpoint = 'api/v1/admin/dashboard/payment/changePhoto/'.$paymentId;
+		$endpoint = '/api/v1/admin/dashboard/payment/changePhoto/'.$paymentId;
 
 		$result = request($endpoint, 'POST', $data, $headers);
 
@@ -92,7 +92,7 @@ class Payment_model extends CI_Model {
 			'authorization' => $this->session->userdata('token'),
 		];
 
-		$endpoint = 'api/v1/admin/dashboard/payment/deactivePayment/' . $paymentId;
+		$endpoint = '/api/v1/admin/dashboard/payment/deactivePayment/' . $paymentId;
 
 		$result = request($endpoint, 'DELETE', null, $headers);
 
