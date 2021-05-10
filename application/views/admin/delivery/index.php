@@ -13,11 +13,18 @@ $this->load->view('admin/template/header');
 		</div>
 	</div>
 
+	<?php
+	if (isset($_SESSION['pesan'])) {
+		echo $this->session->flashdata('pesan');
+		unset($_SESSION['pesan']);
+	}
+	?>
+
 	<div class="row">
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/user/create') ?>">Tambah <?= $title ?></a>
+					<a type="button" class="btn btn-primary" href="<?= base_url('admin/delivery/tambah') ?>">Tambah <?= $title ?></a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
@@ -58,14 +65,14 @@ $this->load->view('admin/template/header');
 											<td><?= date('d-M-Y H:s ', strtotime($p['created_at'])) ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($p['updated_at'])) ?></td>
 											<td>
-												<button type="button" class="btn btn-warning text-white" data-id="<?= $p['id'] ?>">
+												<a href="<?= base_url('admin/delivery/ubah/'); echo $p['id'] ?>" class="btn btn-warning text-white" data-id="<?= $p['id'] ?>">
 													<i class='icon-pencil'></i>
-												</button>
+												</a>
 											</td>
 											<td>
-												<button type="button" class="btn btn-danger text-white" data-id="<?= $p['id'] ?>">
+												<a href="<?= base_url('admin/delivery/hapus/'); echo $p['id'] ?>" class="btn btn-danger text-white">
 													<i class='icon-trash'></i>
-												</button>
+												</a>
 											</td>
 										</tr>
 										<?php
@@ -99,7 +106,6 @@ $this->load->view('admin/template/header');
 			</div>
 		</div>
 	</div>
-
 </div>
 <?php
 $js = base_url('dist/js');

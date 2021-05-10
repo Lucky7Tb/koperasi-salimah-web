@@ -1,4 +1,6 @@
 let paginate = 0;
+let numbering = 0;
+let isNoData = false;
 
 function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC') {
 	let query = '';
@@ -28,9 +30,11 @@ function renderUserData(users) {
 	$('#prev-button').attr('disabled', paginate === 0);
 
 	if (users.length > 0) {
+		isNoData = false;
 		users.forEach(user => {
 			content += /*html*/ `
 				<tr>
+					<td>${++numbering}</td>
 					<td>${user.full_name}</td>
 					<td>${user.gender === 'l' ? 'Laki-laki' : 'Perempuan'}</td>
 					<td>${user.phone_number ? user.phone_number : '-'}</td>
@@ -47,6 +51,8 @@ function renderUserData(users) {
 		});
 		$("#next-button").attr("disabled", false);
 	}else {
+		isNoData = true;
+		numbering -= (numbering % 10);
 		content += /*html*/ `
 			<tr>
 				<td colspan='6' class='text-center'>Tidak ada data</td>
@@ -64,8 +70,10 @@ $('#button-search').on('click', function () {
 
 $('#prev-button').on('click', function () { 
 		if (paginate > 0) {
-			paginate -= 1;
+			paginate--;
 		}
+
+		decNumbering();
 
 		if ($('#input-search-user').val()) {
 			getUsers($('#input-search-user').val(), paginate);
@@ -75,7 +83,7 @@ $('#prev-button').on('click', function () {
 });
 
 $('#next-button').on('click', function () {
-	paginate += 1;
+	paginate++;
 	
 	if ($('#input-search-user').val()) {
 		getUsers($('#input-search-user').val(), paginate);
@@ -84,3 +92,16 @@ $('#next-button').on('click', function () {
 
 	getUsers('', paginate);
 });
+
+function decNumbering() {
+	const row = $('#user-data-content td').closest('tr').length;
+
+	if (numbering % 10 === 0) {
+		if (!isNoData) {
+			numbering = numbering - row * 2;
+		}
+	} else {
+		numbering = numbering - row - 10;
+	}
+
+}

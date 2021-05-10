@@ -12,7 +12,7 @@ if (!function_exists('request')) {
 
 		$headers = [];
 		foreach ($optionHeader as $key => $value) {
-			$headers[] = $key .': '. $value;
+			$headers[] = $key . ': ' . $value;
 		}
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
