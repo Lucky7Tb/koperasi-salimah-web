@@ -15,17 +15,56 @@ class Auth extends CI_Controller {
 			redirect('/');
 		}
 		
-		$this->load->view('login');
+		$this->load->view('auth/login');
 	}
 
-	public function login()
+	public function register()
+	{
+		if (!isNotLogin()) {
+			$userLevel = $this->session->userdata('level');
+
+			if ($userLevel == 'admin') {
+				redirect('/admin');
+			}
+			redirect('/');
+		}
+
+		$this->load->view('auth/register');
+	}
+
+	public function forgetPassword()
+	{
+		if (!isNotLogin()) {
+			$userLevel = $this->session->userdata('level');
+
+			if ($userLevel == 'admin') {
+				redirect('/admin');
+			}
+			redirect('/');
+		}
+
+		$this->load->view('auth/forget_password');
+	}
+
+	public function doRegister()
+	{
+		$this->load->model('Auth_model', 'auth');
+
+		$data = $this->input->post(null, true);
+
+		$result = $this->auth->doRegister($data);
+
+		response($result, true);
+	}
+
+	public function doLogin()
 	{
 
-		$this->load->model('Login_model', 'login');
+		$this->load->model('Auth_model', 'auth');
 		
 		$data = $this->input->post(null, true);
 
-		$result = $this->login->doLogin($data);
+		$result = $this->auth->doLogin($data);
 
 		if ($result['code'] == 200) {
 			$userData = $result['data'];

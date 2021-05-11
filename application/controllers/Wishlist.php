@@ -5,6 +5,7 @@ class Wishlist extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('wishlist');
+		$data['title'] = 'Wishlist';
+		$this->load->view('user/wishlist/index', $data);
 	}
 }

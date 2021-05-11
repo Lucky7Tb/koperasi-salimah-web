@@ -130,7 +130,7 @@ function renderDetailData(data) {
 					</table>
 				</div>
 
-				<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
+				<a href="#" class="btn-lg btn-block btn-outline-dark text-center" role="button" onclick="history.back()">Back</a>
 			</div>
 		</div>
 	`;

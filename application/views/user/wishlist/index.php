@@ -5,31 +5,29 @@ $this->load->view('template/header');
 ?>
 
 <div class="container-fluid site-width">
-	<div class="col-12 mt-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="jumbotron jumbotron-fluid" style="background-image: url('<?= base_url('img/tes2.png') ?>');">
-					<div class="container">
-						<h1 class="display-4 font-weight-bold">Selamat Datang di</h1>
-						<h1 class="display-4 font-weight-bold">Koperasi Salimah</h1>
-						<h1 class="display-4 font-weight-bold">Kota Bandung</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- START: Breadcrumbs-->
 	<div class="row">
 		<div class="col-12  align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
 				<div class="w-sm-100 mr-auto">
-					<h4 class="mb-0">Produk Baru</h4>
+					<h4 class="mb-0">Wishlist Kamu</h4>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputState">Urutkan</label>
+					<select id="inputState" class="form-control">
+						<option selected>Terbaru</option>
+						<option>Terlama</option>
+						<option>Termurah</option>
+						<option>Termahal</option>
+
+					</select>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- END: Breadcrumbs-->
+
 
 	<!-- START: Card Data-->
 	<div class="row">
@@ -39,7 +37,7 @@ $this->load->view('template/header');
 					<div class="row">
 						<div class="col-md-6 col-lg-3 mb-4">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img1.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img1.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -54,10 +52,11 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -72,7 +71,7 @@ $this->load->view('template/header');
 						</div>
 						<div class="col-md-6 col-lg-3 mb-4">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img2.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img2.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -87,10 +86,11 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -105,7 +105,7 @@ $this->load->view('template/header');
 						</div>
 						<div class="col-md-6 col-lg-3 mb-4">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img3.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img3.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -120,10 +120,11 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -138,7 +139,7 @@ $this->load->view('template/header');
 						</div>
 						<div class="col-md-6 col-lg-3 mb-4">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img4.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img4.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -153,10 +154,46 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
+									<ul class="list-inline mb-0 mt-2">
+										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
+										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
+										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
+										<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
+										</li>
+										<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="position-relative">
+								<img src="dist/images/ecommerce-img5.jpg" alt="" class="img-fluid">
+								<div class="caption-bg fade bg-transparent text-right">
+									<div class="d-table w-100 h-100 ">
+										<div class="d-table-cell align-bottom">
+											<div class="mb-3">
+												<a href="#" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-heart"></i></a>
+											</div>
+											<div class="mb-4">
+												<a href="#" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-bag"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="pt-3">
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
+										Structured Coat</a></p>
+								<div class="clearfix">
+
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -171,7 +208,7 @@ $this->load->view('template/header');
 						</div>
 						<div class="col-md-6 col-lg-3 mb-4">
 							<div class="position-relative">
-								<img src="<?= base_url('dist/images/ecommerce-img5.jpg') ?>" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img6.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -186,43 +223,11 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
-									<ul class="list-inline mb-0 mt-2">
-										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-										<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
-										</li>
-										<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 mb-4">
-							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img6.jpg" alt="" class="img-fluid">
-								<div class="caption-bg fade bg-transparent text-right">
-									<div class="d-table w-100 h-100 ">
-										<div class="d-table-cell align-bottom">
-											<div class="mb-3">
-												<a href="#" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-heart"></i></a>
-											</div>
-											<div class="mb-4">
-												<a href="#" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-bag"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
-										Structured Coat</a></p>
-								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -237,7 +242,7 @@ $this->load->view('template/header');
 						</div>
 						<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img7.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img7.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -252,10 +257,11 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -270,7 +276,7 @@ $this->load->view('template/header');
 						</div>
 						<div class="col-md-6 col-lg-3">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img8.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -285,10 +291,10 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -301,9 +307,9 @@ $this->load->view('template/header');
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-lg-3 mb-4">
+						<div class="col-md-6 col-lg-3">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img1.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -318,10 +324,10 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -334,9 +340,9 @@ $this->load->view('template/header');
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-lg-3 mb-4">
+						<div class="col-md-6 col-lg-3">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img2.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -351,10 +357,10 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -367,9 +373,9 @@ $this->load->view('template/header');
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-lg-3 mb-4">
+						<div class="col-md-6 col-lg-3">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img3.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -384,10 +390,10 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -400,9 +406,9 @@ $this->load->view('template/header');
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-lg-3 mb-4">
+						<div class="col-md-6 col-lg-3">
 							<div class="position-relative">
-								<img src="<?= base_url('dist') ?>/images/ecommerce-img4.jpg" alt="" class="img-fluid">
+								<img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid">
 								<div class="caption-bg fade bg-transparent text-right">
 									<div class="d-table w-100 h-100 ">
 										<div class="d-table-cell align-bottom">
@@ -417,10 +423,10 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary">Flowers
+								<p class="mb-2"><a href="#" class="font-weight-bold text-primary">Flowers
 										Structured Coat</a></p>
 								<div class="clearfix">
-									<div class="d-inline-block text-danger pl-2">Rp285.000,00</div>
+									<div class="d-inline-block text-danger pl-2">$285.00</div>
 									<ul class="list-inline mb-0 mt-2">
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
 										<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
@@ -433,9 +439,12 @@ $this->load->view('template/header');
 								</div>
 							</div>
 						</div>
+
 					</div>
 					<div class="row">
 						<div class="col-12 col-sm-12">
+
+
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 									<li class="page-item disabled">
@@ -455,6 +464,7 @@ $this->load->view('template/header');
 									</li>
 								</ul>
 							</nav>
+
 						</div>
 					</div>
 				</div>
@@ -465,25 +475,8 @@ $this->load->view('template/header');
 
 	</div>
 	<!-- END: Card DATA-->
-
-
-	<div class="col-12 mt-3">
-		<div class="card">
-
-			<div class="card-body">
-
-				<div class="jumbotron jumbotron-fluid " style="background-image: url('<?= base_url('img') ?>/tes3.png');">
-					<div class="container">
-						<h1 class="display-4 font-weight-bold">Mempermudah Belanja</h1>
-						<h1 class="display-4 font-weight-bold">di Kossuma</h1>
-						<h1 class="display-4 font-weight-bold">Tanpa Keluar Rumah</h1>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
+
 
 <?php
 $js = base_url('dist/js');

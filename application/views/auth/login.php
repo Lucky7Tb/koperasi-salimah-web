@@ -17,7 +17,7 @@
 		<div class="col-12">
 			<form method="post" class="row row-eq-height lockscreen  mt-5 mb-5">
 				<div class="lock-image col-12 col-sm-5"
-						 style="background-image: url('<?= base_url('img/salimah pattern 1.png') ?>');"></div>
+						 style="background-image: url('<?= base_url('img/salimah-pattern-1.png') ?>');"></div>
 				<div class="login-form col-12 col-sm-7">
 					<h4>Masuk</h4>
 					<div class="form-group mb-3">
@@ -32,8 +32,8 @@
 					<div class="form-group mb-0">
 						<button type="submit" class="btn btn-primary btn-block mb-2" id="tombol_login">Masuk</button>
 					</div>
-					<div class="mt-2">Lupa password? <a href="<?= base_url('/Forget_Password') ?>">Klik disini</a></div>
-					<div class="mt-2">Belum punya akun? <a href="<?= base_url('/Register') ?>">Daftar</a></div>
+					<div class="mt-2">Lupa password? <a href="<?= base_url('/auth/forgetPassword') ?>">Klik disini</a></div>
+					<div class="mt-2">Belum punya akun? <a href="<?= base_url('/auth/register') ?>">Daftar</a></div>
 				</div>
 			</form>
 		</div>
@@ -62,7 +62,7 @@
 
 				$.ajax({
 					type: "POST",
-					url: '<?= base_url('auth/login') ?>',
+					url: '<?= base_url('auth/doLogin') ?>',
 					data: formData,
 					processData: false,
 					contentType: false,
