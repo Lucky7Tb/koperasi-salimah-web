@@ -24,9 +24,18 @@ class Product extends CI_Controller
 	{
 		$data['title'] = 'Produk';
 
-		$data['produk'] = $this->produk->getAllProducts($this->token);
-
 		$this->load->view('admin/product/index', $data);
+	}
+
+	public function detail($id)
+	{
+		$data['title'] = 'Produk';
+
+		$data['produk'] = $this->produk->getProduct($id, $this->token);
+
+		if ($data['produk']['code'] === 200) {
+			$this->load->view('admin/product/detail', $data);
+		}
 	}
 
 	public function tambah()
@@ -54,9 +63,8 @@ class Product extends CI_Controller
 			$data['width'] = 1;
 			$data['length'] = 1;
 			$data['height'] = 1;
-			$data['categories'] = '[' . $this->input->post('categories') . ']';
+			$data['categories'] = '[' . implode(',', $this->input->post('categories')) . ']';
 			$data['file_key'] = 'cover';
-
 
 			if ($this->produk->createProduct($data, $this->token)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Produk berhasil ditambah</div>');
@@ -133,17 +141,18 @@ class Product extends CI_Controller
 		}
 	}
 
-	public function cari()
+	public function data($page = 0, $keyword = '')
 	{
-		$data['title'] = 'Produk';
-
-		$keyword = $this->input->post('keyword');
-
-		$params = array('search' => $keyword);
+		$params = array(
+			'search' => $keyword,
+			'page' => $page
+		);
 
 		$data['produk'] = $this->produk->getAllProducts($this->token, $params);
 
-		echo $this->load->view('admin/product/index', $data);
+		if ($data['produk']['code'] === 200) {
+			$this->load->view('admin/product/data', $data);
+		}
 	}
 }
 
