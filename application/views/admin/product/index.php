@@ -28,83 +28,42 @@ $this->load->view('admin/template/header');
 						 href="<?= base_url('admin/product/tambah') ?>">Tambah <?= $title ?></a>
 				</div>
 				<div class="card-body" id="main">
-					<div class="table-responsive">
-						<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-							<div id="example_filter" class="dataTables_filter">
-								<label>
-									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-product"
-												 autocomplete="off">
-								</label>
-								<button class="btn btn-primary" id="button-search" type="submit">search</button>
-							</div>
-							<table id="user-table" class="display table table-striped table-bordered" role="grid">
-								<thead>
-								<tr role="row">
-									<th>#</th>
-									<th>Foto</th>
-									<th>Produk</th>
-									<th>Harga</th>
-									<th>Kategori</th>
-									<th>Stok</th>
-									<th>Tgl Ditambah</th>
-									<th>Tgl Diubah</th>
-									<th>Aksi</th>
-								</tr>
-								</thead>
-								<tbody id="product-data-content">
-								<?php
-								if ($produk['data'] != null) :
-									$i = 1;
-									foreach ($produk['data'] as $p) :
-										?>
-										<tr>
-											<td><?= $i ?></td>
-											<td><img src="<?= $p['uri'] ?>" width="100px"></td>
-											<td><?= $p['product_name'] ?></td>
-											<td>Rp. <?= number_format($p['price'], '2', ',', '.') ?></td>
-											<td><?php foreach ($p['categories'] as $c) : ?>
-													Kategori <?= $c['category'] ?>
-												<?php endforeach ?>
-											</td>
-											<td><?= $p['stock'] ?></td>
-											<td><?= $p['created_at'] ?></td>
-											<td><?= $p['updated_at'] ?></td>
-											<td>
-												<a href="<?= base_url('admin/product/ubah/') ?><?= $p['id_m_products'] ?>"
-													 class="btn btn-warning text-white">
-													<i class="icon-pencil mr-2 h6 mb-0"></i> Edit
-												</a>
-												<a href="<?= base_url('admin/product/') ?>hapus/<?= $p['id_m_products'] ?>"
-													 class="btn btn-danger text-white">
-													<i class="icon-trash mr-2 h6 mb-0"></i> Hapus
-												</a>
-											</td>
-										</tr>
-										<?php
-										$i++;
-									endforeach;
-								else:
-									?>
-									<td colspan='10' class='text-center'>Tidak ada data</td>
-								<?php
-								endif;
-								?>
-								</tbody>
-							</table>
-							<div id="example_paginate">
-								<ul class="pagination">
-									<li class="paginate_button page-item previous">
-										<button class="page-link" id="prev-button">
-											Previous
-										</button>
-									</li>
-									<li class="paginate_button page-item next">
-										<button class="page-link" id="next-button">
-											Next
-										</button>
-									</li>
-								</ul>
+					<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+						<div id="example_filter" class="dataTables_filter">
+							<label>
+								Search:
+								<input type="search" class="form-control form-control-sm" id="input-search-product"
+											 autocomplete="off">
+							</label>
+							<button class="btn btn-primary" id="button-search" type="button">search</button>
+						</div>
+
+						<!-- START: Product -->
+						<div class="row mt-2" id="data-products">
+
+						</div>
+
+						<div class="row">
+							<div class="col-12 col-sm-12">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+										<li class="page-item" id="prev-button">
+											<a class="page-link" href="#" aria-label="Previous">
+												<span aria-hidden="true">«</span>
+												<span class="sr-only">Previous</span>
+											</a>
+										</li>
+<!--										--><?php //for ($i = 1; $i <= 3; $i++) : ?>
+<!--											<li class="page-item" id="page---><?//= $i ?><!--"><a class="page-link" id="page-text---><?//= $i ?><!--" href="#">--><?//= $i ?><!--</a></li>-->
+<!--										--><?php //endfor ?>
+										<li class="page-item" id="next-button">
+											<a class="page-link" href="#" aria-label="Next">
+												<span aria-hidden="true">»</span>
+												<span class="sr-only">Next</span>
+											</a>
+										</li>
+									</ul>
+								</nav>
 							</div>
 						</div>
 					</div>
@@ -118,7 +77,7 @@ $js = base_url('dist/js');
 $plugin = base_url('dist/vendors');
 $this->load->view('admin/template/footer', array(
 		'js' => '<script src="' . $js . '/admin/product/app.js"></script>
-		<script>getProduct()</script>'
+		<script>getProducts()</script>'
 	)
 );
 ?>

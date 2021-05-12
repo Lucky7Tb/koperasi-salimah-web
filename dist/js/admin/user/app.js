@@ -86,8 +86,6 @@ $('#next-button').on('click', function () {
 		updateNumbering(0);
 		return;
 	}
-
-	getUsers('', paginate);
 });
 
 function updateNumbering(page) {

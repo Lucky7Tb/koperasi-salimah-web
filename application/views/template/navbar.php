@@ -60,8 +60,15 @@
 							<a href="<?= base_url('wishlist') ?>" class="dropdown-item px-2 align-self-center d-flex">
 								<span class="icon-heart mr-2 h6 mb-0"></span> Wishlist</a>
 							<div class="dropdown-divider"></div>
-							<a href="<?= base_url('auth/logout') ?>" class="dropdown-item px-2 text-danger align-self-center d-flex">
+
+							<?php if ($this->session->userdata('token') !== null): ?>
+								<a href="<?= base_url('auth/logout') ?>" class="dropdown-item px-2 text-danger align-self-center d-flex">
 								<span class="icon-logout mr-2 h6  mb-0"></span> Keluar</a>
+
+							<?php else: ?>
+								<a href="<?= base_url('auth/login') ?>" class="dropdown-item px-2 text-success align-self-center d-flex">
+								<span class="icon-login mr-2 h6  mb-0"></span> Masuk</a>
+							<?php endif ?>
 						</div>
 					</li>
 				</ul>

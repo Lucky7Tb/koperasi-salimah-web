@@ -3,8 +3,10 @@ $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
+			<script src="' . $plugin . '/jquery/jquery-3.3.1.min.js"></script>
 			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
 			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+			<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 		'
 ]);
 ?>
@@ -44,7 +46,8 @@ $this->load->view('admin/template/header', [
 							<div class="form-group row">
 								<label for="nama_produk" class="col-sm-2 col-form-label">Nama Produk</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="nama_produk" placeholder="Nama Produk" value="<?php set_value('product_name')?>"
+									<input type="text" class="form-control" id="nama_produk" placeholder="Nama Produk"
+												 value="<?php set_value('product_name') ?>"
 												 name="product_name">
 									<?= form_error('product_name', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
@@ -52,14 +55,15 @@ $this->load->view('admin/template/header', [
 							<div class="form-group row">
 								<label for="harga" class="col-sm-2 col-form-label">Harga</label>
 								<div class="col-sm-10">
-									<input type="number" class="form-control" id="harga" placeholder="Rp 00.000,00" value="<?php set_value('price')?>" name="price">
+									<input type="number" class="form-control" id="harga" placeholder="Rp 00.000,00"
+												 value="<?php set_value('price') ?>" name="price">
 									<?= form_error('price', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
 								<div class="col-sm-10">
-									<select id="kategori" class="form-control" name="categories">
+									<select id="kategori" class="form-control" name="categories[]" multiple="multiple">
 										<?php foreach ($category['data'] as $c) : ?>
 											<option value="<?= $c['id'] ?>"><?= $c['category'] ?></option>
 										<?php endforeach ?>
@@ -69,21 +73,24 @@ $this->load->view('admin/template/header', [
 							<div class="form-group row">
 								<label for="stok" class="col-sm-2 col-form-label">Stok</label>
 								<div class="col-sm-10">
-									<input type="number" class="form-control" id="stok" placeholder="000" value="<?php set_value('stock')?>" name="stock">
+									<input type="number" class="form-control" id="stok" placeholder="000"
+												 value="<?php set_value('stock') ?>" name="stock">
 									<?= form_error('stock', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="weight" class="col-sm-2 col-form-label">Berat</label>
 								<div class="col-sm-10">
-									<input type="number" class="form-control" id="weight" placeholder="000" value="<?php set_value('weight')?>" name="weight">
+									<input type="number" class="form-control" id="weight" placeholder="000"
+												 value="<?php set_value('weight') ?>" name="weight">
 									<?= form_error('weight', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
 								<div class="col-sm-10">
-									<textarea name="description" id="deskripsi" cols="80" rows="5" value="<?php set_value('description')?>" class="form-control"></textarea>
+									<textarea name="description" id="deskripsi" cols="80" rows="5"
+														value="<?php set_value('description') ?>" class="form-control"></textarea>
 									<?= form_error('description', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
@@ -108,8 +115,14 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/product/app.js"></script>
+		<script>
+			$(document).ready(function() {
+					$("#kategori").select2();
+			})
+		</script>
 		<script>
 			initOptionPlugin();
 		</script>
