@@ -1,98 +1,52 @@
-let paginate = 0;
+let page = 0
+let search = ''
 
-function initOptionPlugin() {
-	$.fn.datepicker.defaults.format = 'yyyy-mm-dd';
-	$('#date_of_birth').datepicker();
-	$('#photo').dropify({
-		messages: {
-			default: 'Seret dan lepas foto disini atau klik',
-			replace: 'Seret dan lepas atau klik untuk mengganti foto',
-			remove: 'Hapus',
-			error: 'Opps, terjadi kesalahan'
-		},
-		error: {
-			fileSize: 'Ukuran file foto terlalu besar ({{ value }} max).',
-			imageFormat: 'Format foto yang di perbolehkan hanya ({{ value }}).',
-		},
-	});
-}
+function getProducts(search = '', page = 0) {
+	let url = 'http://localhost/koperasi-salimah/admin/product/data/' + page + '/' + search
 
-function getProduct(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC') {
-	$.ajax({
-		type: 'GET',
-		url: `${global.base_url}/admin/user/getUser?search=${search}&page=${page}0&order-by=${orderBy}&order-direction=${orderDirection}`,
-		success: function (response) {
-			response = JSON.parse(response);
-			if (response.code === 200) {
-				renderUserData(response.data);
-			} else {
-				toastr.error(response.message);
-			}
-		},
-	});
-}
-
-function renderUserData(product) {
-	let content = '';
-
-	if (product.length > 0) {
-		product.forEach(user => {
-			content += /*html*/ `
-				<tr>
-					// <td>${user.full_name}</td>
-					// <td>${user.gender === 'l' ? 'Laki-laki' : 'Perempuan'}</td>
-					// <td>${user.phone_number ? user.phone_number : '-'}</td>
-					<td>
-						<span class="badge badge-pill badge-${user.type == 'Admin' ? 'primary' : 'secondary'}">${user.type}</span>
-					</td>
-					<td>
-						<a class='btn btn-warning text-white'>	
-							<i class='icon-pencil'></i>
-						</a>
-					</td>
-				</tr>
-			`;
-		});
+	if (page === 0) {
+		$('#prev-button').addClass('disabled')
 	} else {
-		content += /*html*/ `
-			<tr>
-				<td colspan='6' class='text-center'>Tidak ada data</td>
-			</tr>
-		`;
-		paginate -= 1;
+		$('#prev-button').removeClass(['disabled'])
 	}
 
-	$('#product-data-content').append(content);
+	if (page % 3 === 0) {
+		$('#page-1').addClass('active')
+		$('#page-2').removeClass(['active'])
+		$('#page-3').removeClass(['active'])
+	} else if (page % 3 === 1) {
+		$('#page-1').removeClass(['active'])
+		$('#page-2').addClass('active')
+		$('#page-3').removeClass(['active'])
+	} else {
+		$('#page-1').removeClass(['active'])
+		$('#page-2').removeClass(['active'])
+		$('#page-3').addClass('active')
+	}
+
+	$.ajax({
+		url: url,
+		type: 'GET',
+		success: function (res) {
+			$('#data-products').html(res)
+		}
+	})
 }
 
-$('#button-search').on('click', function () {
-	getProduct($('#input-search-product').val());
+$('#button-search').click(function () {
+	search = $('#input-search-product').val()
+	getProducts(search, page)
 })
 
-$('#prev-button').on('click', function () {
-	if (paginate > 0) {
-		paginate -= 1;
+$('#next-button').click(function () {
+	page++
+	getProducts(search, page)
+})
+
+$('#prev-button').click(function () {
+	if (page !== 0) {
+		page--
+		getProducts(search, page)
 	}
-	getProduct($('#input-search-product').val(), paginate);
-});
-
-$('#next-button').on('click', function () {
-	paginate += 1;
-	getProduct($('#input-search-product').val(), paginate);
-});
-
-// $('#user-form').on('submit', function (e) {
-// 	e.preventDefault();
-// 	const formData = new FormData(this);
-// 	$.ajax({
-// 		type: 'POST',
-// 		url: `${global.base_url}/admin/user/insert`,
-// 		data: formData,
-// 		processData: false,
-// 		contentType: false,
-// 		success: function (response) {
-// 			console.log(JSON.parse(response));
-// 		},
-// 	});
-// });
+})
 
