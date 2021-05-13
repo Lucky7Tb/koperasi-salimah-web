@@ -8,6 +8,28 @@ $this->load->view('admin/template/header', [
 		'
 ]);
 ?>
+
+<!-- Delete banned -->
+<div class="modal fade" id="user-ban-modal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Peringatan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p class="lead">Yakin ingin <strong>Banned </strong> user ini?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-lg btn-danger" id="btn-ban-user">Ya Banned</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="container-fluid site-width">
 	<div class="row">
 		<div class="col-12 align-self-center">
@@ -79,8 +101,11 @@ $this->load->view('admin/template/header', [
 								</label>
 							</div>
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-add-user">Submit</button>
-						<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
+						<div class="form-group">
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#user-ban-modal">Banned user</button>
+						</div>
+						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-edit-user">Simpan</button>
+						<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Kembali</a>
 					</form>
 				</div>
 			</div>

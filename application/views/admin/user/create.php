@@ -46,13 +46,13 @@ $this->load->view('admin/template/header', [
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="gender" id="gender-1" value="l" required checked>
-								<label class="form-check-label" for="gender">
+								<label class="form-check-label" for="gender-1">
 									Laki-laki
 								</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="gender" id="gender-2" value="p" required>
-								<label class="form-check-label" for="gender">
+								<label class="form-check-label" for="gender-2">
 									Perempuan
 								</label>
 							</div>
@@ -80,13 +80,13 @@ $this->load->view('admin/template/header', [
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="type" id="type-1" value="1" required checked>
-								<label class="form-check-label" for="type">
+								<label class="form-check-label" for="type-1">
 									User
 								</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="type" id="type-2" value="0" required>
-								<label class="form-check-label" for="type">
+								<label class="form-check-label" for="type-2">
 									Admin
 								</label>
 							</div>
@@ -95,8 +95,8 @@ $this->load->view('admin/template/header', [
 							<label for="photo">Foto user</label>
 							<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary">Submit</button>
-						<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
+						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-add-user">Simpan</button>
+						<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Kembali</a>
 					</form>
 				</div>
 			</div>

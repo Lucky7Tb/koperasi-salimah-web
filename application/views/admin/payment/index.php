@@ -106,6 +106,7 @@ $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
+		<script src="' . $plugin . '/moment/moment.js"></script>
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/payment/app.js"></script>
 		<script>

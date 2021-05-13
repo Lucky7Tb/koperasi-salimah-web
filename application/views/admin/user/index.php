@@ -1,8 +1,13 @@
 <?php
 $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
-$this->load->view('admin/template/header');
+$this->load->view('admin/template/header', [
+	'css' => '
+		<link rel="stylesheet" href="' . $plugin . '/fontawesome/css/all.min.css">
+	'
+]);
 ?>
+
 <div class="container-fluid site-width">
 	<div class="row">
 		<div class="col-12 align-self-center">
@@ -24,15 +29,33 @@ $this->load->view('admin/template/header');
 					<div class="table-responsive">
 						<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
 							<div id="example_filter" class="dataTables_filter">
+								<div class="float-left">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-6">
+												<select name="filter" id="filter-user" class="form-control costume-select" style="width: 10em;">
+													<option value="full_name">Nama</option>
+													<option value="gender">Gender</option>
+													<option value="type">Level</option>
+												</select>
+											</div>
+											<div class="col-6">
+												<button class="btn btn-sm btn-primary ml-4" id="order-direction-button">
+													<i class="fas fa-filter">a-z</i>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="float-right">
 									<label>
 										Search:
-										<input type="search" class="form-control form-control-sm" id="input-search-user">
+										<input type="search" class="form-control" id="input-search-user">
 									</label>
 									<button class="btn btn-primary" id="button-search">search</button>
 								</div>
 							</div>
-							<table id="user-table" class="display table table-striped table-bordered" role="grid">
+							<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
 								<thead>
 									<tr role="row">
 										<th rowspan="2">#</th>
@@ -75,13 +98,9 @@ $this->load->view('admin/template/header');
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-			<script src="' . $plugin . '/slimscroll/jquery.slimscroll.min.js"></script>
 			<script src="' . $js . '/global.js"></script>
 			<script src="' . $js . '/admin/user/app.js"></script>
 			<script>
-				// $("#main").slimScroll({
-				// 	height: "350px"
-				// });
 				getUsers();
 			</script>
 		'

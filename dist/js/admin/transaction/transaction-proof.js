@@ -39,7 +39,7 @@ function renderTransactionWithProofData(transactions) {
 		transactions.forEach((transaction) => {
 			let status = '';
 			let badge = '';
-			switch (transaction.status) {
+			switch (transaction.status_proof) {
 				case '0':
 					status = 'Belum upload bukti';
 					badge = 'secondary';

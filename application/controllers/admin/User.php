@@ -27,15 +27,15 @@ class User extends CI_Controller
 		$data = $this->input->get(null, true);
 		$result = $this->user->getAllUser($data);
 		
-		response($result);
+		response($result, true);
 	}
 
 	public function getUser()
 	{
-		$userId = $this->input->get('id');
+		$userId = $this->input->get('id', true);
 		$result = $this->user->getUser($userId);
 
-		response($result);
+		response($result, true);
 	}
 
 	public function create()
@@ -47,15 +47,11 @@ class User extends CI_Controller
 	public function insertUser()
 	{
 		$data = $this->input->post(null, true);
-
-		$tmpName =  $_FILES['photo']['tmp_name'];
-		$fileName =  $_FILES['photo']['name'];
-		$fileType =  $_FILES['photo']['type'];
-		$data['photo'] = curl_file_create($tmpName, $fileType, $fileName);
+		$data['file_key'] = 'photo';
 
 		$result = $this->user->insertUser($data);
 
-		response($result);
+		response($result, true);
 	}
 
 	public function edit()
@@ -69,7 +65,7 @@ class User extends CI_Controller
 		$data = $this->input->post(null, true);
 		$result = $this->user->updateUser($data, $id);
 
-		response($result);
+		response($result, true);
 	}
 }
 

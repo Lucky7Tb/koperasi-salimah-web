@@ -32,32 +32,40 @@ function renderPaymentData(payments) {
 	if (payments.length > 0) {
 		isNoData = false;
 		payments.forEach((payment) => {
-			let disabledButton = payment.is_visible === '0' ? 'disabled' : null;
+			const date = moment(payment.updated_at).format('DD-MMM-YYYY HH:mm');
 
 			content += /*html*/ `
 				<tr>
 					<td>${++numbering}</td>
 					<td>
 						<a href='${payment.uri}' data-fancybox data-caption='${payment.label}'>
-							<div style="width: 64px; height: 64px; background-size: cover; background-image: url('${payment.uri}'); background-position: center;" class='mx-auto'></div>
+							<div style="width: 64px; height: 64px; background-size: cover; background-image: url('${
+								payment.uri
+							}'); background-position: center;" class='mx-auto'></div>
 						</a>
 					</td>
 					<td>${payment.bank_name}</td>
 					<td>${payment.name_account_bank}</td>
 					<td>${payment.number_account}</td>
 					<td>
-						<span class="badge badge-pill badge-${payment.is_visible == '1' ? 'primary' : 'secondary'}">
+						<span class="badge badge-pill badge-${
+							payment.is_visible == '1' ? 'primary' : 'secondary'
+						}">
 							${payment.is_visible == '1' ? 'Aktif' : 'Tidak aktif'}
 						</span>
 					</td>
-					<td>${payment.updated_at}</td>
+					<td>${date}</td>
 					<td>
-						<a href='${global.base_url}admin/payment/edit/${payment.id}' class='btn btn-warning text-white'>	
+						<a href='${global.base_url}admin/payment/edit/${
+				payment.id
+			}' class='btn btn-warning text-white'>	
 							<i class='icon-pencil'></i>
 						</a>
 					</td>
 					<td>
-						<button onclick="confirmDeletePayment(${payment.id})" class='btn btn-danger text-white' ${disabledButton}>	
+						<button onclick="confirmDeletePayment(${
+							payment.id
+						})" class="btn btn-danger text-white ${payment.is_visible === '0' ? 'disabled' : ''}">	
 							<i class='icon-power'></i>
 						</button>
 					</td>

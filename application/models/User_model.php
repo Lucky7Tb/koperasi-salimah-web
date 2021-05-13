@@ -6,66 +6,42 @@ class User_model extends CI_Model {
 
 	public function getAllUser($data)
 	{
-		$headers = [
-			'accept' => 'application/json',
-			'authorization' => $this->session->userdata('token')
-		];
+		$endpoint = "api/v1/admin/dashboard/user/getAllUsers";
+		$token = $this->session->userdata('token');
 
-		$endpoint = "/api/v1/admin/dashboard/user/getAllUsers?";
-
-		if (isset($data['search'])) {
-			$endpoint = $endpoint . 'search=' . $data['search'];
-		} else {
-			$endpoint = $endpoint . 'page=' . $data['page'];
-		}
-		$endpoint = $endpoint . '&order-by=' . $data['order-by'];
-		$endpoint = $endpoint . '&order-direction=' . $data['order-direction'];
-
-		$result = request($endpoint, 'GET', null, $headers);
-
+		$result = get_curl($endpoint, $token, $data);
+	
 		return $result;
 	}
 
 	public function getUser($userId)
 	{
-		$headers = [
-			'accept' => 'application/json',
-			'authorization' => $this->session->userdata('token')
-		];
+		$endpoint = 'api/v1/admin/dashboard/user/getUser/'.$userId;
+		$token = $this->session->userdata('token');
 
-		$endpoint = '/api/v1/admin/dashboard/user/getUser/' . $userId;
-
-		$result = request($endpoint, 'GET', null, $headers);
+		$result = get_curl($endpoint, $token);
 
 		return $result;
 	}
 	
 	public function insertUser($data)
 	{
-		$headers = [
-			'accept' => 'application/json',
-			'authorization' => $this->session->userdata('token'),
-			'Content-Type' => 'multipart/form-data'
-		];
 
-		$endpoint = '/api/v1/admin/dashboard/user/create';
+		$endpoint = 'api/v1/admin/dashboard/user/create';
+		$token = $this->session->userdata('token');
 
-		$result = request($endpoint, 'POST', $data, $headers);
+		$result = post_curl($endpoint, $data, $token);
 
 		return $result;
 	}
 
 	public function updateUser($data, $userId)
 	{
-		$headers = [
-			'accept' => 'application/json',
-			'authorization' => $this->session->userdata('token'),
-			'Content-Type' => 'application/json'
-		];
 
-		$endpoint = '/api/v1/admin/dashboard/user/update/' . $userId;
+		$endpoint = '/api/v1/admin/dashboard/user/update';
+		$token = $this->session->userdata('token');
 
-		$result = request($endpoint, 'PUT', $data, $headers);
+		$result = put_curl($endpoint, $userId, $data, $token);
 
 		return $result;
 	}
