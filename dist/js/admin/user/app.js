@@ -1,5 +1,7 @@
-let paginate = 0;
-let numbering = (paginate * 10) + 1;
+let page = 0;
+let numbering = page * 10 + 1;
+let searchKeyword = $('#input-search-user').val();
+let data = '';
 
 function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC') {
 	let query = '';
@@ -26,8 +28,7 @@ function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC'
 function renderUserData(users) {
 	let content = '';
 	$('#user-data-content').html('');
-	$('#prev-button').attr('disabled', paginate === 0);
-
+	$('#prev-button').attr('disabled', page === 0);
 	if (users.length > 0) {
 		users.forEach(user => {
 			content += /*html*/ `
@@ -61,33 +62,40 @@ function renderUserData(users) {
 }
 
 $('#button-search').on('click', function () {
-	paginate = 0;
-	getUsers($('#input-search-user').val(), paginate);
+	page = 0;
+	updateNumbering(page);
+	searchKeyword = $('#input-search-user').val();
+	getUsers(searchKeyword, page);
 })
 
 $('#prev-button').on('click', function () { 
-		if (paginate > 0) {
-			paginate--;
-		}
+		if (page > 0) page--;
 
-		if ($('#input-search-user').val()) {
-			getUsers($('#input-search-user').val(), paginate);
-			updateNumbering(0);
+		if (searchKeyword) {
+			updateNumbering(page);
+			getUsers(searchKeyword, page);
 			return;
 		}
-		getUsers('', paginate);
+
+		updateNumbering(page);
+
+		getUsers(searchKeyword, page);
 });
 
 $('#next-button').on('click', function () {
-	paginate++;
+	page++;
 	
-	if ($('#input-search-user').val()) {
-		getUsers($('#input-search-user').val(), paginate);
-		updateNumbering(0);
+	if (searchKeyword) {
+		updateNumbering(page);
+		getUsers(searchKeyword, page);
 		return;
 	}
+
+	updateNumbering(page);
+
+	getUsers(searchKeyword, page);
 });
 
-function updateNumbering(page) {
-	numbering = page * 10 + 1;
+function updateNumbering(pagination) {
+	numbering = pagination * 10 + 1;
 }
