@@ -44,8 +44,8 @@ $this->load->view('admin/template/header', [
 							<label for="photo">Thumbnail pembayaran</label>
 							<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-add-payment">Submit</button>
-						<a href="<?= base_url('admin/payment') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
+						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-add-payment">Simpan</button>
+						<a href="<?= base_url('admin/payment') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Kembali</a>
 					</form>
 				</div>
 			</div>
@@ -56,7 +56,7 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-	<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
+		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/payment/create.js"></script>
 		<script>

@@ -4,9 +4,13 @@ let searchKeyword = $('#input-search-user').val();
 let filterKey = $('#filter-user').val();
 let orderDirection = 'ASC';
 let isASC = true;
-let data = '';
 
-function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'ASC') {
+function getUsers(
+	search = '',
+	page = 0,
+	orderBy = 'id',
+	orderDirection = 'ASC'
+) {
 	let query = '';
 	query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
 
@@ -21,7 +25,7 @@ function getUsers(search = '', page = 0, orderBy = 'id', orderDirection = 'ASC')
 				toastr.error(response.message);
 			}
 		},
-	});	
+	});
 }
 
 function renderUserData(users) {
@@ -29,7 +33,7 @@ function renderUserData(users) {
 	$('#user-data-content').html('');
 	$('#prev-button').attr('disabled', page === 0);
 	if (users.length > 0) {
-		users.forEach(user => {
+		users.forEach((user) => {
 			let badge;
 			switch (user.type) {
 				case 'Admin':
@@ -39,7 +43,7 @@ function renderUserData(users) {
 					badge = 'secondary';
 					break;
 				case 'Banned':
-					badge = 'danger'
+					badge = 'danger';
 					break;
 			}
 			content += /*html*/ `
@@ -52,15 +56,19 @@ function renderUserData(users) {
 						<span class="badge badge-pill badge-${badge}">${user.type}</span>
 					</td>
 					<td>
-						<a href="${global.base_url}admin/user/edit/${user.id_m_users}" class="btn btn-warning text-white ${user.type === 'Banned' ? 'disabled' : ''}">	
+						<a href="${global.base_url}admin/user/edit/${
+				user.id_m_users
+			}" class="btn btn-warning text-white ${
+				user.type === 'Banned' ? 'disabled' : ''
+			}">	
 							<i class='icon-pencil'></i>
 						</a>
 					</td>
 				</tr>
 			`;
 		});
-		$("#next-button").attr("disabled", false);
-	}else {
+		$('#next-button').attr('disabled', false);
+	} else {
 		content += /*html*/ `
 			<tr>
 				<td colspan='6' class='text-center'>Tidak ada data</td>
@@ -77,12 +85,12 @@ $('#button-search').on('click', function () {
 	updateNumbering(page);
 	searchKeyword = $('#input-search-user').val();
 	getUsers(searchKeyword, page, filterKey, orderDirection);
-})
+});
 
-$('#prev-button').on('click', function () { 
-		if (page > 0) page--;
-		updateNumbering(page);
-		getUsers(searchKeyword, page, filterKey, orderDirection);
+$('#prev-button').on('click', function () {
+	if (page > 0) page--;
+	updateNumbering(page);
+	getUsers(searchKeyword, page, filterKey, orderDirection);
 });
 
 $('#next-button').on('click', function () {
@@ -97,7 +105,7 @@ $('#filter-user').on('change', function () {
 	getUsers(searchKeyword, page, filterKey, orderDirection);
 });
 
-$('#order-direction-button').on('click', function () { 
+$('#order-direction-button').on('click', function () {
 	isASC = !isASC;
 	orderDirection = isASC ? 'ASC' : 'DESC';
 

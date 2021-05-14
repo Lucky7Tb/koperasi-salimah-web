@@ -24,17 +24,19 @@ class Payment extends CI_Controller {
 	public function getPayments()
 	{
 		$data = $this->input->get(null, true);
+
 		$result = $this->payment->getPayments($data);
 
-		response($result);
+		response($result, true);
 	}
 
 	public function getPayment()
 	{
-		$paymentId = $this->input->get('id');
+		$paymentId = $this->input->get('id', true);
+
 		$result = $this->payment->getPayment($paymentId);
 
-		response($result);
+		response($result, true);
 	}
 
 	public function create()
@@ -46,15 +48,11 @@ class Payment extends CI_Controller {
 	public function insertPayment()
 	{
 		$data = $this->input->post(null, true);
-
-		$tmpName =  $_FILES['photo']['tmp_name'];
-		$fileName =  $_FILES['photo']['name'];
-		$fileType =  $_FILES['photo']['type'];
-		$data['photo'] = curl_file_create($tmpName, $fileType, $fileName);
+		$data['file_key'] = 'photo';
 
 		$result = $this->payment->insertPayment($data);
 
-		response($result);
+		response($result, true);
 	}
 
 	public function edit()
@@ -65,35 +63,31 @@ class Payment extends CI_Controller {
 
 	public function updatePayment()
 	{
-		$paymentId = $this->input->get('id');
+		$paymentId = $this->input->get('id', true);
 		$data = $this->input->post(null, true);
 
 		$result = $this->payment->updatePayment($data, $paymentId);
 
-		response($result);
+		response($result, true);
 	}
 
 	public function changePaymentThumbnail()
 	{
-		$paymentId = $this->input->get('id');
-
-		$tmpName =  $_FILES['photo']['tmp_name'];
-		$fileName =  $_FILES['photo']['name'];
-		$fileType =  $_FILES['photo']['type'];
-		$data['photo'] = curl_file_create($tmpName, $fileType, $fileName);
+		$paymentId = $this->input->get('id', true);
+		$data['file_key'] = 'photo';
 
 		$result = $this->payment->changePaymentThumbnail($data, $paymentId);
 
-		response($result);
+		response($result, true);
 	}
 
 public function deletePayment()
 	{
-		$paymentId = $this->input->get('id');
+		$paymentId = $this->input->get('id', true);
 
 		$result = $this->payment->deletePayment($paymentId);
 
-		response($result);
+		response($result, true);
 	}
 }
 

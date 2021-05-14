@@ -1,6 +1,9 @@
-let paginateProof = 0;
-let numberingProof = 0;
-let isNoDataProof = false;
+let pageProof = 0;
+let numberingProof = pageProof * 10 + 1;
+let searchKeywordProof = $('#input-search-transaction-proof').val();
+let filterKeyProof = $('#filter-transaction-proof').val();
+let orderDirectionProof = 'ASC';
+let isASCProof = true;
 
 function getTransactionsProof(
 	search = '',
@@ -9,11 +12,7 @@ function getTransactionsProof(
 	orderDirection = 'DESC'
 ) {
 	let query = '';
-	if (search) {
-		query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
-	} else {
-		query += `page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
-	}
+	query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
 
 	$.ajax({
 		type: 'GET',
@@ -31,12 +30,12 @@ function getTransactionsProof(
 
 function renderTransactionWithProofData(transactions) {
 	let content = '';
-	$('#transaction-with-proof-data-content').html('');
-	$('#prev-button').attr('disabled', paginateProof === 0);
+	$('#transaction-proof-data-content').html('');
+	$('#prev-transaction-proof-button').attr('disabled', pageProof === 0);
 
 	if (transactions.length > 0) {
-		isNoDataProof = false;
 		transactions.forEach((transaction) => {
+			const date = moment(transaction.updated_at).format('DD-MMM-YYYY HH:mm');
 			let status = '';
 			let badge = '';
 			switch (transaction.status_proof) {
@@ -45,7 +44,7 @@ function renderTransactionWithProofData(transactions) {
 					badge = 'secondary';
 					break;
 				case '1':
-					status = 'Menunggu persetujuan admin';
+					status = 'Menunggu persetujuan';
 					badge = 'warning';
 					break;
 				case '2':
@@ -59,9 +58,11 @@ function renderTransactionWithProofData(transactions) {
 			}
 			content += /*html*/ `
 				<tr>
-					<td>${++numberingProof}</td>
+					<td>${numberingProof++}</td>
 					<td>
-						<a href='${transaction.proof}' data-fancybox data-caption='Bukti pembayaran - ${transaction.full_name}'>
+						<a href='${transaction.proof}' data-fancybox data-caption='Bukti pembayaran - ${
+				transaction.full_name
+			}'>
 							<div style="width: 64px; height: 64px; background-size: cover; background-image: url('${
 								transaction.proof
 							}'); background-position: center;" class='mx-auto'></div>
@@ -73,7 +74,7 @@ function renderTransactionWithProofData(transactions) {
 						<span class="badge badge-${badge}">${status}</span>
 					</td>
 					<td>${transaction.transaction_token}</td>
-					<td>${transaction.created_at}</td>
+					<td>${date}</td>
 					<td>
 						<a href="#transaction-proof-modal" data-toggle="modal" class='btn btn-lg btn-info text-white' onclick="changeStatus(${
 							transaction.id
@@ -84,51 +85,20 @@ function renderTransactionWithProofData(transactions) {
 				</tr>
 			`;
 		});
-		$('#next-button').attr('disabled', false);
+		$('#next-transaction-proof-button').attr('disabled', false);
 	} else {
-		isNoDataProof = true;
-		numberingProof -= numberingProof % 10;
 		content += /*html*/ `
 			<tr>
 				<td colspan='8' class='text-center'>Tidak ada data</td>
 			</tr>
 		`;
-		$('#next-button').attr('disabled', true);
+		$('#next-transaction-proof-button').attr('disabled', true);
 	}
 
-	$('#transaction-with-proof-data-content').append(content);
+	$('#transaction-proof-data-content').append(content);
 }
 
-$('#button-transaction-with-proof-search').on('click', function () {
-	getTransactionsProof($('#input-search-transaction-with-proof').val());
-});
-
-$('#prev-transaction-with-proof-button').on('click', function () {
-	if (paginateProof > 0) {
-		paginateProof--;
-	}
-
-	decNumberingProof();
-
-	if ($('#input-search-transaction-with-proof').val()) {
-		getTransactionsProof($('#input-search-transaction-with-proof').val(), paginateProof);
-		return;
-	}
-	getTransactionsProof('', paginateProof);
-});
-
-$('#next-transaction-with-proof-button').on('click', function () {
-	paginateProof++;
-
-	if ($('#input-search-transaction-with-proof').val()) {
-		getTransactionsProof($('#input-search-transaction-with-proof').val(), paginateProof);
-		return;
-	}
-
-	getTransactionsProof('', paginateProof);
-});
-
-$('#transaction-proof-form').on('submit', function (e) { 
+$('#transaction-proof-form').on('submit', function (e) {
 	e.preventDefault();
 
 	const formData = new FormData(this);
@@ -147,6 +117,7 @@ $('#transaction-proof-form').on('submit', function (e) {
 			if (response.code === 200) {
 				$('#transaction-proof-modal').modal('hide');
 				getTransactionsProof();
+				getTransactions();
 				toastr.success(response.message);
 			} else {
 				toastr.error(response.message);
@@ -158,16 +129,76 @@ $('#transaction-proof-form').on('submit', function (e) {
 	});
 });
 
-function decNumberingProof() {
-	const row = $('#transaction-with-proof-data-content td').closest('tr').length;
+$('#button-transaction-proof-search').on('click', function () {
+	pageProof = 0;
+	updateNumbering(pageProof);
+	searchKeywordProof = $('#input-search-transaction-proof').val();
+	getTransactionsProof(
+		searchKeywordProof,
+		pageProof,
+		filterKeyProof,
+		orderDirectionProof
+	);
+});
 
-	if (numberingProof % 10 === 0) {
-		if (!isNoDataProof) {
-			numberingProof = numberingProof - row * 2;
-		}
+$('#prev-transaction-proof-button').on('click', function () {
+	if (pageProof > 0) pageProof--;
+	updateNumbering(pageProof);
+	getTransactionsProof(
+		searchKeywordProof,
+		pageProof,
+		filterKeyProof,
+		orderDirectionProof
+	);
+});
+
+$('#next-transaction-proof-button').on('click', function () {
+	pageProof++;
+	updateNumbering(pageProof);
+	getTransactionsProof(
+		searchKeywordProof,
+		pageProof,
+		filterKeyProof,
+		orderDirectionProof
+	);
+});
+
+$('#filter-transaction-proof').on('change', function () {
+	filterKeyProof = this.value;
+	updateNumbering(page);
+	getTransactionsProof(
+		searchKeywordProof,
+		pageProof,
+		filterKeyProof,
+		orderDirectionProof
+	);
+});
+
+$('#order-direction-proof-button').on('click', function () {
+	isASCProof = !isASCProof;
+	orderDirectionProof = isASCProof ? 'ASC' : 'DESC';
+
+	if (isASCProof) {
+		$('#order-direction-proof-button').addClass('btn-primary');
+		$('#order-direction-proof-button').removeClass('btn-link');
+		$('.fa-filter').text('a-z');
 	} else {
-		numberingProof = numberingProof - row - 10;
+		$('#order-direction-proof-button').addClass('btn-link');
+		$('#order-direction-proof-button').removeClass('btn-primary');
+		$('.fa-filter').text('z-a');
 	}
+
+	updateNumbering(page);
+	getTransactionsProof(
+		searchKeywordProof,
+		pageProof,
+		filterKeyProof,
+		orderDirectionProof
+	);
+});
+
+function updateNumbering(pagination) {
+	numberingProof = pagination * 10 + 1;
 }
 
 function changeStatus(transactionId) {

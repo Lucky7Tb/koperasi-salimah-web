@@ -6,8 +6,8 @@ class Transaction_model extends CI_Model {
 
 	public function getTransactions($data)
 	{
-		$token = $this->session->userdata('token');
 		$endpoint = 'api/v1/admin/dashboard/transaction/listTransaction';
+		$token = $this->session->userdata('token');
 
 		$result = get_curl($endpoint, $token, $data);
 
@@ -16,8 +16,8 @@ class Transaction_model extends CI_Model {
 	
 	public function getTransactionWithProof($data)
 	{
-		$token = $this->session->userdata('token');
 		$endpoint = 'api/v1/admin/dashboard/transaction/listTransactionWithProof';
+		$token = $this->session->userdata('token');
 
 		$result = get_curl($endpoint, $token, $data);
 

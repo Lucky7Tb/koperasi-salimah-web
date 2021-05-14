@@ -1,14 +1,18 @@
-let paginate = 0;
-let numbering = 0;
-let isNoData = false;
+let page = 0;
+let numbering = page * 10 + 1;
+let searchKeyword = $('#input-search-payment').val();
+let filterKey = $('#filter-payment').val();
+let orderDirection = 'ASC';
+let isASC = true;
 
-function getPayments(search = '', page = 0, orderBy = 'id', orderDirection = 'DESC') {
+function getPayments(
+	search = '',
+	page = 0,
+	orderBy = 'id',
+	orderDirection = 'ASC'
+) {
 	let query = '';
-	if (search) {
-		query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
-	}else {
-		query += `page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
-	}
+	query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
 
 	$.ajax({
 		type: 'GET',
@@ -21,13 +25,13 @@ function getPayments(search = '', page = 0, orderBy = 'id', orderDirection = 'DE
 				toastr.error(response.message);
 			}
 		},
-	});	
+	});
 }
 
 function renderPaymentData(payments) {
 	let content = '';
 	$('#payment-data-content').html('');
-	$('#prev-button').attr('disabled', paginate === 0);
+	$('#prev-button').attr('disabled', page === 0);
 
 	if (payments.length > 0) {
 		isNoData = false;
@@ -36,7 +40,7 @@ function renderPaymentData(payments) {
 
 			content += /*html*/ `
 				<tr>
-					<td>${++numbering}</td>
+					<td>${numbering++}</td>
 					<td>
 						<a href='${payment.uri}' data-fancybox data-caption='${payment.label}'>
 							<div style="width: 64px; height: 64px; background-size: cover; background-image: url('${
@@ -63,11 +67,13 @@ function renderPaymentData(payments) {
 						</a>
 					</td>
 					<td>
-						<button onclick="confirmDeletePayment(${
+						<a href="javascript:void(0)" onclick="confirmDeletePayment(${
 							payment.id
-						})" class="btn btn-danger text-white ${payment.is_visible === '0' ? 'disabled' : ''}">	
+						})" class="btn btn-danger text-white ${
+				payment.is_visible === '0' ? 'disabled' : ''
+			}" role="button">	
 							<i class='icon-power'></i>
-						</button>
+						</a>
 					</td>
 				</tr>
 			`;
@@ -78,7 +84,7 @@ function renderPaymentData(payments) {
 		numbering -= numbering % 10;
 		content += /*html*/ `
 			<tr>
-				<td colspan='8' class='text-center'>Tidak ada data</td>
+				<td colspan='9' class='text-center'>Tidak ada data</td>
 			</tr>
 		`;
 		$('#next-button').attr('disabled', true);
@@ -92,7 +98,7 @@ function confirmDeletePayment(paymentId) {
 	$('#payment_id').val(paymentId);
 }
 
-$('#btn-delete-payment').on('click', function () { 
+$('#btn-delete-payment').on('click', function () {
 	const paymentId = $('#payment_id').val();
 	$.ajax({
 		type: 'DELETE',
@@ -107,47 +113,52 @@ $('#btn-delete-payment').on('click', function () {
 				toastr.error(response.message);
 			}
 		},
-	});	
+	});
 });
 
 $('#button-search').on('click', function () {
-	getPayments($('#input-search-payment').val());
+	page = 0;
+	updateNumbering(page);
+	searchKeyword = $('#input-search-payment').val();
+	getPayments(searchKeyword, page, filterKey, orderDirection);
 });
 
 $('#prev-button').on('click', function () {
-	if (paginate > 0) {
-		paginate -= 1;
-	}
-
-	decNumbering();
-
-	if ($('#input-search-payment').val()) {
-		getPayments($('#input-search-payment').val(), paginate);
-		return;
-	}
-	
-	getPayments('', paginate);
+	if (page > 0) page--;
+	updateNumbering(page);
+	getPayments(searchKeyword, page, filterKey, orderDirection);
 });
 
 $('#next-button').on('click', function () {
-	paginate += 1;
-
-	if ($('#input-search-payment').val()) {
-		getPayments($('#input-search-payment').val(), paginate);
-		return;
-	}
-
-	getPayments('', paginate);
+	page++;
+	updateNumbering(page)
+	getPayments(searchKeyword, page, filterKey, orderDirection);
 });
 
-function decNumbering() {
-	const row = $('#user-data-content td').closest('tr').length;
+$('#filter-payment').on('change', function () {
+	filterKey = this.value;
+	updateNumbering(page);
+	getPayments(searchKeyword, page, filterKey, orderDirection);
+});
 
-	if (numbering % 10 === 0) {
-		if (!isNoData) {
-			numbering = numbering - row * 2;
-		}
+$('#order-direction-button').on('click', function () {
+	isASC = !isASC;
+	orderDirection = isASC ? 'ASC' : 'DESC';
+
+	if (isASC) {
+		$('#order-direction-button').addClass('btn-primary');
+		$('#order-direction-button').removeClass('btn-link');
+		$('.fa-filter').text('a-z');
 	} else {
-		numbering = numbering - row - 10;
+		$('#order-direction-button').addClass('btn-link');
+		$('#order-direction-button').removeClass('btn-primary');
+		$('.fa-filter').text('z-a');
 	}
+
+	updateNumbering(page);
+	getPayments(searchKeyword, page, filterKey, orderDirection);
+});
+
+function updateNumbering(pagination) {
+	numbering = pagination * 10 + 1;
 }

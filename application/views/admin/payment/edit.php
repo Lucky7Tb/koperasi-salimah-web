@@ -27,8 +27,8 @@ $this->load->view('admin/template/header', [
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-primary" id="btn-change-thumbnail">Submit</button>
+					<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-lg btn-primary" id="btn-change-thumbnail">Simpan</button>
 				</div>
 			</form>
 		</div>
@@ -61,7 +61,7 @@ $this->load->view('admin/template/header', [
 							<input type="number" name="number_account" id="number_account" class="form-control" placeholder="Masukan no rekening" required>
 						</div>
 						<div class="form-group">
-							<label for="bank_code">Kode bang</label>
+							<label for="bank_code">Kode bank</label>
 							<input type="number" name="bank_code" id="bank_code" class="form-control" placeholder="Masukan no akun" required>
 						</div>
 						<div class="form-group">
@@ -76,12 +76,12 @@ $this->load->view('admin/template/header', [
 							</select>
 						</div>
 						<div class="form-group">
-							<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#payment-thumbnail-modal">
-								Ubah thumbanail
+							<button type="button" class="btn btn-lg btn-outline-info" data-toggle="modal" data-target="#payment-thumbnail-modal">
+								Ubah thumbnail
 							</button>
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-update-payment">Submit</button>
-						<a href="<?= base_url('admin/payment') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
+						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-update-payment">Simpan</button>
+						<a href="<?= base_url('admin/payment') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Kembali</a>
 					</form>
 				</div>
 			</div>

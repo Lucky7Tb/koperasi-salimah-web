@@ -1,6 +1,9 @@
-let paginate = 0;
-let numbering = 0;
-let isNoData = false;
+let page = 0;
+let numbering = page * 10 + 1;
+let searchKeyword = $('#input-search-transaction').val();
+let filterKey = $('#filter-transaction').val();
+let orderDirection = 'ASC';
+let isASC = true;
 
 function getTransactions(
 	search = '',
@@ -9,11 +12,7 @@ function getTransactions(
 	orderDirection = 'DESC'
 ) {
 	let query = '';
-	if (search) {
-		query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
-	} else {
-		query += `page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
-	}
+	query += `search=${search}&page=${page}&order-by=${orderBy}&order-direction=${orderDirection}`;
 
 	$.ajax({
 		type: 'GET',
@@ -32,13 +31,13 @@ function getTransactions(
 function renderTransactionData(transactions) {
 	let content = '';
 	$('#transaction-data-content').html('');
-	$('#prev-transaction-button').attr('disabled', paginate === 0);
+	$('#prev-transaction-button').attr('disabled', page === 0);
 
 	if (transactions.length > 0) {
-		isNoData = false;
 		transactions.forEach((transaction) => {
 			let status = '';
 			let badge = '';
+			const date = moment(transaction.updated_at).format('DD-MMM-YYYY HH:mm');
 			switch (transaction.status) {
 				case '0':
 					status = 'Belum di bayar';
@@ -67,16 +66,18 @@ function renderTransactionData(transactions) {
 			}
 			content += /*html*/ `
 				<tr>
-					<td>${++numbering}</td>
+					<td>${numbering++}</td>
 					<td>${transaction.full_name}</td>
 					<td>${transaction.total_price}</td>
 					<td>
 						<span class="badge badge-${badge}">${status}</span>
 					</td>
 					<td>${transaction.transaction_token}</td>
-					<td>${transaction.created_at}</td>
+					<td>${date}</td>
 					<td>
-						<a href="${global.base_url}admin/transaction/detailTrasaction/${transaction.id}" class='btn btn-lg btn-info text-white'>	
+						<a href="${global.base_url}admin/transaction/detailTrasaction/${
+				transaction.id
+			}" class='btn btn-lg btn-info text-white'>	
 							<i class='icon-eye'></i>
 						</a>
 					</td>
@@ -85,8 +86,6 @@ function renderTransactionData(transactions) {
 		});
 		$('#next-transaction-button').attr('disabled', false);
 	} else {
-		isNoData = true;
-		numbering -= numbering % 10;
 		content += /*html*/ `
 			<tr>
 				<td colspan='7' class='text-center'>Tidak ada data</td>
@@ -99,42 +98,48 @@ function renderTransactionData(transactions) {
 }
 
 $('#button-transaction-search').on('click', function () {
-	getTransactions($('#input-search-transaction').val());
+	page = 0;
+	updateNumbering(page);
+	searchKeyword = $('#input-search-transaction').val();
+	getTransactions(searchKeyword, page, filterKey, orderDirection);
 });
 
 $('#prev-transaction-button').on('click', function () {
-	if (paginate > 0) {
-		paginate--;
-	}
-
-	decNumbering();
-
-	if ($('#input-search-transaction').val()) {
-		getTransactions($('#input-search-transaction').val(), paginate);
-		return;
-	}
-	getTransactions('', paginate);
+	if (page > 0) page--;
+	updateNumbering(page);
+	getTransactions(searchKeyword, page, filterKey, orderDirection);
 });
 
 $('#next-transaction-button').on('click', function () {
-	paginate++;
-
-	if ($('#input-search-transaction').val()) {
-		getTransactions($('#input-search-transaction').val(), paginate);
-		return;
-	}
-
-	getTransactions('', paginate);
+	page++;
+	updateNumbering(page);
+	getTransactions(searchKeyword, page, filterKey, orderDirection);
 });
 
-function decNumbering() {
-	const row = $('#transaction-data-content td').closest('tr').length;
+$('#filter-transaction').on('change', function () {
+	filterKey = this.value;
+	updateNumbering(page);
+	getTransactions(searchKeyword, page, filterKey, orderDirection);
+});
 
-	if (numbering % 10 === 0) {
-		if (!isNoData) {
-			numbering = numbering - row * 2;
-		}
+$('#order-direction-button').on('click', function () {
+	isASC = !isASC;
+	orderDirection = isASC ? 'ASC' : 'DESC';
+
+	if (isASC) {
+		$('#order-direction-button').addClass('btn-primary');
+		$('#order-direction-button').removeClass('btn-link');
+		$('.fa-filter').text('a-z');
 	} else {
-		numbering = numbering - row - 10;
+		$('#order-direction-button').addClass('btn-link');
+		$('#order-direction-button').removeClass('btn-primary');
+		$('.fa-filter').text('z-a');
 	}
+
+	updateNumbering(page);
+	getTransactions(searchKeyword, page, filterKey, orderDirection);
+});
+
+function updateNumbering(pagination) {
+	numbering = pagination * 10 + 1;
 }

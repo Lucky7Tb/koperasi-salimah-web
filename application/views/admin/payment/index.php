@@ -4,12 +4,13 @@ $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
 		<link rel="stylesheet" href="' . $plugin . '/fancybox/jquery.fancybox.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/fontawesome/css/all.min.css">
 	'
 ]);
 ?>
 
 <!-- Delete modal -->
-<div class="modal fade" id="payment-delete-modal" tabindex="-1" aria-labelledby="paymentDeleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="payment-delete-modal">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -19,12 +20,12 @@ $this->load->view('admin/template/header', [
 				</button>
 			</div>
 			<div class="modal-body">
-				<p>Yakin ingin mendelete metode pembayaran ini?</p>
+				<p class="lead">Yakin ingin <strong>menon-aktifkan</strong> metode pembayaran ini?</p>
 				<input type="hidden" name="payment_id" id="payment_id">
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-danger" id="btn-delete-payment">Hapus</button>
+				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-lg btn-danger" id="btn-delete-payment">Ya non-aktifkan</button>
 			</div>
 		</div>
 	</div>
@@ -45,55 +46,72 @@ $this->load->view('admin/template/header', [
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/payment/create') ?>">Tambah pembayaran</a>
+					<a type="button" class="btn btn-lg btn-primary" href="<?= base_url('admin/payment/create') ?>">Tambah pembayaran</a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
-						<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-							<div id="example_filter" class="dataTables_filter">
-								<div class="float-right">
-									<label>
-										Search:
-										<input type="search" class="form-control form-control-sm" id="input-search-payment">
-									</label>
-									<button class="btn btn-primary" id="button-search">search</button>
+						<div class="float-left">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-6">
+										<select name="filter" id="filter-payment" class="form-control" style="width: 15em;">
+											<option value="bank_name">Nama bank</option>
+											<option value="name_account_bank">Pemilik akun bank</option>
+											<option value="is_visible">Status</option>
+											<option value="updated_at">Tgl perubahan</option>
+										</select>
+									</div>
+									<div class="col-6">
+										<button class="btn btn-sm btn-primary ml-5" id="order-direction-button">
+											<i class="fas fa-filter">a-z</i>
+										</button>
+									</div>
 								</div>
 							</div>
-							<table id="user-table" class="display table table-striped table-bordered" role="grid">
-								<thead>
-									<tr role="row">
-										<th rowspan="2">#</th>
-										<th rowspan="2">Foto</th>
-										<th rowspan="2">Nama bank</th>
-										<th rowspan="2">Akun bank</th>
-										<th rowspan="2">No bank</th>
-										<th rowspan="2">Status</th>
-										<th rowspan="2">Tgl perubahan</th>
-										<th colspan="2">Aksi</th>
-									</tr>
-									<tr>
-										<th>Update</th>
-										<th>Delete</th>
-									</tr>
-								</thead>
-								<tbody id="payment-data-content">
-
-								</tbody>
-							</table>
-							<div id="example_paginate">
-								<ul class="pagination">
-									<li class="paginate_button page-item previous">
-										<button class="page-link" id="prev-button">
-											Previous
-										</button>
-									</li>
-									<li class="paginate_button page-item next">
-										<button class="page-link" id="next-button">
-											Next
-										</button>
-									</li>
-								</ul>
+						</div>
+						<div class="float-right">
+							<div class="form-group">
+								<label>
+									Search:
+									<input type="text" class="form-control" id="input-search-payment">
+								</label>
+								<button class="btn btn-primary" id="button-search">search</button>
 							</div>
+						</div>
+						<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
+							<thead>
+								<tr role="row">
+									<th rowspan="2">#</th>
+									<th rowspan="2">Foto</th>
+									<th rowspan="2">Nama bank</th>
+									<th rowspan="2">Pemilik akun bank</th>
+									<th rowspan="2">No bank</th>
+									<th rowspan="2">Status</th>
+									<th rowspan="2">Tgl perubahan</th>
+									<th colspan="2">Aksi</th>
+								</tr>
+								<tr>
+									<th>Update</th>
+									<th>Aktif</th>
+								</tr>
+							</thead>
+							<tbody id="payment-data-content" style="font-size: 14px;">
+
+							</tbody>
+						</table>
+						<div id="example_paginate">
+							<ul class="pagination">
+								<li class="paginate_button page-item previous">
+									<button class="btn btn-lg page-link" id="prev-button">
+										Previous
+									</button>
+								</li>
+								<li class="paginate_button page-item next">
+									<button class="btn btn-lg page-link" id="next-button">
+										Next
+									</button>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>

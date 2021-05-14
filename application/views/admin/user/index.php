@@ -23,70 +23,67 @@ $this->load->view('admin/template/header', [
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/user/create') ?>">Tambah user</a>
+					<a type="button" class="btn btn-lg btn-primary" href="<?= base_url('admin/user/create') ?>">Tambah user</a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
-						<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-							<div id="example_filter" class="dataTables_filter">
-								<div class="float-left">
-									<div class="form-group">
-										<div class="row">
-											<div class="col-6">
-												<select name="filter" id="filter-user" class="form-control costume-select" style="width: 10em;">
-													<option value="full_name">Nama</option>
-													<option value="gender">Gender</option>
-													<option value="type">Level</option>
-												</select>
-											</div>
-											<div class="col-6">
-												<button class="btn btn-sm btn-primary ml-4" id="order-direction-button">
-													<i class="fas fa-filter">a-z</i>
-												</button>
-											</div>
-										</div>
+						<div class="float-left">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-6">
+										<select name="filter" id="filter-user" class="form-control costume-select" style="width: 15em;">
+											<option value="gender">Gender</option>
+											<option value="type">Level</option>
+											<option value="full_name">Nama</option>
+											<option value="updated_at">Tgl perubahan</option>
+										</select>
+									</div>
+									<div class="col-6">
+										<button class="btn btn-sm btn-primary ml-5" id="order-direction-button">
+											<i class="fas fa-filter">a-z</i>
+										</button>
 									</div>
 								</div>
-								<div class="float-right">
-									<label>
-										Search:
-										<input type="search" class="form-control" id="input-search-user">
-									</label>
-									<button class="btn btn-primary" id="button-search">search</button>
-								</div>
 							</div>
-							<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
-								<thead>
-									<tr role="row">
-										<th rowspan="2">#</th>
-										<th rowspan="2">Nama</th>
-										<th rowspan="2">Gender</th>
-										<th rowspan="2">No telp</th>
-										<th rowspan="2">Level</th>
-										<th>Aksi</th>
-									</tr>
-									<tr>
-										<th>Update</th>
-									</tr>
-								</thead>
-								<tbody id="user-data-content">
+						</div>
+						<div class="float-right">
+							<label>
+								Search:
+								<input type="text" class="form-control" id="input-search-user">
+							</label>
+							<button class="btn btn-primary" id="button-search">search</button>
+						</div>
+						<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
+							<thead>
+								<tr role="row">
+									<th rowspan="2">#</th>
+									<th rowspan="2">Nama</th>
+									<th rowspan="2">Gender</th>
+									<th rowspan="2">No telp</th>
+									<th rowspan="2">Level</th>
+									<th>Aksi</th>
+								</tr>
+								<tr>
+									<th>Update</th>
+								</tr>
+							</thead>
+							<tbody id="user-data-content" style="font-size: 14px;">
 
-								</tbody>
-							</table>
-							<div id="example_paginate">
-								<ul class="pagination">
-									<li class="paginate_button page-item previous">
-										<button class="page-link" id="prev-button">
-											Previous
-										</button>
-									</li>
-									<li class="paginate_button page-item next">
-										<button class="page-link" id="next-button">
-											Next
-										</button>
-									</li>
-								</ul>
-							</div>
+							</tbody>
+						</table>
+						<div id="example_paginate">
+							<ul class="pagination">
+								<li class="paginate_button page-item previous">
+									<button class="btn btn-lg page-link" id="prev-button">
+										Previous
+									</button>
+								</li>
+								<li class="paginate_button page-item next">
+									<button class="btn btn-lg page-link" id="next-button">
+										Next
+									</button>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>

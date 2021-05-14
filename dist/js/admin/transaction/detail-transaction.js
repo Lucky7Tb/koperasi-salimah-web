@@ -19,6 +19,8 @@ function getDetailTransaction() {
 function renderDetailData(data) {
 	let status = '';
 	let badge = '';
+	const dateOrder = moment(data.updated_at).format('DD-MMM-YYYY HH:mm');
+	const updatedDateOrder = moment(data.created_at).format('DD-MMM-YYYY HH:mm');
 	switch (data.status) {
 		case '1':
 			status = 'Terverifikasi';
@@ -53,17 +55,19 @@ function renderDetailData(data) {
 				<td>${product.product_name}</td>
 				<td>${product.qty}</td>
 				<td>Rp. ${product.sub_total_price}</td>
-				<td>${product.created_at}</td>
-				<td>${product.updated_at}</td>
+				<td>${moment(product.created_at).format('DD-MMM-YYYY HH:mm')}</td>
+				<td>${moment(product.updated_at).format('DD-MMM-YYYY HH:mm')}</td>
 			</tr>
 		`;
 	});
 
 	let proofContent = '';
+	let disabled = '';
 	if (data.proof === null) {
 		productContent += `
 			<h4 class="text-center mb-5">Belum mengupload bukti pembayaran</h4>
 		`
+		disabled = 'disabled';
 	}else {
 		proofContent += `
 			<a href='${data.proof}' data-fancybox data-caption='Bukti pembayaran - ${data.full_name}'>
@@ -75,11 +79,9 @@ function renderDetailData(data) {
 	const content = /*html*/ `
 		<div class="row">
 			<div class="col-12">
-
 				<div class="mb-5">
 					${proofContent}
 				</div>
-			
 				<div class="card">
 					<div class="card-header bg-primary text-white">
 						<p class="h5">Token: ${data.transaction_token}</p>
@@ -92,27 +94,28 @@ function renderDetailData(data) {
 								<p class="card-text h6">Status: <span class="badge badge-${badge}">${status}</span></p>
 							</div>
 							<div>
-								<p class="card-text h6">Tgl pesan: ${data.created_at}</p>
-								<p class="card-text h6">Tgl update: ${data.updated_at}</p>
+								<p class="card-text h6">Tgl pesan: ${dateOrder}</p>
+								<p class="card-text h6">Tgl update: ${updatedDateOrder}</p>
 							</div>
 						</div>
 					</div>
 					<div class="card-footer text-white">
 						<div class="form-group">
 							<label for="status" class="text-primary">Ubah status</label>
-							<select class="form-control" id="status" onchange="changeStatus(this)">
+							<select class="form-control" id="status">
 								<option value="1">Terverifikasi</option>
 								<option value="2">Diproses</option>
 								<option value="3">Dikirim</option>
 								<option value="4">Diterima</option>
 								<option value="5">Pesanan dibatalkan</option>
 							</select>
+							<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeStatus()" ${disabled}>Simpan</button>
 						</div>
 					</div>
 				</div>
 
 				<div class="table-responsive mt-5">
-					<table class="table table-bordered text-center">
+					<table class="table table-bordered text-center" style="font-size: 14px">
 						<thead class="thead-light">
 							<tr>
 								<th>#</th>
@@ -130,7 +133,7 @@ function renderDetailData(data) {
 					</table>
 				</div>
 
-				<a href="#" class="btn-lg btn-block btn-outline-dark text-center" role="button" onclick="history.back()">Back</a>
+				<a href="#" class="btn-lg btn-block btn-outline-dark text-center" role="button" onclick="history.back()">Kembali</a>
 			</div>
 		</div>
 	`;
@@ -138,10 +141,10 @@ function renderDetailData(data) {
 	$('#status').val(data.status);
 }
 
-function changeStatus(form) {
+function changeStatus() {
 	const formData = new FormData();
 	formData.append('id', idTransaction);
-	formData.append('status', form.value);
+	formData.append('status', $('#status').val());
 
 	$.ajax({
 		type: 'POST',
@@ -155,7 +158,7 @@ function changeStatus(form) {
 				toastr.success(response.message);
 				setTimeout(function () { 
 					window.location.reload();
-				}, 2000);
+				}, 1000);
 			} else {
 				toastr.error(response.message);
 			}

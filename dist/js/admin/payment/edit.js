@@ -57,7 +57,7 @@ $('#payment-thumbnail-form').on('submit', function (e) {
 			}
 		},
 		complete: function () {
-			global.loading('btn-change-thumbnail', 'primary', false, 'Submit');
+			global.loading('btn-change-thumbnail', 'primary', false, 'Simpan');
 		},
 	});
 });
@@ -80,13 +80,13 @@ $('#payment-form').on('submit', function (e) {
 				toastr.success(response.message);
 				setTimeout(function () { 
 					window.location.href = global.base_url + 'admin/payment';
-				}, 2000);
+				}, 1000);
 			} else {
 				toastr.error(response.message);
 			}
 		},
 		complete: function () {
-			global.loading('btn-update-payment', 'primary', false, 'Submit');
+			global.loading('btn-update-payment', 'primary', false, 'Simpan');
 		},
 	});
 });

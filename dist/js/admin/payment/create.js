@@ -35,7 +35,7 @@ $('#payment-form').on('submit', function (e) {
 			}
 		},
 		complete: function () {
-			global.loading('btn-add-payment', 'primary', false, 'Submit');
+			global.loading('btn-add-payment', 'primary', false, 'Simpan');
 		},
 	});
 });
