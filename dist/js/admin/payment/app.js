@@ -103,6 +103,9 @@ $('#btn-delete-payment').on('click', function () {
 	$.ajax({
 		type: 'DELETE',
 		url: `${global.base_url}admin/payment/deletePayment?id=${paymentId}`,
+		beforeSend: function () {
+			global.loading('btn-delete-payment', 'danger', true, null);
+		},
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
@@ -112,6 +115,9 @@ $('#btn-delete-payment').on('click', function () {
 			} else {
 				toastr.error(response.message);
 			}
+		},
+		complete: function () {
+			global.loading('btn-delete-payment', 'danger', false, 'Ya non-aktifkan');
 		},
 	});
 });

@@ -57,7 +57,7 @@ $('#btn-ban-user').on('click', function () {
 	formData.set('type', '2');
 	
 	$.ajax({
-		type: 'POST',
+		type: 'PUT',
 		url: `${global.base_url}admin/user/updateUser/${id}`,
 		data: formData,
 		processData: false,

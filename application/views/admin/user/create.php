@@ -67,7 +67,7 @@ $this->load->view('admin/template/header', [
 										<i class="icon-calendar"></i>
 									</span>
 								</div>
-								<input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="Masukan tanggal lahir" autocomplete="off">
+								<input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="Masukan tanggal lahir" autocomplete="off" required>
 							</div>
 						</div>
 						<div class="form-group">

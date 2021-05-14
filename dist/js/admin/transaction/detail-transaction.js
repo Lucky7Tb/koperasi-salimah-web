@@ -109,7 +109,7 @@ function renderDetailData(data) {
 								<option value="4">Diterima</option>
 								<option value="5">Pesanan dibatalkan</option>
 							</select>
-							<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeStatus()" ${disabled}>Simpan</button>
+							<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeStatus()" id="btn-change-status" ${disabled}>Simpan</button>
 						</div>
 					</div>
 				</div>
@@ -152,16 +152,22 @@ function changeStatus() {
 		data: formData,
 		processData: false,
 		contentType: false,
+		beforeSend: function () {
+			global.loading('btn-change-status', 'primary', true, null);
+		},
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				toastr.success(response.message);
-				setTimeout(function () { 
+				setTimeout(function () {
 					window.location.reload();
 				}, 1000);
 			} else {
 				toastr.error(response.message);
 			}
+		},
+		complete: function () {
+			global.loading('btn-change-status', 'primary', false, 'Simpan');
 		},
 	});
 }

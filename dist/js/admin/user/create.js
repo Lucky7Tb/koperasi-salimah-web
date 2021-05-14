@@ -24,7 +24,7 @@ $("#user-form").on("submit", function (e) {
 		processData: false,
 		contentType: false,
 		beforeSend: function () {
-		global.loading("btn-add-user", "primary", true, null);
+			global.loading("btn-add-user", "primary", true, null);
 		},
 		success: function (response) {
 			response = JSON.parse(response);
