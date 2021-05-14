@@ -21,7 +21,7 @@
 							</div>
 						</a>
 						<div class="dropdown-menu border dropdown-menu-right p-0">
-							<a href="#" class="dropdown-item px-2 align-self-center d-flex">
+							<a href="<?= base_url('admin/profile') ?>" class="dropdown-item px-2 align-self-center d-flex">
 								<span class="icon-settings mr-2 h6 mb-0"></span> Pengaturan Akun
 							</a>
 							<div class="dropdown-divider"></div>
