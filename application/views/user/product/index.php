@@ -11,11 +11,6 @@ $this->load->view('template/header');
 				<div class="w-sm-100 mr-auto">
 					<h4 class="mb-0">Nama Produk</h4>
 				</div>
-
-				<!-- <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">List</li>
-                            </ol> -->
 				<div class="form-group col-md-4">
 					<label for="inputState">Urutkan</label>
 					<select id="inputState" class="form-control">
@@ -23,16 +18,11 @@ $this->load->view('template/header');
 						<option>Terlama</option>
 						<option>Termurah</option>
 						<option>Termahal</option>
-
 					</select>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- END: Breadcrumbs-->
-
-
-	<!-- START: Card Data-->
 	<div class="row">
 		<div class="col-12 mt-3">
 			<div class="card">
@@ -446,8 +436,6 @@ $this->load->view('template/header');
 					</div>
 					<div class="row">
 						<div class="col-12 col-sm-12">
-
-
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 									<li class="page-item disabled">
@@ -467,24 +455,12 @@ $this->load->view('template/header');
 									</li>
 								</ul>
 							</nav>
-
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
-
 	</div>
-	<!-- END: Card DATA-->
-
-
-
-
-
-
-
 </div>
 
 <?php
