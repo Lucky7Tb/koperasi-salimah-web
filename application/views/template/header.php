@@ -11,6 +11,7 @@
 	<!-- START: Template CSS-->
 	<link rel="stylesheet" href="<?= base_url('dist/vendors/bootstrap/css/bootstrap.min.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('dist/vendors/simple-line-icons/css/simple-line-icons.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
 
 	<!-- START: Custom CSS-->
 	<link rel="stylesheet" href="<?= base_url('dist/css/main.css') ?>">

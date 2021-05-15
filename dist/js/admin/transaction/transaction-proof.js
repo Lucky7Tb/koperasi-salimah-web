@@ -116,6 +116,7 @@ $('#transaction-proof-form').on('submit', function (e) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				$('#transaction-proof-modal').modal('hide');
+				$('#transaction-proof-form').trigger('reset');
 				getTransactionsProof();
 				getTransactions();
 				toastr.success(response.message);
@@ -131,7 +132,7 @@ $('#transaction-proof-form').on('submit', function (e) {
 
 $('#button-transaction-proof-search').on('click', function () {
 	pageProof = 0;
-	updateNumbering(pageProof);
+	updateHistoryNumbering(pageProof);
 	searchKeywordProof = $('#input-search-transaction-proof').val();
 	getTransactionsProof(
 		searchKeywordProof,
@@ -143,7 +144,7 @@ $('#button-transaction-proof-search').on('click', function () {
 
 $('#prev-transaction-proof-button').on('click', function () {
 	if (pageProof > 0) pageProof--;
-	updateNumbering(pageProof);
+	updateHistoryNumbering(pageProof);
 	getTransactionsProof(
 		searchKeywordProof,
 		pageProof,
@@ -154,7 +155,7 @@ $('#prev-transaction-proof-button').on('click', function () {
 
 $('#next-transaction-proof-button').on('click', function () {
 	pageProof++;
-	updateNumbering(pageProof);
+	updateHistoryNumbering(pageProof);
 	getTransactionsProof(
 		searchKeywordProof,
 		pageProof,
@@ -165,7 +166,7 @@ $('#next-transaction-proof-button').on('click', function () {
 
 $('#filter-transaction-proof').on('change', function () {
 	filterKeyProof = this.value;
-	updateNumbering(page);
+	updateHistoryNumbering(page);
 	getTransactionsProof(
 		searchKeywordProof,
 		pageProof,
@@ -188,7 +189,7 @@ $('#order-direction-proof-button').on('click', function () {
 		$('.fa-filter').text('z-a');
 	}
 
-	updateNumbering(page);
+	updateHistoryNumbering(page);
 	getTransactionsProof(
 		searchKeywordProof,
 		pageProof,
@@ -197,7 +198,7 @@ $('#order-direction-proof-button').on('click', function () {
 	);
 });
 
-function updateNumbering(pagination) {
+function updateHistoryNumbering(pagination) {
 	numberingProof = pagination * 10 + 1;
 }
 

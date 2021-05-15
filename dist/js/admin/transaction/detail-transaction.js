@@ -65,7 +65,7 @@ function renderDetailData(data) {
 	let disabled = '';
 	if (data.proof === null) {
 		productContent += `
-			<h4 class="text-center mb-5">Belum mengupload bukti pembayaran</h4>
+			<h4 class="text-center mb-5">Anda belum mengkonfirmasi transaksi ini</h4>
 		`
 		disabled = 'disabled';
 	}else {

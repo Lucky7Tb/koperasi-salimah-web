@@ -13,6 +13,11 @@ class Product extends CI_Controller
 		if (isNotLogin()) {
 			redirect('auth');
 		}
+
+		if (!isAdmin()) {
+			redirect('/');
+		}
+		
 		$this->token = $this->session->userdata('token');
 
 		$this->load->model('admin/Product_model', 'produk');

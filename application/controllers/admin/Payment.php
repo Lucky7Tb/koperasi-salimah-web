@@ -13,6 +13,10 @@ class Payment extends CI_Controller {
 		if (isNotLogin()) {
 			redirect('auth');
 		}
+
+		if (!isAdmin()) {
+			redirect('/');
+		}
 	}
 	
 	public function index()

@@ -32,15 +32,14 @@ function renderDetailProduct(data) {
 		);
 	}
 
+	$('#product_list_photo').append(
+		`<div class="carousel-item active">
+			<img class="d-block w-100" src="${data.product.uri}">
+		</div>`
+	);
+
 	if (data.photos.length > 0) {
 		data.photos.forEach((photo, index) => {
-			if (index === 0) {
-				$('#product_list_photo active').append(
-					`<div class="carousel-item">
-						<img class="d-block w-100" src="${photo.uri}">
-					</div>`
-				);
-			}
 			$('#product_list_photo').append(
 				`<div class="carousel-item">
 						<img class="d-block w-100" src="${photo.uri}">

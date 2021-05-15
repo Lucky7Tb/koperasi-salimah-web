@@ -1,31 +1,24 @@
 <?php
 $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
-$this->load->view('template/header');
+$this->load->view('template/header', [
+	'css' => '
+		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/fancybox/jquery.fancybox.min.css">
+	'
+]);
 ?>
 <div class="container-fluid site-width">
-
-
-
-	<!-- START: Breadcrumbs-->
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
 				<div class="w-sm-100 mr-auto">
-					<h4 class="mb-0">Pembelian #001122</h4>
+					<h4 class="mb-0" id="transaction-token"></h4>
 				</div>
-
-				<ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
-					<li class="breadcrumb-item active"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active"><a href="#">Pembelian</a></li>
-					<li class="breadcrumb-item">Detail Pembelian</li>
-				</ol>
 			</div>
 		</div>
 	</div>
-	<!-- END: Breadcrumbs-->
 
-	<!-- START: Card Data-->
 	<div class="row">
 		<div class="col-12 mt-3">
 			<div class="card">
@@ -33,45 +26,33 @@ $this->load->view('template/header');
 					<div class="row">
 						<div class="col-lg-12 col-xl-7 mb-4 mb-xl-0">
 							<h4>List Belanja</h4>
-							<table class="table table-bordered mb-0 table-responsive d-block border-bottom-0 border-top-0 border-left-0 border-right-0 p-3">
+							<table class="table table-bordered mb-0 table-responsive d-block border-bottom-0 border-top-0 border-left-0 border-right-0 p-3 text-center">
 								<thead>
 									<tr class="bg-transparent">
 										<th class="border-bottom-0">Foto</th>
 										<th class="border-bottom-0">Produk</th>
 										<th class="border-bottom-0">Jumlah</th>
 										<th class="border-bottom-0">Harga</th>
-
+										<th class="border-bottom-0">Sub total</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="transaction-product">
 									<tr>
-										<td><img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid" width="60"></td>
-										<td class="align-middle">Flowers Structured Coat</td>
-										<td class="w-25 align-middle">1</td>
-										<td class="align-middle">Rp10.000,00</td>
-									</tr>
-									<tr>
-										<td><img src="dist/images/ecommerce-img2.jpg" alt="" class="img-fluid" width="60"></td>
-										<td class="align-middle">Cotton White Top</td>
-										<td class="w-25 align-middle">2</td>
-										<td class="align-middle">Rp5.000,00</td>
-									</tr>
-									<tr>
-										<td colspan="3">Ongkir</td>
+										<td colspan="4">Ongkir</td>
 										<td>Rp5.000,00</td>
 									</tr>
 									<tr>
-										<td colspan="3">TOTAL HARGA</td>
-										<td>Rp20.000,00</td>
+										<td colspan="4">Total harga</td>
+										<td id="transaction-total-price"></td>
 									</tr>
 								</tbody>
 							</table>
 
-							<div class="">
+							<div>
 								<h4>Alamat</h4>
 								<div class="row p-3">
 									<div class="col-10">
-										<div class="float-right w-100 border p-3">
+										<div class="float-right w-100 border p-3" id="transaction-address">
 											<b>Udin Saefudin</b>
 											<address>
 												Jalan Yang Lurus No 6 RT06/09<br>Kel Kiri Kec Kanan
@@ -81,48 +62,42 @@ $this->load->view('template/header');
 								</div>
 							</div>
 
-							<div class="">
+							<div>
 								<h4>Kurir</h4>
 								<div class="row p-3">
 									<div class="col-10">
-										<div class="float-right w-100 border p-3">
+										<div class="float-right w-100 border p-3" id="transaction-courier">
 											<b>JNE</b>
 											<p>Resi : 00112233445566778899</p>
 										</div>
 									</div>
 								</div>
 							</div>
-
 						</div>
 						<div class="col-lg-12 col-xl-5">
-							<div class="">
-								<h4>Status</h4>
-								<div class="row p-3">
-									<div class="col-10">
-										<button type="button" class="btn btn-success btn-lg rounded-btn">Selesai</button>
-									</div>
-								</div>
+							<div>
+								<p class="h4" id="transaction-status"></p>
 							</div>
-
-							<div class="">
+							<div>
 								<h4>Bukti Pembayaran</h4>
 								<div class="row p-3">
 									<div class="col-10">
 										<div class="card-body">
-											<form action="http://html.designstream.co.in/file-upload" class="dropzone dropzone-primary dz-clickable">
-												<div class="dz-default dz-message"><span>Foto Bukti
-														Pembayaran</span></div>
+											<form id="transaction-proof-form">
+												<div class="form-group">
+													<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
+												</div>
+												<button type="submit" class="btn btn-lg btn-block btn-primary" id="btn-upload-proof">Upload</button>
 											</form>
+											<p class="h6 mt-2 text-center" id="transaction-message"></p>
 										</div>
-										<p class="mb-0 h6"><a href="#" class="btn btn-success btn-block">Upload</a></p>
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-12 col-sm-12 mt-3">
 							<div class="card">
 								<div class="card-body">
@@ -145,23 +120,27 @@ $this->load->view('template/header');
 									<a href="#" class="btn btn-success">Upload Review</a>
 								</div>
 							</div>
-
 						</div>
-					</div>
-
+					</div> -->
+					<button type="button" class="btn btn-lg btn-block btn-outline-dark" onclick="history.back()">Kembali</button>
 				</div>
 			</div>
-
-
 		</div>
-
-
 	</div>
-	<!-- END: Card DATA-->
-
 </div>
 
 <?php
 $js = base_url('dist/js');
-$this->load->view('template/footer');
+$this->load->view('template/footer', [
+	'js' => '
+		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
+		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
+		<script src="' . $js . '/global.js"></script>
+		<script src="' . $js . '/user/transaction/detail-transaction.js"></script>
+		<script>
+			initOptionPlugin();
+			getDetailTransaction("'.$id.'");
+		</script>
+	'
+]);
 ?>

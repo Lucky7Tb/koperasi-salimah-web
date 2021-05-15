@@ -14,6 +14,10 @@ class Delivery extends CI_Controller
 			redirect('auth');
 		}
 
+		if (!isAdmin()) {
+			redirect('/');
+		}
+
 		$this->token = $this->session->userdata('token');
 
 		$this->load->model('admin/Delivery_model', 'pengiriman');
