@@ -16,7 +16,7 @@ class Delivery extends CI_Controller
 
 		$this->token = $this->session->userdata('token');
 
-		$this->load->model('Delivery_model', 'pengiriman');
+		$this->load->model('admin/Delivery_model', 'pengiriman');
 	}
 
 	public function index()

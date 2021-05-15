@@ -8,7 +8,7 @@ class Transaction extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->model('Transaction_model', 'transaction');
+		$this->load->model('admin/Transaction_model', 'transaction');
 
 		if (isNotLogin()) {
 			redirect('auth');

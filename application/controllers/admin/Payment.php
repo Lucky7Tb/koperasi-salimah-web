@@ -8,7 +8,7 @@ class Payment extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->model('Payment_model', 'payment');
+		$this->load->model('admin/Payment_model', 'payment');
 		
 		if (isNotLogin()) {
 			redirect('auth');
