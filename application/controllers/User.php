@@ -9,7 +9,7 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		$this->token = $this->session->userdata('token');
-		$this->load->model('Product_model','produk');
+		$this->load->model('admin/Product_model','produk');
 		
 	}
 	public function index()
