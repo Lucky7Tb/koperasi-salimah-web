@@ -68,7 +68,7 @@ function renderTransactionData(transactions) {
 				<tr>
 					<td>${numbering++}</td>
 					<td>${transaction.full_name}</td>
-					<td>${transaction.total_price}</td>
+					<td>${global.rupiahFormat(transaction.total_price)}</td>
 					<td>
 						<span class="badge badge-${badge}">${status}</span>
 					</td>

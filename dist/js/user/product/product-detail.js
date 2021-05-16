@@ -5,7 +5,6 @@ function getProductDetail(idProduct) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				console.log(response.data);
 				renderDetailProduct(response.data);
 			} else {
 				toastr.error(response.message);
@@ -16,7 +15,7 @@ function getProductDetail(idProduct) {
 
 function renderDetailProduct(data) {
 	$('#product_name').html(data.product.product_name);
-	$('#product_price').html(`Rp. ${data.product.price}`);
+	$('#product_price').html(`Rp. ${global.rupiahFormat(data.product.price)}`);
 	$('#product_description').html(data.product.description);
 	$('#product_stock').html(`Stok: ${data.product.stock}`);
 
@@ -59,4 +58,36 @@ function renderDetailProduct(data) {
 			`<li class="list-inline-item">Belum ada rating</li>`
 		);
 	}
+}
+
+function addToWishlist(idProduct) {
+	const formData = new FormData();
+	formData.append('id_m_products', idProduct);
+
+	$.ajax({
+		type: 'POST',
+		url: `${global.base_url}wishlist/addWishlist`,
+		processData: false,
+		contentType: false,
+		data: formData,
+		beforeSend: function () {
+			global.loading('btn-add-wishlish', 'primary', true, null);
+		},
+		success: function (response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				toastr.success(response.message);
+			}else {
+				toastr.error(response.message);
+			}
+		},
+		complete: function () {
+			global.loading(
+				'btn-add-wishlish',
+				'primary',
+				false,
+				'Tambah ke Wishlist <i class="icon-heart"></i>'
+			);
+		}
+	});
 }

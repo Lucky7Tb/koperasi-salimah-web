@@ -21,6 +21,7 @@ function renderDetailData(data) {
 	let badge = '';
 	const dateOrder = moment(data.updated_at).format('DD-MMM-YYYY HH:mm');
 	const updatedDateOrder = moment(data.created_at).format('DD-MMM-YYYY HH:mm');
+	$('#main').html('');
 	switch (data.status) {
 		case '1':
 			status = 'Terverifikasi';
@@ -54,7 +55,7 @@ function renderDetailData(data) {
 				</td>
 				<td>${product.product_name}</td>
 				<td>${product.qty}</td>
-				<td>Rp. ${product.sub_total_price}</td>
+				<td>Rp. ${global.rupiahFormat(product.sub_total_price)}</td>
 				<td>${moment(product.created_at).format('DD-MMM-YYYY HH:mm')}</td>
 				<td>${moment(product.updated_at).format('DD-MMM-YYYY HH:mm')}</td>
 			</tr>
@@ -90,7 +91,7 @@ function renderDetailData(data) {
 						<h5 class="card-title text-center">Pemesan: ${data.full_name}</h5>
 						<div class="d-flex justify-content-between align-items-end container">
 							<div>
-								<p class="card-text h6">Total harga: Rp. ${data.total_price}</p>
+								<p class="card-text h6">Total harga: Rp. ${global.rupiahFormat(data.total_price)}</p>
 								<p class="card-text h6">Status: <span class="badge badge-${badge}">${status}</span></p>
 							</div>
 							<div>
@@ -159,9 +160,7 @@ function changeStatus() {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				toastr.success(response.message);
-				setTimeout(function () {
-					window.location.reload();
-				}, 1000);
+				getDetailTransaction();
 			} else {
 				toastr.error(response.message);
 			}

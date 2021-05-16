@@ -108,13 +108,13 @@ function renderTransactionDetailData(data) {
 				</td>
 				<td class="align-middle">${product.product_name}</td>
 				<td class="w-25 align-middle">${product.qty}</td>
-				<td class="align-middle">Rp. ${product.price}</td>
-				<td class="align-middle">Rp. ${product.sub_total_price}</td>
+				<td class="align-middle">Rp. ${global.rupiahFormat(product.price)}</td>
+				<td class="align-middle">Rp. ${global.rupiahFormat(product.sub_total_price)}</td>
 			</tr>
 		`;
 	});
 	$('#transaction-product').prepend(content);
-	$('#transaction-total-price').text(`Rp. ${data.total_price}`);
+	$('#transaction-total-price').text(`Rp. ${global.rupiahFormat(data.total_price)}`);
 
 	if (data.proof !== '0') {
 		isUpdateProof = !isUpdateProof;
@@ -124,6 +124,10 @@ function renderTransactionDetailData(data) {
 
 		if (parseInt(data.status) >= 1) {
 			$('#transaction-message').text(`Pesan: Bukti telah dikonfirmasi`);
+			$('#photo').attr('data-show-remove', false);
+			$('#photo').attr('disabled', true);
+			photo.destroy();
+			photo.init();
 		}else {
 			if (data.proof[0].message !== null) {
 				$('#transaction-message').text(`Pesan: ${data.proof[0].message}`);
