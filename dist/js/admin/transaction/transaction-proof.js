@@ -69,7 +69,7 @@ function renderTransactionWithProofData(transactions) {
 						</a>
 					</td>
 					<td>${transaction.full_name}</td>
-					<td>${transaction.total_price}</td>
+					<td>Rp. ${global.rupiahFormat(transaction.total_price)}</td>
 					<td>
 						<span class="badge badge-${badge}">${status}</span>
 					</td>
@@ -117,6 +117,8 @@ $('#transaction-proof-form').on('submit', function (e) {
 			if (response.code === 200) {
 				$('#transaction-proof-modal').modal('hide');
 				$('#transaction-proof-form').trigger('reset');
+				updateHistoryNumbering(pageProof);
+				updateNumbering(page);
 				getTransactionsProof();
 				getTransactions();
 				toastr.success(response.message);

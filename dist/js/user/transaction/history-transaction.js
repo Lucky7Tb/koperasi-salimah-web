@@ -50,11 +50,11 @@ function renderHistoryTransactionData(transactions) {
 			content += /*html*/ `
 				<tr>
 					<td>${numberingHistory++}</td>
-					<td>${transaction.total_price}</td>
+					<td>Rp. ${transaction.total_price}</td>
 					<td>
 						<span class="badge badge-${badge}">${status}</span>
 					</td>
-					<td>${transaction.transaction_token}</td>
+					<td>${global.rupiahFormat(transaction.transaction_token)}</td>
 					<td>${moment(transaction.created_at).format('DD-MMM-YYYY HH:mm')}</td>
 					<td>${moment(transaction.updated_at).format('DD-MMM-YYYY HH:mm')}</td>
 				</tr>

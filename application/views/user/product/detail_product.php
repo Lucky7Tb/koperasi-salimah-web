@@ -8,14 +8,8 @@ $this->load->view('template/header');
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
 				<div class="w-sm-100 mr-auto">
-					<h4 class="mb-0">Detail Produk</h4>
+					<h2 class="mb-0">Detail Produk</h2>
 				</div>
-
-				<ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
-					<li class="breadcrumb-item active"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active"><a href="#">Produk</a></li>
-					<li class="breadcrumb-item">Detail Produk</li>
-				</ol>
 			</div>
 		</div>
 	</div>
@@ -137,7 +131,7 @@ $this->load->view('template/header');
 									</li>
 								</ul>
 								<div class="mr-3">
-									<a href="#" class="btn btn-primary">Tambah ke Wishlist <i class="icon-heart"></i></a>
+									<button class="btn btn-primary" onclick="addToWishlist(<?= $id ?>)" id="btn-add-wishlish">Tambah ke Wishlist <i class="icon-heart"></i></button>
 								</div>
 							</div>
 						</div>
