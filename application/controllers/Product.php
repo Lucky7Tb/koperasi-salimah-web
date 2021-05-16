@@ -4,14 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Product extends CI_Controller {
 
-	
+	private $token;
+
 	public function __construct()
 	{
 		parent::__construct();
+		$this->token = $this->session->userdata('token');
+		$this->load->model('Product_model','produk');
+		$this->load->model('admin/Category_model', 'category');
 		
-		$this->load->model('Product_model', 'product');
 	}
-	
 
 	public function index()
 	{
@@ -19,10 +21,11 @@ class Product extends CI_Controller {
 		$this->load->view('user/product/index', $data);
 	}
 
-	public function detail()
+	public function detail($id)
 	{
 		$data['title'] = 'Detail produk';
-		$data['id'] = $this->uri->segment(3);
+		$data['produk'] = $this->produk->getProductUser($id, $this->token);
+		$data['category'] = $this->category->getAllCategories($this->token);
 		$this->load->view('user/product/detail_product', $data);
 	}
 
