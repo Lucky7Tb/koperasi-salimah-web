@@ -24,6 +24,12 @@ class Product_model extends CI_Model
 
 		return get_curl($end, $token);
 	}
+	public function getProductUser($id, $token)
+	{
+		$end = 'api/v1/user/product/getDetailProduct/' . $id;
+
+		return get_curl($end, $token);
+	}
 
 	// post
 	public function createProduct($data, $token)

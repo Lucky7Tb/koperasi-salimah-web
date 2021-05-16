@@ -33,6 +33,16 @@ $this->load->view('template/header');
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12 col-lg-5">
+							<?php
+							$kategori = $produk['data']['categories'];
+							$produk = $produk['data']['product'];
+							$namaProduk = $produk['product_name'];
+							$harga = $produk['price'];
+							$stok = $produk['stock'];
+							$berat = $produk['weight'];
+							$deskripsi = $produk['description'];
+							$uri = $produk['uri'];
+							?>
 
 							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 								<ol class="carousel-indicators">
@@ -42,7 +52,7 @@ $this->load->view('template/header');
 								</ol>
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<img class="d-block w-100" src="dist/images/cap3.jpg" alt="First slide">
+										<img class="d-block w-100" src="<?= $uri ?>" alt="First slide">
 									</div>
 									<div class="carousel-item">
 										<img class="d-block w-100" src="dist/images/cap2.jpg" alt="Second slide">
@@ -63,8 +73,7 @@ $this->load->view('template/header');
 						</div>
 						<div class="col-md-12 col-lg-7">
 							<div class="card-body border brd-gray border-top-0 border-right-0 border-left-0">
-								<h3 class="mb-0"><a href="#" class="f-weight-500 text-primary">Flowers
-										Structured Coat</a></h3>
+								<h3 class="mb-0"><a href="#" class="f-weight-500 text-primary"><?= $namaProduk ?></a></h3>
 							</div>
 							<div class="card-body border border-top-0 border-right-0 border-left-0">
 								<div class="clearfix">
@@ -84,7 +93,7 @@ $this->load->view('template/header');
 								<div class="row">
 									<div class="col-12">
 										<div class="float-left ml-2">
-											<h4 class="lato-font mb-0 text-danger">Rp285.000,00</h4>
+											<h4 class="lato-font mb-0 text-danger">Rp. <?= number_format($harga, '2', ',', '.') ?></h4>
 										</div>
 									</div>
 
@@ -119,7 +128,15 @@ $this->load->view('template/header');
 							<div class="card-body">
 								<ul class="list-unstyled">
 
-									<li class="font-weight-bold dark-color mb-2">Kategory: <span class="body-color font-weight-normal">Kategori 1</span></li>
+									<li class="font-weight-bold dark-color mb-2">Kategory: 
+										<?php $i=0; foreach($kategori as $c){
+											?>
+											<span class="body-color font-weight-normal"><?= $kategori[$i]['category'] ?></span>
+
+											<?php
+										}
+										?>
+									</li>
 
 									<li class="font-weight-bold dark-color mb-2">Share:
 										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-facebook"></i></a>
@@ -159,50 +176,10 @@ $this->load->view('template/header');
 								<div class="tab-pane fade show active" id="Deskripsi" role="tabpanel" aria-labelledby="Deskripsi">
 									<div class="row">
 										<div class="col-md-6">
-											<p class="pb-3" lang="ca">Lorem ipsum dolor sit amet, consectetuer
-												adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-												Cum sociis natoque penatibus et magnis dis parturient montes,
-												nascetur ridiculus mus. Donec quam felis, ultricies nec,
-												pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-												enim. Donec pede justo, fringilla vel, aliquet nec,.</p>
-											<p lang="ca">In enim justo, rhoncus ut, imperdiet a, venenatis
-												vitae, justo. Nullam dictum felis eu pede mollis pretium.
-												Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
-												Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor
-												eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-												dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
-												nulla ut metus varius laoreet. Quisque rutrum.</p>
+											<p class="pb-3">Rp. <?= $deskripsi ?></p>
+											
 										</div>
-										<div class="col-md-6">
-											<p class="pb-3" lang="ca">Lorem ipsum dolor sit amet, consectetuer
-												adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-												Cum sociis natoque penatibus et magnis dis parturient montes,
-												nascetur ridiculus mus. Donec quam felis, ultricies nec,
-												pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-												enim. Donec pede justo, fringilla vel, aliquet nec,.</p>
-											<p lang="ca">In enim justo, rhoncus ut, imperdiet a, venenatis
-												vitae, justo. Nullam dictum felis eu pede mollis pretium.
-												Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
-												Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor
-												eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-												dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
-												nulla ut metus varius laoreet. Quisque rutrum.</p>
-										</div>
-										<div class="col-md-6">
-											<p class="pb-3" lang="ca">Etiam sit ameta orci eget eros faucibus
-												tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec
-												sodales sagittis magna. Sed consequat, leo eget bibendum
-												sodales, augue velit cursus nunc, quis gravida magna mi a
-												libero. Fusce vulputate eleifend sapien. Vestibulum purus quam,
-												scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan
-												lorem in dui. Vestibulum ante ipsum primis in faucibus orci
-												luctus et ultrices posuere cubilia.</p>
-											<p lang="ca">Aenean imperdiet. Etiam ultricies nisi vel augue.
-												Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
-												rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem
-												quam semper libero, sit amet adipiscing sem neque sed ipsum.
-											</p>
-										</div>
+										
 									</div>
 								</div>
 

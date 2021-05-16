@@ -60,7 +60,7 @@ $this->load->view('template/header');
 								</div>
 							</div>
 							<div class="pt-3">
-								<p class="mb-2"><a href="<?= base_url('product/detail') ?>" class="font-weight-bold text-primary"><?= $p['product_name'] ?></a></p>
+								<p class="mb-2"><a href="<?= base_url('product/detail/') ?><?= $p['id_m_products'] ?>" class="font-weight-bold text-primary"><?= $p['product_name'] ?></a></p>
 								<div class="clearfix">
 									<div class="d-inline-block text-danger pl-2">Rp. <?= number_format($p['price'], '2', ',', '.') ?></div>
 									<ul class="list-inline mb-0 mt-2">
