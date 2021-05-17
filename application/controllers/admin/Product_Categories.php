@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
 
 class Product_Categories extends CI_Controller
 {
@@ -8,13 +7,12 @@ class Product_Categories extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('login_helper');
 
 		if (isNotLogin()) {
 			redirect('auth');
 		}
 
-		$this->load->model('Category_model', 'category');
+		$this->load->model('admin/Category_model', 'category');
 		$this->token = $this->session->userdata('token');
 	}
 
@@ -106,6 +104,7 @@ class Product_Categories extends CI_Controller
 //		$keyword = $this->input->post('keywords');
 		echo "ok";
 	}
+
 }
 
 /* End of file ProductCategories.php */

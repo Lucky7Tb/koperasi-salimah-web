@@ -1,14 +1,16 @@
+.form-group, .form-control{
+	font-size: 14px;
+}
+
 .footer{
-	position: relative;
-	bottom: 0px;
-	right: 0px;
-	left: 0px;
+	margin-top: 5%;
 	display: grid;
 	grid-template-columns: 20% 20% 20% 20% 20%;
 	padding: 30px 15px 0 15px;
 	background-color: #491369;
 	color: white;
 }
+
 .footer2{
 	padding: 0 5px 0 5px;
 	margin: 0 5px 0 5px;

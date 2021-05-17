@@ -36,7 +36,7 @@ if (!function_exists('request')) {
 			echo 'Error:' . curl_error($ch);
 		}
 		curl_close($ch);
-
+		
 		return $result;
 	}
 }

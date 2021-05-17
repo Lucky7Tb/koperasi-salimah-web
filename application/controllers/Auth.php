@@ -6,8 +6,6 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->helper('login_helper');
-
 		if (!isNotLogin()) {
 			$userLevel = $this->session->userdata('level');
 
@@ -17,20 +15,56 @@ class Auth extends CI_Controller {
 			redirect('/');
 		}
 		
-		$this->load->view('login');
+		$this->load->view('auth/login');
 	}
 
-	public function login()
+	public function register()
 	{
+		if (!isNotLogin()) {
+			$userLevel = $this->session->userdata('level');
+
+			if ($userLevel == 'admin') {
+				redirect('/admin');
+			}
+			redirect('/');
+		}
+
+		$this->load->view('auth/register');
+	}
+
+	public function forgetPassword()
+	{
+		if (!isNotLogin()) {
+			$userLevel = $this->session->userdata('level');
+
+			if ($userLevel == 'admin') {
+				redirect('/admin');
+			}
+			redirect('/');
+		}
+
+		$this->load->view('auth/forget_password');
+	}
+
+	public function doRegister()
+	{
+		$this->load->model('Auth_model', 'auth');
+
 		$data = $this->input->post(null, true);
 
-		$headers = array(
-			'Content-Type' => 'application/json'
-		);
+		$result = $this->auth->doRegister($data);
 
-		$result = request('/api/v1/auth/user/login', 'POST', $data, $headers);
+		response($result, true);
+	}
 
-		$result = json_decode($result, true);
+	public function doLogin()
+	{
+
+		$this->load->model('Auth_model', 'auth');
+		
+		$data = $this->input->post(null, true);
+
+		$result = $this->auth->doLogin($data);
 
 		if ($result['code'] == 200) {
 			$userData = $result['data'];
@@ -45,7 +79,7 @@ class Auth extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('/auth', 'refresh');
+		redirect('/auth');
 	}
 
 }

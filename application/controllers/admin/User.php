@@ -8,8 +8,9 @@ class User extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('login_helper');
 
+		$this->load->model('admin/User_model', 'user');
+		
 		if (isNotLogin()) {
 			redirect('auth');
 		}
@@ -21,46 +22,51 @@ class User extends CI_Controller
 		$this->load->view('admin/user/index', $data);
 	}
 
+	public function getAllUsers()
+	{
+		$data = $this->input->get(null, true);
+		$result = $this->user->getAllUser($data);
+		
+		response($result, true);
+	}
+
 	public function getUser()
 	{
-		$headers = array(
-			'authorization' => $this->session->userdata('token')
-		);
+		$userId = $this->input->get('id', true);
+		$result = $this->user->getUser($userId);
 
-		$endpoint = "/api/v1/admin/dashboard/user/getAllUsers?";
-		$data = $this->input->get();
-
-		$endpoint = $endpoint . 'search=' . $data['search'];
-		$endpoint = $endpoint . '&page=' . $data['page'];
-		$endpoint = $endpoint . '&order-by=' . $data['order-by'];
-		$endpoint = $endpoint . '&order-direction=' . $data['order-direction'];
-
-		$result = request($endpoint, 'GET', null, $headers);
-
-		response($result);
+		response($result, true);
 	}
 
 	public function create()
 	{
-		$this->load->view('admin/user/create');
+		$data['title'] = 'Tambah user';
+		$this->load->view('admin/user/create', $data);
 	}
 
-	public function insert()
+	public function insertUser()
 	{
-		$headers = array(
-			'authorization' => $this->session->userdata('token'),
-			'Content-Type' => 'multipart/form-data'
-		);
-
-		$endpoint = '/api/v1/admin/dashboard/user/create';
 		$data = $this->input->post(null, true);
 		$data['file_key'] = 'photo';
 
-		$result = request($endpoint, 'POST', $data, $headers);
+		$result = $this->user->insertUser($data);
 
-		response($data, true);
+		response($result, true);
 	}
 
+	public function edit()
+	{
+		$data['title'] = 'Edit user';
+		$this->load->view('admin/user/edit', $data);
+	}
+
+	public function updateUser($id)
+	{
+		$data = $this->input->post(null, true);
+		$result = $this->user->updateUser($data, $id);
+
+		response($result, true);
+	}
 }
 
 /* End of file User.php */

@@ -9,15 +9,14 @@ class Delivery extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('login_helper');
-
+		
 		if (isNotLogin()) {
 			redirect('auth');
 		}
 
 		$this->token = $this->session->userdata('token');
 
-		$this->load->model('Delivery_model', 'pengiriman');
+		$this->load->model('admin/Delivery_model', 'pengiriman');
 	}
 
 	public function index()

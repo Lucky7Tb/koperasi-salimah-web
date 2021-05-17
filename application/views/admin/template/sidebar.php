@@ -15,8 +15,8 @@
 							Produk
 						</a>
 					</li>
-					<li class="<?= $this->uri->segment(2) == 'product_categories' ? 'active' : '' ?>">
-						<a href="<?= base_url('/admin/product_categories') ?>" class="<?= $this->uri->segment(2) == 'product_categories' ? ' ' : 'text-white' ?>">
+					<li class="<?= $this->uri->segment(2) == 'product_Categories' ? 'active' : '' ?>">
+						<a href="<?= base_url('/admin/product_Categories') ?>" class="<?= $this->uri->segment(2) == 'product_Categories' ? ' ' : 'text-white' ?>">
 							<i class="icon-list"></i>
 							Kategori produk
 						</a>

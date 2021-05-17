@@ -17,23 +17,14 @@
 					<li class="dropdown user-profile align-self-center d-inline-block">
 						<a href="#" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
 							<div class="media">
-								<img src="<?= base_url('dist/images/author.jpg') ?>" alt="" class="d-flex img-fluid rounded-circle" width="29">
+								<img src="<?= $this->session->userdata('profile_picture'); ?>" alt="" class="d-flex img-fluid rounded-circle" width="29">
 							</div>
 						</a>
 						<div class="dropdown-menu border dropdown-menu-right p-0">
-							<a href="<?= base_url('/admin/profil_admin') ?>" class="dropdown-item px-2 align-self-center d-flex">
-								<span class="icon-user mr-2 h6 mb-0"></span> Lihat Profil
-							</a>
-							<a href="#" class="dropdown-item px-2 align-self-center d-flex">
+							<a href="<?= base_url('admin/profile') ?>" class="dropdown-item px-2 align-self-center d-flex">
 								<span class="icon-settings mr-2 h6 mb-0"></span> Pengaturan Akun
 							</a>
 							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item px-2 align-self-center d-flex">
-								<span class="icon-support mr-2 h6  mb-0"></span> Help Center
-							</a>
-							<a href="#" class="dropdown-item px-2 align-self-center d-flex">
-								<span class="icon-globe mr-2 h6 mb-0"></span> Forum
-							</a>
 							<div class="dropdown-divider"></div>
 							<a href="<?= base_url('auth/logout') ?>" class="dropdown-item px-2 text-danger align-self-center d-flex">
 								<span class="icon-logout mr-2 h6  mb-0"></span> Keluar

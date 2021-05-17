@@ -1,4 +1,6 @@
-<?php foreach ($produk['data'] as $p) : ?>
+<?php
+//if (!empty($produk['data'])) :
+foreach ($produk['data'] as $p) : ?>
 	<div class="col-md-6 col-lg-3 mb-4">
 		<div class="position-relative">
 			<img src="<?= $p['uri'] ?>" alt="" class="img-fluid img-thumbnail d-block mx-auto"
@@ -25,9 +27,12 @@
 							</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="<?= base_url('admin/product/') ?>detail/<?= $p['id_m_products'] ?>">Detail</a>
-								<a class="dropdown-item" href="<?= base_url('admin/product/') ?>foto/<?= $p['id_m_products'] ?>">Foto</a>
-								<a class="dropdown-item" href="<?= base_url('admin/product/') ?>ubah/<?= $p['id_m_products'] ?>">Ubah</a>
-								<a class="dropdown-item" href="<?= base_url('admin/product/') ?>hapus/<?= $p['id_m_products'] ?>">Hapus</a>
+								<a class="dropdown-item"
+									 href="<?= base_url('admin/product/') ?>foto/<?= $p['id_m_products'] ?>">Foto</a>
+								<a class="dropdown-item"
+									 href="<?= base_url('admin/product/') ?>ubah/<?= $p['id_m_products'] ?>">Ubah</a>
+								<a class="dropdown-item"
+									 href="<?= base_url('admin/product/') ?>hapus/<?= $p['id_m_products'] ?>">Hapus</a>
 							</div>
 						</div>
 					</div>
@@ -35,4 +40,9 @@
 			</div>
 		</div>
 	</div>
-<?php endforeach ?>
+<?php
+endforeach;
+//else :
+//	echo $pageLen;
+//endif;
+?>
