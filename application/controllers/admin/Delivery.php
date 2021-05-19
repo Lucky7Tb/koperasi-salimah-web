@@ -9,21 +9,46 @@ class Delivery extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
+
 		if (isNotLogin()) {
 			redirect('auth');
 		}
 
-		$this->token = $this->session->userdata('token');
-
 		$this->load->model('admin/Delivery_model', 'pengiriman');
 	}
 
-	public function index()
+	public function index($page = 1, $search = null)
 	{
 		$data['title'] = 'Pengiriman';
 
-		$data['pengiriman'] = $this->pengiriman->getAllDelivery($this->token);
+		if ($page != null AND $page > 0) {
+			$page--;
+		} else {
+			$page = 0;
+		}
+
+		if ($search != null) {
+			$data['key'] = $search;
+		} else {
+			$data['key'] = '';
+		}
+
+		$params = array(
+			'page' => $page,
+			'search' => $search
+		);
+
+		$config['base_url'] = base_url('admin/delivery/index');
+		$config['first_url'] = base_url('admin/delivery/index/1/') . $search;
+		$config['suffix'] = '/' . $search;
+
+		$data['total'] = $this->pengiriman->countAllDelivery($params['search']);
+		$config['total_rows'] = $data['total'];
+
+		// initialize
+		$this->pagination->initialize($config);
+
+		$data['pengiriman'] = $this->pengiriman->getAllDelivery($params);
 
 		$this->load->view('admin/delivery/index', $data);
 	}
@@ -41,7 +66,7 @@ class Delivery extends CI_Controller
 			$data = $this->input->post(null, true);
 			$data['file_key'] = 'photo';
 
-			if ($this->pengiriman->createCourier($data, $this->token)) {
+			if ($this->pengiriman->createCourier($data)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Layanan pengiriman berhasil ditambah</div>');
 
 				redirect('admin/delivery');
@@ -55,7 +80,7 @@ class Delivery extends CI_Controller
 
 	public function hapus($id)
 	{
-		if ($this->pengiriman->deactiveDelivery($id, $this->token)) {
+		if ($this->pengiriman->deactiveDelivery($id)) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Pengiriman berhasil dihapus</div>');
 
 			redirect('admin/delivery');
@@ -69,7 +94,7 @@ class Delivery extends CI_Controller
 	{
 		$data['title'] = 'Ubah Pengiriman';
 
-		$data['pengiriman'] = $this->pengiriman->getDelivery($id, $this->token);
+		$data['pengiriman'] = $this->pengiriman->getDelivery($id);
 
 		$this->form_validation->set_rules('name_expedition', 'Nama ekspedisi', 'required|trim');
 		$this->form_validation->set_rules('courier_code', 'Nama ekspedisi', 'required|trim');
@@ -80,10 +105,10 @@ class Delivery extends CI_Controller
 			$data = $this->input->post(null, true);
 			$img['file_key'] = 'photo';
 
-			if ($this->pengiriman->updateCourier($id, $data, $this->token)) {
+			if ($this->pengiriman->updateCourier($id, $data)) {
 
 				if (isset($_FILES) && $_FILES[$img['file_key']]['size'] > 0) {
-					$this->pengiriman->changeCourierPhoto($id, $img, $this->token);
+					$this->pengiriman->changeCourierPhoto($id, $img);
 				}
 
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Layanan pengiriman berhasil diubah</div>');

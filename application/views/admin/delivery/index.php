@@ -24,7 +24,8 @@ $this->load->view('admin/template/header');
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/delivery/tambah') ?>">Tambah <?= $title ?></a>
+					<a type="button" class="btn btn-primary"
+						 href="<?= base_url('admin/delivery/tambah') ?>">Tambah <?= $title ?></a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
@@ -32,7 +33,7 @@ $this->load->view('admin/template/header');
 							<div id="example_filter" class="dataTables_filter">
 								<label>
 									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-user">
+									<input type="search" class="form-control form-control-sm" id="input-search-delivery" value="<?= $key ?>">
 								</label>
 								<button class="btn btn-primary" id="button-search" type="submit">search</button>
 							</div>
@@ -65,12 +66,14 @@ $this->load->view('admin/template/header');
 											<td><?= date('d-M-Y H:s ', strtotime($p['created_at'])) ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($p['updated_at'])) ?></td>
 											<td>
-												<a href="<?= base_url('admin/delivery/ubah/'); echo $p['id'] ?>" class="btn btn-warning text-white" data-id="<?= $p['id'] ?>">
+												<a href="<?= base_url('admin/delivery/ubah/');
+												echo $p['id'] ?>" class="btn btn-warning text-white" data-id="<?= $p['id'] ?>">
 													<i class='icon-pencil'></i>
 												</a>
 											</td>
 											<td>
-												<a href="<?= base_url('admin/delivery/hapus/'); echo $p['id'] ?>" class="btn btn-danger text-white">
+												<a href="<?= base_url('admin/delivery/hapus/');
+												echo $p['id'] ?>" class="btn btn-danger text-white">
 													<i class='icon-trash'></i>
 												</a>
 											</td>
@@ -80,25 +83,14 @@ $this->load->view('admin/template/header');
 									endforeach;
 								else:
 									?>
-									<td colspan='7' class='text-center'>Tidak ada data</td>
+									<td colspan='8' class='text-center'>Tidak ada data</td>
 								<?php
 								endif;
 								?>
 								</tbody>
 							</table>
 							<div id="example_paginate">
-								<ul class="pagination">
-									<li class="paginate_button page-item previous">
-										<button class="page-link" id="prev-button">
-											Previous
-										</button>
-									</li>
-									<li class="paginate_button page-item next">
-										<button class="page-link" id="next-button">
-											Next
-										</button>
-									</li>
-								</ul>
+								<?= $this->pagination->create_links(); ?>
 							</div>
 						</div>
 					</div>
@@ -110,5 +102,15 @@ $this->load->view('admin/template/header');
 <?php
 $js = base_url('dist/js');
 $plugin = base_url('dist/vendors');
-$this->load->view('admin/template/footer');
+$this->load->view('admin/template/footer', array(
+	'js' => '
+	<script>
+	let page = 1
+	$("#button-search").click(function () {
+		let keyword = $("#input-search-delivery").val()
+		let url = "' . base_url("admin/delivery/index/1/") . '" + keyword
+		console.log(url)
+		$(location).attr("href", url)
+	})
+	</script>'));
 ?>

@@ -23,13 +23,13 @@ class Product extends CI_Controller
 	{
 		$data['title'] = 'Produk';
 
-		if ($this->uri->segment(4)) {
-			$page = $this->uri->segment(4) - 1;
-		} else {
+		if ($page != null AND $page > 0) {
 			$page--;
+		} else {
+			$page = 0;
 		}
 
-		if ($this->uri->segment(5)) {
+		if ($search != null) {
 			$data['key'] = $search;
 		} else {
 			$data['key'] = '';
@@ -44,8 +44,8 @@ class Product extends CI_Controller
 		$config['first_url'] = base_url('admin/product/index/1/') . $search;
 		$config['suffix'] = '/' . $search;
 
-		$totalData = $this->produk->countAllProducts($params['search']);
-		$config['total_rows'] = $totalData;
+		$data['total'] = $this->produk->countAllProducts($params['search']);
+		$config['total_rows'] = $data['total'];
 
 		// initialize
 		$this->pagination->initialize($config);
