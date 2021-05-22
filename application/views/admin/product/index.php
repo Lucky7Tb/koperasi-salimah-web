@@ -74,8 +74,9 @@ $this->load->view('admin/template/header');
 																 href="<?= base_url('admin/product/') ?>foto/<?= $p['id_m_products'] ?>">Foto</a>
 															<a class="dropdown-item"
 																 href="<?= base_url('admin/product/') ?>ubah/<?= $p['id_m_products'] ?>">Ubah</a>
-															<a class="dropdown-item"
-																 href="<?= base_url('admin/product/') ?>hapus/<?= $p['id_m_products'] ?>">Hapus</a>
+<!--															<a class="dropdown-item" href="--><?//= base_url('admin/product/') ?><!--hapus/--><?//= $p['id_m_products'] ?><!--">-->
+<!--																Hapus-->
+<!--															</a>-->
 														</div>
 													</div>
 												</div>

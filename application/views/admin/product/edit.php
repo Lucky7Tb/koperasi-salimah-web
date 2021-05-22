@@ -5,6 +5,7 @@ $this->load->view('admin/template/header', [
 	'css' => '
 			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
 			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+			<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 		'
 ]);
 ?>
@@ -37,6 +38,7 @@ $this->load->view('admin/template/header', [
 						$berat = $produk['weight'];
 						$deskripsi = $produk['description'];
 						$uri = $produk['uri'];
+						$status = $produk['is_visible'];
 						?>
 						<div class="col-12 col-sm-4">
 							<div class="card">
@@ -71,7 +73,7 @@ $this->load->view('admin/template/header', [
 							<div class="form-group row">
 								<label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
 								<div class="col-sm-10">
-									<select id="kategori" class="form-control" name="categories">
+									<select id="kategori" class="form-control" name="categories[]" multiple="multiple">
 										<?php foreach ($category['data'] as $c) : ?>
 											<?php if ($c['id'] === $kategori[0]['id_m_categories']) : ?>
 												<option value="<?= $c['id'] ?>" selected><?= $c['category'] ?></option>
@@ -107,6 +109,20 @@ $this->load->view('admin/template/header', [
 								</div>
 							</div>
 							<div class="form-group row">
+								<label for="weight" class="col-sm-2 col-form-label">Status</label>
+								<div class="col-sm-10">
+									<?php for ($i = 0; $i < 2; $i++) : ?>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="is_visible" id="status<?= $i ?>"
+														 value="<?= $i ?>" <?= $i == $status ? 'checked' : '' ?>>
+											<label class="form-check-label" for="status<?= $i ?>">
+												<?= $i == 0 ? 'Tidak Aktif' : 'Aktif' ?>
+											</label>
+										</div>
+									<?php endfor; ?>
+								</div>
+							</div>
+							<div class="form-group row">
 								<div class="col-sm-10">
 									<button type="submit" class="btn btn-primary">Ubah Produk</button>
 								</div>
@@ -124,8 +140,14 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/product/app.js"></script>
+		<script>
+			$(document).ready(function() {
+					$("#kategori").select2();
+			})
+		</script>
 		<script>initOptionPlugin();</script>
 	'
 ]);

@@ -13,7 +13,6 @@ class Product extends CI_Controller
 		if (isNotLogin()) {
 			redirect('auth');
 		}
-		$this->token = $this->session->userdata('token');
 
 		$this->load->model('admin/Product_model', 'produk');
 		$this->load->model('admin/Category_model', 'category');
@@ -23,7 +22,7 @@ class Product extends CI_Controller
 	{
 		$data['title'] = 'Produk';
 
-		if ($page != null AND $page > 0) {
+		if ($page != null and $page > 0) {
 			$page--;
 		} else {
 			$page = 0;
@@ -44,7 +43,7 @@ class Product extends CI_Controller
 		$config['first_url'] = base_url('admin/product/index/1/') . $search;
 		$config['suffix'] = '/' . $search;
 
-		$data['total'] = $this->produk->countAllProducts($params['search']);
+		$data['total'] = $this->produk->countAllProducts();
 		$config['total_rows'] = $data['total'];
 
 		// initialize
@@ -54,6 +53,42 @@ class Product extends CI_Controller
 
 		$this->load->view('admin/product/index', $data);
 	}
+
+//	public function index($page = 1, $search = null)
+//	{
+//		$data['title'] = 'Produk';
+
+//		if ($page != null and $page > 0) {
+//			$page--;
+//		} else {
+//			$page = 0;
+//		}
+
+//		if ($search != null) {
+//			$data['key'] = $search;
+//		} else {
+//			$data['key'] = '';
+//		}
+//
+//		$params = array(
+//			'page' => $page,
+//			'search' => $search
+//		);
+
+//		$config['base_url'] = base_url('admin/product/index');
+//		$config['first_url'] = base_url('admin/product/index/1/') . $search;
+//		$config['suffix'] = '/' . $search;
+
+//		$data['total'] = $this->produk->countAllNotVisible($params);
+//		$config['total_rows'] = $data['total'];
+
+		// initialize
+//		$this->pagination->initialize($config);
+
+//		$data['produk'] = $this->produk->notVisible($params);
+
+//		$this->load->view('admin/product/index', $data);
+//	}
 
 	public function detail($id)
 	{
@@ -124,7 +159,7 @@ class Product extends CI_Controller
 		$data['title'] = 'Ubah Produk';
 
 		$data['produk'] = $this->produk->getProduct($id);
-		$data['category'] = $this->category->getAllCategories($this->token);
+		$data['category'] = $this->category->getAllCategories();
 
 		$error = array(
 			'required' => '{field} harus diisi',
@@ -140,13 +175,15 @@ class Product extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->load->view('admin/product/edit', $data);
 		} else {
-			$data = $this->input->post(array('product_name', 'price', 'stock', 'weight', 'description'), true);
+//			var_dump($data);
+//			die;
+			$data = $this->input->post(array('product_name', 'price', 'stock', 'weight', 'description', 'is_visible'), true);
 			$data['slug'] = str_replace(' ', '-', strtolower($this->input->post('product_name')));
 			$data['width'] = 1;
 			$data['length'] = 1;
 			$data['height'] = 1;
 
-			$kategori['categories'] = array($this->input->post('categories'));
+			$kategori['categories'] = $this->input->post('categories');
 
 			$photo['file_key'] = 'cover';
 
@@ -211,6 +248,42 @@ class Product extends CI_Controller
 
 //		echo json_encode($data);
 		var_dump($data);
+	}
+
+	public function coba($page = 1, $search = null)
+	{
+		$params = array(
+			'search' => $search
+		);
+		$data = $this->produk->notVisible($params);
+		var_dump($this->produk->countAllNotVisible($params));
+		$size = count($data) / 10;
+		$sisa = count($data) % 10;
+		var_dump($size);
+		var_dump($sisa);
+
+//		var_dump($data);
+//		die;
+		if ($page < $size) {
+			for ($i = 0; $i < 10; $i++) {
+				var_dump($data[$i]);
+			}
+		} else {
+			for ($i = 0; $i < $sisa; $i++) {
+				var_dump($data[$i]);
+			}
+		}
+//		die;
+	}
+
+	public function foto($id)
+	{
+		$data['title'] = 'Foto';
+		$data['produk'] = $this->produk->getProduct($id);
+
+		if ($data['produk']['code'] === 200) {
+			$this->load->view('admin/product/foto', $data);
+		}
 	}
 }
 

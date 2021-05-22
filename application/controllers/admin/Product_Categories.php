@@ -19,7 +19,7 @@ class Product_Categories extends CI_Controller
 	{
 		$data['title'] = 'Kategori Produk';
 
-		if ($page != null AND $page > 0) {
+		if ($page != null and $page > 0) {
 			$page--;
 		} else {
 			$page = 0;
@@ -46,8 +46,8 @@ class Product_Categories extends CI_Controller
 		// initialize
 		$this->pagination->initialize($config);
 
-
 		$data['kategori'] = $this->category->getAllCategories($params);
+		$data['page'] = $page * 10;
 
 		$this->load->view('admin/product_categories/index', $data);
 	}
@@ -110,10 +110,10 @@ class Product_Categories extends CI_Controller
 			$data['category'] = $this->input->post('nama_kategori');
 			$data['slug'] = strtolower($this->input->post('nama_kategori'));
 			$data['description'] = $this->input->post('deskripsi');
-			$data['is_visible'] = 1;
+			$data['is_visible'] = $this->input->post('status');
 
 			if ($this->category->updateCategory($id, $data)) {
-//
+
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori Produk berhasil diubah</div>');
 
 				redirect('admin/product_categories');

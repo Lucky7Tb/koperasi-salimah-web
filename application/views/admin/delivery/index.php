@@ -33,7 +33,8 @@ $this->load->view('admin/template/header');
 							<div id="example_filter" class="dataTables_filter">
 								<label>
 									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-delivery" value="<?= $key ?>">
+									<input type="search" class="form-control form-control-sm" id="input-search-delivery"
+												 value="<?= $key ?>">
 								</label>
 								<button class="btn btn-primary" id="button-search" type="submit">search</button>
 							</div>
@@ -43,26 +44,27 @@ $this->load->view('admin/template/header');
 									<th rowspan="2">#</th>
 									<th rowspan="2" colspan="2">Nama Ekspedisi</th>
 									<th rowspan="2">Kode Kurir</th>
+									<th rowspan="2">Status</th>
 									<th rowspan="2">Dibuat pada</th>
 									<th rowspan="2">Diubah pada</th>
 									<th colspan="2">Aksi</th>
 								</tr>
 								<tr>
 									<th>Update</th>
-									<th>Delete</th>
+									<th>NonAktif</th>
 								</tr>
 								</thead>
 								<tbody id="user-data-content">
 								<?php
 								if ($pengiriman['data'] != null) :
-									$i = 1;
 									foreach ($pengiriman['data'] as $p) :
 										?>
-										<tr>
-											<th><?= $i ?></th>
+										<tr <?= $p['is_visible'] == 0 ? 'style="opacity: .7"' : '' ?>>
+											<th><?= ++$page ?></th>
 											<td><img src="<?= $p['uri'] ?>" width="100px"></td>
 											<td><?= $p['name_expedition'] ?></td>
 											<td><?= $p['courier_code'] ?></td>
+											<td><?= $p['is_visible'] == 1 ? 'Aktif' : 'Tidak Aktif' ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($p['created_at'])) ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($p['updated_at'])) ?></td>
 											<td>
@@ -74,12 +76,11 @@ $this->load->view('admin/template/header');
 											<td>
 												<a href="<?= base_url('admin/delivery/hapus/');
 												echo $p['id'] ?>" class="btn btn-danger text-white">
-													<i class='icon-trash'></i>
+													<i class='icon-power'></i>
 												</a>
 											</td>
 										</tr>
-										<?php
-										$i++;
+									<?php
 									endforeach;
 								else:
 									?>

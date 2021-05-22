@@ -21,7 +21,7 @@ class Delivery extends CI_Controller
 	{
 		$data['title'] = 'Pengiriman';
 
-		if ($page != null AND $page > 0) {
+		if ($page != null and $page > 0) {
 			$page--;
 		} else {
 			$page = 0;
@@ -49,6 +49,7 @@ class Delivery extends CI_Controller
 		$this->pagination->initialize($config);
 
 		$data['pengiriman'] = $this->pengiriman->getAllDelivery($params);
+		$data['page'] = $page * 10;
 
 		$this->load->view('admin/delivery/index', $data);
 	}

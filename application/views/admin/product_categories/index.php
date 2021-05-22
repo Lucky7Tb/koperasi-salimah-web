@@ -33,7 +33,8 @@ $this->load->view('admin/template/header');
 							<div id="example_filter" class="dataTables_filter">
 								<label>
 									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-category" value="<?= $key ?>">
+									<input type="search" class="form-control form-control-sm" id="input-search-category"
+												 value="<?= $key ?>">
 								</label>
 								<button class="btn btn-primary" id="button-search" type="submit">search</button>
 							</div>
@@ -43,13 +44,14 @@ $this->load->view('admin/template/header');
 									<th rowspan="2">#</th>
 									<th rowspan="2">Kategori</th>
 									<th rowspan="2">Deskripsi</th>
+									<th rowspan="2">Status</th>
 									<th rowspan="2">Dibuat pada</th>
 									<th rowspan="2">Diubah pada</th>
 									<th colspan="2">Aksi</th>
 								</tr>
 								<tr>
 									<th>Update</th>
-									<th>Delete</th>
+									<th>NonAktif</th>
 								</tr>
 								</thead>
 								<tbody id="user-data-content">
@@ -58,10 +60,11 @@ $this->load->view('admin/template/header');
 									$i = 1;
 									foreach ($kategori['data'] as $k) :
 										?>
-										<tr>
-											<td><?= $i ?></td>
+										<tr <?= $k['is_visible'] == 0 ? 'style="opacity: .6"' : '' ?>>
+											<td><?= ++$page ?></td>
 											<td><?= $k['category'] ?></td>
 											<td><?= $k['description'] ?></td>
+											<td><?= $k['is_visible'] == 1 ? 'Aktif' : 'Tidak Aktif' ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($k['created_at'])) ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($k['updated_at'])) ?></td>
 											<td>
@@ -73,7 +76,7 @@ $this->load->view('admin/template/header');
 											<td>
 												<a href="<?= base_url('admin/product_categories/hapus') ?>/<?= $k['id'] ?>"
 													 class="btn btn-danger text-white">
-													<i class='icon-trash'></i>
+													<i class='icon-power'></i>
 												</a>
 											</td>
 										</tr>
@@ -82,7 +85,7 @@ $this->load->view('admin/template/header');
 									endforeach;
 								else:
 									?>
-									<td colspan='6' class='text-center'>Tidak ada data</td>
+									<td colspan='7' class='text-center'>Tidak ada data</td>
 								<?php
 								endif;
 								?>
@@ -144,7 +147,7 @@ $this->load->view('admin/template/footer', [
 				let page = 1
 				$("#button-search").click(function () {
 				let keyword = $("#input-search-category").val()
-				let url = "' . base_url("admin/delivery/index/1/") . '" + keyword
+				let url = "' . base_url("admin/product_Categories/index/1/") . '" + keyword
 				console.log(url)
 				$(location).attr("href", url)
 				})
