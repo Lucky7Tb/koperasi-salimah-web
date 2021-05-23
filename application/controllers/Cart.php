@@ -20,6 +20,13 @@ class Cart extends CI_Controller {
 		$this->load->view('user/cart/index', $data);
 	}
 
+	public function getCart()
+	{
+		$result = $this->cart->getCart();
+
+		response($result, true);
+	}
+
 	public function addToCart()
 	{
 		$data = $this->input->post(null, true);
@@ -28,10 +35,38 @@ class Cart extends CI_Controller {
 
 		response($result, true);
 	}
+
+	public function updateCartQty()
+	{
+		$data = $this->input->post(null, true);
+		$idProduct = $this->input->get('id', true);
+
+		$result = $this->cart->updateProductQty($data, $idProduct);
+
+		response($result, true);
+	}
+
+	public function removeCart()
+	{
+		$idProduct = $this->input->get('id', true);
+
+		$result = $this->cart->removeCart($idProduct);
+
+		response($result, true);
+	}
 	
 	public function checkout()
 	{
 		$data['title'] = 'Checkout';
 		$this->load->view('user/cart/checkout', $data);
+	}
+
+	public function doCheckout()
+	{
+		$data = $this->input->post('id_cart', true);
+
+		$result = $this->cart->doCheckout($data);
+
+		response($result, true);
 	}
 }
