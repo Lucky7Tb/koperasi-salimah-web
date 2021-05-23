@@ -61,7 +61,7 @@ function renderWishlistData(wishlist) {
 
 			content += `
 			<div class="col mb-2">
-				<div class="card h-100">
+				<div class="card border-dark h-100">
 					<div class="img-fluid card-img-top mx-auto" style="width: 150px; height: 150px; background-image: url('${wish.product.uri}'); background-size: cover">
 					</div>
 					<div class="card-body">

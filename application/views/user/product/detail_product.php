@@ -131,7 +131,7 @@ $this->load->view('template/header');
 									</li>
 								</ul>
 								<div class="mr-3">
-									<button class="btn btn-primary" onclick="addToWishlist(<?= $id ?>)" id="btn-add-wishlist">Tambah ke Wishlist <i class="icon-heart"></i></button>
+									<button class="btn btn-primary" onclick="addToWishlist(<?= $produk['id_m_products'] ?>)" id="btn-add-wishlist">Tambah ke Wishlist <i class="icon-heart"></i></button>
 								</div>
 							</div>
 						</div>
