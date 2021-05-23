@@ -39,7 +39,7 @@ $this->load->view('template/header', [
 								<tbody id="transaction-product">
 									<tr>
 										<td colspan="4">Ongkir</td>
-										<td>Rp5.000,00</td>
+										<td id="transaction-cost-delivery"></td>
 									</tr>
 									<tr>
 										<td colspan="4">Total harga</td>
@@ -67,8 +67,6 @@ $this->load->view('template/header', [
 								<div class="row p-3">
 									<div class="col-10">
 										<div class="float-right w-100 border p-3" id="transaction-courier">
-											<b>JNE</b>
-											<p>Resi : 00112233445566778899</p>
 										</div>
 									</div>
 								</div>
