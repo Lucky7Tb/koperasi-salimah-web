@@ -107,7 +107,6 @@ function renderWishlistData(wishlist) {
 		`
 	}
 
-	
 	$('#wishlist-container').append(content);
 }
 
