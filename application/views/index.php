@@ -44,7 +44,7 @@ $this->load->view('template/header');
 											<div class="d-table w-100 h-100 ">
 												<div class="d-table-cell align-bottom">
 													<div class="mb-3">
-														<a href="#" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-heart"></i></a>
+														<a href="javascript:void(0)" class="rounded-left bg-white px-3 py-2 shadow2" onclick="global.addToWishlist(<?= $p['id_m_products'] ?>)"><i class="icon-heart"></i></a>
 													</div>
 													<div class="mb-4">
 														<a href="#" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-bag"></i></a>

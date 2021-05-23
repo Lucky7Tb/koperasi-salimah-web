@@ -103,15 +103,19 @@ function renderDetailData(data) {
 					<div class="card-footer text-white">
 						<div class="form-group">
 							<label for="status" class="text-primary">Ubah status</label>
-							<select class="form-control" id="status">
+							<select class="form-control" id="status" onchange="onStatus()">
 								<option value="1">Terverifikasi</option>
 								<option value="2">Diproses</option>
 								<option value="3">Dikirim</option>
 								<option value="4">Diterima</option>
 								<option value="5">Pesanan dibatalkan</option>
 							</select>
-							<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeStatus()" id="btn-change-status" ${disabled}>Simpan</button>
 						</div>
+						<div class="form-group">
+							<label for="resi_number" class="text-primary">No Resi</label>
+							<input type="text" class="form-control" name="resi_number" id="resi_number">
+						</div>
+						<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeTransactionStatus()" id="btn-change-status" ${disabled}>Simpan</button>
 					</div>
 				</div>
 
@@ -142,9 +146,20 @@ function renderDetailData(data) {
 	$('#status').val(data.status);
 }
 
-function changeStatus() {
+function onStatus() {
+	const status = parseInt($('#status').val());
+
+	if (status != 3) {
+		$('#resi_number').attr('disabled', true);
+	}else {
+		$('#resi_number').attr('disabled', false);
+	}
+}
+
+function changeTransactionStatus() {
 	const formData = new FormData();
 	formData.append('id', idTransaction);
+	formData.append('resi', $('#resi_number').val());
 	formData.append('status', $('#status').val());
 
 	$.ajax({
