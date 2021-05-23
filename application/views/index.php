@@ -47,7 +47,7 @@ $this->load->view('template/header');
 														<a href="javascript:void(0)" class="rounded-left bg-white px-3 py-2 shadow2" onclick="global.addToWishlist(<?= $p['id_m_products'] ?>)"><i class="icon-heart"></i></a>
 													</div>
 													<div class="mb-4">
-														<a href="#" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-bag"></i></a>
+														<a href="javascript:void(0)" class="rounded-left bg-white px-3 py-2 shadow2" onclick="global.addToCart(<?= $p['id_m_products'] ?>)"><i class="icon-bag"></i></a>
 													</div>
 												</div>
 											</div>

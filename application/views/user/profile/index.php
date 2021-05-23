@@ -12,11 +12,6 @@ $this->load->view('template/header');
 				<div class="w-sm-100 mr-auto">
 					<h4 class="mb-0">Profil</h4>
 				</div>
-
-				<ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
-					<li class="breadcrumb-item active"><a href="#">Home</a></li>
-					<li class="breadcrumb-item">Profil</li>
-				</ol>
 			</div>
 		</div>
 	</div>

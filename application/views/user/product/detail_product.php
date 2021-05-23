@@ -99,14 +99,14 @@ $this->load->view('template/header');
 								</div>
 								<div class="d-inline-block mr-3">
 									<div class="form-group">
-										<input type="number" class="form-control" value="1">
+										<input type="number" class="form-control" value="1" id="product-qty">
 									</div>
 								</div>
 								<div class="d-inline-block mr-3">
 									<p class="dark-color f-weight-600" id="product_stock"></p>
 								</div>
 								<div class="mr-3">
-									<a href="#" class="btn btn-primary">Tambah ke Keranjang</a>
+								<a href="javascript:void(0)" class="btn btn-primary" onclick="addToCart(<?= $produk['id_m_products'] ?>)">Tambah ke Keranjang</a>
 								</div>
 							</div>
 							<div class="card-body">
@@ -130,7 +130,6 @@ $this->load->view('template/header');
 										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-linkedin"></i></a>
 									</li>
 								</ul>
-								php
 								<div class="mr-3">
 									<button class="btn btn-primary" onclick="global.addToWishlist(<?= $produk['id_m_products'] ?>)" id="btn-add-wishlist">Tambah ke Wishlist <i class="icon-heart"></i></button>
 								</div>

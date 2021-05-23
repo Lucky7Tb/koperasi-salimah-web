@@ -57,3 +57,25 @@ global.addToWishlist = function(idProduct) {
 		}
 	});
 }
+
+global.addToCart = function(idProduct, qtyProduct = 1) {
+	const formData = new FormData();
+	formData.append('id_m_products', idProduct);
+	formData.append('qty', qtyProduct);
+
+	$.ajax({
+		type: 'POST',
+		url: `${global.base_url}cart/addToCart`,
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function (response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				toastr.success(response.message);
+			}else {
+				toastr.error(response.message);
+			}
+		}
+	});
+}

@@ -91,7 +91,7 @@ function renderWishlistData(wishlist) {
 								</button>
 							</div>
 							<div class="col-6">
-								<button class="btn btn-lg btn-block btn-primary p-2" onclick="addToCart(${wish.product.id_m_products})">
+								<button class="btn btn-lg btn-block btn-primary p-2" onclick="global.addToCart(${wish.product.id_m_products})">
 									Cart <i class="icon-basket"></i>
 								</button>
 							</div>
@@ -112,8 +112,4 @@ function renderWishlistData(wishlist) {
 
 function confirmDeleteWishlist(idWishlist) {
 	$('#wishlist-id').val(idWishlist);
-}
-
-function addToCart(idProduct) {
-
 }
