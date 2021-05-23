@@ -24,7 +24,7 @@ class Product extends CI_Controller {
 	public function detail($id)
 	{
 		$data['title'] = 'Detail produk';
-		$data['produk'] = $this->produk->getProductUser($id, $this->token);
+		$data['produk'] = $this->produk->getDetailProduct($id, $this->token);
 		$data['category'] = $this->category->getAllCategories($this->token);
 		$this->load->view('user/product/detail_product', $data);
 	}

@@ -1,0 +1,107 @@
+<?php
+$plugin = base_url('dist/vendors');
+$css = base_url('dist/css');
+$this->load->view('admin/template/header', [
+	'css' => '
+			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
+			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+			<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+		'
+]);
+
+$photos = $produk['data']['photos'];
+$produk = $produk['data']['product'];
+$uri = $produk['uri'];
+
+
+?>
+<div class="container-fluid site-width">
+	<div class="row">
+		<div class="col-12 align-self-center">
+			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+				<div class="w-sm-100 mr-auto">
+					<h1>Foto Produk</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- START: Card Data-->
+	<div class="row">
+		<div class="col-12 mt-3">
+
+			<div class="card">
+
+				<div class="card-header justify-content-between align-items-center">
+					<a type="button" class="btn btn-primary" href="<?= base_url('admin/product') ?>">Kembali</a>
+				</div>
+
+				<div class="card-body">
+
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<div class="card-header d-flex justify-content-between align-items-center">
+									<h4 class="card-title">Foto Produk</h4>
+								</div>
+								<div class="row">
+									<div class="col-md-6 col-lg-3 mb-4">
+										<div class="position-relative">
+											<img src="<?= $produk['uri'] ?>" alt="<?= $produk['product_name'] ?>" class="img-fluid"
+													 width="250px">
+											<div class="pt-3">
+												<p class="text-center">Cover</p>
+											</div>
+										</div>
+									</div>
+									<?php if ($photos != null) :
+										foreach ($photos as $photo) :?>
+											<div class="col-md-6 col-lg-3 mb-4">
+												<div class="position-relative">
+													<img src="<?= $produk['uri'] ?>" alt="<?= $produk['product_name'] ?>" class="img-fluid"
+															 width="250px">
+													<div class="caption-bg fade bg-transparent text-right">
+														<div class="d-table w-100 h-100 ">
+															<div class="d-table-cell align-bottom">
+																<div class="mb-4">
+																	<a href="<?= base_url('admin/product/hapusFoto').'/'.$photo['id_u_product_photos'] ?>" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-minus"></i></a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										<?php endforeach;
+									endif ?>
+									<div class="col-md-6 col-lg-3 mb-4">
+										<div class="position-relative">
+											<input name="cover" class="dropify" id="photo" type="file" data-max-file-size="2M"
+														 data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg"
+											<div class="pt-3">
+												<p class="text-center">Tambah</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<?php
+$js = base_url('dist/js');
+$this->load->view('admin/template/footer', [
+	'js' => '
+		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
+		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		<script src="' . $js . '/global.js"></script>
+		<script src="' . $js . '/admin/product/app.js"></script>
+		<script>initOptionPlugin();</script>
+	'
+]);
+?>

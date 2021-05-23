@@ -150,6 +150,6 @@ function renderTransactionDetailData(data) {
 	$('#transaction-courier').html(`
 			<b>${data.delivery.name_expedition}</b>
 			<p>Service: <strong>${data.delivery.service}</strong></p>
-			<p>Resi: <strong>${data.delivery.resi_number}</strong></p>
+			<p>Resi: <strong>${data.delivery.resi_number ?? '-'}</strong></p>
 	`);
 }

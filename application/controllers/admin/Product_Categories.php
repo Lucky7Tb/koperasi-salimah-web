@@ -20,11 +20,39 @@ class Product_Categories extends CI_Controller
 		$this->token = $this->session->userdata('token');
 	}
 
-	public function index()
+	public function index($page = 1, $search = null)
 	{
 		$data['title'] = 'Kategori Produk';
 
-		$data['kategori'] = $this->category->getAllCategories($this->token);
+		if ($page != null and $page > 0) {
+			$page--;
+		} else {
+			$page = 0;
+		}
+
+		if ($search != null) {
+			$data['key'] = $search;
+		} else {
+			$data['key'] = '';
+		}
+
+		$params = array(
+			'page' => $page,
+			'search' => $search
+		);
+
+		$config['base_url'] = base_url('admin/product_Categories/index');
+		$config['first_url'] = base_url('admin/product_Categories/index/1/') . $search;
+		$config['suffix'] = '/' . $search;
+
+		$data['total'] = $this->category->countAllCategory($params['search']);
+		$config['total_rows'] = $data['total'];
+
+		// initialize
+		$this->pagination->initialize($config);
+
+		$data['kategori'] = $this->category->getAllCategories($params);
+		$data['page'] = $page * 10;
 
 		$this->load->view('admin/product_categories/index', $data);
 	}
@@ -48,7 +76,7 @@ class Product_Categories extends CI_Controller
 				'description' => $deskripsi
 			);
 
-			if ($this->category->createCategory($data, $this->token)) {
+			if ($this->category->createCategory($data)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori produk berhasil ditambah</div>');
 
 				redirect('admin/product_categories');
@@ -62,7 +90,7 @@ class Product_Categories extends CI_Controller
 
 	public function hapus($id)
 	{
-		if ($this->category->deactiveCategory($id, $this->token)) {
+		if ($this->category->deactiveCategory($id)) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori produk berhasil dihapus</div>');
 
 			redirect('admin/product_categories');
@@ -76,7 +104,7 @@ class Product_Categories extends CI_Controller
 	{
 		$data['title'] = 'Ubah Kategori Produk';
 
-		$data['category'] = $this->category->getCategory($id, $this->token);
+		$data['category'] = $this->category->getCategory($id);
 
 		$this->form_validation->set_rules('nama_kategori', 'Nama kategori', 'trim|required');
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
@@ -87,10 +115,10 @@ class Product_Categories extends CI_Controller
 			$data['category'] = $this->input->post('nama_kategori');
 			$data['slug'] = strtolower($this->input->post('nama_kategori'));
 			$data['description'] = $this->input->post('deskripsi');
-			$data['is_visible'] = 1;
+			$data['is_visible'] = $this->input->post('status');
 
-			if ($this->category->updateCategory($id, $data, $this->token)) {
-//
+			if ($this->category->updateCategory($id, $data)) {
+
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori Produk berhasil diubah</div>');
 
 				redirect('admin/product_categories');

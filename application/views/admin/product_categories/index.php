@@ -24,7 +24,8 @@ $this->load->view('admin/template/header');
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/product_categories/tambah') ?>">Tambah <?= $title ?></a>
+					<a type="button" class="btn btn-primary"
+						 href="<?= base_url('admin/product_categories/tambah') ?>">Tambah <?= $title ?></a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
@@ -32,7 +33,8 @@ $this->load->view('admin/template/header');
 							<div id="example_filter" class="dataTables_filter">
 								<label>
 									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-user">
+									<input type="search" class="form-control form-control-sm" id="input-search-category"
+												 value="<?= $key ?>">
 								</label>
 								<button class="btn btn-primary" id="button-search" type="submit">search</button>
 							</div>
@@ -42,13 +44,14 @@ $this->load->view('admin/template/header');
 									<th rowspan="2">#</th>
 									<th rowspan="2">Kategori</th>
 									<th rowspan="2">Deskripsi</th>
+									<th rowspan="2">Status</th>
 									<th rowspan="2">Dibuat pada</th>
 									<th rowspan="2">Diubah pada</th>
 									<th colspan="2">Aksi</th>
 								</tr>
 								<tr>
 									<th>Update</th>
-									<th>Delete</th>
+									<th>NonAktif</th>
 								</tr>
 								</thead>
 								<tbody id="user-data-content">
@@ -57,20 +60,23 @@ $this->load->view('admin/template/header');
 									$i = 1;
 									foreach ($kategori['data'] as $k) :
 										?>
-										<tr>
-											<td><?= $i ?></td>
+										<tr <?= $k['is_visible'] == 0 ? 'style="opacity: .6"' : '' ?>>
+											<td><?= ++$page ?></td>
 											<td><?= $k['category'] ?></td>
 											<td><?= $k['description'] ?></td>
+											<td><?= $k['is_visible'] == 1 ? 'Aktif' : 'Tidak Aktif' ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($k['created_at'])) ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($k['updated_at'])) ?></td>
 											<td>
-												<a href="<?= base_url('admin/product_categories/ubah/') ?><?= $k['id'] ?>" class="btn btn-warning text-white">
+												<a href="<?= base_url('admin/product_categories/ubah/') ?><?= $k['id'] ?>"
+													 class="btn btn-warning text-white">
 													<i class='icon-pencil'></i>
 												</a>
 											</td>
 											<td>
-												<a href="<?= base_url('admin/product_categories/hapus') ?>/<?= $k['id'] ?>" class="btn btn-danger text-white">
-													<i class='icon-trash'></i>
+												<a href="<?= base_url('admin/product_categories/hapus') ?>/<?= $k['id'] ?>"
+													 class="btn btn-danger text-white">
+													<i class='icon-power'></i>
 												</a>
 											</td>
 										</tr>
@@ -79,25 +85,14 @@ $this->load->view('admin/template/header');
 									endforeach;
 								else:
 									?>
-									<td colspan='6' class='text-center'>Tidak ada data</td>
+									<td colspan='7' class='text-center'>Tidak ada data</td>
 								<?php
 								endif;
 								?>
 								</tbody>
 							</table>
 							<div id="example_paginate">
-								<ul class="pagination">
-									<li class="paginate_button page-item previous">
-										<button class="page-link" id="prev-button">
-											Previous
-										</button>
-									</li>
-									<li class="paginate_button page-item next">
-										<button class="page-link" id="next-button">
-											Next
-										</button>
-									</li>
-								</ul>
+								<?= $this->pagination->create_links(); ?>
 							</div>
 						</div>
 					</div>
@@ -149,10 +144,13 @@ $this->load->view('admin/template/footer', [
 			<script src="' . $js . '/global.js"></script>
 			<script src="' . $js . '/admin/product_category/app.js"></script>
 			<script>
-				// $("#main").slimScroll({
-				// 	height: "350px"
-				// });
-			</script>
-		'
+				let page = 1
+				$("#button-search").click(function () {
+				let keyword = $("#input-search-category").val()
+				let url = "' . base_url("admin/product_Categories/index/1/") . '" + keyword
+				console.log(url)
+				$(location).attr("href", url)
+				})
+			</script>'
 ]);
 ?>

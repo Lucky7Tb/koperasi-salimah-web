@@ -31,6 +31,7 @@ $this->load->view('admin/template/header', [
 						$namaEkspedisi = $pengiriman['data']['name_expedition'];
 						$kodeKurir = $pengiriman['data']['courier_code'];
 						$uri = $pengiriman['data']['uri'];
+						$status = $pengiriman['data']['is_visible'];
 						?>
 						<div class="col-12 col-sm-4">
 							<div class="card">
@@ -58,6 +59,20 @@ $this->load->view('admin/template/header', [
 									<input type="text" value="<?= set_value('courier_code', $kodeKurir)?>" class="form-control" id="courier_code" placeholder="Kode Kurir"
 												 name="courier_code">
 									<?= form_error('courier_code', '<small class="text-danger pl-3">', '</small>') ?>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="weight" class="col-sm-2 col-form-label">Status</label>
+								<div class="col-sm-10">
+									<?php for ($i = 0; $i < 2; $i++) : ?>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="is_visible" id="status<?= $i ?>"
+														 value="<?= $i ?>" <?= $i == $status ? 'checked' : '' ?>>
+											<label class="form-check-label" for="status<?= $i ?>">
+												<?= $i == 0 ? 'Tidak Aktif' : 'Aktif' ?>
+											</label>
+										</div>
+									<?php endfor; ?>
 								</div>
 							</div>
 							<div class="form-group row">

@@ -1,27 +1,16 @@
 let page = 0
-let search = ''
+let searchKeyword = ''
 
-function getProducts(search = '', page = 0) {
+function getProducts(
+	search = '',
+	page = 0
+) {
 	let url = 'http://localhost/koperasi-salimah/admin/product/data/' + page + '/' + search
 
 	if (page === 0) {
 		$('#prev-button').addClass('disabled')
 	} else {
 		$('#prev-button').removeClass(['disabled'])
-	}
-
-	if (page % 3 === 0) {
-		$('#page-1').addClass('active')
-		$('#page-2').removeClass(['active'])
-		$('#page-3').removeClass(['active'])
-	} else if (page % 3 === 1) {
-		$('#page-1').removeClass(['active'])
-		$('#page-2').addClass('active')
-		$('#page-3').removeClass(['active'])
-	} else {
-		$('#page-1').removeClass(['active'])
-		$('#page-2').removeClass(['active'])
-		$('#page-3').addClass('active')
 	}
 
 	$.ajax({
@@ -33,20 +22,35 @@ function getProducts(search = '', page = 0) {
 	})
 }
 
+function initOptionPlugin() {
+	$.fn.datepicker.defaults.format = 'yyyy-mm-dd';
+	$('#date_of_birth').datepicker();
+	$('#photo').dropify({
+		messages: {
+			default: 'Seret dan lepas foto disini atau klik',
+			replace: 'Seret dan lepas atau klik untuk mengganti foto',
+			remove: 'Hapus',
+			error:  'Opps, terjadi kesalahan'
+		},
+		error: {
+			fileSize: 'Ukuran file foto terlalu besar ({{ value }} max).',
+			imageFormat: 'Format foto yang di perbolehkan hanya ({{ value }}).',
+		},
+	});
+}
+
 $('#button-search').click(function () {
-	search = $('#input-search-product').val()
-	getProducts(search, page)
+	searchKeyword = $('#input-search-product').val();
+	getProducts(searchKeyword, page)
 })
 
 $('#next-button').click(function () {
 	page++
-	getProducts(search, page)
+	getProducts(searchKeyword, page)
 })
 
 $('#prev-button').click(function () {
-	if (page !== 0) {
-		page--
-		getProducts(search, page)
-	}
+	if (page > 0) page--
+	getProducts(searchKeyword, page)
 })
 

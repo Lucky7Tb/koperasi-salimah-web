@@ -27,6 +27,7 @@ $this->load->view('admin/template/header', [
 						<?php
 						$kategori = $category['data']['category'];
 						$deskripsi = $category['data']['description'];
+						$status = $category['data']['is_visible'];
 						?>
 						<div class="form-group">
 							<label for="full_name">Nama kategori</label>
@@ -39,6 +40,20 @@ $this->load->view('admin/template/header', [
 							<input type="text" name="deskripsi" id="deskripsi" class="form-control"
 										 placeholder="Masukan deskripsi kategori" value="<?= set_value('deskripsi', $deskripsi)?>">
 							<?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>') ?>
+						</div>
+						<div class="form-group row">
+							<label for="weight" class="col-sm-2 col-form-label">Status</label>
+							<div class="col-sm-10">
+								<?php for ($i = 0; $i < 2; $i++) : ?>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="status" id="status<?= $i ?>"
+													 value="<?= $i ?>" <?= $i == $status ? 'checked' : '' ?>>
+										<label class="form-check-label" for="status<?= $i ?>">
+											<?= $i == 0 ? 'Tidak Aktif' : 'Aktif' ?>
+										</label>
+									</div>
+								<?php endfor; ?>
+							</div>
 						</div>
 						<button type="submit" class="btn-lg btn-block btn-primary">Ubah</button>
 						<a href="<?= base_url('admin/product_categories') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Back</a>
