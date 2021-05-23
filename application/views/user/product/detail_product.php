@@ -130,8 +130,9 @@ $this->load->view('template/header');
 										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-linkedin"></i></a>
 									</li>
 								</ul>
+								php
 								<div class="mr-3">
-									<button class="btn btn-primary" onclick="global.addToWishlist(<?= $id ?>)" id="btn-add-wishlist">Tambah ke Wishlist <i class="icon-heart"></i></button>
+									<button class="btn btn-primary" onclick="global.addToWishlist(<?= $produk['id_m_products'] ?>)" id="btn-add-wishlist">Tambah ke Wishlist <i class="icon-heart"></i></button>
 								</div>
 							</div>
 						</div>
