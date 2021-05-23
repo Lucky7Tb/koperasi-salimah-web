@@ -46,7 +46,8 @@ $this->load->view('admin/template/header', [
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-lg btn-primary" href="<?= base_url('admin/payment/create') ?>">Tambah pembayaran</a>
+					<a type="button" class="btn btn-lg btn-primary" href="<?= base_url('admin/payment/create') ?>">Tambah
+						pembayaran</a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
@@ -80,20 +81,20 @@ $this->load->view('admin/template/header', [
 						</div>
 						<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
 							<thead>
-								<tr role="row">
-									<th rowspan="2">#</th>
-									<th rowspan="2">Foto</th>
-									<th rowspan="2">Nama bank</th>
-									<th rowspan="2">Pemilik akun bank</th>
-									<th rowspan="2">No bank</th>
-									<th rowspan="2">Status</th>
-									<th rowspan="2">Tgl perubahan</th>
-									<th colspan="2">Aksi</th>
-								</tr>
-								<tr>
-									<th>Update</th>
-									<th>Aktif</th>
-								</tr>
+							<tr role="row">
+								<th rowspan="2">#</th>
+								<th rowspan="2">Foto</th>
+								<th rowspan="2">Nama bank</th>
+								<th rowspan="2">Pemilik akun bank</th>
+								<th rowspan="2">No bank</th>
+								<th rowspan="2">Status</th>
+								<th rowspan="2">Tgl perubahan</th>
+								<th colspan="2">Aksi</th>
+							</tr>
+							<tr>
+								<th>Update</th>
+								<th>Aktif</th>
+							</tr>
 							</thead>
 							<tbody id="payment-data-content" style="font-size: 14px;">
 

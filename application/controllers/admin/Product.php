@@ -82,7 +82,7 @@ class Product extends CI_Controller
 //		$data['total'] = $this->produk->countAllNotVisible($params);
 //		$config['total_rows'] = $data['total'];
 
-		// initialize
+	// initialize
 //		$this->pagination->initialize($config);
 
 //		$data['produk'] = $this->produk->notVisible($params);
@@ -280,9 +280,24 @@ class Product extends CI_Controller
 	{
 		$data['title'] = 'Foto';
 		$data['produk'] = $this->produk->getProduct($id);
+		$this->session->set_userdata('id_produk', $id);
 
 		if ($data['produk']['code'] === 200) {
 			$this->load->view('admin/product/foto', $data);
+		}
+	}
+
+	public function hapusFoto($id)
+	{
+		$idProduk = $this->session->userdata('id_produk');
+		if ($this->produk->deteleProductPhoto($id)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Foto Produk berhasil dihapus</div>');
+
+			redirect('admin/product/foto/' . $idProduk);
+		} else {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Foto Produk gagal dihapus</div>');
+
+			redirect('admin/product/foto/' . $idProduk);
 		}
 	}
 }

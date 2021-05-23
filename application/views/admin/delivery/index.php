@@ -2,6 +2,7 @@
 $css = base_url('dist/css');
 $this->load->view('admin/template/header');
 ?>
+
 <div class="container-fluid site-width">
 	<div class="row">
 		<div class="col-12 align-self-center">
