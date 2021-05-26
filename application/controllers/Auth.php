@@ -6,10 +6,8 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		if (!isNotLogin()) {
-			$userLevel = $this->session->userdata('level');
-
-			if ($userLevel == 'admin') {
+		if (isLogin()) {
+			if (isAdmin()) {
 				redirect('/admin');
 			}
 			redirect('/');
@@ -20,10 +18,8 @@ class Auth extends CI_Controller {
 
 	public function register()
 	{
-		if (!isNotLogin()) {
-			$userLevel = $this->session->userdata('level');
-
-			if ($userLevel == 'admin') {
+		if (isLogin()) {
+			if (isAdmin()) {
 				redirect('/admin');
 			}
 			redirect('/');
@@ -34,10 +30,8 @@ class Auth extends CI_Controller {
 
 	public function forgetPassword()
 	{
-		if (!isNotLogin()) {
-			$userLevel = $this->session->userdata('level');
-
-			if ($userLevel == 'admin') {
+		if (isLogin()) {
+			if (isAdmin()) {
 				redirect('/admin');
 			}
 			redirect('/');

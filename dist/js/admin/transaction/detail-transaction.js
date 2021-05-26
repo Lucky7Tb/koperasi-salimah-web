@@ -51,7 +51,7 @@ function renderDetailData(data) {
 			<tr>
 				<td>${++index}</td>
 				<td>
-					<img class="img-fluid rounded" src="${product.uri}" alt="${product.product_name}" style="height: 100px; width: 100px;">
+					<img class="img-fluid rounded" src="${product.uri}" alt="${product.product_name}" style="height: 50px; width: 50px;">
 				</td>
 				<td>${product.product_name}</td>
 				<td>${product.qty}</td>
@@ -72,7 +72,7 @@ function renderDetailData(data) {
 	}else {
 		proofContent += `
 			<a href='${data.proof}' data-fancybox data-caption='Bukti pembayaran - ${data.full_name}'>
-				<img src="${data.proof}" class="img-fluid d-block mx-auto" width="50%">
+				<img src="${data.proof}" class="img-fluid d-block mx-auto" width="100px">
 			</a>
 		`;
 	}

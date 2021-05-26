@@ -9,15 +9,15 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 
-		$this->load->model('admin/User_model', 'user');
-		
-		if (isNotLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
 		}
 
 		if (!isAdmin()) {
 			redirect('/');
 		}
+
+		$this->load->model('admin/User_model', 'user');
 	}
 
 	public function index()

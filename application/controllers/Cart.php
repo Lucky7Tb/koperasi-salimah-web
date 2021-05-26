@@ -7,10 +7,14 @@ class Cart extends CI_Controller {
 	{
 		parent::__construct();
 		
-		if (isNotLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
 		}
 
+		if (isAdmin()) {
+			redirect('/admin');
+		}
+			
 		$this->load->model('Cart_model', 'cart');
 	}
 
@@ -48,9 +52,9 @@ class Cart extends CI_Controller {
 
 	public function removeCart()
 	{
-		$idProduct = $this->input->get('id', true);
+		$idCart = $this->input->get('id', true);
 
-		$result = $this->cart->removeCart($idProduct);
+		$result = $this->cart->removeCart($idCart);
 
 		response($result, true);
 	}
@@ -63,7 +67,8 @@ class Cart extends CI_Controller {
 
 	public function doCheckout()
 	{
-		$data = $this->input->post('id_cart', true);
+		$data['id_cart'] = $this->input->post('id_cart', true);
+		$data['id_cart'] = explode(',', $data['id_cart']);
 
 		$result = $this->cart->doCheckout($data);
 

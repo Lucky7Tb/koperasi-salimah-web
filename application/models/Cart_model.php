@@ -33,17 +33,17 @@ class Cart_model extends CI_Model {
 		return $result;
 	}
 
-	public function removeCart($idProduct)
+	public function removeCart($idCart)
 	{
 		$endpoint = 'api/v1/user/cart/removeCart';
 		$token = $this->session->userdata('token');
 
-		$result = delete_curl($endpoint, $idProduct, $token);
+		$result = delete_curl($endpoint, $idCart, $token);
 
 		return $result;
 	}
 
-	public function doCheckout()
+	public function doCheckout($data)
 	{
 		$endpoint = 'api/v1/user/cart/doCheckout';
 		$token = $this->session->userdata('token');
