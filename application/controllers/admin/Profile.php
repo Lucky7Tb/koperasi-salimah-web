@@ -17,7 +17,7 @@ class Profile extends CI_Controller {
 			redirect('/');
 		}
 
-		$this->load->model('admin/Profile_model', 'profile');
+		$this->load->model('Profile_model', 'profile');
 	}
 	
 	public function index()
