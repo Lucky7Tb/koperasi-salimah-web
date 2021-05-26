@@ -17,6 +17,10 @@ class Product extends CI_Controller
 		if (!isAdmin()) {
 			redirect('/');
 		}
+
+		if (!haveAddress()) {
+			redirect('/admin/profile');
+		}
 		
 		$this->token = $this->session->userdata('token');
 

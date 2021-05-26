@@ -17,6 +17,10 @@ class User extends CI_Controller
 			redirect('/');
 		}
 
+		if (!haveAddress()) {
+			redirect('/admin/profile');
+		}
+
 		$this->load->model('admin/User_model', 'user');
 	}
 

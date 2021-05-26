@@ -62,6 +62,10 @@ class Address extends CI_Controller {
 
 		$result = $this->address->addAddress($data);
 
+		if (!haveAddress() && $result['code'] == 200) {
+			$this->session->set_userdata('have_address', true);
+		}	
+
 		response($result, true);
 	}
 

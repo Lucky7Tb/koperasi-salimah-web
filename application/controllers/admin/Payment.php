@@ -16,6 +16,9 @@ class Payment extends CI_Controller {
 			redirect('/');
 		}
 
+		if (!haveAddress()) {
+			redirect('/admin/profile');
+		}
 		$this->load->model('admin/Payment_model', 'payment');
 	}
 	

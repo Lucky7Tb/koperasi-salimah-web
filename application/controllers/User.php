@@ -17,6 +17,10 @@ class User extends CI_Controller
 			redirect('/admin');
 		}
 
+		if (!haveAddress()) {
+			redirect('/profile');
+		}
+
 		$this->token = $this->session->userdata('token');
 		$this->load->model('admin/Product_model','produk');
 		

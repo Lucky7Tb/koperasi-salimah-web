@@ -18,6 +18,10 @@ class Delivery extends CI_Controller
 			redirect('/');
 		}
 
+		if (!haveAddress()) {
+			redirect('/admin/profile');
+		}
+
 		$this->token = $this->session->userdata('token');
 
 		$this->load->model('admin/Delivery_model', 'pengiriman');

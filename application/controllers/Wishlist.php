@@ -14,6 +14,10 @@ class Wishlist extends CI_Controller {
 		if (isAdmin()) {
 			redirect('/admin');
 		}
+
+		if (!haveAddress()) {
+			redirect('/profile');
+		}
 		
 		$this->load->model('Wishlist_model', 'wishlist');
 	}
