@@ -58,13 +58,15 @@ $uri = $produk['uri'];
 										foreach ($photos as $photo) :?>
 											<div class="col-md-6 col-lg-3 mb-4">
 												<div class="position-relative">
-													<img src="<?= $produk['uri'] ?>" alt="<?= $produk['product_name'] ?>" class="img-fluid"
+													<img src="<?= $photo['uri'] ?>" alt="<?= $produk['product_name'] ?>" class="img-fluid"
 															 width="250px">
 													<div class="caption-bg fade bg-transparent text-right">
 														<div class="d-table w-100 h-100 ">
 															<div class="d-table-cell align-bottom">
 																<div class="mb-4">
-																	<a href="<?= base_url('admin/product/hapusFoto').'/'.$photo['id_u_product_photos'] ?>" class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-minus"></i></a>
+																	<a
+																		href="<?= base_url('admin/product/hapusFoto') . '/' . $photo['id_u_product_photos'] ?>"
+																		class="rounded-left bg-white px-3 py-2 shadow2"><i class="icon-minus"></i></a>
 																</div>
 															</div>
 														</div>
@@ -74,13 +76,14 @@ $uri = $produk['uri'];
 										<?php endforeach;
 									endif ?>
 									<div class="col-md-6 col-lg-3 mb-4">
-										<div class="position-relative">
+										<form action="<?= base_url('admin/product/tambahPhoto') . '/' . $produk['id_m_products'] ?>"
+													class="position-relative" id="tambah-photo">
 											<input name="cover" class="dropify" id="photo" type="file" data-max-file-size="2M"
 														 data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg"
 											<div class="pt-3">
 												<p class="text-center">Tambah</p>
 											</div>
-										</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -102,6 +105,7 @@ $this->load->view('admin/template/footer', [
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/product/app.js"></script>
 		<script>initOptionPlugin();</script>
+		<script src="' . $js . '/admin/product/addPhoto.js"></script>
 	'
 ]);
 ?>
