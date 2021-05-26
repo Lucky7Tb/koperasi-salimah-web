@@ -5,7 +5,7 @@ if (!function_exists('request')) {
 	{
 		$ch = curl_init();
 
-		$url = API . $endpoint;
+		$url = $endpoint;
 
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

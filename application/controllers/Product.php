@@ -12,7 +12,6 @@ class Product extends CI_Controller {
 		$this->token = $this->session->userdata('token');
 		$this->load->model('Product_model','produk');
 		$this->load->model('admin/Category_model', 'category');
-		
 	}
 
 	public function index()

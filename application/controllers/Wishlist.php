@@ -7,11 +7,15 @@ class Wishlist extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->model('Wishlist_model', 'wishlist');
-		
-		if (isNotLogin()) {
+		if (isLogin()) {
 			redirect('auth');
 		}
+
+		if (isAdmin()) {
+			redirect('/admin');
+		}
+		
+		$this->load->model('Wishlist_model', 'wishlist');
 	}
 
 	public function index()

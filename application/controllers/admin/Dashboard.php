@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 	
-		if (isNotLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
 		}
 

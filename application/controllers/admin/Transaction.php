@@ -8,15 +8,15 @@ class Transaction extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->model('admin/Transaction_model', 'transaction');
-
-		if (isNotLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
 		}
 
 		if (!isAdmin()) {
 			redirect('/');
 		}
+
+		$this->load->model('admin/Transaction_model', 'transaction');
 	}
 
 	public function index()

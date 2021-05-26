@@ -97,8 +97,8 @@ $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="' . $js . '/admin/profile/app.js"></script>
 		<script src="' . $js . '/global.js"></script>
+		<script src="' . $js . '/admin/profile/app.js"></script>
 		<script>
 			$("#date_of_birth").datepicker({ format: "yyyy-mm-dd" });
 			getProfile();

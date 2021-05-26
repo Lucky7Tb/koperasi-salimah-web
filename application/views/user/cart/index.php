@@ -5,25 +5,15 @@ $this->load->view('template/header');
 ?>
 
 <div class="container-fluid site-width">
-	<!-- START: Breadcrumbs-->
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
 				<div class="w-sm-100 mr-auto">
 					<h4 class="mb-0">Keranjang</h4>
 				</div>
-
-				<ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
-					<li class="breadcrumb-item active"><a href="#">Home</a></li>
-					<li class="breadcrumb-item">Keranjang</li>
-				</ol>
 			</div>
 		</div>
 	</div>
-	<!-- END: Breadcrumbs-->
-
-
-	<!-- START: Card Data-->
 	<div class="row">
 		<div class="col-12 mt-3">
 			<div class="card">
@@ -40,35 +30,8 @@ $this->load->view('template/header');
 										<th class="border-bottom-0"></th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td><img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid" width="60"></td>
-										<td class="align-middle">Flowers Structured Coat</td>
-										<td class="align-middle">Rp398.000,00</td>
-										<td class="w-25 align-middle"><input type="number" class="form-control" value="1"></td>
-										<td class="align-middle"><a href="#"><i class="icon-trash"></i></a></td>
-									</tr>
-									<tr>
-										<td><img src="dist/images/ecommerce-img2.jpg" alt="" class="img-fluid" width="60"></td>
-										<td class="align-middle">Cotton White Top</td>
-										<td class="align-middle">Rp398.000,00</td>
-										<td class="w-25 align-middle"><input type="number" class="form-control" value="2"></td>
-										<td class="align-middle"><a href="#"><i class="icon-trash"></i></a></td>
-									</tr>
-									<tr>
-										<td><img src="dist/images/ecommerce-img8.jpg" alt="" class="img-fluid" width="60"></td>
-										<td class="align-middle">Flowers Structured Coat</td>
-										<td class="align-middle">Rp398.000,00</td>
-										<td class="w-25 align-middle"><input type="number" class="form-control" value="1"></td>
-										<td class="align-middle"><a href="#"><i class="icon-trash"></i></a></td>
-									</tr>
-									<tr>
-										<td><img src="dist/images/ecommerce-img2.jpg" alt="" class="img-fluid" width="60"></td>
-										<td class="align-middle">Cotton White Top</td>
-										<td class="align-middle">Rp398.000,000</td>
-										<td class="w-25 align-middle"><input type="number" class="form-control" value="2"></td>
-										<td class="align-middle"><a href="#"><i class="icon-trash"></i></a></td>
-									</tr>
+								<tbody id="cart-product-content">
+									
 								</tbody>
 							</table>
 						</div>
@@ -83,32 +46,37 @@ $this->load->view('template/header');
 											<p class="mb-0 dark-color f-weight-600">Total:</p>
 										</div>
 										<div class="float-right">
-											<p class="mb-0 dark-color f-weight-600 h4">Rp816.000,00</p>
+											<p class="mb-0 dark-color f-weight-600 h4" id="cart-total-price">Rp. 0</p>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="clearfix d-sm-flex">
 								<div class="float-right w-100 text-center text-sm-right">
-									<p class="mb-0 h6"><a href="<?= base_url('cart/checkout') ?>" class="btn btn-success"><i class="icon-handbag h6"></i> Lanjut ke Checkout</a></p>
+									<p class="mb-0 h6">
+										<a href="javascript:void(0)" class="btn btn-lg btn-success" id="checkout-button">
+											<i class="icon-handbag h6"></i> Lanjut ke Checkout
+										</a>
+									</p>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
-
-
 	</div>
-	<!-- END: Card DATA-->
-
 </div>
 
 <?php
 $js = base_url('dist/js');
-$this->load->view('template/footer');
+$this->load->view('template/footer', [
+	'js' => '
+		<script src="'. $js .'/global.js"></script>
+		<script src="'. $js .'/user/cart/app.js"></script>
+		<script>
+			getCart();
+		</script>
+	'
+]);
 ?>

@@ -8,6 +8,15 @@ class User extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		if (!isLogin()) {
+			redirect('auth');
+		}
+
+		if (isAdmin()) {
+			redirect('/admin');
+		}
+
 		$this->token = $this->session->userdata('token');
 		$this->load->model('admin/Product_model','produk');
 		

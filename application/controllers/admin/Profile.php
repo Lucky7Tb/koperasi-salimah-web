@@ -9,7 +9,7 @@ class Profile extends CI_Controller {
 	{
 		parent::__construct();
 
-		if (isNotLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
 		}
 
@@ -18,10 +18,6 @@ class Profile extends CI_Controller {
 		}
 
 		$this->load->model('admin/Profile_model', 'profile');
-
-		if (isNotLogin()) {
-			redirect('auth');
-		}
 	}
 	
 	public function index()
