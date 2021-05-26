@@ -29,6 +29,9 @@ $('#province').on('change', function() {
 				<option value="${city.city_id}">${city.type} - ${city.city_name}</option>
 			`);
 		});
+
+		$('#city option:first').prop('selected', true);
+		$('#city').trigger('change');
 	});
 });
 

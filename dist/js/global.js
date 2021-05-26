@@ -89,7 +89,7 @@ global.getProvince = function(callback) {
 			if (response.rajaongkir.status.code === 200) {
 				callback(response.rajaongkir.results);
 			}else {
-				toastr.error(response.message);
+				toastr.error(response.rajaongkir.status.description);
 			}
 		}
 	});
@@ -104,7 +104,7 @@ global.getCities = function(provinceId, callback) {
 			if (response.rajaongkir.status.code === 200) {
 				callback(response.rajaongkir.results);
 			}else {
-				toastr.error(response.message);
+				toastr.error(response.rajaongkir.status.description);
 			}
 		}
 	});
@@ -119,7 +119,7 @@ global.getSubdistricts = function(cityId, callback) {
 			if (response.rajaongkir.status.code === 200) {
 				callback(response.rajaongkir.results);
 			}else {
-				toastr.error(response.message);
+				toastr.error(response.rajaongkir.status.description);
 			}
 		}
 	});
