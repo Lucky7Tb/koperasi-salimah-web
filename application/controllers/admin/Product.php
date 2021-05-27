@@ -9,20 +9,10 @@ class Product extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
-		if (!isLogin()) {
+
+		if (isNotLogin()) {
 			redirect('auth');
 		}
-
-		if (!isAdmin()) {
-			redirect('/');
-		}
-
-		if (!haveAddress()) {
-			redirect('/admin/profile');
-		}
-		
-		$this->token = $this->session->userdata('token');
 
 		$this->load->model('admin/Product_model', 'produk');
 		$this->load->model('admin/Category_model', 'category');
