@@ -48,4 +48,9 @@ class Delivery_model extends CI_Model
 
 		return delete_curl($end, $id, $token);
 	}
+	
+	public function countAllDelivery($search = null)
+	{
+		return count($this->getAllDelivery(array('search' => $search))['data']);
+	}
 }
