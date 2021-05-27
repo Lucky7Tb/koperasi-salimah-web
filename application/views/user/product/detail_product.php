@@ -21,6 +21,7 @@ $this->load->view('template/header');
 					<div class="row">
 						<div class="col-md-12 col-lg-5">
 							<?php
+							$seller = $produk['data']['seller'];
 							$kategori = $produk['data']['categories'];
 							$produk = $produk['data']['product'];
 							$namaProduk = $produk['product_name'];
@@ -65,9 +66,7 @@ $this->load->view('template/header');
 							<div class="card-body border border-top-0 border-right-0 border-left-0">
 								<div class="clearfix">
 									<div class="float-left mr-2">
-										<ul class="list-inline mb-0" id="product_rating">
-											
-										</ul>
+										Rating: <?= $produk['star_rating'].'/5' ?>
 									</div>
 								</div>
 							</div>
@@ -78,7 +77,6 @@ $this->load->view('template/header');
 											<h4 class="lato-font mb-0 text-danger">Rp. <?= number_format($harga, '2', ',', '.') ?></h4>
 										</div>
 									</div>
-
 								</div>
 							</div>
 							<div class="card-body border brd-gray border-top-0 border-right-0 border-left-0">
@@ -87,7 +85,15 @@ $this->load->view('template/header');
 										<a href="#"><img src="dist/images/contact-3.jpg" width="40" alt="" class="img-fluid rounded-circle"></a>
 										<div class="media-body z-index-1">
 											<div class="pl-4">
-												<h6>Admin</h6>
+												<?php 
+													$phoneNumber = str_split($seller[0]['phone_number']);
+													$phoneNumber[0] = '62';
+													$phoneNumber = join($phoneNumber);
+												?>
+												<h6>Admin: <?= $seller[0]['full_name'] ?></h6>
+												<a href="https://api.whatsapp.com/send?phone=<?= $phoneNumber ?>&text=Halo%20kak,%20apakah%20produk%20<?= '*'.$namaProduk.'*' ?>%20masih%20tersedia%20?">
+													<strong>Chat admin</strong>
+												</a>
 											</div>
 										</div>
 									</div>
@@ -120,14 +126,6 @@ $this->load->view('template/header');
 											<?php
 										}
 										?>
-									</li>
-
-									<li class="font-weight-bold dark-color mb-2">Share:
-										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-facebook"></i></a>
-										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-twitter"></i></a>
-										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-dribbble"></i></a>
-										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-pinterest"></i></a>
-										<a href="#" title="facebook" class="body-color mr-2"><i class="icon-social-linkedin"></i></a>
 									</li>
 								</ul>
 								<div class="mr-3">

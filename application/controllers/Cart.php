@@ -14,6 +14,10 @@ class Cart extends CI_Controller {
 		if (isAdmin()) {
 			redirect('/admin');
 		}
+
+		if (!haveAddress()) {
+			redirect('/profile');
+		}
 			
 		$this->load->model('Cart_model', 'cart');
 	}

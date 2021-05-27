@@ -15,7 +15,7 @@ class Profile extends CI_Controller {
 			redirect('/admin');
 		}
 
-		$this->load->model('admin/Profile_model', 'profile');
+		$this->load->model('Profile_model', 'profile');
 	}
 
 	public function index()
@@ -29,5 +29,23 @@ class Profile extends CI_Controller {
 		$result = $this->profile->getProfile();
 
 		return response($result, true);
+	}
+
+	public function changeProfile()
+	{
+		$data = $this->input->post(null, true);
+
+		$result = $this->profile->changeProfile($data);
+
+		response($result, true);
+	}
+
+	public function changePhotoProfile()
+	{
+		$data['file_key'] = 'photo';
+
+		$result = $this->profile->changePhotoProfile($data);
+
+		response($result, true);
 	}
 }

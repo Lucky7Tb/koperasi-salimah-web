@@ -79,3 +79,115 @@ global.addToCart = function(idProduct, qtyProduct = 1) {
 		}
 	});
 }
+
+global.getProvince = function(callback) {
+	$.ajax({
+		url: `${global.base_url}address/getProvinces`,
+		type: 'GET',
+		success: function(response) {
+			response = JSON.parse(response);
+			if (response.rajaongkir.status.code === 200) {
+				callback(response.rajaongkir.results);
+			}else {
+				toastr.error(response.rajaongkir.status.description);
+			}
+		}
+	});
+}
+
+global.getCities = function(provinceId, callback) {
+	$.ajax({
+		url: `${global.base_url}address/getCities?province=${provinceId}`,
+		type: 'GET',
+		success: function(response) {
+			response = JSON.parse(response);
+			if (response.rajaongkir.status.code === 200) {
+				callback(response.rajaongkir.results);
+			}else {
+				toastr.error(response.rajaongkir.status.description);
+			}
+		}
+	});
+}
+
+global.getSubdistricts = function(cityId, callback) {
+	$.ajax({
+		url: `${global.base_url}address/getSubdistricts?city=${cityId}`,
+		type: 'GET',
+		success: function(response) {
+			response = JSON.parse(response);
+			if (response.rajaongkir.status.code === 200) {
+				callback(response.rajaongkir.results);
+			}else {
+				toastr.error(response.rajaongkir.status.description);
+			}
+		}
+	});
+}
+
+global.getCurrentAddress = function(callback) {
+	$.ajax({
+		url: `${global.base_url}address/getCurrentAddress`,
+		type: 'GET',
+		success: function(response) {
+			response = JSON.parse(response);
+
+			if (response.code === 200) {
+				renderCurrentAddress(response.data);
+			}else {
+				toastr.error(response.message);
+			}
+		}
+	});
+}
+
+global.getAllAddress = function(callback) {
+	$.ajax({
+		url: `${global.base_url}address/getAllAddress`,
+		type: 'GET',
+		success: function(response) {
+			response = JSON.parse(response);
+
+			if (response.code === 200) {
+				callback(response.data);
+			}else {
+				toastr.error(response.message);
+			}
+		}
+	});
+}
+
+global.addAddress = function(formData, callback) {
+	$.ajax({
+		type: 'POST',
+		url: `${global.base_url}address/addAddress`,
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function (response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				callback(response);
+			}else {
+				toastr.error(response.message);
+			}
+		}
+	});
+}
+
+global.changeActiveAddress = function(idAddress, callback) {
+	$.ajax({
+		type: 'POST',
+		url: `${global.base_url}address/changeActiveAddress?id_address=${idAddress}`,
+		processData: false,
+		contentType: false,
+		success: function (response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				callback(response);
+			}else {
+				toastr.error(response.message);
+			}
+		}
+	});
+}

@@ -54,8 +54,7 @@ class Auth extends CI_Controller {
 	public function doLogin()
 	{
 
-		$this->load->model('Auth_model', 'auth');
-		
+		$this->load->model('Auth_model', 'auth');		
 		$data = $this->input->post(null, true);
 
 		$result = $this->auth->doLogin($data);
@@ -63,10 +62,14 @@ class Auth extends CI_Controller {
 		if ($result['code'] == 200) {
 			$userData = $result['data'];
 			$userData['login'] = true;
-	
-			$this->session->set_userdata($userData);
-		}
 
+			$this->session->set_userdata($userData);
+			$this->load->model('Address_model', 'address');
+			
+			$userAddress = $this->address->getCurrentAddress();
+			$this->session->set_userdata('have_address', $userAddress['code'] == 200);
+		}
+		
 		response($result, true);
 	}
 

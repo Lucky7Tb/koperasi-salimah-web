@@ -15,6 +15,10 @@ class Transaction extends CI_Controller {
 			redirect('/admin');
 		}
 
+		if (!haveAddress()) {
+			redirect('/profile');
+		}
+
 		$this->load->model('Transaction_model', 'transaction');
 	}
 

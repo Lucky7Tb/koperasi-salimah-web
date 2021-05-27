@@ -97,7 +97,6 @@ $this->load->view('template/header', [
 						<h2>Daftar alamat</h2>
 						<button class="btn btn-lg btn-primary mt-2 mb-2" data-target="#address-create-modal" data-toggle="modal">Tambah alamat</button>
 						<div class="row row-cols-sm-12 row-cols-md-6 row-cols-lg-3" id="address-container">
-							
 						</div>
 					</div>
 				</div>
@@ -121,19 +120,23 @@ $this->load->view('template/header', [
       	<div class="modal-body">
         	<div class="form-group">
         		<label for="province">Provinsi</label>
-        		<select class="form-control" id="province" name="province"></select>
+        		<select class="form-control" id="province" name="province" required></select>
         	</div>
         	<div class="form-group">
         		<label for="city">Kota</label>
-        		<select class="form-control" id="city" name="city"></select>
+        		<select class="form-control" id="city" name="city" required></select>
         	</div>
         	<div class="form-group">
         		<label for="subdistrict">Kecamatan</label>
-        		<select class="form-control" id="subdistrict" name="subdistrict"></select>
+        		<select class="form-control" id="subdistrict" name="subdistrict" required></select>
+        	</div>
+        	<div class="form-group">
+        		<label for="postcode">Kode pos</label>
+        		<input class="form-control" id="postcode" name="postcode" placeholder="Masukan kode pos anda" required/>
         	</div>
         	<div class="form-group">
         		<label for="address">Address</label>
-        		<textarea class="form-control" id="address" name="address" rows="5"></textarea>
+        		<textarea class="form-control" id="address" name="address" rows="5" placeholder="Masukan alamat anda" required></textarea>
         	</div>
 	      </div>
 	      <div class="modal-footer">
@@ -156,7 +159,6 @@ $this->load->view('template/footer', [
 <script>
 	initPlugiOption();
 	getMyData();
-	getProvices();
 </script>
 '
 ]);

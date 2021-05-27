@@ -37,7 +37,46 @@ class Address extends CI_Controller {
 
 		response($result);
 	}
+
+	public function getCities()
+	{
+		$provincesId = $this->input->get('province', true);
+
+		$result = $this->address->getCities($provincesId);
+
+		response($result);
+	}
 	
+	public function getSubdistricts()
+	{
+		$cityId = $this->input->get('city', true);
+
+		$result = $this->address->getSubdistricts($cityId);
+
+		response($result);
+	}
+
+	public function addAddress()
+	{
+		$data = $this->input->post(null, true);
+
+		$result = $this->address->addAddress($data);
+
+		if (!haveAddress() && $result['code'] == 200) {
+			$this->session->set_userdata('have_address', true);
+		}	
+
+		response($result, true);
+	}
+
+	public function changeActiveAddress()
+	{
+		$data['id_address'] = $this->input->get('id_address', true);
+
+		$result = $this->address->changeActiveAddress($data);
+
+		response($result, true);
+	}
 }
 
 /* End of file Address.php */

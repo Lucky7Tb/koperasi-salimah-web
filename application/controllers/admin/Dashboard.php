@@ -13,6 +13,10 @@ class Dashboard extends CI_Controller
 		if (!isAdmin()) {
 			redirect('/');
 		}
+
+		if (!haveAddress()) {
+			redirect('/admin/profile');
+		}
 	}
 
 	public function index()

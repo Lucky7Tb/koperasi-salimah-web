@@ -16,6 +16,10 @@ class Product_Categories extends CI_Controller
 			redirect('/');
 		}
 
+		if (!haveAddress()) {
+			redirect('/admin/profile');
+		}
+
 		$this->load->model('admin/Category_model', 'category');
 		$this->token = $this->session->userdata('token');
 	}

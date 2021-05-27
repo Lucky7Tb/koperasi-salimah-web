@@ -89,7 +89,7 @@ function renderDetailData(data) {
 					</div>
 					<div class="card-body">
 						<h5 class="card-title text-center">Pemesan: ${data.full_name}</h5>
-						<div class="d-flex justify-content-between align-items-end container">
+						<div class="d-flex justify-content-around align-items-end container">
 							<div>
 								<p class="card-text h6">Total harga: Rp. ${global.rupiahFormat(data.total_price)}</p>
 								<p class="card-text h6">Status: <span class="badge badge-${badge}">${status}</span></p>
@@ -98,7 +98,17 @@ function renderDetailData(data) {
 								<p class="card-text h6">Tgl pesan: ${dateOrder}</p>
 								<p class="card-text h6">Tgl update: ${updatedDateOrder}</p>
 							</div>
+							<div>
+								<p class="card-text h6">Kurir: ${data.delivery.name_expedition}</p>
+								<p class="card-text h6">Service: ${data.delivery.service}</p>
+							</div>
 						</div>
+						<h6 class="card-title text-center mt-5">
+							Alamat kirim: ${data.address.address}, ${data.address.city}, ${data.address.subdistrict}, ${data.address.province}
+						</h6>
+						<h6 class="card-title text-center">
+							Kode pos: ${data.address.postcode}
+						</h6>
 					</div>
 					<div class="card-footer text-white">
 						<div class="form-group">
@@ -113,7 +123,7 @@ function renderDetailData(data) {
 						</div>
 						<div class="form-group">
 							<label for="resi_number" class="text-primary">No Resi</label>
-							<input type="text" class="form-control" name="resi_number" id="resi_number">
+							<input type="text" class="form-control" name="resi_number" id="resi_number" value="${data.delivery.resi_number}">
 						</div>
 						<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeTransactionStatus()" id="btn-change-status" ${disabled}>Simpan</button>
 					</div>
@@ -144,6 +154,7 @@ function renderDetailData(data) {
 	`;
 	$('#main').append(content);
 	$('#status').val(data.status);
+	$('#status').trigger('change');
 }
 
 function onStatus() {
