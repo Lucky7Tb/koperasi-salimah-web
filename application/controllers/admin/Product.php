@@ -306,6 +306,18 @@ class Product extends CI_Controller
 			redirect('admin/product/foto/' . $idProduk);
 		}
 	}
+
+	public function tambahPhoto($id)
+	{
+		$data['id_m_products'] = $id;
+		$data['file_key'] = 'photo';
+
+//		echo json_encode($_FILES);
+
+		$this->produk->addProductPhotos($data);
+
+		echo base_url('admin/product/foto/').$id;
+	}
 }
 
 /* End of file Product.php */
