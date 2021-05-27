@@ -41,4 +41,9 @@ class Category_model extends CI_Model
 
 		return delete_curl($end, $id, $token);
 	}
+	
+	public function countAllCategory($search = null)
+	{
+		return count($this->getAllCategories(array('search' => $search))['data']);
+	}
 }
