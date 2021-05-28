@@ -10,10 +10,17 @@ class Delivery extends CI_Controller
 	{
 		parent::__construct();
 
-		if (isNotLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
 		}
 
+		if (!isAdmin()) {
+			redirect('/');
+		}
+
+		if (!haveAddress()) {
+			redirect('/admin/profile');
+		}
 		$this->load->model('admin/Delivery_model', 'pengiriman');
 	}
 

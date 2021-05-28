@@ -8,8 +8,16 @@ class Product_Categories extends CI_Controller
 	{
 		parent::__construct();
 
-		if (isNotLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
+		}
+
+		if (!isAdmin()) {
+			redirect('/');
+		}
+
+		if (!haveAddress()) {
+			redirect('/admin/profile');
 		}
 
 		$this->load->model('admin/Category_model', 'category');
