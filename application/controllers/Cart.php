@@ -35,6 +35,31 @@ class Cart extends CI_Controller {
 		response($result, true);
 	}
 
+	public function getDeliveryService()
+	{
+		$this->load->model('Delivery_model', 'delivery');
+
+		$result = $this->delivery->getDeliveryService();
+
+		response($result, true);
+	}
+
+	public function getPaymentMethod()
+	{
+		$result = $this->cart->getPaymentMethod();
+
+		response($result, true);
+	}
+
+	public function getWayFee()
+	{
+		$data = $this->input->post(null, true);
+
+		$result = $this->cart->getWayFee($data);
+
+		response($result);
+	}
+
 	public function addToCart()
 	{
 		$data = $this->input->post(null, true);
@@ -75,6 +100,26 @@ class Cart extends CI_Controller {
 		$data['id_cart'] = explode(',', $data['id_cart']);
 
 		$result = $this->cart->doCheckout($data);
+
+		response($result, true);
+	}
+
+	public function prepareOrder()
+	{
+		$idCart = $this->input->post('id_cart', true);
+		$data['id_cart'] = explode(',', $idCart);
+		
+		$result = $this->cart->prepareOrder($data);
+
+		response($result, true);
+	}
+
+	public function createOrder()
+	{
+		$data = $this->input->post(null, true);
+		$data['id_cart'] = explode(",", $data['id_cart']);
+		
+		$result = $this->cart->createOrder($data);
 
 		response($result, true);
 	}

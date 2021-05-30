@@ -2,8 +2,6 @@
 
 class Product_Categories extends CI_Controller
 {
-	private $token;
-
 	public function __construct()
 	{
 		parent::__construct();

@@ -1,22 +1,11 @@
 const listCart = [];
 
 function getCart() {
-	$.ajax({
-	  url: `${global.base_url}cart/GetCart`,
-	  type: 'POST',
-	  data: {param1: 'value1'},
-	  success: function(response) {
-	    response = JSON.parse(response);
-
-	    if (response.code === 200) {
-	    	$.each(response.data, function(_, cart) {
-	    		 listCart.push(cart.id);
-	    	});
-	    	renderCart(response.data);
-	    } else {
-	    	toastr.error(response.message);
-	    }
-	  },
+	global.getCart(function(response) {
+		$.each(response.data, function(_, cart) {
+  		listCart.push(cart.id);
+  	});
+  	renderCart(response.data);
 	});
 }
 
@@ -104,7 +93,9 @@ function removeFormCart(idCart) {
 	});	
 }
 
-$('#checkout-button').on('click', function() {
+$('#checkout-button').on('click', function(e) {
+	e.preventDefault();
+
 	const formData = new FormData;
 	formData.append('id_cart', listCart);
 

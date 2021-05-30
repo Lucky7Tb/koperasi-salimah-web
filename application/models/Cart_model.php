@@ -3,12 +3,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cart_model extends CI_Model {
 
+	private $token;
+	private $rajaOngkirKey = '2a97d6ba5a1b8566843fa3fb001e6b97';
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->token = $this->session->userdata('token');
+	}
+
 	public function getCart()
 	{
 		$endpoint = 'api/v1/user/cart/getCart';
-		$token = $this->session->userdata('token');
+	
+		$result = get_curl($endpoint, $this->token);
 
-		$result = get_curl($endpoint, $token);
+		return $result;
+	}
+
+	public function getPaymentMethod()
+	{
+		$endpoint = 'api/v1/user/Payment/get';
+
+		$result = get_curl($endpoint, $this->token);
+
+		return $result;
+	}
+
+	public function getWayFee($data)
+	{
+		$headers = [
+			'key' => $this->rajaOngkirKey
+		];
+
+		$endpoint = 'https://pro.rajaongkir.com/api/cost';
+
+		$result = request($endpoint, 'POST', $data, $headers);
 
 		return $result;
 	}
@@ -16,9 +46,8 @@ class Cart_model extends CI_Model {
 	public function addToCart($data)
 	{
 		$endpoint = 'api/v1/user/cart/addCart';
-		$token = $this->session->userdata('token');
-
-		$result = post_curl($endpoint, $data, $token, true);
+		
+		$result = post_curl($endpoint, $data, $this->token, true);
 
 		return $result;
 	}
@@ -26,9 +55,8 @@ class Cart_model extends CI_Model {
 	public function updateProductQty($data, $idProduct)
 	{
 		$endpoint = 'api/v1/user/cart/changeQty';
-		$token = $this->session->userdata('token');
-
-		$result = put_curl($endpoint, $idProduct, $data, $token);
+		
+		$result = put_curl($endpoint, $idProduct, $data, $this->token);
 
 		return $result;
 	}
@@ -36,9 +64,8 @@ class Cart_model extends CI_Model {
 	public function removeCart($idCart)
 	{
 		$endpoint = 'api/v1/user/cart/removeCart';
-		$token = $this->session->userdata('token');
-
-		$result = delete_curl($endpoint, $idCart, $token);
+		
+		$result = delete_curl($endpoint, $idCart, $this->token);
 
 		return $result;
 	}
@@ -46,9 +73,26 @@ class Cart_model extends CI_Model {
 	public function doCheckout($data)
 	{
 		$endpoint = 'api/v1/user/cart/doCheckout';
-		$token = $this->session->userdata('token');
+		
+		$result = post_curl($endpoint, $data, $this->token, true);
 
-		$result = post_curl($endpoint, $data, $token, true);
+		return $result;
+	}
+
+	public function prepareOrder($data)
+	{
+		$endpoint = 'api/v1/user/order/prepareOrder';
+
+		$result = post_curl($endpoint, $data, $this->token, true);
+
+		return $result;
+	}
+
+	public function createOrder($data)
+	{
+		$endpoint = 'api/v1/user/order/createOrder';
+
+		$result = post_curl($endpoint, $data, $this->token, true);
 
 		return $result;
 	}

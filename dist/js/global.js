@@ -1,4 +1,4 @@
-let global = {
+var global = {
 	base_url: $('#base-url').val(),
 	loading: function (element, color, isLoading, content) {
 		if (isLoading) {
@@ -36,6 +36,22 @@ let global = {
 		return prefix == undefined ? rupiah : rupiah ? 'Rp. ' + rupiah : '';
 	}
 };
+
+global.getCart = function(callback) {
+	$.ajax({
+	  url: `${global.base_url}cart/GetCart`,
+	  type: 'POST',
+	  data: {param1: 'value1'},
+	  success: function(response) {
+	    response = JSON.parse(response);
+	    if (response.code === 200) {
+	    	callback(response);
+	    } else {
+	    	toastr.error(response.message);
+	    }
+	  },
+	});
+}
 
 global.addToWishlist = function(idProduct) { 
 	const formData = new FormData();
@@ -131,9 +147,8 @@ global.getCurrentAddress = function(callback) {
 		type: 'GET',
 		success: function(response) {
 			response = JSON.parse(response);
-
 			if (response.code === 200) {
-				renderCurrentAddress(response.data);
+				callback(response);
 			}else {
 				toastr.error(response.message);
 			}
@@ -147,7 +162,6 @@ global.getAllAddress = function(callback) {
 		type: 'GET',
 		success: function(response) {
 			response = JSON.parse(response);
-
 			if (response.code === 200) {
 				callback(response.data);
 			}else {

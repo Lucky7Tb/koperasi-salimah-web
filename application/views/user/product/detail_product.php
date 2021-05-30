@@ -112,7 +112,7 @@ $this->load->view('template/header');
 									<p class="dark-color f-weight-600" id="product_stock"></p>
 								</div>
 								<div class="mr-3">
-								<a href="javascript:void(0)" class="btn btn-primary" onclick="addToCart(<?= $produk['id_m_products'] ?>)">Tambah ke Keranjang</a>
+								<a href="javascript:void(0)" class="btn btn-primary" onclick="global.addToCart(<?= $produk['id_m_products'] ?>)">Tambah ke Keranjang</a>
 								</div>
 							</div>
 							<div class="card-body">
@@ -129,11 +129,7 @@ $this->load->view('template/header');
 									</li>
 								</ul>
 								<div class="mr-3">
-<<<<<<< HEAD
-									<button class="btn btn-primary" onclick="addToWishlist(<?= $produk['id_m_products'] ?>)" id="btn-add-wishlist">Tambah ke Wishlist <i class="icon-heart"></i></button>
-=======
 									<button class="btn btn-primary" onclick="global.addToWishlist(<?= $produk['id_m_products'] ?>)" id="btn-add-wishlist">Tambah ke Wishlist <i class="icon-heart"></i></button>
->>>>>>> origin/dev-lucky
 								</div>
 							</div>
 						</div>

@@ -37,6 +37,9 @@ class Profile extends CI_Controller {
 
 		$result = $this->profile->changeProfile($data);
 
+		var_dump($result);
+		die;
+
 		response($result, true);
 	}
 
