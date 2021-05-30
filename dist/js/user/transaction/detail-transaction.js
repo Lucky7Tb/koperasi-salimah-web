@@ -154,4 +154,8 @@ function renderTransactionDetailData(data) {
 	`);
 
 	$('address').text(`${data.address.address}, ${data.address.city}, ${data.address.subdistrict}, ${data.address.province}`);
+
+	$('#bank_name').text(`Bank: ${data.payment.bank_name}`);
+	$('#bank_code').text(`Kode bank: ${data.payment.bank_code}`);
+	$('#no_account').text(`Rekening : ${data.payment.number_account}`);
 }

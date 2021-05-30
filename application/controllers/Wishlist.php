@@ -7,7 +7,7 @@ class Wishlist extends CI_Controller {
 	{
 		parent::__construct();
 
-		if (isLogin()) {
+		if (!isLogin()) {
 			redirect('auth');
 		}
 

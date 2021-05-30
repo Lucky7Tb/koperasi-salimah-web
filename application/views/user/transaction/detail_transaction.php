@@ -60,6 +60,19 @@ $this->load->view('template/header', [
 							</div>
 
 							<div>
+								<h4>Transfer</h4>
+								<div class="row p-3">
+									<div class="col-10">
+										<div class="float-right w-100 border p-3" id="transaction-address">
+											<p id="bank_name"></p>
+											<p id="bank_code"></p>
+											<p id="no_account"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div>
 								<h4>Kurir</h4>
 								<div class="row p-3">
 									<div class="col-10">
