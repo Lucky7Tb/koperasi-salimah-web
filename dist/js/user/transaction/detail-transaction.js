@@ -30,7 +30,7 @@ $('#transaction-proof-form').on('submit', function(e) {
 
 	const url = isUpdateProof ? `${global.base_url}transaction/updateTransactionProof` : `${global.base_url}transaction/uploadTransactionProof`;
 
-	jQuery.ajax({
+	$.ajax({
 	  url: url,
 	  type: 'POST',
 	  data: formData,
@@ -152,4 +152,6 @@ function renderTransactionDetailData(data) {
 			<p>Service: <strong>${data.delivery.service}</strong></p>
 			<p>Resi: <strong>${data.delivery.resi_number ?? '-'}</strong></p>
 	`);
+
+	$('address').text(`${data.address.address}, ${data.address.city}, ${data.address.subdistrict}, ${data.address.province}`);
 }

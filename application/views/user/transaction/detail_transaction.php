@@ -53,10 +53,7 @@ $this->load->view('template/header', [
 								<div class="row p-3">
 									<div class="col-10">
 										<div class="float-right w-100 border p-3" id="transaction-address">
-											<b>Udin Saefudin</b>
-											<address>
-												Jalan Yang Lurus No 6 RT06/09<br>Kel Kiri Kec Kanan
-												Wakanda<br>0812 3456 7890 </address>
+											<address></address>
 										</div>
 									</div>
 								</div>
