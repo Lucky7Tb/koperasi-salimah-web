@@ -47,8 +47,10 @@ $uri = $produk['uri'];
 								<div class="row">
 									<div class="col-md-6 col-lg-3 mb-4">
 										<div class="position-relative">
-											<img src="<?= $produk['uri'] ?>" alt="<?= $produk['product_name'] ?>" class="img-fluid"
-													 width="250px">
+											<div style="height: 250px">
+												<img src="<?=$produk['uri']?>" alt="<?=$produk['product_name']?>" class="img-fluid"
+													 width="250px" style="max-height: 250px; min-height: 250px">
+												</div>
 											<div class="pt-3">
 												<p class="text-center">Cover</p>
 											</div>
@@ -58,8 +60,10 @@ $uri = $produk['uri'];
 										foreach ($photos as $photo) :?>
 											<div class="col-md-6 col-lg-3 mb-4">
 												<div class="position-relative">
-													<img src="<?= $photo['uri'] ?>" alt="<?= $produk['product_name'] ?>" class="img-fluid"
-															 width="250px">
+													<div style="height: 250px">
+																			<img src="<?=$photo['uri']?>" alt="<?=$produk['product_name']?>" class="img-fluid"
+																				 width="250px" style="max-height: 250px; min-height: 250px">
+																		</div>
 													<div class="caption-bg fade bg-transparent text-right">
 														<div class="d-table w-100 h-100 ">
 															<div class="d-table-cell align-bottom">
