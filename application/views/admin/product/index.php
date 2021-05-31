@@ -44,8 +44,10 @@ $this->load->view('admin/template/header');
 							foreach ($produk['data'] as $p) : ?>
 								<div class="col-md-6 col-lg-3 mb-4">
 									<div class="position-relative">
-										<img src="<?= $p['uri'] ?>" alt="" class="img-fluid img-thumbnail d-block mx-auto"
-												 style="max-height: 250px; <?= $p['is_visible'] == 0 ? 'opacity: .5' : '' ?>">
+										<div style="height: 250px">
+											<img src="<?=$p['uri']?>" alt="" class="d-block mx-auto img-fluid img-thumbnail"
+												 style="min-height: 250px; max-height: 250px; <?=$p['is_visible'] == 0 ? 'opacity: .5' : ''?>">
+										</div>
 									</div>
 									<div class="pt-3">
 										<div class="container-fluid">
