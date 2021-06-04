@@ -3,6 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Product_model extends CI_Model
 {
+	/**
+	 * Product_model constructor.
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->token = $this->session->userdata('token');
+	}
+
 	// get
 	public function getAllProducts($token, $params = null)
 	{
@@ -11,11 +20,18 @@ class Product_model extends CI_Model
 		return get_curl($end, $token, $params);
 	}
 
-	public function getAllProductsUser($token, $params = null)
+	// public function getAllProductsUser($params = null)
+	// {
+	// 	$end = 'api/v1/user/product/getAllProducts';
+
+	// 	return get_curl($end, $this->token, $params);
+	// }
+
+	public function getAllProductsUser($params = null)
 	{
 		$end = 'api/v1/user/product/getAllProducts';
 
-		return get_curl($end, $token, $params);
+		return get_curl($end, $this->token, $params);
 	}
 
 	public function getProduct($id, $token)
@@ -81,5 +97,44 @@ class Product_model extends CI_Model
 		$end = 'api/v1/admin/dashboard/product/updateProductCategories';
 
 		return put_curl($end, $id, $data, $token);
+	}
+
+	public function countAllProducts($search)
+	{
+		$end = 'api/v1/admin/dashboard/product/getProducts';
+
+		return count(get_curl($end, $this->token, array('search' => $search))['data']);
+	}
+
+	public function countAllProductsUser($search = null)
+	{
+		$end = 'api/v1/user/product/getAllProducts';
+
+		return count(get_curl($end, $this->token, array('search' => $search))['data']);
+	}
+
+	public function countAllNotVisible($params = null)
+	{
+		return count($this->notVisibleUser($params));
+	}
+
+	public function notVisibleUser($params = null)
+	{
+		$end = 'api/v1/user/product/getAllProducts';
+
+		$data = get_curl($end, $this->token, $params)['data'];
+
+		$array = array();
+		$finish = $this->countAllProducts($params['search']);
+		$i = 0;
+		$j = 0;
+		while ($i < $finish) {
+			if ($data[$i]['is_visible'] == 1) {
+				$array[$j++] = $data[$i];
+			}
+			$i++;
+		}
+
+		return $array;
 	}
 }
