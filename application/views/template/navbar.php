@@ -13,7 +13,7 @@
 			</div>
 			<form class="float-left d-none d-lg-block search-form" style="background-color: white;">
 				<div class="form-group mb-0 position-relative">
-					<input type="text" class="form-control border-0 rounded bg-search pl-5" placeholder="Cari produk....">
+					<input id="input-search-product" type="text" class="form-control border-0 rounded bg-search pl-5" placeholder="Cari produk...." value="<?= $this->uri->segment(4) ?>">
 					<div class="btn-search position-absolute top-0">
 						<a href="#"><i class="h6 icon-magnifier"></i></a>
 					</div>

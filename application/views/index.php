@@ -117,5 +117,24 @@ $this->load->view('template/header');
 
 <?php
 $js = base_url('dist/js');
-$this->load->view('template/footer');
+$this->load->view('template/footer', array(
+	'js' => '
+	<script>
+	let page = 1
+	let search = $("#input-search-product")
+	let tCari = $("#tombol-cari")
+	tCari.on("click", function() {
+		let url = "' . base_url('user/index/') . '1/" + search.val()
+		window.location.href = url
+	})
+	search.on("keypress", function(e) {
+		if (e.keyCode === 13) {
+			e.preventDefault();
+			let url = "' . base_url('user/index/') . '1/" + search.val()
+			window.location.href = url
+			return false;
+		}
+	})
+	</script>'
+));
 ?>

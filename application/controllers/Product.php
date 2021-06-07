@@ -39,6 +39,7 @@ class Product extends CI_Controller {
 		$config['base_url'] = base_url('product/index');
 		$config['first_url'] = base_url('product/index/1/') . $search;
 		$config['suffix'] = '/' . $search;
+		$config['uri_segment'] = 2;
 
 		$data['total'] = $this->produk->countAllProductsUser($search);
 		$config['total_rows'] = $data['total'];
