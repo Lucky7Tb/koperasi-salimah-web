@@ -20,13 +20,6 @@ class Product_model extends CI_Model
 		return get_curl($end, $token, $params);
 	}
 
-	// public function getAllProductsUser($params = null)
-	// {
-	// 	$end = 'api/v1/user/product/getAllProducts';
-
-	// 	return get_curl($end, $this->token, $params);
-	// }
-
 	public function getAllProductsUser($params = null)
 	{
 		$end = 'api/v1/user/product/getAllProducts';

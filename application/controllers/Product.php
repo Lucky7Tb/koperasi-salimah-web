@@ -52,12 +52,6 @@ class Product extends CI_Controller {
 		$this->load->view('user/product/index', $data);
 	}
 
-	// public function index()
-	// {
-	// 	$data['title'] = 'Produk';
-	// 	$this->load->view('user/product/index', $data);
-	// }
-
 	public function detail($id)
 	{
 		$data['title'] = 'Detail produk';
@@ -79,9 +73,6 @@ class Product extends CI_Controller {
 			'search' => $search
 		);
 
-//		$config['first_url'] = base_url('admin/product/index/1/') . $search;
-//		$config['suffix'] = '/' . $search;
-
 		$totalData = $this->produk->countAllProductsUser($params['search']);
 		$config['total_rows'] = $totalData;
 
@@ -92,7 +83,6 @@ class Product extends CI_Controller {
 		$data['pagination'] = $this->pagination->create_links();
 		$data['page'] = $page;
 
-//		echo json_encode($data);
 		var_dump($data);
 	}
 
