@@ -181,7 +181,7 @@ function renderTransactionDetailData(data) {
 	$('#bank_code').text(`Kode bank: ${data.payment.bank_code}`);
 	$('#no_account').text(`Rekening : ${data.payment.number_account}`);
 
-	if (data.delivery.resi_number) trackResi(data.delivery.resi_number, 'jne');
+	if (data.delivery.resi_number) trackResi(data.delivery.resi_number, data.delivery.courier_code);
 }
 
 function renderResiDetail(data) {
