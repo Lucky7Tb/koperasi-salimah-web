@@ -29,10 +29,10 @@ function getData(argument) {
 	});
 
 	global.getCurrentAddress(function(response) {
-		checkout.addressId = response.data.id;
+		checkout.addressId = response.id;
 
-		$('address').text(`${response.data.address}, ${response.data.city}, ${response.data.subdistrict}, ${response.data.province}`);
-		checkout.destination = response.data.subdistrict_id;
+		$('address').text(`${response.address}, ${response.city}, ${response.subdistrict}, ${response.province}`);
+		checkout.destination = response.subdistrict_id;
 	});
 
 	getDeliveryService();
