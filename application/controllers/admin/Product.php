@@ -51,7 +51,7 @@ class Product extends CI_Controller
 		$config['first_url'] = base_url('admin/product/index/1/') . $search;
 		$config['suffix'] = '/' . $search;
 
-		$data['total'] = $this->produk->countAllProducts();
+		$data['total'] = $this->produk->countAllProducts($search);
 		$config['total_rows'] = $data['total'];
 
 		// initialize
