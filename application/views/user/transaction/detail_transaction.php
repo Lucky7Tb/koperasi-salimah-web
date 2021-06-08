@@ -18,7 +18,6 @@ $this->load->view('template/header', [
 			</div>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-12 mt-3">
 			<div class="card">
@@ -47,101 +46,87 @@ $this->load->view('template/header', [
 									</tr>
 								</tbody>
 							</table>
-
 							<div>
 								<h4>Alamat</h4>
 								<div class="row p-3">
 									<div class="col-10">
 										<div class="float-right w-100 border p-3" id="transaction-address">
-											<address></address>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div>
-								<h4>Transfer</h4>
-								<div class="row p-3">
-									<div class="col-10">
-										<div class="float-right w-100 border p-3" id="transaction-address">
-											<p id="bank_name"></p>
-											<p id="bank_code"></p>
-											<p id="no_account"></p>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div>
-								<h4>Kurir</h4>
-								<div class="row p-3">
-									<div class="col-10">
-										<div class="float-right w-100 border p-3" id="transaction-courier">
-										</div>
+										<address></address>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-12 col-xl-5">
-							<div>
-								<p class="h4" id="transaction-status"></p>
-							</div>
-							<div>
-								<h4>Bukti Pembayaran</h4>
-								<div class="row p-3">
-									<div class="col-10">
-										<div class="card-body">
-											<form id="transaction-proof-form">
-												<div class="form-group">
-													<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
-												</div>
-												<button type="submit" class="btn btn-lg btn-block btn-primary" id="btn-upload-proof">Upload</button>
-											</form>
-											<p class="h6 mt-2 text-center" id="transaction-message"></p>
-										</div>
+						<div>
+							<h4>Transfer</h4>
+							<div class="row p-3">
+								<div class="col-10">
+									<div class="float-right w-100 border p-3" id="transaction-address">
+										<p id="bank_name"></p>
+										<p id="bank_code"></p>
+										<p id="no_account"></p>
 									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<h4>Kurir</h4>
+							<div class="row p-3">
+								<div class="col-12">
+									<div class="float-right w-100 border p-3" id="transaction-courier">
+									</div>
+								</div>
+								<div class="col-12 mt-2">
+									<div class="table-responsive">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Deskripsi</th>
+													<th>Kota</th>
+													<th>Tanggal</th>
+													<th>Waktu</th>
+												</tr>
+											</thead>
+										<tbody id="resi-detail"></tbody>
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
-
-					<!-- <div class="row">
-						<div class="col-12 col-sm-12 mt-3">
-							<div class="card">
+				</div>
+				<div class="col-lg-12 col-xl-5">
+					<div>
+						<p class="h4" id="transaction-status"></p>
+					</div>
+					<div>
+						<h4>Bukti Pembayaran</h4>
+						<div class="row p-3">
+							<div class="col-10">
 								<div class="card-body">
-									<h4>Review</h4>
-									<form>
-										<h6 class="float-left"> Rating: </h6>
-										<ul class="list-inline mb-0 mt-2">
-											<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-											<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-											<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-											<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
-											</li>
-											<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
-											</li>
-										</ul><br>
+									<form id="transaction-proof-form">
 										<div class="form-group">
-											<div id="snow-container" class="height-175"></div>
+											<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
 										</div>
+										<button type="submit" class="btn btn-lg btn-block btn-primary" id="btn-upload-proof">Upload</button>
 									</form>
-									<a href="#" class="btn btn-success">Upload Review</a>
+									<p class="h6 mt-2 text-center" id="transaction-message"></p>
 								</div>
 							</div>
 						</div>
-					</div> -->
-					<button type="button" class="btn btn-lg btn-block btn-outline-dark" onclick="history.back()">Kembali</button>
+					</div>
 				</div>
 			</div>
+			<button type="button" class="btn btn-lg btn-block btn-outline-dark" onclick="history.back()">Kembali</button>
 		</div>
 	</div>
 </div>
-
+</div>
+</div>
 <?php
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
+		<script src="' . $plugin . '/moment/moment.js"></script>
 		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/user/transaction/detail-transaction.js"></script>

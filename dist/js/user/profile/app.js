@@ -1,7 +1,7 @@
 function initPlugiOption() {
 	$("#date_of_birth").datepicker({ format: "yyyy-mm-dd" });
 	$("select").select2({
-		  dropdownParent: $('#address-create-modal')
+		  dropdownParent: $('#address-modal')
 	});
 }
 
@@ -10,14 +10,6 @@ function getMyData() {
 	global.getCurrentAddress(renderCurrentAddress);
 	global.getAllAddress(renderAllAddress);
 }
-
-global.getProvince(function(provinces) {
-	$.each(provinces, function(_, province) {
-		$('#province').append(`
-			<option value="${province.province_id}">${province.province}</option>
-		`);
-	});
-})
 
 $('#province').on('change', function() {
 	$('#city').html('');
@@ -45,6 +37,8 @@ $('#city').on('change', function() {
 				<option value="${subdistrict.subdistrict_id}">${subdistrict.subdistrict_name}</option>
 			`);
 		});
+
+		$('#subdistrict option:first').prop('selected', true);
 	});
 });
 
@@ -61,9 +55,11 @@ $('#address-form').on('submit', function(e) {
 	formData.append('subdistrict_id', $('#subdistrict').val());
 	formData.append('subdistrict', $('#subdistrict option:selected').text());
 
-	global.addAddress(formData, function(response) {
+	global.addUpdateAddress(formData, function(response) {
 		toastr.success(response.message)
-		$('#address-create-modal').modal('hide');
+		$('#address-modal').modal('hide');
+		$('#address-form').trigger('reset');
+		$('#address_id').val('');
 		global.getCurrentAddress(renderCurrentAddress);
 		global.getAllAddress(renderAllAddress);
 	});
@@ -137,6 +133,37 @@ function getProfile() {
 	});
 }
 
+function getDetailAddress(addressId) {
+	$.ajax({
+		type: "GET",
+		url: `${global.base_url}address/getDetailAddress?id=${addressId}`,
+		success: function (response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				fillFormAddress(response.data); 	
+			}else {
+				toastr.error(response.message);
+			}
+		}
+	});
+}
+
+function showAddressModal() {
+	$('#address-form').trigger('reset');
+	$('#address_id').val('');
+	$('#address-modal').modal('show');
+	console.log($('#address_id').val());
+	global.getProvince(function(provinces) {
+		$.each(provinces, function(_, province) {
+			$('#province').append(`
+				<option value="${province.province_id}">${province.province}</option>
+			`);
+		});
+		$('#province option:first').prop('selected', true);
+		$('#province').trigger('change');
+	})
+}
+
 function renderAllAddress(data) {
 	$('#address-container').html('');
 	$.each(data, function(_, address) {
@@ -150,8 +177,12 @@ function renderAllAddress(data) {
 						<hr>
 						<p>Kode post: <strong>${address.postcode}</strong></p>
 						<p>Status: <span class="badge badge-${address.is_active == '1' ? 'success' : 'secondary'}">${address.is_active == '1' ? 'Aktif' : 'Tidak aktif'}</span></p>
-						<div class="text-center">
+						
+						<div>
 							<button class="card-link btn btn-block btn-lg btn-primary" onclick="setActiveAddress(${address.id})">Jadikan alamat aktif</button>
+						</div>
+						<div class="mt-2">
+							<button class="card-link btn btn-block btn-lg btn-outline-info" onclick="getDetailAddress(${address.id})">Ubah alamat</button>
 						</div>
 					</div>
 				</div>
@@ -183,6 +214,44 @@ function fillForm(data) {
 	$('#date_of_birth').val(data.date_of_birth);
 	$('#date_of_birth').datepicker('update', date);
 	$('#photo_profile').attr('src', data.uri);
+}
+
+function fillFormAddress(data) {
+	$('#address_id').val(data.id);	
+	$('#address').val(data.address);
+	$('#postcode').val(data.postcode);
+
+	global.getProvince(function(provinces) {
+		$.each(provinces, function(_, province) {
+			$('#province').append(`
+				<option value="${province.province_id}">${province.province}</option>
+			`);
+		});
+
+		$(`#province option[value=${data.province_id}]`).prop('selected', true);
+	});
+
+	global.getCities(data.province_id, function(cities) {
+		$.each(cities, function(_, city) {
+			$('#city').append(`
+				<option value="${city.city_id}">${city.type} - ${city.city_name}</option>
+			`);
+		});
+
+		$(`#city option[value=${data.city_id}]`).prop('selected', true);
+	});
+
+	global.getSubdistricts(data.city_id, function(subdistricts) {
+		$.each(subdistricts, function(_, subdistrict) {
+			$('#subdistrict').append(`
+				<option value="${subdistrict.subdistrict_id}">${subdistrict.subdistrict_name}</option>
+			`);
+		});
+
+		$(`#subdistrict option[value=${data.subdistrict_id}]`).prop('selected', true);
+	});
+
+	$('#address-modal').modal('show');
 }
 
 function clearForm() {

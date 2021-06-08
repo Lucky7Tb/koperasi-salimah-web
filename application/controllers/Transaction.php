@@ -81,4 +81,13 @@ class Transaction extends CI_Controller {
 
 		response($result, true);
 	}
+
+	public function trackResi()
+	{
+		$data = $this->input->post(null, true);
+
+		$result = $this->transaction->trackResi($data);
+
+		response($result);
+	}
 }

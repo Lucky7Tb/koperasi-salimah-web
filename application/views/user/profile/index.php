@@ -95,7 +95,7 @@ $this->load->view('template/header', [
 				<div class="row mt-5">
 					<div class="col-12">
 						<h2>Daftar alamat</h2>
-						<button class="btn btn-lg btn-primary mt-2 mb-2" data-target="#address-create-modal" data-toggle="modal">Tambah alamat</button>
+						<button class="btn btn-lg btn-primary mt-2 mb-2" onclick="showAddressModal()">Tambah alamat</button>
 						<div class="row row-cols-sm-12 row-cols-md-6 row-cols-lg-3" id="address-container">
 						</div>
 					</div>
@@ -106,8 +106,8 @@ $this->load->view('template/header', [
 </div>
 </div>
 
-<!-- Create Address Modal -->
-<div class="modal fade" id="address-create-modal" tabindex="-1" aria-hidden="true">
+<!-- Address Modal -->
+<div class="modal fade" id="address-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -118,6 +118,7 @@ $this->load->view('template/header', [
       </div>
       <form id="address-form">
       	<div class="modal-body">
+      		<input type="hidden" id="address_id" name="address_id"></input>
         	<div class="form-group">
         		<label for="province">Provinsi</label>
         		<select class="form-control" id="province" name="province" required></select>

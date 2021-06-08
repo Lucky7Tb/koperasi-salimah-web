@@ -72,6 +72,28 @@ function getDetailTransaction(idTransaction) {
 	});
 }
 
+function trackResi(resiNumber, courierCode) {
+	const formData = new FormData;
+	formData.append('waybill', resiNumber);
+	formData.append('courier', courierCode);
+
+	$.ajax({
+		url: `${global.base_url}transaction/trackResi`,
+		type: 'POST',
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function(response) {
+			response = JSON.parse(response);
+			if (response === 200) {
+				renderResiDetail(response.rajaongkir.manifest);
+			}else {
+				toastr.error(response.rajaongkir.status.description);
+			}
+		}
+	});
+}
+
 function renderTransactionDetailData(data) {
 	let status = '';
 	let badge = '';
@@ -158,4 +180,17 @@ function renderTransactionDetailData(data) {
 	$('#bank_name').text(`Bank: ${data.payment.bank_name}`);
 	$('#bank_code').text(`Kode bank: ${data.payment.bank_code}`);
 	$('#no_account').text(`Rekening : ${data.payment.number_account}`);
+
+	if (data.delivery.resi_number) trackResi(data.delivery.resi_number, 'jne');
+}
+
+function renderResiDetail(data) {
+	$.each(data, function(_, manifest) {
+		$('#resi-detail').append(`
+			<td>${manifest.manifest_description}</td>
+			<td>${moment(manifest.manifest_date).format('DD-MMM-YYYY')}</td>
+			<td>${manifest.manifest_time}</td>
+			<td>${manifest.city_name}</td>
+		`);
+	});
 }

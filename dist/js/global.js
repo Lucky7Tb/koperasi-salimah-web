@@ -148,7 +148,7 @@ global.getCurrentAddress = function(callback) {
 		success: function(response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				callback(response);
+				callback(response.data);
 			}else {
 				toastr.error(response.message);
 			}
@@ -164,6 +164,24 @@ global.getAllAddress = function(callback) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				callback(response.data);
+			}
+		}
+	});
+}
+
+global.addUpdateAddress = function(formData, callback) {
+	const idAddress = $('#address_id').val();
+	const endpoint = idAddress ? `updateAddress?id=${idAddress}` : 'addAddress';
+	$.ajax({
+		type: 'POST',
+		url: `${global.base_url}address/${endpoint}`,
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function (response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				callback(response);
 			}else {
 				toastr.error(response.message);
 			}
@@ -171,10 +189,10 @@ global.getAllAddress = function(callback) {
 	});
 }
 
-global.addAddress = function(formData, callback) {
+global.updateAddress = function(formData, callback) {
 	$.ajax({
 		type: 'POST',
-		url: `${global.base_url}address/addAddress`,
+		url: `${global.base_url}address/updateAddress`,
 		processData: false,
 		contentType: false,
 		data: formData,

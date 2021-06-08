@@ -76,6 +76,25 @@ class Address_model extends CI_Model {
 		return $result;
 	}
 
+	public function getDetailAddress($addressId)
+	{
+		$endpoint = 'api/v1/user/address/getDetailAddress/'.$addressId;
+
+		$result = get_curl($endpoint, $this->token);
+
+		return $result;
+	}
+
+	public function updateAddress($data, $idAddress)
+	{
+
+		$endpoint = 'api/v1/user/address/updateAddress/'.$idAddress;
+
+		$result = post_curl($endpoint, $data, $this->token, true);
+		
+		return $result;
+	}
+
 	public function changeActiveAddress($data)
 	{
 		$endpoint = 'api/v1/user/address/changeActiveAddress';

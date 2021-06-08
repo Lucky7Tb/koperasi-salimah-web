@@ -3,12 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Transaction_model extends CI_Model {
 
+	private $token;
+	private $rajaOngkirKey = '2a97d6ba5a1b8566843fa3fb001e6b97';
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->token = $this->session->userdata('token');
+	}
+
 	public function getActiveTransaction($data)
 	{
 		$endpoint = 'api/v1/user/transaction/listActiveTransaction';
-		$token = $this->session->userdata('token');
-
-		$result = get_curl($endpoint, $token, $data);
+	
+		$result = get_curl($endpoint, $this->token, $data);
 
 		return $result;
 	}
@@ -16,9 +24,8 @@ class Transaction_model extends CI_Model {
 	public function getHistoryTransaction($data)
 	{
 		$endpoint = 'api/v1/user/transaction/listHistoryTransaction';
-		$token = $this->session->userdata('token');
 
-		$result = get_curl($endpoint, $token, $data);
+		$result = get_curl($endpoint, $this->token, $data);
 
 		return $result;
 	}
@@ -26,9 +33,8 @@ class Transaction_model extends CI_Model {
 	public function getDetailTransaction($transactionId)
 	{
 		$endpoint = 'api/v1/user/transaction/detailTransaction/'.$transactionId;
-		$token = $this->session->userdata('token');
 
-		$result = get_curl($endpoint, $token);
+		$result = get_curl($endpoint, $this->token);
 
 		return $result;
 	}
@@ -36,9 +42,8 @@ class Transaction_model extends CI_Model {
 	public function uploadTransactionProof($data)
 	{
 		$endpoint = 'api/v1/user/transaction/uploadProof';
-		$token = $this->session->userdata('token');
 
-		$result = post_curl($endpoint, $data, $token);
+		$result = post_curl($endpoint, $data, $this->token);
 
 		return $result;
 	}
@@ -46,9 +51,21 @@ class Transaction_model extends CI_Model {
 	public function updateTransactionProof($data)
 	{
 		$endpoint = 'api/v1/user/transaction/changeProof';
-		$token = $this->session->userdata('token');
 
-		$result = post_curl($endpoint, $data, $token);
+		$result = post_curl($endpoint, $data, $this->token);
+
+		return $result;
+	}
+
+	public function trackResi($data)
+	{
+		$headers = [
+			'key' => $this->rajaOngkirKey
+		];
+
+		$endpoint = 'https://pro.rajaongkir.com/api/waybill';
+
+		$result = request($endpoint, 'POST', $data, $headers);
 
 		return $result;
 	}

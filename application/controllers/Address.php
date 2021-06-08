@@ -56,6 +56,15 @@ class Address extends CI_Controller {
 		response($result);
 	}
 
+	public function getDetailAddress()
+	{
+		$addressId = $this->input->get('id', true);
+
+		$result = $this->address->getDetailAddress($addressId);
+
+		response($result, true);
+	}
+
 	public function addAddress()
 	{
 		$data = $this->input->post(null, true);
@@ -65,6 +74,16 @@ class Address extends CI_Controller {
 		if (!haveAddress() && $result['code'] == 200) {
 			$this->session->set_userdata('have_address', true);
 		}	
+
+		response($result, true);
+	}
+
+	public function updateAddress()
+	{
+		$idAddress = $this->input->get('id', true);
+		$data = $this->input->post(null, true);
+
+		$result = $this->address->updateAddress($data, $idAddress);
 
 		response($result, true);
 	}

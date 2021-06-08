@@ -7,16 +7,8 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 
-		if (!isLogin()) {
-			redirect('auth');
-		}
-
 		if (isAdmin()) {
 			redirect('/admin');
-		}
-
-		if (!haveAddress()) {
-			redirect('/profile');
 		}
 
 		$this->load->model('Product_model','produk');		

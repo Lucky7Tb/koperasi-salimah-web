@@ -93,7 +93,7 @@
 
 								}, 2000);
 							}else {
-								toastr.danger(response.message);
+								toastr.error(response.message);
 							}
 						}
 					});

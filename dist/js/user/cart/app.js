@@ -28,9 +28,9 @@ function renderCart(data) {
 					<td class="w-25 align-middle">
 						<input type="number" class="form-control" value="${cart.qty}" onblur="updateProductQty(${cart.id}, this)" min="1">
 					</td>
-					<td class="align-middle">
+					<td class="align-middle text-center">
 						<a href="javascript:void(0)" onclick="removeFormCart(${cart.id})">
-							<i class="icon-trash"></i>
+							<i class="icon-trash h5"></i>
 						</a>
 					</td>
 				</tr>
