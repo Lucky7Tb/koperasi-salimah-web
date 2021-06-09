@@ -1,6 +1,7 @@
 const listCart = [];
 
 function getCart() {
+	listCart.splice(0, listCart.length);
 	global.getCart(function(response) {
 		$.each(response.data, function(_, cart) {
   		listCart.push(cart.id);

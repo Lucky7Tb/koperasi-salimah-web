@@ -66,7 +66,7 @@ $this->load->view('template/header', [
 							</li>
 						</ul>
 						<div class="tab-content mt-5">
-							<div class="tab-pane fade active show" id="id1">
+							<div class="tab-pane fade" id="id1">
 								<div class="form">
 									<div class="row">
 										<div class="col-lg-12 col-xl-7 mb-4 mb-xl-0">
@@ -110,7 +110,7 @@ $this->load->view('template/header', [
 									</div>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="id2">
+							<div class="tab-pane fade active show" id="id2">
 								<div class="form">
 									<div class="row">
 										<div class="col-lg-12 col-xl-7 mb-4 mb-xl-0">

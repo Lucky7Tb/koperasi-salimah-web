@@ -1,15 +1,15 @@
 const checkout = {
-	listCart: [],
+	cart: [],
+	listIdCart: [],
+	listCartPerSeller: [],
 	totalPrice: 0,
-	cartWeight: 0,
-	origin: '',
-	originType: 'subdistrict',
+	productWeight: [],
+	origin: [],
 	destination: '',
-	destinationType: 'subdistrict',
 	courier: '',
 	courierService: '',
 	wayFee: 0,
-	addressId: '',
+	userAddressId: '',
 	deliveryId: '',
 	paymentId: ''
 };
@@ -19,18 +19,18 @@ function initPluginOption() {
 	$('select').select2();
 }
 
-function getData(argument) {
+function getData() {
 	global.getCart(function(response) {
 		$.each(response.data, function(_, cart) {
-			checkout.listCart.push(cart.id);
+			checkout.cart.push(cart);
+			checkout.listIdCart.push(cart.id);
 		});
 		renderCart(response.data);
 		prepareOrder();
 	});
 
 	global.getCurrentAddress(function(response) {
-		checkout.addressId = response.id;
-
+		checkout.userAddressId = response.id;
 		$('address').text(`${response.address}, ${response.city}, ${response.subdistrict}, ${response.province}`);
 		checkout.destination = response.subdistrict_id;
 	});
@@ -88,9 +88,9 @@ function getWayFee() {
 	const formData = new FormData;
 
 	formData.append('origin', checkout.origin);
-	formData.append('originType', checkout.originType);
+	formData.append('originType', 'subdistrict');
 	formData.append('destination', checkout.destination);
-	formData.append('destinationType', checkout.destinationType);
+	formData.append('destinationType', 'subdistrict');
 	formData.append('weight', checkout.cartWeight);
 	formData.append('courier', checkout.courier);
 
@@ -128,7 +128,7 @@ function getWayFee() {
 
 function prepareOrder() {
 	const formData = new FormData;
-	formData.append('id_cart', checkout.listCart);
+	formData.append('id_cart', checkout.listIdCart);
 
 	$.ajax({
 		url: `${global.base_url}cart/prepareOrder`,
@@ -139,11 +139,24 @@ function prepareOrder() {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				checkout.origin = response.data[0].address.subdistrict_id;
-				$.each(response.data, function(_, data) {
-					$.each(data.products, function(_, product) {
-						checkout.cartWeight += parseInt(product.weight);
-					});				
+				$.each(response.data, function(_, seller) {
+					let weight = 0
+					$.each(seller.products, function(_, product) {
+						weight += parseInt(product.weight);
+					});
+
+					const idCartFilter = checkout.cart.filter(function(cart) {
+						return cart.product.id_m_users == seller.address.id_m_users
+					})
+					.map(function(cart) {
+						return cart.id;
+					});
+
+					checkout.productWeight.push(weight);
+
+					checkout.origin.push(seller.address.subdistrict_id);
+						
+					checkout.listCartPerSeller.push(idCartFilter);
 				});
 
 				getWayFee();
@@ -202,12 +215,12 @@ function renderCart(data) {
 
 function createOrder() {
 	const formData = new FormData;
-	formData.append('id_u_detail_address', checkout.addressId);
+	formData.append('id_u_detail_address', checkout.userAddressId);
 	formData.append('id_m_delivery_services', checkout.deliveryId);
 	formData.append('cost_delivery', checkout.wayFee);
 	formData.append('service', checkout.courierService);
 	formData.append('id_m_payment', checkout.paymentId);
-	formData.append('id_cart', checkout.listCart);
+	formData.append('id_cart', checkout.listCartPerSeller);
 
 	$.ajax({
 		url: `${global.base_url}cart/createOrder`,
