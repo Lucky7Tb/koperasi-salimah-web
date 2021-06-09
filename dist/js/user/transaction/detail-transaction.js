@@ -187,10 +187,12 @@ function renderTransactionDetailData(data) {
 function renderResiDetail(data) {
 	$.each(data, function(_, manifest) {
 		$('#resi-detail').append(`
-			<td>${manifest.manifest_description}</td>
-			<td>${moment(manifest.manifest_date).format('DD-MMM-YYYY')}</td>
-			<td>${manifest.manifest_time}</td>
-			<td>${manifest.city_name}</td>
+			<tr>
+				<td>${manifest.manifest_description}</td>
+				<td>${moment(manifest.manifest_date).format('DD-MMM-YYYY')}</td>
+				<td>${manifest.manifest_time}</td>
+				<td>${manifest.city_name}</td>
+			</tr>
 		`);
 	});
 }

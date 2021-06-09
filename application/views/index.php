@@ -37,9 +37,13 @@ $this->load->view('template/header');
 							$i = 1;
 							foreach ($produk['data'] as $p) {
 						?>
+
 								<div class="col-md-6 col-lg-3 mb-4">
 									<div class="position-relative">
-										<img src="<?= $p['uri'] ?>" alt="<?= $p['product_name'] ?>" class="img-fluid">
+										<div style="background-size: 300px 300px;">
+											<img style="height: 300px;" src="<?= $p['uri'] ?>" alt="" class="img-fluid">
+
+										</div>
 										<div class="caption-bg fade bg-transparent text-right">
 											<div class="d-table w-100 h-100 ">
 												<div class="d-table-cell align-bottom">
@@ -54,7 +58,7 @@ $this->load->view('template/header');
 										</div>
 									</div>
 									<div class="pt-3">
-										<p class="mb-2"><a href="<?= base_url('product/detail/'.$p['id_m_products']) ?>" class="font-weight-bold text-primary"><?= $p['product_name'] ?></a></p>
+										<p class="mb-2"><a href="<?= base_url('product/detail/') ?><?= $p['id_m_products'] ?>" class="font-weight-bold text-primary"><?= $p['product_name'] ?></a></p>
 										<div class="clearfix">
 											<div class="d-inline-block text-danger pl-2">Rp. <?= number_format($p['price'], '2', ',', '.') ?></div>
 											<ul class="list-inline mb-0 mt-2">
@@ -74,35 +78,14 @@ $this->load->view('template/header');
 								$i++;
 							}
 						}
+
 						?>
 					</div>
 					<div class="row">
-						<div class="col-12 col-sm-12">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination justify-content-center">
-									<li class="page-item disabled">
-										<a class="page-link" href="#" aria-label="Previous">
-											<span aria-hidden="true">«</span>
-											<span class="sr-only">Previous</span>
-										</a>
-									</li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Next">
-											<span aria-hidden="true">»</span>
-											<span class="sr-only">Next</span>
-										</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
+						<?= $this->pagination->create_links(); ?>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 
 	</div>
@@ -132,6 +115,22 @@ $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
 		<script src="'.$js.'/global.js"></script>
-	'
+			<script>
+	let page = 1
+	let search = $("#input-search-product")
+	let tCari = $("#tombol-cari")
+	tCari.on("click", function() {
+		let url = "' . base_url('user/index/') . '1/" + search.val()
+		window.location.href = url
+	})
+	search.on("keypress", function(e) {
+		if (e.keyCode === 13) {
+			e.preventDefault();
+			let url = "' . base_url('user/index/') . '1/" + search.val()
+			window.location.href = url
+			return false;
+		}
+	})
+	</script>'
 ]);
 ?>

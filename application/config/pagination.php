@@ -1,7 +1,7 @@
 <?php
 $config['per_page'] = 10;
 
-$config['uri_segment'] = 4;
+//$config['uri_segment'] = 4;
 
 //$config['enable_query_strings'] = TRUE;
 //$config['query_string_segment'] = 'page';

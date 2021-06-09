@@ -54,7 +54,7 @@ function renderHistoryTransactionData(transactions) {
 					<td>
 						<span class="badge badge-${badge}">${status}</span>
 					</td>
-					<td>${global.rupiahFormat(transaction.transaction_token)}</td>
+					<td>${transaction.transaction_token}</td>
 					<td>${moment(transaction.created_at).format('DD-MMM-YYYY HH:mm')}</td>
 					<td>${moment(transaction.updated_at).format('DD-MMM-YYYY HH:mm')}</td>
 				</tr>
@@ -92,9 +92,9 @@ $('#next-history-transaction-button').on('click', function () {
 	getHistoryTransactions(searchKeywordHistory, pageHistory, filterKeyHistory, orderDirectionHistory);
 });
 
-$('#filter-transaction').on('change', function () {
+$('#filter-history-transaction').on('change', function () {
 	filterKeyHistory = this.value;
-	updateNumbering(pageHistory);
+	updateHistoryNumbering(pageHistory);
 	getHistoryTransactions(searchKeywordHistory, pageHistory, filterKeyHistory, orderDirectionHistory);
 });
 

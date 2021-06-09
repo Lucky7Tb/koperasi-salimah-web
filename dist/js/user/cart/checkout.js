@@ -1,15 +1,15 @@
 const checkout = {
-	listCart: [],
+	cart: [],
+	listIdCart: [],
+	listCartPerSeller: [],
 	totalPrice: 0,
-	cartWeight: 0,
-	origin: '',
-	originType: 'subdistrict',
+	productWeight: [],
+	origin: [],
 	destination: '',
-	destinationType: 'subdistrict',
 	courier: '',
-	courierService: '',
-	wayFee: 0,
-	addressId: '',
+	courierService: [],
+	wayFee: [],
+	userAddressId: '',
 	deliveryId: '',
 	paymentId: ''
 };
@@ -19,20 +19,20 @@ function initPluginOption() {
 	$('select').select2();
 }
 
-function getData(argument) {
+function getData() {
 	global.getCart(function(response) {
 		$.each(response.data, function(_, cart) {
-			checkout.listCart.push(cart.id);
+			checkout.cart.push(cart);
+			checkout.listIdCart.push(cart.id);
 		});
 		renderCart(response.data);
 		prepareOrder();
 	});
 
 	global.getCurrentAddress(function(response) {
-		checkout.addressId = response.data.id;
-
-		$('address').text(`${response.data.address}, ${response.data.city}, ${response.data.subdistrict}, ${response.data.province}`);
-		checkout.destination = response.data.subdistrict_id;
+		checkout.userAddressId = response.id;
+		$('address').text(`${response.address}, ${response.city}, ${response.subdistrict}, ${response.province}`);
+		checkout.destination = response.subdistrict_id;
 	});
 
 	getDeliveryService();
@@ -87,48 +87,59 @@ function getPaymentMethod() {
 function getWayFee() {
 	const formData = new FormData;
 
-	formData.append('origin', checkout.origin);
-	formData.append('originType', checkout.originType);
-	formData.append('destination', checkout.destination);
-	formData.append('destinationType', checkout.destinationType);
-	formData.append('weight', checkout.cartWeight);
-	formData.append('courier', checkout.courier);
+	let counter = 0;
+	$.each(checkout.origin, function(index, origin) {
+		formData.set('origin', origin);
+		formData.set('originType', 'subdistrict');
+		formData.set('destination', checkout.destination);
+		formData.set('destinationType', 'subdistrict');
+		formData.set('weight', checkout.productWeight[index]);
+		formData.set('courier', checkout.courier);
 
-	$.ajax({
-		url: `${global.base_url}cart/getWayFee`,
-		type: 'POST',
-		processData: false,
-		contentType: false,
-		data: formData,
-		success: function(response) {
-			response = JSON.parse(response);
-			const { rajaongkir } = response;
-			if (rajaongkir.status.code) {
-				$('#courier-service-container').html('');
-				checkout.wayFee = rajaongkir.results[0].costs[0].cost[0].value;
-				checkout.courierService = rajaongkir.results[0].costs[0].service;
-				$.each(rajaongkir.results[0].costs, function(index, courier) {
-					 $('#courier-service-container').append(`
-					 		<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" name="courier-service" id="courier-${index}" value="${courier.cost[0].value}" ${index === 0 ? 'checked' : ''} onchange="changeCourierService(this)" />
-								<label class="form-check-label" for="courier-${index}">${courier.service}</label>
-							</div>
-					 `)
-				});
-				$('.cart-wayFee').text(`Rp. ${global.rupiahFormat(rajaongkir.results[0].costs[0].cost[0].value.toString())}`);
-				const totalPrice = checkout.wayFee + checkout.totalPrice;
-				$('#cart-total').text(`Rp. ${global.rupiahFormat(totalPrice.toString())}`);
-				$('#cart-total-final').text(`Rp. ${global.rupiahFormat(totalPrice.toString())}`);
-			}else {
-				toastr('Terjadi kesalahan pada server');
+		$.ajax({
+			url: `${global.base_url}cart/getWayFee`,
+			type: 'POST',
+			processData: false,
+			contentType: false,
+			data: formData,
+			success: function(response) {
+				response = JSON.parse(response);
+				const { rajaongkir } = response;
+				if (rajaongkir.status.code === 200) {
+					checkout.wayFee.push(rajaongkir.results[0].costs[0].cost[0].value);
+					checkout.courierService.push(rajaongkir.results[0].costs[0].service);
+					let content = `
+						<div class='row mt-1'>
+						<p class="ml-2">Seller-${counter + 1}</p>
+					`;
+
+					$.each(rajaongkir.results[0].costs, function(index, courier) {
+						content += `
+							<div class="col-2">
+					 			<div class="form-check form-check-inline">
+									<input type="radio" class="form-check-input" name="courier-service-${counter}}" id="courier-${index}-${counter}" value="${courier.cost[0].value}" ${index === 0 ? 'checked' : ''} onchange="changeCourierService(this)" />
+									<label class="form-check-label" for="courier-${index}-${counter}">${courier.service}</label>
+								</div>
+				 			</div>
+						`
+					});
+					content += '</div>';
+					$('#courier-service-container').append(content);
+				}else {
+					toastr.error('Terjadi kesalahan pada server');
+				}
+			},
+			complete: function() {
+				counter++;
+				renderTotalPrice();
 			}
-		}
+		});
 	});
 }
 
 function prepareOrder() {
 	const formData = new FormData;
-	formData.append('id_cart', checkout.listCart);
+	formData.append('id_cart', checkout.listIdCart);
 
 	$.ajax({
 		url: `${global.base_url}cart/prepareOrder`,
@@ -139,11 +150,24 @@ function prepareOrder() {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				checkout.origin = response.data[0].address.subdistrict_id;
-				$.each(response.data, function(_, data) {
-					$.each(data.products, function(_, product) {
-						checkout.cartWeight += parseInt(product.weight);
-					});				
+				$.each(response.data, function(_, seller) {
+					let weight = 0
+					$.each(seller.products, function(_, product) {
+						weight += parseInt(product.weight);
+					});
+
+					const idCartFilter = checkout.cart.filter(function(cart) {
+						return cart.product.id_m_users == seller.address.id_m_users
+					})
+					.map(function(cart) {
+						return cart.id;
+					});
+
+					checkout.productWeight.push(weight);
+
+					checkout.origin.push(seller.address.subdistrict_id);
+						
+					checkout.listCartPerSeller.push(idCartFilter);
 				});
 
 				getWayFee();
@@ -155,8 +179,11 @@ function prepareOrder() {
 }
 
 function changeCourier(form) {
+	checkout.wayFee.splice(0, checkout.wayFee.length);
+	checkout.courierService.splice(0, checkout.courierService.length);
 	checkout.courier = form.value;
 	checkout.deliveryId = $('#courier-select option:selected').attr('data-id');
+	$('#courier-service-container').html('');
 	getWayFee();
 }
 
@@ -165,9 +192,23 @@ function changePaymentMethod(form) {
 }
 
 function changeCourierService(form) {
-	checkout.wayFee = parseInt(form.value);
-	const totalPrice = checkout.wayFee + checkout.totalPrice;
-	$('.cart-wayFee').text(`Rp. ${global.rupiahFormat(checkout.wayFee.toString())}`);
+	$('input[type=radio]:checked').each(function(index, radio) {
+		checkout.wayFee[index] = radio.value
+	});
+
+	renderTotalPrice();
+}
+
+function renderTotalPrice() {
+	let totalWayFee = 0;
+	$.each(checkout.wayFee, function(_, wayFee) {
+		totalWayFee += parseInt(wayFee);
+	});
+
+	$('.cart-wayFee').text(`Rp. ${global.rupiahFormat(totalWayFee.toString())}`);
+	
+	const totalPrice = totalWayFee + checkout.totalPrice;
+
 	$('#cart-total').text(`Rp. ${global.rupiahFormat(totalPrice.toString())}`);
 	$('#cart-total-final').text(`Rp. ${global.rupiahFormat(totalPrice.toString())}`);
 }
@@ -202,30 +243,38 @@ function renderCart(data) {
 
 function createOrder() {
 	const formData = new FormData;
-	formData.append('id_u_detail_address', checkout.addressId);
-	formData.append('id_m_delivery_services', checkout.deliveryId);
-	formData.append('cost_delivery', checkout.wayFee);
-	formData.append('service', checkout.courierService);
-	formData.append('id_m_payment', checkout.paymentId);
-	formData.append('id_cart', checkout.listCart);
 
-	$.ajax({
-		url: `${global.base_url}cart/createOrder`,
-		type: 'POST',
-		processData: false,
-		contentType: false,
-		data: formData,
-		success: function(response) {
-			response = JSON.parse(response);
+	global.loading('btn-createOrder', 'primary', true, null);
+	for (let i = 0; i < checkout.listCartPerSeller.length; i++) {
+		formData.set('id_u_detail_address', checkout.userAddressId);
+		formData.set('id_m_delivery_services', checkout.deliveryId);
+		formData.set('cost_delivery', checkout.wayFee[i]);
+		formData.set('service', checkout.courierService[i]);
+		formData.set('id_m_payment', checkout.paymentId);
+		formData.set('id_cart', checkout.listCartPerSeller[i]);
 
-			if (response.code === 200) {
-				setTimeout(function() {
-					window.location.href = global.base_url + "transaction";
-				}, 2000);
-				toastr.success(response.message);
-			}else {
-				toastr.error(response.message)
+		$.ajax({
+			url: `${global.base_url}cart/createOrder`,
+			type: 'POST',
+			processData: false,
+			contentType: false,
+			data: formData,
+			success: function(response) {
+				response = JSON.parse(response);
+				if (response.code === 200) {
+					toastr.success(response.message);
+				}else {
+					toastr.error(response.message)
+				}
+			},
+			complete: function() {
+				if (i === (checkout.listCartPerSeller.length - 1)) {
+					global.loading('btn-createOrder', 'primary', false, 'Konfirmasi');
+					setTimeout(function() {
+						window.location.href = `${global.base_url}transaction`
+					}, 2000);
+				}
 			}
-		}
-	});
+		});
+	}
 }
