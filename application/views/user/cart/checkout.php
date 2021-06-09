@@ -23,7 +23,7 @@ $this->load->view('template/header', [
 			Anda yakin dengan transaksi ini? </div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-				<button class="btn btn-primary" onclick="createOrder()">Konfirmasi</button>
+				<button class="btn btn-primary" onclick="createOrder()" id="btn-createOrder">Konfirmasi</button>
 			</div>
 		</div>
 	</div>
@@ -66,7 +66,7 @@ $this->load->view('template/header', [
 							</li>
 						</ul>
 						<div class="tab-content mt-5">
-							<div class="tab-pane fade" id="id1">
+							<div class="tab-pane fade  active show" id="id1">
 								<div class="form">
 									<div class="row">
 										<div class="col-lg-12 col-xl-7 mb-4 mb-xl-0">
@@ -110,7 +110,7 @@ $this->load->view('template/header', [
 									</div>
 								</div>
 							</div>
-							<div class="tab-pane fade active show" id="id2">
+							<div class="tab-pane fade" id="id2">
 								<div class="form">
 									<div class="row">
 										<div class="col-lg-12 col-xl-7 mb-4 mb-xl-0">
@@ -129,10 +129,11 @@ $this->load->view('template/header', [
 													<div class="col-10">
 														<div class="float-right w-100 border p-3">
 															<label>Pilih Kurir <span class="text-danger">*</span></label>
+															<label class="text-muted">Jika membeli produk lebih dari 1 seller, maka diharapkan memilih lebih dari 1 service kurir</label>
 															<div class="form-group">
 																<select class="style-select form-control" id="courier-select" data-id='' onchange="changeCourier(this)">
 																</select>
-																<div id="courier-service-container">
+																<div id="courier-service-container" class="mt-2">
 																</div>
 															</div>
 														</div>
