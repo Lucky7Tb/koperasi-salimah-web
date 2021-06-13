@@ -28,7 +28,7 @@ function getPayment() {
 			if (response.code === 200) {
 				fillForm(response.data);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -51,9 +51,9 @@ $('#payment-thumbnail-form').on('submit', function (e) {
 			if (response.code === 200) {
 				$("#payment-thumbnail-modal").modal('hide');
 				getPayment();
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah thumbnail pembayaran');
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {
@@ -77,12 +77,12 @@ $('#payment-form').on('submit', function (e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah data pembayaran');
 				setTimeout(function () { 
 					window.location.href = global.base_url + 'admin/payment';
 				}, 1000);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

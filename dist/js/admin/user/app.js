@@ -22,7 +22,7 @@ function getUsers(
 			if (response.code === 200) {
 				renderUserData(response.data);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 	});

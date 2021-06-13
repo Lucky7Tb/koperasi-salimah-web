@@ -223,3 +223,8 @@ global.changeActiveAddress = function(idAddress, callback) {
 		}
 	});
 }
+
+toastr.options = {
+  "positionClass": "toast-top-center",
+  "hideDuration": "500",
+}

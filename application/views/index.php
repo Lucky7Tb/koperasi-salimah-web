@@ -29,7 +29,7 @@ $this->load->view('template/header');
 	</div>
 	<div class="row">
 		<div class="col-12 mt-3">
-			<div class="card">
+			<div class="card border-0">
 				<div class="card-body">
 					<div class="row">
 						<?php
@@ -40,12 +40,11 @@ $this->load->view('template/header');
 
 								<div class="col-md-6 col-lg-3 mb-4">
 									<div class="position-relative">
-										<div style="background-size: 300px 300px;">
-											<img style="height: 300px;" src="<?= $p['uri'] ?>" alt="" class="img-fluid">
-
+										<div style="width: 300px; height: 300px; background-image: url(<?= $p['uri'] ?>); background-size: cover; background-position: center; background-repeat: no-repeat;" class="border rounded-lg"
+											>
 										</div>
 										<div class="caption-bg fade bg-transparent text-right">
-											<div class="d-table w-100 h-100 ">
+											<div class="d-table w-100 h-100">
 												<div class="d-table-cell align-bottom">
 													<div class="mb-3">
 														<a href="javascript:void(0)" class="rounded-left bg-white px-3 py-2 shadow2" onclick="global.addToWishlist(<?= $p['id_m_products'] ?>)"><i class="icon-heart"></i></a>

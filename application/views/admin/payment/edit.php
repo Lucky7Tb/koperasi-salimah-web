@@ -92,8 +92,7 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-	<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
+		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
 		<script src="' . $js . '/admin/payment/edit.js"></script>
 		<script>
 			initPlugiOption();

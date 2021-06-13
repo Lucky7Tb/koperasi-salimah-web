@@ -12,7 +12,6 @@ $('#photo').on('input', function () {
 			contentType: false,
 			processData: false,
 			success: function (res) {
-				// console.log(res)
 				window.location.href = res
 			}
 		})

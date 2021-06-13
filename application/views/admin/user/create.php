@@ -3,9 +3,9 @@ $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
-			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
-		'
+		<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+	'
 ]);
 ?>
 <div class="container-fluid site-width">
@@ -110,7 +110,6 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/user/create.js"></script>
 		<script>
 			initOptionPlugin();

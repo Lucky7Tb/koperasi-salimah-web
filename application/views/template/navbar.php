@@ -32,10 +32,7 @@
 					<!-- Keranjang -->
 					<li class="dropdown align-self-center d-inline-block" style="background-color: white;">
 						<a href="<?= base_url('cart') ?>" class="nav-link" aria-expanded="false"><i class="icon-basket h4"></i>
-							<span class="badge badge-default"> <span class="ring">
-								</span><span class="ring-point">
-								</span> </span>
-						</a>
+					</a>
 					</li>
 					<!-- Akun user -->
 					<li class="dropdown user-profile align-self-center d-inline-block" style="background-color: white;">

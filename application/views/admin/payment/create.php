@@ -33,7 +33,7 @@ $this->load->view('admin/template/header', [
 							<input type="number" name="number_account" id="number_account" class="form-control" placeholder="Masukan no rekening" required>
 						</div>
 						<div class="form-group">
-							<label for="bank_code">Kode bang</label>
+							<label for="bank_code">Kode bank</label>
 							<input type="number" name="bank_code" id="bank_code" class="form-control" placeholder="Masukan no akun" required>
 						</div>
 						<div class="form-group">
@@ -57,7 +57,6 @@ $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/payment/create.js"></script>
 		<script>
 			initPlugiOption();

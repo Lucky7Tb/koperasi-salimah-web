@@ -3,11 +3,10 @@ $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-			<script src="' . $plugin . '/jquery/jquery-3.3.1.min.js"></script>
-			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
-			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
-			<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-		'
+		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/select2/css/select2.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/select2/css/select2-bootstrap.min.css">
+	'
 ]);
 ?>
 <div class="container-fluid site-width">
@@ -96,7 +95,7 @@ $this->load->view('admin/template/header', [
 							</div>
 							<div class="form-group row">
 								<div class="col-sm-10">
-									<button type="submit" class="btn btn-primary">Tambah Produk</button>
+									<button type="submit" class="btn btn-primary">Simpan</button>
 								</div>
 							</div>
 
@@ -115,16 +114,14 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		<script src="' . $plugin . '/select2/js/select2.full.min.js"></script>
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/product/app.js"></script>
 		<script>
 			$(document).ready(function() {
-					$("#kategori").select2();
-			})
-		</script>
-		<script>
-			initOptionPlugin();
+				$("#kategori").select2();
+				initOptionPlugin();
+			});
 		</script>
 	'
 ]);

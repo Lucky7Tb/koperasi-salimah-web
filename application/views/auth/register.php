@@ -43,7 +43,6 @@
 							<button type="button" class="btn btn-primary btn-block mb-2" id="register">Daftar</button>
 						</div>
 						<br>
-						<div class="mt-2">Lupa password? <a href="<?= base_url('auth/forgetPassword') ?>">Klik disini</a></div>
 						<div class="mt-2">Sudah punya akun? <a href="<?= base_url('auth') ?>">Masuk</a></div>
 					</div>
 				</form>

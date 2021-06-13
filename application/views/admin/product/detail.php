@@ -1,13 +1,7 @@
 <?php
 $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
-$this->load->view('admin/template/header', [
-	'css' => '
-			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
-			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
-			<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-		'
-]);
+$this->load->view('admin/template/header');
 
 $kategori = $produk['data']['categories'];
 $photos = $produk['data']['photos'];
@@ -19,7 +13,6 @@ $berat = $produk['weight'];
 $deskripsi = $produk['description'];
 $uri = $produk['uri'];
 $visible = $produk['is_visible'];
-
 
 ?>
 <div class="container-fluid site-width">
@@ -51,18 +44,21 @@ $visible = $produk['is_visible'];
 								<div class="card-header d-flex justify-content-between align-items-center">
 									<h4 class="card-title">Foto Produk</h4>
 								</div>
-								<div class="row">
-									<div class="col">
-										<img src="<?= $produk['uri'] ?>" alt="" width="200px">
-									</div>
-									<?php if ($photos != null) :
-										foreach ($photos as $photo) :?>
-											<div class="col">
-												<img src="<?= $photo['uri'] ?>" alt="" width="200px">
-											</div>
-										<?php endforeach;
-									endif ?>
+								<div class="card-body">
+									<div class="row p-2">
+										<?php if ($photos != null): ?>
+											<?php foreach($photos as $photo): ?>
+												<div class="col-4">
+													<img src="<?= $photo['uri'] ?>" alt="<?= $namaProduk ?>" class="img-fluid" width="200px">
+												</div>
+											<?php endforeach; ?>
 
+										<?php else: ?>
+											
+											<h4>Tidak ada foto produk</h4>
+
+										<?php endif; ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -117,7 +113,7 @@ $visible = $produk['is_visible'];
 						<div class="form-group row">
 							<label for="kategori" class="col-sm-2 col-form-label">Status</label>
 							<div class="col-sm-10">
-								<?= $visible == 1 ? 'Aktif' : 'Tidak Aktif' ?>
+								 <span class="badge badge-<?= $visible == 1 ? 'primary' : 'secondary' ?>"><?= $visible == 1 ? 'Aktif' : 'Tidak Aktif' ?></span>
 							</div>
 						</div>
 					</div>
@@ -129,14 +125,5 @@ $visible = $produk['is_visible'];
 </div>
 <?php
 $js = base_url('dist/js');
-$this->load->view('admin/template/footer', [
-	'js' => '
-		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
-		<script src="' . $js . '/admin/product/app.js"></script>
-		<script>initOptionPlugin();</script>
-	'
-]);
+$this->load->view('admin/template/footer');
 ?>

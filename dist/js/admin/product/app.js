@@ -5,7 +5,7 @@ function getProducts(
 	search = '',
 	page = 0
 ) {
-	let url = 'http://localhost/koperasi-salimah/admin/product/data/' + page + '/' + search
+	let url = global.base_url + 'admin/product/data/' + page + '/' + search
 
 	if (page === 0) {
 		$('#prev-button').addClass('disabled')
@@ -23,8 +23,6 @@ function getProducts(
 }
 
 function initOptionPlugin() {
-	$.fn.datepicker.defaults.format = 'yyyy-mm-dd';
-	$('#date_of_birth').datepicker();
 	$('#photo').dropify({
 		messages: {
 			default: 'Seret dan lepas foto disini atau klik',

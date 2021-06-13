@@ -58,7 +58,6 @@ $this->load->view('admin/template/header', [
 											<option value="bank_name">Nama bank</option>
 											<option value="name_account_bank">Pemilik akun bank</option>
 											<option value="is_visible">Status</option>
-											<option value="updated_at">Tgl perubahan</option>
 										</select>
 									</div>
 									<div class="col-6">
@@ -72,43 +71,45 @@ $this->load->view('admin/template/header', [
 						<div class="float-right">
 							<div class="form-group">
 								<label>
-									Search:
-									<input type="text" class="form-control" id="input-search-payment">
+									Cari:
+									<input type="text" class="form-control" id="input-search-payment" placeholder="Cari...">
 								</label>
-								<button class="btn btn-primary" id="button-search">search</button>
+								<button class="btn btn-primary" id="button-search">Cari</button>
 							</div>
 						</div>
-						<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
-							<thead>
-								<tr role="row">
-									<th rowspan="2">#</th>
-									<th rowspan="2">Foto</th>
-									<th rowspan="2">Nama bank</th>
-									<th rowspan="2">Pemilik akun bank</th>
-									<th rowspan="2">No bank</th>
-									<th rowspan="2">Status</th>
-									<th rowspan="2">Tgl perubahan</th>
-									<th colspan="2">Aksi</th>
-								</tr>
-								<tr>
-									<th>Update</th>
-									<th>Aktif</th>
-								</tr>
-							</thead>
-							<tbody id="payment-data-content" style="font-size: 14px;">
+						<div class="table-responsive">
+							<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
+								<thead>
+									<tr role="row">
+										<th rowspan="2">#</th>
+										<th rowspan="2">Foto</th>
+										<th rowspan="2">Nama bank</th>
+										<th rowspan="2">Pemilik akun bank</th>
+										<th rowspan="2">No bank</th>
+										<th rowspan="2">Status</th>
+										<th rowspan="2">Tgl perubahan</th>
+										<th colspan="2">Aksi</th>
+									</tr>
+									<tr>
+										<th>Update</th>
+										<th>Aktif</th>
+									</tr>
+								</thead>
+								<tbody id="payment-data-content" style="font-size: 14px;">
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 						<div id="example_paginate">
 							<ul class="pagination">
 								<li class="paginate_button page-item previous">
 									<button class="btn btn-lg page-link" id="prev-button">
-										Previous
+										Kembali
 									</button>
 								</li>
 								<li class="paginate_button page-item next">
 									<button class="btn btn-lg page-link" id="next-button">
-										Next
+										Berikutnya
 									</button>
 								</li>
 							</ul>
@@ -125,7 +126,6 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
 		<script src="' . $plugin . '/moment/moment.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/payment/app.js"></script>
 		<script>
 			getPayments();

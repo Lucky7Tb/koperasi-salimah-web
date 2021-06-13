@@ -61,7 +61,7 @@ $('#address-form').on('submit', function(e) {
 	formData.append('subdistrict_id', $('#subdistrict').val());
 	formData.append('subdistrict', $('#subdistrict option:selected').text());
 
-	global.addAddress(formData, function(response) {
+	global.addUpdateAddress(formData, function(response) {
 		toastr.success(response.message)
 		$('#address-create-modal').modal('hide');
 		global.getCurrentAddress(renderCurrentAddress);
@@ -150,7 +150,7 @@ function renderAllAddress(data) {
 						<p>Kode post: <strong>${address.postcode}</strong></p>
 						<p>Status: <span class="badge badge-${address.is_active == '1' ? 'success' : 'secondary'}">${address.is_active == '1' ? 'Aktif' : 'Tidak aktif'}</span></p>
 						<div class="text-center">
-							<button class="card-link btn btn-block btn-lg btn-primary" onclick="setActiveAddress(${address.id})">Jadikan alamat aktif</button>
+							<button class="card-link btn btn-block btn-lg btn-primary ${address.is_active == '1' ? 'disabled' : ''}" onclick="setActiveAddress(${address.id})" ${address.is_active == '1' ? 'disabled' : ''}>Jadikan alamat aktif</button>
 						</div>
 					</div>
 				</div>

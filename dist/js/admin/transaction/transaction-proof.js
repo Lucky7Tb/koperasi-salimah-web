@@ -22,7 +22,7 @@ function getTransactionsProof(
 			if (response.code === 200) {
 				renderTransactionWithProofData(response.data);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -121,9 +121,9 @@ $('#transaction-proof-form').on('submit', function (e) {
 				updateNumbering(page);
 				getTransactionsProof();
 				getTransactions();
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah status pembayaran');
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

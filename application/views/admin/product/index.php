@@ -31,11 +31,11 @@ $this->load->view('admin/template/header');
 					<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
 						<div id="example_filter" class="dataTables_filter">
 							<label>
-								Search:
+								Cari:
 								<input type="search" class="form-control form-control-sm" id="input-search-product" autocomplete="off"
-											 placeholder="cari..." value="<?= $key ?>">
+											 placeholder="Cari..." value="<?= $key ?>">
 							</label>
-							<button class="btn btn-primary" id="button-search" type="button">search</button>
+							<button class="btn btn-primary" id="button-search" type="button">Cari</button>
 						</div>
 
 						<!-- START: Product -->
@@ -67,7 +67,7 @@ $this->load->view('admin/template/header');
 													<div class="btn-group">
 														<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
 																		aria-haspopup="true" aria-expanded="false">
-															Action
+															Aksi
 														</button>
 														<div class="dropdown-menu">
 															<a class="dropdown-item"
@@ -86,10 +86,7 @@ $this->load->view('admin/template/header');
 										</div>
 									</div>
 								</div>
-							<?php
-							endforeach;
-							?>
-
+							<?php endforeach; ?>
 						</div>
 						<?= $this->pagination->create_links(); ?>
 					</div>

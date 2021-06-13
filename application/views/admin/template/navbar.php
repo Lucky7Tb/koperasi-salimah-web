@@ -4,16 +4,15 @@
 			<div class="navbar-header  h-150 h4 mb-0 align-self-center logo-bar text-left" style="background-color: #491369;">
 				<a href="<?= base_url('/admin/dashboard') ?>" class="horizontal-logo">
 					<div class="media">
-						<img src="<?= base_url('img/tes4.png') ?>" alt="Salimah logo" class="d-flex img-fluid" width="200">
+						<img src="<?= base_url('/dist/images/salimah_logo.png') ?>" alt="Salimah logo" class="d-flex img-fluid img-responsive">
 					</div>
 				</a>
 			</div>
+			<div class="navbar-header h4 mb-0 text-center h-150 collapse-menu-bar">
+				<a href="#" class="sidebarCollapse" id="collapse"><i class="icon-menu"></i></a>
+			</div>
 			<div class="navbar-right ml-auto h-150">
 				<ul class="ml-auto p-0 m-0 list-unstyled d-flex top-icon h-100">
-					<li class="d-inline-block align-self-center d-block d-lg-none">
-						<a href="#" class="nav-link mobilesearch" data-toggle="dropdown" aria-expanded="false"><i class="icon-magnifier h4"></i>
-						</a>
-					</li>
 					<li class="dropdown user-profile align-self-center d-inline-block">
 						<a href="#" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
 							<div class="media">

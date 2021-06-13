@@ -14,7 +14,7 @@ function getUser() {
 			if (response.code === 200) {
 				fillForm(response.data);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -37,12 +37,12 @@ $('#user-form').on('submit', function (e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah data user');
 				setTimeout(function () {
 					window.location.href = global.base_url + 'admin/user';
 				}, 1000);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () { 
@@ -57,7 +57,7 @@ $('#btn-ban-user').on('click', function () {
 	formData.set('type', '2');
 	
 	$.ajax({
-		type: 'PUT',
+		type: 'POST',
 		url: `${global.base_url}admin/user/updateUser/${id}`,
 		data: formData,
 		processData: false,
@@ -68,13 +68,13 @@ $('#btn-ban-user').on('click', function () {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil me-nonaktifkan user');
 				$('#user-ban-modal').modal('hide')
 				setTimeout(function () {
 					window.location.href = global.base_url + 'admin/user';
 				}, 1000);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {
@@ -84,6 +84,8 @@ $('#btn-ban-user').on('click', function () {
 });
 
 function fillForm(data) {
+	if (data.type === '0') $('#level-field-container').hide();
+	
 	$('#full_name').val(data.full_name);
 	$('#email').val(data.email);
 	$(`input[name=gender][value=${data.gender}]`).prop('checked', true);

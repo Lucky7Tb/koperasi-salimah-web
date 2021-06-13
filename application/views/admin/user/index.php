@@ -33,9 +33,7 @@ $this->load->view('admin/template/header', [
 									<div class="col-6">
 										<select name="filter" id="filter-user" class="form-control costume-select" style="width: 15em;">
 											<option value="gender">Gender</option>
-											<option value="type">Level</option>
 											<option value="full_name">Nama</option>
-											<option value="updated_at">Tgl perubahan</option>
 										</select>
 									</div>
 									<div class="col-6">
@@ -48,39 +46,41 @@ $this->load->view('admin/template/header', [
 						</div>
 						<div class="float-right">
 							<label>
-								Search:
-								<input type="text" class="form-control" id="input-search-user">
+								Cari:
+								<input type="text" class="form-control" id="input-search-user" placeholder="Cari...">
 							</label>
-							<button class="btn btn-primary" id="button-search">search</button>
+							<button class="btn btn-primary" id="button-search">Cari</button>
 						</div>
-						<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
-							<thead>
-								<tr role="row">
-									<th rowspan="2">#</th>
-									<th rowspan="2">Nama</th>
-									<th rowspan="2">Gender</th>
-									<th rowspan="2">No telp</th>
-									<th rowspan="2">Level</th>
-									<th>Aksi</th>
-								</tr>
-								<tr>
-									<th>Update</th>
-								</tr>
-							</thead>
-							<tbody id="user-data-content" style="font-size: 14px;">
+						<div class="table-responsive">
+							<table id="user-table" class="display table table-striped table-bordered text-center" role="grid">
+								<thead>
+									<tr role="row">
+										<th rowspan="2">#</th>
+										<th rowspan="2">Nama</th>
+										<th rowspan="2">Gender</th>
+										<th rowspan="2">No telp</th>
+										<th rowspan="2">Level</th>
+										<th>Aksi</th>
+									</tr>
+									<tr>
+										<th>Update</th>
+									</tr>
+								</thead>
+								<tbody id="user-data-content" style="font-size: 14px;">
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 						<div id="example_paginate">
 							<ul class="pagination">
 								<li class="paginate_button page-item previous">
 									<button class="btn btn-lg page-link" id="prev-button">
-										Previous
+										Kembali
 									</button>
 								</li>
 								<li class="paginate_button page-item next">
 									<button class="btn btn-lg page-link" id="next-button">
-										Next
+										Berikutnya
 									</button>
 								</li>
 							</ul>
@@ -95,11 +95,10 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-			<script src="' . $js . '/global.js"></script>
-			<script src="' . $js . '/admin/user/app.js"></script>
-			<script>
-				getUsers();
-			</script>
-		'
+		<script src="' . $js . '/admin/user/app.js"></script>
+		<script>
+			getUsers();
+		</script>
+	'
 ]);
 ?>

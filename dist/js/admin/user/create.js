@@ -30,9 +30,9 @@ $("#user-form").on("submit", function (e) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				clearForm();
-				toastr.success(response.message);
+				toastr.success('Berhasil menambahkan user');
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

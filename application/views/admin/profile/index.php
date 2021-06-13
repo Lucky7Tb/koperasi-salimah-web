@@ -154,7 +154,6 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="' . $plugin . '/select2/js/select2.full.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/profile/app.js"></script>
 		<script>
 			initPlugiOption();

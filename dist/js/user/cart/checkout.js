@@ -269,7 +269,6 @@ function createOrder() {
 			},
 			complete: function() {
 				if (i === (checkout.listCartPerSeller.length - 1)) {
-					global.loading('btn-createOrder', 'primary', false, 'Konfirmasi');
 					setTimeout(function() {
 						window.location.href = `${global.base_url}transaction`
 					}, 2000);

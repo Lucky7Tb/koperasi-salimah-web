@@ -3,9 +3,8 @@ $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
-			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
-		'
+		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+	'
 ]);
 ?>
 <div class="container-fluid site-width">
@@ -77,7 +76,7 @@ $this->load->view('admin/template/header', [
 							</div>
 							<div class="form-group row">
 								<div class="col-sm-10">
-									<button type="submit" class="btn btn-primary">Ubah Layanan Pengiriman</button>
+									<button type="submit" class="btn btn-primary">Simpan</button>
 								</div>
 							</div>
 						</div>
@@ -92,9 +91,7 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/delivery/app.js"></script>
 		<script>
 			initOptionPlugin();

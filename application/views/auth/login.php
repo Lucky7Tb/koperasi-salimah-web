@@ -31,7 +31,6 @@
 						<div class="form-group mb-0">
 							<button type="submit" class="btn btn-primary btn-block mb-2" id="tombol_login">Masuk</button>
 						</div>
-						<div class="mt-2">Lupa password? <a href="<?= base_url('/auth/forgetPassword') ?>">Klik disini</a></div>
 						<div class="mt-2">Belum punya akun? <a href="<?= base_url('/auth/register') ?>">Daftar</a></div>
 					</div>
 				</form>

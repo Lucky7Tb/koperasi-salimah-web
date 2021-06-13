@@ -10,7 +10,7 @@ function getDetailTransaction() {
 			if (response.code === 200) {
 				renderDetailData(response.data);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -185,10 +185,10 @@ function changeTransactionStatus() {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah data');
 				getDetailTransaction();
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

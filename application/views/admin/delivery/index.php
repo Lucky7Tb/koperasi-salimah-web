@@ -33,11 +33,11 @@ $this->load->view('admin/template/header');
 						<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
 							<div id="example_filter" class="dataTables_filter">
 								<label>
-									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-delivery"
+									Cari:
+									<input type="search" class="form-control form-control-sm" id="input-search-delivery" placeholder="Cari..."
 												 value="<?= $key ?>">
 								</label>
-								<button class="btn btn-primary" id="button-search" type="submit">search</button>
+								<button class="btn btn-primary" id="button-search" type="submit">cari</button>
 							</div>
 							<table id="user-table" class="display table table-striped table-bordered" role="grid">
 								<thead>

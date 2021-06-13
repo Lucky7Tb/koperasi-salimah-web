@@ -44,7 +44,7 @@ $this->load->view('admin/template/header', [
 	</div>
 </div>
 
-<div class="container-fluid site-width mb-5">
+<div class="container-fluid site-width">
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
@@ -100,25 +100,27 @@ $this->load->view('admin/template/header', [
 									</label>
 									<button class="btn btn-lg btn-primary" id="button-transaction-search">search</button>
 								</div>
-								<table id="transaction-table" class="display table table-bordered text-center">
-									<thead>
-										<tr role="row">
-											<th rowspan="2">#</th>
-											<th rowspan="2">Nama</th>
-											<th rowspan="2">Total bayar</th>
-											<th rowspan="2">Status</th>
-											<th rowspan="2">Token</th>
-											<th rowspan="2">Tgl perubahan</th>
-											<th>Aksi</th>
-										</tr>
-										<tr>
-											<th>Detail</th>
-										</tr>
-									</thead>
-									<tbody id="transaction-data-content" style="font-size: 14px;">
+								<div class="table-responsive">
+									<table id="transaction-table" class="display table table-bordered text-center">
+										<thead>
+											<tr role="row">
+												<th rowspan="2">#</th>
+												<th rowspan="2">Nama</th>
+												<th rowspan="2">Total bayar</th>
+												<th rowspan="2">Status</th>
+												<th rowspan="2">Token</th>
+												<th rowspan="2">Tgl perubahan</th>
+												<th>Aksi</th>
+											</tr>
+											<tr>
+												<th>Detail</th>
+											</tr>
+										</thead>
+										<tbody id="transaction-data-content" style="font-size: 14px;">
 
-									</tbody>
-								</table>
+										</tbody>
+									</table>
+								</div>
 							</div>
 							<div id="example_paginate">
 								<ul class="pagination">
@@ -163,26 +165,28 @@ $this->load->view('admin/template/header', [
 									</label>
 									<button class="btn btn-lg btn-primary" id="button-transaction-proof-search">search</button>
 								</div>
-								<table id="transaction-table" class="display table table-bordered text-center">
-									<thead>
-										<tr role="row">
-											<th rowspan="2">#</th>
-											<th rowspan="2">Bukti</th>
-											<th rowspan="2">Nama</th>
-											<th rowspan="2">Total bayar</th>
-											<th rowspan="2">Status</th>
-											<th rowspan="2">Token</th>
-											<th rowspan="2">Tgl perubahan</th>
-											<th>Aksi</th>
-										</tr>
-										<tr>
-											<th>Detail</th>
-										</tr>
-									</thead>
-									<tbody id="transaction-proof-data-content" style="font-size: 14px;">
+								<div class="table-responsive">
+									<table id="transaction-table" class="display table table-bordered text-center">
+										<thead>
+											<tr role="row">
+												<th rowspan="2">#</th>
+												<th rowspan="2">Bukti</th>
+												<th rowspan="2">Nama</th>
+												<th rowspan="2">Total bayar</th>
+												<th rowspan="2">Status</th>
+												<th rowspan="2">Token</th>
+												<th rowspan="2">Tgl perubahan</th>
+												<th>Aksi</th>
+											</tr>
+											<tr>
+												<th>Detail</th>
+											</tr>
+										</thead>
+										<tbody id="transaction-proof-data-content" style="font-size: 14px;">
 
-									</tbody>
-								</table>
+										</tbody>
+									</table>
+								</div>
 							</div>
 							<div id="example_paginate">
 								<ul class="pagination">
@@ -211,7 +215,6 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
 		<script src="' . $plugin . '/moment/moment.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/transaction/transaction.js"></script>
 		<script src="' . $js . '/admin/transaction/transaction-proof.js"></script>
 		<script>

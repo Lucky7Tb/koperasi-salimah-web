@@ -1,6 +1,4 @@
 function initOptionPlugin() {
-	$.fn.datepicker.defaults.format = 'yyyy-mm-dd';
-	$('#date_of_birth').datepicker();
 	$('#photo').dropify({
 		messages: {
 			default: 'Seret dan lepas foto disini atau klik',

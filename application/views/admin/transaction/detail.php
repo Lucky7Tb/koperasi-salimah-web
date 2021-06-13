@@ -36,7 +36,6 @@ $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
 		<script src="' . $plugin . '/moment/moment.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/transaction/detail-transaction.js"></script>
 		<script>
 			getDetailTransaction()

@@ -3,9 +3,9 @@ $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
-			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
-		'
+		<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+	'
 ]);
 ?>
 
@@ -84,7 +84,7 @@ $this->load->view('admin/template/header', [
 							<label for="phone_number">No telp</label>
 							<input type="number" class="form-control" name="phone_number" id="phone_number" placeholder="Masukan no telp" required>
 						</div>
-						<div class="form-group">
+						<div class="form-group" id="level-field-container">
 							<div>
 								<label>Level</label>
 							</div>
@@ -118,7 +118,6 @@ $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/user/edit.js"></script>
 		<script>
 			initOptionPlugin();

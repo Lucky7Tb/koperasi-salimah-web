@@ -25,15 +25,15 @@ $this->load->view('admin/template/header');
 			<div class="card">
 				<div class="card-header justify-content-between align-items-center">
 					<a type="button" class="btn btn-primary"
-						 href="<?= base_url('admin/product_categories/tambah') ?>">Tambah <?= $title ?></a>
+						 href="<?= base_url('admin/product_Categories/tambah') ?>">Tambah <?= $title ?></a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
 						<div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
 							<div id="example_filter" class="dataTables_filter">
 								<label>
-									Search:
-									<input type="search" class="form-control form-control-sm" id="input-search-category"
+									Cari:
+									<input type="search" class="form-control form-control-sm" id="input-search-category" placeholder="Cari..."
 												 value="<?= $key ?>">
 								</label>
 								<button class="btn btn-primary" id="button-search" type="submit">search</button>
@@ -68,13 +68,13 @@ $this->load->view('admin/template/header');
 											<td><?= date('d-M-Y H:s ', strtotime($k['created_at'])) ?></td>
 											<td><?= date('d-M-Y H:s ', strtotime($k['updated_at'])) ?></td>
 											<td>
-												<a href="<?= base_url('admin/product_categories/ubah/') ?><?= $k['id'] ?>"
+												<a href="<?= base_url('admin/product_Categories/ubah/') ?><?= $k['id'] ?>"
 													 class="btn btn-warning text-white">
 													<i class='icon-pencil'></i>
 												</a>
 											</td>
 											<td>
-												<a href="<?= base_url('admin/product_categories/hapus') ?>/<?= $k['id'] ?>"
+												<a href="<?= base_url('admin/product_Categories/hapus') ?>/<?= $k['id'] ?>"
 													 class="btn btn-danger text-white">
 													<i class='icon-power'></i>
 												</a>
@@ -140,17 +140,14 @@ $js = base_url('dist/js');
 $plugin = base_url('dist/vendors');
 $this->load->view('admin/template/footer', [
 	'js' => '
-			<script src="' . $plugin . '/slimscroll/jquery.slimscroll.min.js"></script>
-			<script src="' . $js . '/global.js"></script>
-			<script src="' . $js . '/admin/product_category/app.js"></script>
-			<script>
-				let page = 1
-				$("#button-search").click(function () {
-				let keyword = $("#input-search-category").val()
-				let url = "' . base_url("admin/product_Categories/index/1/") . '" + keyword
-				console.log(url)
-				$(location).attr("href", url)
-				})
-			</script>'
+		<script>
+			let page = 1
+			$("#button-search").click(function () {
+			let keyword = $("#input-search-category").val()
+			let url = "' . base_url("admin/product_Categories/index/1/") . '" + keyword
+			console.log(url)
+			$(location).attr("href", url)
+			})
+		</script>'
 ]);
 ?>

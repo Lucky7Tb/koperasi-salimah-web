@@ -3,16 +3,14 @@ $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-			<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
-			<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
-			<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-		'
+		<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+	'
 ]);
 
 $photos = $produk['data']['photos'];
 $produk = $produk['data']['product'];
 $uri = $produk['uri'];
-
 
 ?>
 <div class="container-fluid site-width">
@@ -103,13 +101,10 @@ $uri = $produk['uri'];
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
+		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>>
 		<script src="' . $js . '/admin/product/app.js"></script>
-		<script>initOptionPlugin();</script>
 		<script src="' . $js . '/admin/product/addPhoto.js"></script>
+		<script>initOptionPlugin();</script>
 	'
 ]);
 ?>

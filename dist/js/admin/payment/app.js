@@ -22,7 +22,7 @@ function getPayments(
 			if (response.code === 200) {
 				renderPaymentData(response.data);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -111,9 +111,9 @@ $('#btn-delete-payment').on('click', function () {
 			if (response.code === 200) {
 				$('#payment-delete-modal').modal('hide');
 				getPayments();
-				toastr.success(response.message);
+				toastr.success('Berhasil menon-aktifkan metode pembayaran');
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalaha pada server');
 			}
 		},
 		complete: function () {
