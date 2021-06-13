@@ -15,11 +15,9 @@
 
 	<!-- START: Custom CSS-->
 	<link rel="stylesheet" href="<?= base_url('dist/css/main.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('dist/css/style.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('dist/css/user.css') ?>">
 	<!-- END: Custom CSS-->
-
-	<!-- css buatan sendiri -->
-	<link rel="stylesheet" href="<?= base_url('dist/css/styles.css') ?>">
-	<!-- css buatan sendiri -->
 	<?= isset($css) ? $css : '' ?>
 </head>
 

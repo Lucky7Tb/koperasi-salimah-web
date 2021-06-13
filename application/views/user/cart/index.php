@@ -16,7 +16,7 @@ $this->load->view('template/header');
 	</div>
 	<div class="row">
 		<div class="col-12 mt-3">
-			<div class="card">
+			<div class="card bottom">
 				<div class="card-body">
 					<div class="row">
 						<div class="col-lg-12 col-xl-7 mb-4 mb-xl-0">

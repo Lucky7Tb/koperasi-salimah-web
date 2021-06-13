@@ -28,7 +28,7 @@ $uri = $produk['uri'];
 	<div class="row">
 		<div class="col-12 mt-3">
 
-			<div class="card">
+			<div class="card bottom">
 
 				<div class="card-header justify-content-between align-items-center">
 					<a type="button" class="btn btn-primary" href="<?= base_url('admin/product') ?>">Kembali</a>

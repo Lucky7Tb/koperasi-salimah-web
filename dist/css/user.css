@@ -1,0 +1,19 @@
+#footer-user {
+	position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+	display: grid;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+	padding: 30px 15px 0 15px;
+}
+
+.bottom {
+	margin-bottom: 15%;
+}
+
+@media only screen and (max-width: 768px){
+	.bottom {
+		margin-bottom: 45%;
+	}
+}

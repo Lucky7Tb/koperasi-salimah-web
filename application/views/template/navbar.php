@@ -6,7 +6,7 @@
 				<a href="<?= base_url('/') ?>" class="horizontal-logo text-left">
 					<div class="media">
 						<a href="<?= base_url('/') ?>">
-							<img src="<?= base_url('img/tes4.png') ?>" alt="" class="d-flex img-fluid" width="150">
+							<img src="<?= base_url('/dist/images/salimah_logo.png') ?>" alt="logo" class="d-flex img-fluid" loading="lazy">
 						</a>
 					</div>
 				</a>

@@ -1,7 +1,7 @@
 </main>
 <!-- END: Content-->
 
-<footer class="ungu">
+<footer class="ungu putih">
 	<p class="lead text-center">Made with <span style="color: red">&hearts;</span> Koperasi salimah team</p>
 </footer>
 

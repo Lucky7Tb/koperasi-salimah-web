@@ -553,7 +553,6 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12">
 
-
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-center">
                                             <li class="page-item disabled">
@@ -585,14 +584,7 @@
             </div>
             <!-- END: Card DATA-->
 
-
-
-
-
-
-
         </div>
-
     </main>
     <br><br><br>
     <!-- START: Footer-->
@@ -604,11 +596,6 @@
         <i class="icon-arrow-up"></i>
     </a>
     <!-- END: Back to top-->
-
-
-
-
-
 
     <!-- START: Template JS-->
     <script src="dist/vendors/jquery/jquery-3.3.1.min.js"></script>

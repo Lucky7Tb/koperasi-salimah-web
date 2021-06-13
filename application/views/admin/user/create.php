@@ -21,7 +21,7 @@ $this->load->view('admin/template/header', [
 
 	<div class="row">
 		<div class="col-12 mt-3">
-			<div class="card">
+			<div class="card bottom">
 				<div class="card-body" id="main">
 					<form method="post" id="user-form">
 						<div class="form-group">

@@ -43,7 +43,7 @@ $this->load->view('template/header');
 	</div>
 	<div class="row">
 		<div class="col-12 mt-3">
-			<div class="card">
+			<div class="card bottom">
 				<div class="card-body container">
 					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3" id="wishlist-container">
 

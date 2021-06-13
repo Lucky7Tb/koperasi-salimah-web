@@ -17,7 +17,8 @@
 	<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
 
 	<!-- START: Costume CS -->
-	<link rel="stylesheet" href="<?= base_url('dist/css/styles.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('dist/css/style.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('dist/css/admin.css') ?>">
 	<!-- END: Costume CSS -->
 
 	<!-- START: Icons CSS-->

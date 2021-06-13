@@ -19,7 +19,7 @@ $this->load->view('template/header', [
 	</div>
 	<div class="row">
 		<div class="col-12 mt-3">
-			<div class="card">
+			<div class="card bottom">
 				<div class="card-body">
 					<ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
 						<li class="nav-item" role="presentation">
@@ -53,10 +53,10 @@ $this->load->view('template/header', [
 								</div>
 								<div class="float-right">
 									<label>
-										Search:
-										<input type="search" class="form-control form-control-lg" id="input-search-transaction">
+										Cari:
+										<input type="search" class="form-control form-control-lg" id="input-search-transaction" placeholder="cari...">
 									</label>
-									<button class="btn btn-lg btn-primary" id="button-transaction-search">search</button>
+									<button class="btn btn-lg btn-primary" id="button-transaction-search">Cari</button>
 								</div>
 								<table id="transaction-table" class="display table table-bordered text-center">
 									<thead>
@@ -115,10 +115,10 @@ $this->load->view('template/header', [
 								</div>
 								<div class="float-right">
 									<label>
-										Search:
-										<input type="search" class="form-control form-control-lg" id="input-search-history-transaction">
+										Cari:
+										<input type="search" class="form-control form-control-lg" id="input-search-history-transaction" placeholder="cari...">
 									</label>
-									<button class="btn btn-lg btn-primary" id="button-history-transaction-search">search</button>
+									<button class="btn btn-lg btn-primary" id="button-history-transaction-search">Cari</button>
 								</div>
 								<table id="transaction-table" class="display table table-bordered text-center">
 									<thead>
