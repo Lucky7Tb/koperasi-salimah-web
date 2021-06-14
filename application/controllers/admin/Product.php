@@ -36,7 +36,9 @@ class Product extends CI_Controller
 
 		$params = array(
 			'page' => $page,
-			'search' => $search
+			'search' => $search,
+			'order-direction' => 'DESC',
+      'order-by' => 'id_m_products',
 		);
 
 		$config['base_url'] = base_url('admin/product/index');
