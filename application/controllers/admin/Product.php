@@ -45,7 +45,7 @@ class Product extends CI_Controller
 		$params = array(
 			'page' => $page,
 			'search' => $search,
-			'order-by' => 'updated_at',
+			'order-by' => 'id_m_products',
 			'order-direction' => 'DESC',
 		);
 

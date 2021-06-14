@@ -4,12 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile_model extends CI_Model {
 
+	private $token;
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->token = $this->session->userdata('token');
+	}
+
 	public function getProfile()
 	{
 		$endpoint = 'api/v1/auth/user/getProfile';
-		$token = $this->session->userdata('token');
 		
-		$result = get_curl($endpoint, $token);
+		$result = get_curl($endpoint, $this->token);
 		
 		return $result;
 	}
@@ -17,9 +24,8 @@ class Profile_model extends CI_Model {
 	public function changeProfile($data)
 	{
 		$endpoint = 'api/v1/auth/user/updateProfile';
-		$token = $this->session->userdata('token');
 
-		$result = post_curl($endpoint, $data, $token, true);
+		$result = post_curl($endpoint, $data, $this->token, true);
 
 		return $result;
 	}
@@ -27,9 +33,8 @@ class Profile_model extends CI_Model {
 	public function changePhotoProfile($data)
 	{
 		$endpoint = 'api/v1/auth/user/updatePhotoProfile';
-		$token = $this->session->userdata('token');
 
-		$result = post_curl($endpoint, $data, $token);
+		$result = post_curl($endpoint, $data, $this->token);
 
 		return $result;
 	}

@@ -22,7 +22,7 @@ function getActiveTransactions(
 			if (response.code === 200) {
 				renderTransactionData(response.data);
 			} else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 	});

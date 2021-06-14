@@ -47,7 +47,7 @@ global.getCart = function(callback) {
 	    if (response.code === 200) {
 	    	callback(response);
 	    } else {
-	    	toastr.error(response.message);
+	    	toastr.error('Terjadi kesalahn pada server');
 	    }
 	  },
 	});
@@ -66,7 +66,7 @@ global.addToWishlist = function(idProduct) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil menambah ke wishlist');
 			}else {
 				window.location.href = global.base_url + "auth"
 			}
@@ -89,7 +89,7 @@ global.addToCart = function(idProduct, qtyProduct = 1) {
 			response = JSON.parse(response);
 
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil menambah ke keranjang');
 			}else {
 				window.location.href = global.base_url + "auth"
 			}
@@ -179,6 +179,9 @@ global.addUpdateAddress = function(formData, callback) {
 		processData: false,
 		contentType: false,
 		data: formData,
+		beforeSend: function() {
+			global.loading('btn-addUpdate-address', 'primary', true, null);
+		},
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
@@ -186,6 +189,9 @@ global.addUpdateAddress = function(formData, callback) {
 			}else {
 				toastr.error(response.message);
 			}
+		},
+		complete: function() {
+			global.loading('btn-addUpdate-address', 'primary', false, 'Simpan');
 		}
 	});
 }

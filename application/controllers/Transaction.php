@@ -82,6 +82,15 @@ class Transaction extends CI_Controller {
 		response($result, true);
 	}
 
+	public function confirmTransaction()
+	{
+		$transactionId = $this->input->get('transactionId', true);
+		
+		$result = $this->transaction->confirmTransaction($transactionId);
+
+		response($result, true);
+	}
+
 	public function trackResi()
 	{
 		$data = $this->input->post(null, true);

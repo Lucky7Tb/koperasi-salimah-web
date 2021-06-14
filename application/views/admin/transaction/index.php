@@ -95,10 +95,10 @@ $this->load->view('admin/template/header', [
 								</div>
 								<div class="float-right">
 									<label>
-										Search:
-										<input type="search" class="form-control form-control-lg" id="input-search-transaction">
+										Cari:
+										<input type="search" class="form-control form-control-lg" id="input-search-transaction" placeholder="Cari...">
 									</label>
-									<button class="btn btn-lg btn-primary" id="button-transaction-search">search</button>
+									<button class="btn btn-lg btn-primary" id="button-transaction-search">Cari</button>
 								</div>
 								<div class="table-responsive">
 									<table id="transaction-table" class="display table table-bordered text-center">
@@ -126,12 +126,12 @@ $this->load->view('admin/template/header', [
 								<ul class="pagination">
 									<li class="paginate_button page-item previous">
 										<button class="btn btn-lg page-link" id="prev-transaction-button">
-											Previous
+											Kembali
 										</button>
 									</li>
 									<li class="paginate_button page-item next">
 										<button class="page-link" id="next-transaction-button">
-											Next
+											Berikutnya
 										</button>
 									</li>
 								</ul>
@@ -160,10 +160,10 @@ $this->load->view('admin/template/header', [
 								</div>
 								<div class="float-right">
 									<label>
-										Search:
-										<input type="search" class="form-control form-control-lg" id="input-search-transaction-proof">
+										Cari:
+										<input type="search" class="form-control form-control-lg" id="input-search-transaction-proof" placeholder="Cari...">
 									</label>
-									<button class="btn btn-lg btn-primary" id="button-transaction-proof-search">search</button>
+									<button class="btn btn-lg btn-primary" id="button-transaction-proof-search">cari</button>
 								</div>
 								<div class="table-responsive">
 									<table id="transaction-table" class="display table table-bordered text-center">
@@ -192,12 +192,12 @@ $this->load->view('admin/template/header', [
 								<ul class="pagination">
 									<li class="paginate_button page-item previous">
 										<button class="btn btn-lg page-link" id="prev-transaction-proof-button">
-											Previous
+											Kembali
 										</button>
 									</li>
 									<li class="paginate_button page-item next">
 										<button class="btn btn-lg page-link" id="next-transaction-proof-button">
-											Next
+											Berikutnya
 										</button>
 									</li>
 								</ul>

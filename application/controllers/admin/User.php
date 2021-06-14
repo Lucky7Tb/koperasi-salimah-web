@@ -34,7 +34,7 @@ class User extends CI_Controller
 	{
 		$data = $this->input->get(null, true);
 		$result = $this->user->getAllUser($data);
-		
+
 		response($result, true);
 	}
 

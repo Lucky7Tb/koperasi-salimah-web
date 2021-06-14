@@ -42,12 +42,12 @@ $('#transaction-proof-form').on('submit', function(e) {
 	  success: function(response) {
 	    response = JSON.parse(response);
 	    if(response.code === 200) {
-	    	toastr.success(response.message);
+	    	toastr.success('Berhasil upload bukti transaksi');
 	    	setTimeout(function() {
 	    		history.back();
 	    	}, 1000);
 	    }else {
-	    	toastr.error(response.message);
+	    	toastr.error('Terjadi kesalahan pada server');
 	    }
 	  },
 	  complete: function(response) {
@@ -84,11 +84,11 @@ function trackResi(resiNumber, courierCode) {
 		contentType: false,
 		data: formData,
 		success: function(response) {
-			response = JSON.parse(response);
-			if (response === 200) {
-				renderResiDetail(response.rajaongkir.manifest);
+			let { rajaongkir } = JSON.parse(response);
+			if (rajaongkir.status.code === 200) {
+				renderResiDetail(rajaongkir.result.manifest);
 			}else {
-				toastr.error(response.rajaongkir.status.description);
+				toastr.error(rajaongkir.status.description);
 			}
 		}
 	});
@@ -114,6 +114,7 @@ function renderTransactionDetailData(data) {
 		case '3':
 			status = 'Dikirim';
 			badge = 'warning';
+			$('#confirm-button-container').removeClass("d-none");
 			break;
 	}
 	$('#transaction-status').html(`
@@ -195,4 +196,30 @@ function renderResiDetail(data) {
 			</tr>
 		`);
 	});
+}
+
+function confirmTransaction(transactionId) {
+	$.ajax({
+		url: `${global.base_url}transaction/confirmTransaction?transactionId=${transactionId}`,
+		type: 'POST',
+		beforeSend: function() {
+			global.loading('btn-confirm-delivery', 'primary', true, null);
+		},
+		success: function(response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				$('#confirm-modal').modal('hide');
+				$('#confirm-button-container').addClass("d-none");
+				toastr.success('Sukses dikonfirmasi');
+				setTimeout(function() {
+					window.location.href = global.base_url + 'transaction';
+				}, 2000);
+			}else {
+				toastr.error('Terjadi kesalahan pada server');
+			}
+		},
+		complete: function() {
+			global.loading('btn-confirm-delivery', 'primary', true, 'Ya Sampai');
+		}
+	})	
 }

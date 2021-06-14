@@ -25,27 +25,35 @@ $this->load->view('template/header', [
 					<div class="row">
 						<div class="col-lg-12 col-xl-7 mb-4 mb-xl-0">
 							<h4>List Belanja</h4>
-							<table class="table table-bordered mb-0 table-responsive d-block border-bottom-0 border-top-0 border-left-0 border-right-0 p-3 text-center">
-								<thead>
-									<tr class="bg-transparent">
-										<th class="border-bottom-0">Foto</th>
-										<th class="border-bottom-0">Produk</th>
-										<th class="border-bottom-0">Jumlah</th>
-										<th class="border-bottom-0">Harga</th>
-										<th class="border-bottom-0">Sub total</th>
-									</tr>
-								</thead>
-								<tbody id="transaction-product">
-									<tr>
-										<td colspan="4">Ongkir</td>
-										<td id="transaction-cost-delivery"></td>
-									</tr>
-									<tr>
-										<td colspan="4">Total harga</td>
-										<td id="transaction-total-price"></td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="table-responsive">
+								<table class="table table-bordered mb-0 table-responsive d-block border-bottom-0 border-top-0 border-left-0 border-right-0 p-3 text-center">
+									<thead>
+										<tr class="bg-transparent">
+											<th class="border-bottom-0">Foto</th>
+											<th class="border-bottom-0">Produk</th>
+											<th class="border-bottom-0">Jumlah</th>
+											<th class="border-bottom-0">Harga</th>
+											<th class="border-bottom-0">Sub total</th>
+										</tr>
+									</thead>
+									<tbody id="transaction-product">
+										<tr>
+											<td colspan="4">Ongkir</td>
+											<td id="transaction-cost-delivery"></td>
+										</tr>
+										<tr>
+											<td colspan="4">Total harga</td>
+											<td id="transaction-total-price"></td>
+										</tr>
+										<tr class="d-none" id="confirm-button-container">
+											<td colspan="5">
+												<button class="btn btn-lg btn-block btn-primary" data-target="#confirm-modal" data-toggle="modal">Konfirmasi barang diterima
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 							<div>
 								<h4>Alamat</h4>
 								<div class="row p-3">
@@ -121,6 +129,28 @@ $this->load->view('template/header', [
 </div>
 </div>
 </div>
+
+<!-- Confirm package -->
+<div class="modal fade" id="confirm-modal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Peringatan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p class="lead"><strong>Yakin paket anda telah sampai?</strong></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-lg btn-primary" id="btn-confirm-delivery" onclick="confirmTransaction(<?= $id ?>)">Ya Sampai</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <?php
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
@@ -128,7 +158,6 @@ $this->load->view('template/footer', [
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
 		<script src="' . $plugin . '/moment/moment.js"></script>
 		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/user/transaction/detail-transaction.js"></script>
 		<script>
 			initOptionPlugin();

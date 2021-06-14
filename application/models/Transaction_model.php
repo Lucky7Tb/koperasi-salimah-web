@@ -57,6 +57,15 @@ class Transaction_model extends CI_Model {
 		return $result;
 	}
 
+	public function confirmTransaction($transactionId)
+	{
+		$endpoint = 'api/v1/user/transaction/confirmTransaction/'.$transactionId;
+
+		$result = post_curl($endpoint, [], $this->token);
+		
+		return $result;
+	}
+
 	public function trackResi($data)
 	{
 		$headers = [

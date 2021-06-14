@@ -3,12 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Wishlist_model extends CI_Model {
 
+	private $token;
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->token = $this->session->userdata('token');
+	}
+
 	public function getWishlist()
 	{
 		$endpoint = 'api/v1/user/wishlist/getWishlist';
-		$token = $this->session->userdata('token');
 
-		$result = get_curl($endpoint, $token);
+		$result = get_curl($endpoint, $this->token);
 
 		return $result;
 	}
@@ -16,9 +23,8 @@ class Wishlist_model extends CI_Model {
 	public function addWishlist($data)
 	{
 		$endpoint = 'api/v1/user/wishlist/addWishlist';
-		$token = $this->session->userdata('token');
 
-		$result = post_curl($endpoint, $data, $token, true);
+		$result = post_curl($endpoint, $data, $this->token, true);
 
 		return $result;
 	}
@@ -26,9 +32,8 @@ class Wishlist_model extends CI_Model {
 	public function deleteWishlist($idWishlist)
 	{
 		$endpoint = 'api/v1/user/wishlist/deleteWishlist';
-		$token = $this->session->userdata('token');
 
-		$result = delete_curl($endpoint, $idWishlist, $token);
+		$result = delete_curl($endpoint, $idWishlist, $this->token);
 
 		return $result;
 	}

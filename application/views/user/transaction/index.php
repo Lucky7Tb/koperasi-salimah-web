@@ -80,12 +80,12 @@ $this->load->view('template/header', [
 									<ul class="pagination">
 										<li class="paginate_button page-item previous">
 											<button class="btn btn-lg page-link" id="prev-transaction-button">
-											Previous
+												Kembali
 											</button>
 										</li>
 										<li class="paginate_button page-item next">
 											<button class="page-link" id="next-transaction-button">
-											Next
+												Berikutnya
 											</button>
 										</li>
 									</ul>
@@ -138,12 +138,12 @@ $this->load->view('template/header', [
 									<ul class="pagination">
 										<li class="paginate_button page-item previous">
 											<button class="btn btn-lg page-link" id="prev-history-transaction-button">
-											Previous
+												Kembali
 											</button>
 										</li>
 										<li class="paginate_button page-item next">
 											<button class="page-link" id="next-history-transaction-button">
-											Next
+												Berikutnya
 											</button>
 										</li>
 									</ul>
@@ -160,14 +160,13 @@ $this->load->view('template/header', [
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
-<script src="'.$js.'/global.js"></script>
-<script src="'.$plugin.'/moment/moment.js"></script>
-<script src="'.$js.'/user/transaction/active-transaction.js"></script>
-<script src="'.$js.'/user/transaction/history-transaction.js"></script>
-<script>
-	getActiveTransactions();
-	getHistoryTransactions();
-</script>
-'
+		<script src="'.$plugin.'/moment/moment.js"></script>
+		<script src="'.$js.'/user/transaction/active-transaction.js"></script>
+		<script src="'.$js.'/user/transaction/history-transaction.js"></script>
+		<script>
+			getActiveTransactions();
+			getHistoryTransactions();
+		</script>
+	'
 ]);
 ?>

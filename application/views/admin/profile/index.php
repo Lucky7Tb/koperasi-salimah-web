@@ -75,29 +75,22 @@ $this->load->view('admin/template/header', [
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 mt-3">
+		<div class="col-12">
 			<h1>Alamat</h1>
 			<div class="card bottom">
 				<div class="card-body">
 					<div class="row mt-2">
 						<div class="col-12">
 							<h2>Alamat aktif</h2>
-							<div class="card bg-light" style="width: 18rem;">
-								<div class="card-body">
-								<address id="address-active"></address>
-								<hr>
-								<p id="address-active-post-code"></p>
-								<p>Status: <span class="badge badge-success">Aktif</span></p>
+							<div class="card bg-light" style="width: 18rem;" id="active-address-container">
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row mt-5">
-					<div class="col-12">
-						<h2>Daftar alamat</h2>
-						<button class="btn btn-lg btn-primary mt-2 mb-2" data-target="#address-create-modal" data-toggle="modal">Tambah alamat</button>
-						<div class="row row-cols-sm-12 row-cols-md-6 row-cols-lg-3" id="address-container">
-						</div>
+				<div class="card-body">
+					<h2>Daftar alamat</h2>
+					<button class="btn btn-lg btn-primary mt-2 mb-2" data-target="#address-modal" data-toggle="modal" onclick="showAddressModal()">Tambah alamat</button>
+					<div class="row row-cols-sm-12 row-cols-md-6 row-cols-lg-3" id="address-container">
 					</div>
 				</div>
 			</div>
@@ -106,8 +99,8 @@ $this->load->view('admin/template/header', [
 </div>
 </div>
 
-<!-- Create Address Modal -->
-<div class="modal fade" id="address-create-modal" tabindex="-1" aria-hidden="true">
+<!-- Address Modal -->
+<div class="modal fade" id="address-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -117,6 +110,7 @@ $this->load->view('admin/template/header', [
         </button>
       </div>
       <form id="address-form">
+				<input type="hidden" id="address_id" name="address_id"></input>
       	<div class="modal-body">
         	<div class="form-group">
         		<label for="province">Provinsi</label>
@@ -140,8 +134,8 @@ $this->load->view('admin/template/header', [
         	</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-lg btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+	        <button type="submit" class="btn btn-lg btn-primary" id="btn-addUpdate-address">Simpan</button>
 	      </div>
       </form>
     </div>

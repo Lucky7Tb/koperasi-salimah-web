@@ -168,7 +168,7 @@ function renderAllAddress(data) {
 	$('#address-container').html('');
 	$.each(data, function(_, address) {
 		$('#address-container').append(`
-			<div class="col mb-3">
+			<div class="col mb-2">
 				<div class="card h-100 bg-light" style="width: 18rem;">
 					<div class="card-body">
 						<address>
@@ -192,10 +192,17 @@ function renderAllAddress(data) {
 }
 
 function renderCurrentAddress(data) {
-	$('address#address-active').text(`
-		${data.address}, ${data.city}, ${data.subdistrict}, ${data.province}
+	$('#active-address-container').html('');
+	$('#active-address-container').append(`
+		<div class="card-body">
+			<address>
+				${data.address}, ${data.city}, ${data.subdistrict}, ${data.province}
+			</address>
+			<hr>
+			<p class="lead">Kode pos: <strong>${data.postcode}</strong></p>
+			<p>Status: <span class="badge badge-success">Aktif</span></p>
+		</div>
 	`);
-	$('#address-active-post-code').html(`Kode pos: <strong>${data.postcode}</strong>`)
 }
 
 function setActiveAddress(idAddress) {

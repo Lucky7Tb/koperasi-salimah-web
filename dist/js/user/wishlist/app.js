@@ -7,7 +7,7 @@ function getWishlist() {
 	   	if (response.code === 200) {
 	   		renderWishlistData(response.data);
 	   	}else {
-	   		toastr.error(response.message);
+	   		toastr.error('Terjadi kesalahan pada server');
 	   	}
 	  },
 	});	
@@ -29,7 +29,7 @@ $('#form-delete-wishlist').on('submit', function (e) {
 				$('#deleteWishlistModal').modal('hide');
 				getWishlist();
 			}else {
-				toastr.error(response.message);
+				toastr.error('Terjadi Kesalahan pada server');
 			}
 		},
 		complete: function () {

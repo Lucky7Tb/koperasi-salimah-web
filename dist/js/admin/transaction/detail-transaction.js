@@ -123,7 +123,7 @@ function renderDetailData(data) {
 						</div>
 						<div class="form-group">
 							<label for="resi_number" class="text-primary">No Resi</label>
-							<input type="text" class="form-control" name="resi_number" id="resi_number" value="${data.delivery.resi_number}">
+							<input type="text" class="form-control" name="resi_number" id="resi_number" value="${data.delivery.resi_number ? data.delivery.resi_number : ''}">
 						</div>
 						<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeTransactionStatus()" id="btn-change-status" ${disabled}>Simpan</button>
 					</div>

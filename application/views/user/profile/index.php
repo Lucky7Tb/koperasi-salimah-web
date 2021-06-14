@@ -82,12 +82,8 @@ $this->load->view('template/header', [
 					<div class="row mt-2">
 						<div class="col-12">
 							<h2>Alamat aktif</h2>
-							<div class="card bg-light" style="width: 18rem;">
-								<div class="card-body" id="address-container">
-								<address id="address-active"></address>
-								<hr>
-								<p id="address-active-post-code"></p>
-								<p>Status: <span class="badge badge-success">Aktif</span></p>
+							<div class="card" style="width: 18rem;" id="active-address-container">
+								
 							</div>
 						</div>
 					</div>
@@ -140,8 +136,8 @@ $this->load->view('template/header', [
 	</div>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Close</button>
-	<button type="submit" class="btn btn-lg btn-primary">Save changes</button>
+	<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+	<button type="submit" class="btn btn-lg btn-primary" id="btn-addUpdate-address">Simpan</button>
 </div>
 </form>
 </div>
@@ -151,14 +147,13 @@ $this->load->view('template/header', [
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
-<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="' . $plugin . '/select2/js/select2.full.min.js"></script>
-<script src="' . $js . '/global.js"></script>
-<script src="' . $js . '/user/profile/app.js"></script>
-<script>
-	initPlugiOption();
-	getMyData();
-</script>
-'
+		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
+		<script src="' . $plugin . '/select2/js/select2.full.min.js"></script>
+		<script src="' . $js . '/user/profile/app.js"></script>
+		<script>
+			initPlugiOption();
+			getMyData();
+		</script>
+	'
 ]);
 ?>

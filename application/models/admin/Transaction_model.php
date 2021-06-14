@@ -4,52 +4,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Transaction_model extends CI_Model {
 
+	private $token;
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->token = $this->session->userdata('token');
+	}
+
 	public function getTransactions($data)
 	{
-		$endpoint = 'api/v1/admin/dashboard/transaction/listTransaction';
-		$token = $this->session->userdata('token');
+		$data['search'] = urlencode($data['search']);
 
-		$result = get_curl($endpoint, $token, $data);
+		$endpoint = 'api/v1/admin/dashboard/transaction/listTransaction';
+
+		$result = get_curl($endpoint, $this->token, $data);
 
 		return $result;
 	}
 	
 	public function getTransactionWithProof($data)
 	{
+		$data['search'] = urlencode($data['search']);
+		
 		$endpoint = 'api/v1/admin/dashboard/transaction/listTransactionWithProof';
-		$token = $this->session->userdata('token');
 
-		$result = get_curl($endpoint, $token, $data);
+		$result = get_curl($endpoint, $this->token, $data);
 
 		return $result;
 	}
 
 	public function getDetailTransaction($idTransaction)
 	{
-		$token = $this->session->userdata('token');
 		$endpoint = 'api/v1/admin/dashboard/transaction/detailTransaction/'.$idTransaction;
 		
-		$result = get_curl($endpoint, $token);
+		$result = get_curl($endpoint, $this->token);
 
 		return $result;
 	}
 
 	public function changeTransactionStatus($data)
 	{
-		$token = $this->session->userdata('token');
 		$endpoint = 'api/v1/admin/dashboard/transaction/changeStatusTransaction';
 
-		$result = put_curl($endpoint, $data['id'], $data, $token);
+		$result = put_curl($endpoint, $data['id'], $data, $this->token);
 
 		return $result;
 	}
 
 	public function changeTransactionWithProof($data)
 	{
-		$token = $this->session->userdata('token');
 		$endpoint = 'api/v1/admin/dashboard/transaction/changeStatusProof';
 
-		$result = put_curl($endpoint, $data['transaction-proof-id'], $data, $token);
+		$result = put_curl($endpoint, $data['transaction-proof-id'], $data, $this->token);
 
 		return $result;
 	}

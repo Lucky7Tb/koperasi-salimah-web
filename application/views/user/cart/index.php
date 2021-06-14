@@ -72,7 +72,6 @@ $this->load->view('template/header');
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
-		<script src="'. $js .'/global.js"></script>
 		<script src="'. $js .'/user/cart/app.js"></script>
 		<script>
 			getCart();

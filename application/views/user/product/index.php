@@ -33,7 +33,6 @@ $this->load->view('template/header');
 							$i = 1;
 							foreach ($produk['data'] as $p) {
 						?>
-
 								<div class="col-md-6 col-lg-3 mb-4">
 									<div class="position-relative">
 										<div style="background-size: 300px 300px;">
@@ -56,16 +55,9 @@ $this->load->view('template/header');
 									<div class="pt-3">
 										<p class="mb-2"><a href="<?= base_url('product/detail/') ?><?= $p['id_m_products'] ?>" class="font-weight-bold text-primary"><?= $p['product_name'] ?></a></p>
 										<div class="clearfix">
-											<div class="d-inline-block text-danger pl-2">Rp. <?= number_format($p['price'], '2', ',', '.') ?></div>
-											<ul class="list-inline mb-0 mt-2">
-												<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-												<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-												<li class="list-inline-item"><a href="#" class="text-primary"><i class="icon-star"></i></a></li>
-												<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
-												</li>
-												<li class="list-inline-item"><a href="#"><i class="icon-star"></i></a>
-												</li>
-											</ul>
+											<div class="d-inline-block text-danger pl-2">
+												Rp. <?= number_format($p['price'], '2', ',', '.') ?>
+											</div>
 										</div>
 									</div>
 								</div>

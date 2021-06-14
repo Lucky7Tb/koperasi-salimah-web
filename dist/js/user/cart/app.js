@@ -85,10 +85,10 @@ function removeFormCart(idCart) {
 	  success: function(response) {
 	    response = JSON.parse(response);
 	    if (response.code === 200) {
-	    	toastr.success(response.message);
+	    	toastr.success('Produk berhasil dihapus dari cart');
 	    	getCart();
 	    }else {
-	    	toastr.error(response.message)
+	    	toastr.error('Terjadi kesalahan pada server')
 	    }
 	  },
 	});	

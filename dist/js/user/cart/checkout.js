@@ -56,7 +56,7 @@ function getDeliveryService() {
 				checkout.courier = $('#courier-select option:first').val();
 				$('#courier-select').trigger('select');
 			}else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	})
@@ -78,7 +78,7 @@ function getPaymentMethod() {
 				$('#payment-select').val($('#payment-select option:first').val());
 				$('#payment-select').trigger('change');
 			}else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	});	
@@ -172,7 +172,7 @@ function prepareOrder() {
 
 				getWayFee();
 			}else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	});	
@@ -262,9 +262,9 @@ function createOrder() {
 			success: function(response) {
 				response = JSON.parse(response);
 				if (response.code === 200) {
-					toastr.success(response.message);
+					toastr.success('Sukses membuat transaksi');
 				}else {
-					toastr.error(response.message)
+					toastr.error('Terjadi kesalahan pada server')
 				}
 			},
 			complete: function() {

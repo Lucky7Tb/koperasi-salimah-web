@@ -57,7 +57,6 @@ $this->load->view('template/header');
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
-		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/user/wishlist/app.js"></script>
 		<script>
 			getWishlist();

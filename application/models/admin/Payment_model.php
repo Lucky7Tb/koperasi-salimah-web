@@ -4,12 +4,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Payment_model extends CI_Model {
 
+	private $token;
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->token = $this->session->userdata('token');
+	}
+
 	public function getPayments($data)
 	{
+		$data['search'] = urlencode($data['search']);
+		
 		$endpoint = "api/v1/admin/dashboard/payment/getPayments";
-		$token = $this->session->userdata('token');
 
-		$result = get_curl($endpoint, $token, $data);
+		$result = get_curl($endpoint, $this->token, $data);
 
 		return $result;
 	}
@@ -17,9 +26,8 @@ class Payment_model extends CI_Model {
 	public function getPayment($paymentId)
 	{
 		$endpoint = 'api/v1/admin/dashboard/payment/getPayment/'. $paymentId;
-		$token = $this->session->userdata('token');
 
-		$result = get_curl($endpoint, $token);
+		$result = get_curl($endpoint, $this->token);
 
 		return $result;
 	}
@@ -27,9 +35,8 @@ class Payment_model extends CI_Model {
 	public function insertPayment($data)
 	{
 		$endpoint = 'api/v1/admin/dashboard/payment/create';
-		$token = $this->session->userdata('token');
 
-		$result = post_curl($endpoint, $data, $token);
+		$result = post_curl($endpoint, $data, $this->token);
 
 		return $result;
 	}
@@ -37,9 +44,8 @@ class Payment_model extends CI_Model {
 	public function updatePayment($data, $paymentId)
 	{
 		$endpoint = 'api/v1/admin/dashboard/payment/update';
-		$token = $this->session->userdata('token');
 
-		$result = put_curl($endpoint, $paymentId, $data, $token);
+		$result = put_curl($endpoint, $paymentId, $data, $this->token);
 
 		return $result;
 	}
@@ -47,9 +53,8 @@ class Payment_model extends CI_Model {
 	public function changePaymentThumbnail($data, $paymentId)
 	{
 		$endpoint = '/api/v1/admin/dashboard/payment/changePhoto/'.$paymentId;
-		$token = $this->session->userdata('token');
 
-		$result = post_curl($endpoint, $data, $token);
+		$result = post_curl($endpoint, $data, $this->token);
 
 		return $result;
 	}
@@ -57,9 +62,8 @@ class Payment_model extends CI_Model {
 	public function deletePayment($paymentId)
 	{
 		$endpoint = '/api/v1/admin/dashboard/payment/deactivePayment';
-		$token = $this->session->userdata('token');
 
-		$result = delete_curl($endpoint, $paymentId, $token);
+		$result = delete_curl($endpoint, $paymentId, $this->token);
 
 		return $result;
 		
