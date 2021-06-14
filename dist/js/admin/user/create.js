@@ -32,7 +32,7 @@ $("#user-form").on("submit", function (e) {
 				clearForm();
 				toastr.success('Berhasil menambahkan user');
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				toastr.error(response.message);
 			}
 		},
 		complete: function () {

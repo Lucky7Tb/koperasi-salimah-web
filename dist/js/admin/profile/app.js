@@ -1,4 +1,4 @@
-function initPlugiOption() {
+	function initPlugiOption() {
 	$("#date_of_birth").datepicker({ format: "yyyy-mm-dd" });
 	$("select").select2({
 		  dropdownParent: $('#address-create-modal')
@@ -86,7 +86,7 @@ $('#form-update-photo').on('submit', function (e) {
 				getProfile();
 				clearForm();
 			} else {
-				toastr.error(response.error);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	});
@@ -109,10 +109,10 @@ $('#form-profile').on('submit', function (e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah profile');
 				getProfile();
 			}else {
-				toastr.error(response.error);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {  
@@ -130,7 +130,7 @@ function getProfile() {
 			if (response.code === 200) {
 				fillForm(response.data);
 			}else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	});

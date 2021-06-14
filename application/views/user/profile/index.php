@@ -77,13 +77,13 @@ $this->load->view('template/header', [
 	<div class="row">
 		<div class="col-12 mt-3">
 			<h1>Alamat</h1>
-			<div class="card">
+			<div class="card bottom">
 				<div class="card-body">
 					<div class="row mt-2">
 						<div class="col-12">
 							<h2>Alamat aktif</h2>
 							<div class="card bg-light" style="width: 18rem;">
-								<div class="card-body">
+								<div class="card-body" id="address-container">
 								<address id="address-active"></address>
 								<hr>
 								<p id="address-active-post-code"></p>
@@ -93,7 +93,7 @@ $this->load->view('template/header', [
 					</div>
 				</div>
 				<div class="row mt-5">
-					<div class="col-12">
+					<div class="col-12 ml-3">
 						<h2>Daftar alamat</h2>
 						<button class="btn btn-lg btn-primary mt-2 mb-2" onclick="showAddressModal()">Tambah alamat</button>
 						<div class="row row-cols-sm-12 row-cols-md-6 row-cols-lg-3" id="address-container">
@@ -105,50 +105,48 @@ $this->load->view('template/header', [
 	</div>
 </div>
 </div>
-
 <!-- Address Modal -->
 <div class="modal fade" id="address-modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Tambah alamat</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form id="address-form">
-      	<div class="modal-body">
-      		<input type="hidden" id="address_id" name="address_id"></input>
-        	<div class="form-group">
-        		<label for="province">Provinsi</label>
-        		<select class="form-control" id="province" name="province" required></select>
-        	</div>
-        	<div class="form-group">
-        		<label for="city">Kota</label>
-        		<select class="form-control" id="city" name="city" required></select>
-        	</div>
-        	<div class="form-group">
-        		<label for="subdistrict">Kecamatan</label>
-        		<select class="form-control" id="subdistrict" name="subdistrict" required></select>
-        	</div>
-        	<div class="form-group">
-        		<label for="postcode">Kode pos</label>
-        		<input class="form-control" id="postcode" name="postcode" placeholder="Masukan kode pos anda" required/>
-        	</div>
-        	<div class="form-group">
-        		<label for="address">Address</label>
-        		<textarea class="form-control" id="address" name="address" rows="5" placeholder="Masukan alamat anda" required></textarea>
-        	</div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-lg btn-primary">Save changes</button>
-	      </div>
-      </form>
-    </div>
-  </div>
+<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">Tambah alamat</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<form id="address-form">
+			<div class="modal-body">
+				<input type="hidden" id="address_id" name="address_id"></input>
+				<div class="form-group">
+					<label for="province">Provinsi</label>
+				<select class="form-control" id="province" name="province" required></select>
+			</div>
+			<div class="form-group">
+				<label for="city">Kota</label>
+			<select class="form-control" id="city" name="city" required></select>
+		</div>
+		<div class="form-group">
+			<label for="subdistrict">Kecamatan</label>
+		<select class="form-control" id="subdistrict" name="subdistrict" required></select>
+	</div>
+	<div class="form-group">
+		<label for="postcode">Kode pos</label>
+		<input class="form-control" id="postcode" name="postcode" placeholder="Masukan kode pos anda" required/>
+	</div>
+	<div class="form-group">
+		<label for="address">Address</label>
+		<textarea class="form-control" id="address" name="address" rows="5" placeholder="Masukan alamat anda" required></textarea>
+	</div>
 </div>
-
+<div class="modal-footer">
+	<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Close</button>
+	<button type="submit" class="btn btn-lg btn-primary">Save changes</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 <?php
 $js = base_url('dist/js');
 $this->load->view('template/footer', [

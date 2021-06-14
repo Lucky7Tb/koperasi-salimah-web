@@ -56,7 +56,7 @@ $('#address-form').on('submit', function(e) {
 	formData.append('subdistrict', $('#subdistrict option:selected').text());
 
 	global.addUpdateAddress(formData, function(response) {
-		toastr.success(response.message)
+		toastr.success('Berhasil mengubah alamat')
 		$('#address-modal').modal('hide');
 		$('#address-form').trigger('reset');
 		$('#address_id').val('');
@@ -79,11 +79,11 @@ $('#form-update-photo').on('submit', function(e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah foto profile');
 				getProfile();
 				clearForm();
 			} else {
-				toastr.error(response.error);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	});
@@ -106,10 +106,10 @@ $('#form-profile').on('submit', function (e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				toastr.success('Berhasil mengubah profile');
 				getProfile();
 			}else {
-				toastr.error(response.error);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {  
@@ -127,7 +127,7 @@ function getProfile() {
 			if (response.code === 200) {
 				fillForm(response.data);
 			}else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	});
@@ -142,7 +142,7 @@ function getDetailAddress(addressId) {
 			if (response.code === 200) {
 				fillFormAddress(response.data); 	
 			}else {
-				toastr.error(response.message);
+				toastr.error('Terjadi kesalahan pada server');
 			}
 		}
 	});

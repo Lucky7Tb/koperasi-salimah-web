@@ -140,8 +140,8 @@ $this->load->view('template/header');
 							<div class="tab-content mt-5" id="myTabContent">
 								<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description">
 									<div class="row">
-										<div class="col-md-6">
-											<p class="pb-3">Rp. <?= $deskripsi ?></p>
+										<div class="col-md-12">
+											<p class="lead text-center">Rp. <?= $deskripsi ?></p>
 										</div>
 									</div>
 								</div>

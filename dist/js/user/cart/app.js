@@ -108,11 +108,10 @@ $('#checkout-button').on('click', function(e) {
 		data: formData,
 		success: function(response) {
 			response = JSON.parse(response);
-
 			if (response.code === 200) {
 				window.location.href = `${global.base_url}cart/checkout`
 			} else {
-				toastr.error(response.message);
+				window.location.href = `${global.base_url}profile`
 			}
 		}
 	})

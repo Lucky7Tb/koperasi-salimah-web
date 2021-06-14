@@ -30,7 +30,7 @@
 					<li class="<?= $this->uri->segment(2) == 'payment' ? 'active' : '' ?>">
 						<a href="<?= base_url('/admin/payment') ?>" class="<?= $this->uri->segment(2) == 'payment' ? '' : 'text-white' ?>">
 							<i class="icon-credit-card"></i>
-							Metode Pembayaran
+							Rekening bank
 						</a>
 					</li>
 					<li class="<?= $this->uri->segment(2) == 'delivery' ? 'active' : '' ?>">

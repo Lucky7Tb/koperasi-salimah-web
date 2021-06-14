@@ -99,7 +99,7 @@ $visible = $produk['is_visible'];
 						<div class="form-group row">
 							<p class="col-sm-2 col-form-label">Berat Produk</p>
 							<div class="col-sm-10">
-								<div class="form-control" id="nama_produk"><?= $berat ?> Kg</div>
+								<div class="form-control" id="nama_produk"><?= $berat ?> gram</div>
 							</div>
 						</div>
 						<div class="form-group row">

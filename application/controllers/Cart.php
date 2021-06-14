@@ -7,16 +7,8 @@ class Cart extends CI_Controller {
 	{
 		parent::__construct();
 		
-		if (!isLogin()) {
-			redirect('auth');
-		}
-
 		if (isAdmin()) {
 			redirect('/admin');
-		}
-
-		if (!haveAddress()) {
-			redirect('/profile');
 		}
 			
 		$this->load->model('Cart_model', 'cart');
@@ -24,12 +16,20 @@ class Cart extends CI_Controller {
 
 	public function index()
 	{
+		if (!isLogin()) {
+			redirect('auth');
+		}
+
 		$data['title'] = 'Cart';
 		$this->load->view('user/cart/index', $data);
 	}
 
 	public function getCart()
 	{
+		if (!isLogin()) {
+			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+		}
+
 		$result = $this->cart->getCart();
 
 		response($result, true);
@@ -37,6 +37,10 @@ class Cart extends CI_Controller {
 
 	public function getDeliveryService()
 	{
+		if (!isLogin()) {
+			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+		}
+
 		$this->load->model('Delivery_model', 'delivery');
 
 		$result = $this->delivery->getDeliveryService();
@@ -46,6 +50,10 @@ class Cart extends CI_Controller {
 
 	public function getPaymentMethod()
 	{
+		if (!isLogin()) {
+			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+		}
+
 		$result = $this->cart->getPaymentMethod();
 
 		response($result, true);
@@ -53,6 +61,10 @@ class Cart extends CI_Controller {
 
 	public function getWayFee()
 	{
+		if (!isLogin()) {
+			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+		}
+
 		$data = $this->input->post(null, true);
 
 		$result = $this->cart->getWayFee($data);
@@ -62,6 +74,10 @@ class Cart extends CI_Controller {
 
 	public function addToCart()
 	{
+		if (!isLogin()) {
+			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+		}
+
 		$data = $this->input->post(null, true);
 
 		$result = $this->cart->addToCart($data);
@@ -71,6 +87,10 @@ class Cart extends CI_Controller {
 
 	public function updateCartQty()
 	{
+		if (!isLogin()) {
+			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+		}
+
 		$data = $this->input->post(null, true);
 		$idProduct = $this->input->get('id', true);
 
@@ -81,6 +101,10 @@ class Cart extends CI_Controller {
 
 	public function removeCart()
 	{
+		if (!isLogin()) {
+			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+		}
+
 		$idCart = $this->input->get('id', true);
 
 		$result = $this->cart->removeCart($idCart);
@@ -90,12 +114,24 @@ class Cart extends CI_Controller {
 	
 	public function checkout()
 	{
+		if (!isLogin()) {
+			redirect('auth');
+		}
+
+		if (!haveAddress()) {
+			redirect('profile');
+		}
+
 		$data['title'] = 'Checkout';
 		$this->load->view('user/cart/checkout', $data);
 	}
 
 	public function doCheckout()
 	{
+		if (!haveAddress()) {
+			response(["code" => 400, "message" => "Harap masukan alamat terlebih dahulu"], true);
+		}
+		
 		$data['id_cart'] = $this->input->post('id_cart', true);
 		$data['id_cart'] = explode(',', $data['id_cart']);
 

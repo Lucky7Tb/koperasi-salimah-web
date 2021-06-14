@@ -44,7 +44,9 @@ class Product extends CI_Controller
 
 		$params = array(
 			'page' => $page,
-			'search' => $search
+			'search' => $search,
+			'order-by' => 'updated_at',
+			'order-direction' => 'DESC',
 		);
 
 		$config['base_url'] = base_url('admin/product/index');
@@ -113,7 +115,7 @@ class Product extends CI_Controller
 	{
 		$data['title'] = 'Tambah Produk';
 
-		$data['category'] = $this->category->getAllCategories($this->token);
+		$data['category'] = $this->category->getActiveCategory($this->token);
 
 		$error = array(
 			'required' => '{field} harus diisi',

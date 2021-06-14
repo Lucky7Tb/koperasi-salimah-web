@@ -18,6 +18,13 @@ class Category_model extends CI_Model
 		return get_curl($end, $this->token, $params);
 	}
 
+	public function getActiveCategory($token)
+	{
+		$end = 'api/v1/admin/dashboard/category/getActiveCategories';
+		
+		return get_curl($end, $this->token, $token);
+	}
+
 	public function getCategory($id)
 	{
 		$end = 'api/v1/admin/dashboard/category/getCategory/'.$id;

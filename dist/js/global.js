@@ -68,7 +68,7 @@ global.addToWishlist = function(idProduct) {
 			if (response.code === 200) {
 				toastr.success(response.message);
 			}else {
-				toastr.error(response.message);
+				window.location.href = global.base_url + "auth"
 			}
 		}
 	});
@@ -87,10 +87,11 @@ global.addToCart = function(idProduct, qtyProduct = 1) {
 		data: formData,
 		success: function (response) {
 			response = JSON.parse(response);
+
 			if (response.code === 200) {
 				toastr.success(response.message);
 			}else {
-				toastr.error(response.message);
+				window.location.href = global.base_url + "auth"
 			}
 		}
 	});
@@ -149,8 +150,6 @@ global.getCurrentAddress = function(callback) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				callback(response.data);
-			}else {
-				toastr.error(response.message);
 			}
 		}
 	});
@@ -164,6 +163,8 @@ global.getAllAddress = function(callback) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				callback(response.data);
+			}else {
+				toastr.error(response.message);
 			}
 		}
 	});
