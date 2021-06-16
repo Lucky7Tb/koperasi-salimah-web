@@ -23,6 +23,10 @@ function renderDetailData(data) {
 	const updatedDateOrder = moment(data.created_at).format('DD-MMM-YYYY HH:mm');
 	$('#main').html('');
 	switch (data.status) {
+		case '0':
+			status = 'Belum terverifikasi';
+			badge = 'secondary';
+			break;
 		case '1':
 			status = 'Terverifikasi';
 			badge = 'info';
@@ -63,12 +67,10 @@ function renderDetailData(data) {
 	});
 
 	let proofContent = '';
-	let disabled = '';
 	if (data.proof === null) {
 		productContent += `
 			<h4 class="text-center mb-5">Anda belum mengkonfirmasi transaksi ini</h4>
 		`
-		disabled = 'disabled';
 	}else {
 		proofContent += `
 			<a href='${data.proof}' data-fancybox data-caption='Bukti pembayaran - ${data.full_name}'>
@@ -114,6 +116,7 @@ function renderDetailData(data) {
 						<div class="form-group">
 							<label for="status" class="text-primary">Ubah status</label>
 							<select class="form-control" id="status" onchange="onStatus()">
+								<option value="0">Belum terverifikasi</option>
 								<option value="1">Terverifikasi</option>
 								<option value="2">Diproses</option>
 								<option value="3">Dikirim</option>
@@ -125,7 +128,7 @@ function renderDetailData(data) {
 							<label for="resi_number" class="text-primary">No Resi</label>
 							<input type="text" class="form-control" name="resi_number" id="resi_number" value="${data.delivery.resi_number ? data.delivery.resi_number : ''}">
 						</div>
-						<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeTransactionStatus()" id="btn-change-status" ${disabled}>Simpan</button>
+						<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeTransactionStatus()" id="btn-change-status">Simpan</button>
 					</div>
 				</div>
 

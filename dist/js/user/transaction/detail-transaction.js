@@ -18,6 +18,26 @@ function initOptionPlugin() {
 	photo = photo.data('dropify');
 }
 
+function initWhatsappButton(sellerPhoneNumber, transactionToken) {
+	$("#whatsapp-chat-button").removeClass('d-none');
+
+	sellerPhoneNumber = sellerPhoneNumber.split('');
+	sellerPhoneNumber[0] = '62';
+	sellerPhoneNumber = sellerPhoneNumber.join('');
+
+	$("#whatsapp-chat-button").floatingWhatsApp({
+    phone: sellerPhoneNumber,
+    popupMessage: "Hallo ada yang bisa saya bantu?",
+    message: `Halo, kak. Saya sudah mengupload foto bukti transfer dengan token transaksi: *${transactionToken}*. Tolong di cek ya🙏`,
+    showPopup: true,
+    showOnIE: false,
+    headerTitle: "Hai, selamat datang",
+    headerColor: "lightgreen",
+    backgroundColor: "lightgreen",
+    buttonImage: `<img src='${global.base_url}dist/images/wa.png' />`
+	});
+}
+
 $('#transaction-proof-form').on('submit', function(e) {
 	e.preventDefault();
 
@@ -147,6 +167,10 @@ function renderTransactionDetailData(data) {
 		photo.settings.defaultFile = data.proof[0].uri;
 		photo.destroy();
 		photo.init();
+
+		initWhatsappButton(data.seller[0].phone_number, data.transaction_token);
+
+		$('#qris-container').addClass('d-none');
 
 		if (parseInt(data.status) >= 1) {
 			$('#transaction-message').text(`Pesan: Bukti telah dikonfirmasi`);

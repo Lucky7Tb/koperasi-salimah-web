@@ -80,7 +80,7 @@ class Product_Categories extends CI_Controller
 			if ($this->category->createCategory($data)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori produk berhasil ditambah</div>');
 
-				redirect('admin/product_categories');
+				redirect('admin/product_Categories');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Kategori produk gagal ditambah</div>');
 

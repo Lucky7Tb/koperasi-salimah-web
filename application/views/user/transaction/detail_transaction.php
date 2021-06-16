@@ -5,9 +5,12 @@ $this->load->view('template/header', [
 	'css' => '
 		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
 		<link rel="stylesheet" href="' . $plugin . '/fancybox/jquery.fancybox.min.css">
+		<link rel="stylesheet" href="' . $plugin . '/whatsapp/floating-wpp.min.css">
 	'
 ]);
 ?>
+<div id="whatsapp-chat-button" class="d-none" style="z-index: 999"></div>
+
 <div class="container-fluid site-width">
 	<div class="row">
 		<div class="col-12 align-self-center">
@@ -72,6 +75,10 @@ $this->load->view('template/header', [
 										<p id="bank_name"></p>
 										<p id="bank_code"></p>
 										<p id="no_account"></p>
+										<div id="qris-container">
+												<h6 class="text-center">Atau</h6>
+												<button type="button" class="btn btn-lg btn-block btn-primary" id="qris-button" data-target="#qris-modal" data-toggle="modal">Bayar dengan Qris</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -151,6 +158,27 @@ $this->load->view('template/header', [
 	</div>
 </div>
 
+<!-- Confirm package -->
+<div class="modal fade" id="qris-modal">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Pembayaran dengan Qris</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h3 class="text-center">Harap scan gambar Qris ini</h3>
+				<img src="<?= base_url('dist/images/qris.jpeg') ?>" alt="Qris" loading="lazy" class="img-fluid d-block mx-auto">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <?php
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
@@ -158,6 +186,7 @@ $this->load->view('template/footer', [
 		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
 		<script src="' . $plugin . '/moment/moment.js"></script>
 		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
+		<script src="' . $plugin . '/whatsapp/floating-wpp.min.js"></script>
 		<script src="' . $js . '/user/transaction/detail-transaction.js"></script>
 		<script>
 			initOptionPlugin();

@@ -39,9 +39,7 @@ $this->load->view('template/header', [
 							$deskripsi = $produk['description'];
 							$uri = $produk['uri'];
 							$phoneNumber = str_split($seller[0]['phone_number']);
-							if ($phoneNumber[0] == "0" || $phoneNumber[0] == "+62") {
-								$phoneNumber[0] = '62';
-							}
+							$phoneNumber[0] = '62';
 							$phoneNumber = join($phoneNumber);
 							?>
 
@@ -178,17 +176,17 @@ $this->load->view('template/footer', [
 		<script src="' . $plugin . '/whatsapp/floating-wpp.min.js"></script>
 		<script src="' . $js . '/user/product/product-detail.js"></script>
 		<script>
-		$("#whatsapp-chat-button").floatingWhatsApp({
-	    phone: "'. $phoneNumber.'",
-	    popupMessage: "Hallo ada yang bisa saya bantu?",
-	    message: "Halo, kak. Apakah produk *'.$namaProduk.'* masih tersedia?",
-	    showPopup: true,
-	    showOnIE: false,
-	    headerTitle: "Hai, selamat datang",
-	    headerColor: "lightgreen",
-	    backgroundColor: "lightgreen",
-	    buttonImage: "<img src='. base_url("dist/images/wa.png") .' />"
-	});
+			$("#whatsapp-chat-button").floatingWhatsApp({
+		    phone: "'. $phoneNumber.'",
+		    popupMessage: "Hallo ada yang bisa saya bantu?",
+		    message: "Halo, kak. Apakah produk *'.$namaProduk.'* masih tersedia?",
+		    showPopup: true,
+		    showOnIE: false,
+		    headerTitle: "Hai, selamat datang",
+		    headerColor: "lightgreen",
+		    backgroundColor: "lightgreen",
+		    buttonImage: "<img src='. base_url("dist/images/wa.png") .' />"
+			});
 		</script>
 	'
 ]);
