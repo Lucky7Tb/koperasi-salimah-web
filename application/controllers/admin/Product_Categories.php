@@ -55,7 +55,7 @@ class Product_Categories extends CI_Controller
 		$data['kategori'] = $this->category->getAllCategories($params);
 		$data['page'] = $page * 10;
 
-		$this->load->view('admin/product_categories/index', $data);
+		$this->load->view('admin/product_Categories/index', $data);
 	}
 
 	public function tambah()
@@ -66,7 +66,7 @@ class Product_Categories extends CI_Controller
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('admin/product_categories/add', $data);
+			$this->load->view('admin/product_Categories/add', $data);
 		} else {
 			$namaKategori = $this->input->post('nama_kategori');
 			$deskripsi = $this->input->post('deskripsi');
@@ -84,7 +84,7 @@ class Product_Categories extends CI_Controller
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Kategori produk gagal ditambah</div>');
 
-				redirect('admin/product_categories');
+				redirect('admin/product_Categories');
 			}
 		}
 	}
@@ -94,11 +94,11 @@ class Product_Categories extends CI_Controller
 		if ($this->category->deactiveCategory($id)) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori produk berhasil dihapus</div>');
 
-			redirect('admin/product_categories');
+			redirect('admin/product_Categories');
 		}
 		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Kategori produk gagal dihapus</div>');
 
-		redirect('admin/product_categories');
+		redirect('admin/product_Categories');
 	}
 
 	public function ubah($id)
@@ -111,7 +111,7 @@ class Product_Categories extends CI_Controller
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('admin/product_categories/edit', $data);
+			$this->load->view('admin/product_Categories/edit', $data);
 		} else {
 			$data['category'] = $this->input->post('nama_kategori');
 			$data['slug'] = strtolower($this->input->post('nama_kategori'));
@@ -122,11 +122,11 @@ class Product_Categories extends CI_Controller
 
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori Produk berhasil diubah</div>');
 
-				redirect('admin/product_categories');
+				redirect('admin/product_Categories');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Kategori Produk gagal diubah</div>');
 
-				redirect('admin/product_categories');
+				redirect('admin/product_Categories');
 			}
 		}
 	}

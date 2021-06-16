@@ -1,8 +1,14 @@
 <?php
 $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
-$this->load->view('template/header');
+$this->load->view('template/header', [
+	'css' => '
+		<link rel="stylesheet" href="' . $plugin . '/whatsapp/floating-wpp.min.css">
+	'
+]);
 ?>
+<div id="whatsapp-chat-button" style="z-index: 999"></div>
+
 <div class="container-fluid site-width">
 	<div class="row">
 		<div class="col-12 align-self-center">
@@ -32,6 +38,11 @@ $this->load->view('template/header');
 							$berat = $produk['weight'];
 							$deskripsi = $produk['description'];
 							$uri = $produk['uri'];
+							$phoneNumber = str_split($seller[0]['phone_number']);
+							if ($phoneNumber[0] == "0" || $phoneNumber[0] == "+62") {
+								$phoneNumber[0] = '62';
+							}
+							$phoneNumber = join($phoneNumber);
 							?>
 
 							<div id="product-corousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -75,15 +86,7 @@ $this->load->view('template/header');
 										<a href="#"><img src="dist/images/contact-3.jpg" width="40" alt="" class="img-fluid rounded-circle"></a>
 										<div class="media-body z-index-1">
 											<div>
-												<?php
-													$phoneNumber = str_split($seller[0]['phone_number']);
-													$phoneNumber[0] = '62';
-													$phoneNumber = join($phoneNumber);
-												?>
 												<h6>Admin: <?= $seller[0]['full_name'] ?></h6>
-												<a href="https://api.whatsapp.com/send?phone=<?= $phoneNumber ?>&text=Halo%20kak,%20apakah%20produk%20<?= '*' . $namaProduk . '*' ?>%20masih%20tersedia%20?">
-													<strong>Chat admin</strong>
-												</a>
 											</div>
 										</div>
 									</div>
@@ -172,7 +175,21 @@ $this->load->view('template/header');
 $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
+		<script src="' . $plugin . '/whatsapp/floating-wpp.min.js"></script>
 		<script src="' . $js . '/user/product/product-detail.js"></script>
+		<script>
+		$("#whatsapp-chat-button").floatingWhatsApp({
+	    phone: "'. $phoneNumber.'",
+	    popupMessage: "Hallo ada yang bisa saya bantu?",
+	    message: "Halo, kak. Apakah produk *'.$namaProduk.'* masih tersedia?",
+	    showPopup: true,
+	    showOnIE: false,
+	    headerTitle: "Hai, selamat datang",
+	    headerColor: "lightgreen",
+	    backgroundColor: "lightgreen",
+	    buttonImage: "<img src='. base_url("dist/images/wa.png") .' />"
+	});
+		</script>
 	'
 ]);
 ?>

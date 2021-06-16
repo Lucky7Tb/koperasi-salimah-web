@@ -72,7 +72,7 @@ $('#form-update-photo').on('submit', function(e) {
 
 	$.ajax({
 		type: 'POST',
-		url: `${global.base_url}profile/changePhotoProfile`,
+		url: `${global.base_url}admin/profile/changePhotoProfile`,
 		processData: false,
 		contentType: false,
 		data: formData,
@@ -96,7 +96,7 @@ $('#form-profile').on('submit', function (e) {
 
 	$.ajax({
 		type: 'POST',
-		url: `${global.base_url}profile/changeProfile`,
+		url: `${global.base_url}admin/profile/changeProfile`,
 		processData: false,
 		contentType: false,
 		data: formData,

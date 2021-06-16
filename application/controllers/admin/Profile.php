@@ -37,6 +37,9 @@ class Profile extends CI_Controller {
 	{
 		$data = $this->input->post(null, true);
 
+		$data['phone_number'] = str_replace(' ', '', $data['phone_number']);
+		$data['phone_number'] = str_replace('-', '', $data['phone_number']);
+
 		$result = $this->profile->changeProfile($data);
 
 		response($result, true);
