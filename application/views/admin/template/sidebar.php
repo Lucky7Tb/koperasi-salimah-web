@@ -21,6 +21,12 @@
 							Kategori produk
 						</a>
 					</li>
+					<li class="<?= $this->uri->segment(2) == 'banner' ? 'active' : '' ?>">
+						<a href="<?= base_url('/admin/banner') ?>" class="<?= $this->uri->segment(2) == 'banner' ? ' ' : 'text-white' ?>">
+							<i class="icon-list"></i>
+								Banner
+						</a>
+					</li>
 					<li class="<?= $this->uri->segment(2) == 'user' ? 'active' : '' ?>">
 						<a href="<?= base_url('/admin/user') ?>" class="<?= $this->uri->segment(2) == 'user' ? '' : 'text-white' ?>">
 							<i class="icon-people"></i>
