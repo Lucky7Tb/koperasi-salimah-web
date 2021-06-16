@@ -85,7 +85,7 @@ $this->load->view('admin/template/header');
 									endforeach;
 								else:
 									?>
-									<td colspan='8' class='text-center'>Tidak ada data</td>
+									<td colspan='9' class='text-center'>Tidak ada data</td>
 								<?php
 								endif;
 								?>

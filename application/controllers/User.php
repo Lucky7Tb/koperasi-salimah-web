@@ -15,6 +15,8 @@ class User extends CI_Controller
 
 		$this->token = $this->session->userdata('token');
 		$this->load->model('Product_model', 'produk');
+
+		$this->load->model('Banner_model', 'banner');
 	}
 
 	public function index($page = 1, $search = null)
@@ -49,6 +51,7 @@ class User extends CI_Controller
 		$this->pagination->initialize($config);
 
 		$data['produk'] = $this->produk->getAllProductsUser($params);
+		$data['banners'] = $this->banner->getBanners();
 
 		$this->load->view('index', $data);
 	}

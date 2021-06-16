@@ -18,12 +18,55 @@ class Banner extends CI_Controller {
 		if (!haveAddress()) {
 			redirect('/admin/profile');
 		}
+
+		$this->load->model('admin/Banner_model', 'banner');
 	}
 
 	public function index()
 	{
-		$data['title'] = 'Dashboard';
+		$data['title'] = 'Banner';
 		$this->load->view("admin/banner/index", $data);
+	}
+
+	public function create()
+	{
+		$data['title'] = 'Tambah banner';
+		$this->load->view("admin/banner/create", $data);
+	}
+
+	public function getBanners()
+	{
+		$result = $this->banner->getBanners();
+
+		response($result, true);
+	}
+
+	public function getOneBanner()
+	{
+		$idBanner = $this->input->get('id', true);
+
+		$result = $this->banner->getOneBanner($idBanner);
+
+		response($result, true);
+	}
+
+	public function createBanner()
+	{
+		$data = $this->input->post(null, true);
+		$data['file_key'] = 'photo';
+
+		$result = $this->banner->createBanner($data);
+
+		response($result, true);	
+	}
+
+	public function deleteBanner()
+	{
+		$idBanner = $this->input->post('idBanner', true);
+		
+		$result = $this->banner->deleteBanner($idBanner);
+
+		response($result, true);
 	}
 
 }

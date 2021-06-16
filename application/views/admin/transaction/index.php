@@ -101,7 +101,7 @@ $this->load->view('admin/template/header', [
 									<button class="btn btn-lg btn-primary" id="button-transaction-search">Cari</button>
 								</div>
 								<div class="table-responsive">
-									<table id="transaction-table" class="display table table-bordered text-center">
+									<table id="transaction-table" class="display table-striped table-bordered text-center">
 										<thead>
 											<tr role="row">
 												<th rowspan="2">#</th>
@@ -166,7 +166,7 @@ $this->load->view('admin/template/header', [
 									<button class="btn btn-lg btn-primary" id="button-transaction-proof-search">cari</button>
 								</div>
 								<div class="table-responsive">
-									<table id="transaction-table" class="display table table-bordered text-center">
+									<table id="transaction-table" class="display table-striped table-bordered text-center">
 										<thead>
 											<tr role="row">
 												<th rowspan="2">#</th>

@@ -23,7 +23,7 @@
 					</li>
 					<li class="<?= $this->uri->segment(2) == 'banner' ? 'active' : '' ?>">
 						<a href="<?= base_url('/admin/banner') ?>" class="<?= $this->uri->segment(2) == 'banner' ? ' ' : 'text-white' ?>">
-							<i class="icon-list"></i>
+							<i class="icon-picture"></i>
 								Banner
 						</a>
 					</li>

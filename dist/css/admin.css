@@ -10,7 +10,11 @@ footer {
 	margin-bottom: 10%;
 }
 
-@media only screen and (max-width: 768px){
+#side-menu li a, .form-control {
+	font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
 	footer {
 		left: 0;
 	}

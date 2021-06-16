@@ -5,15 +5,28 @@ $this->load->view('template/header');
 ?>
 
 <div class="container-fluid site-width">
-	<div class="col-12 mt-3">
-		<div class="card">
+	<div class="col-12">
+		<div class="card" style="margin-top: 100px">
 			<div class="card-body">
-				<div class="jumbotron jumbotron-fluid" style="background-image: url('<?= base_url('img/tes2.png') ?>');">
-					<div class="container">
-						<h1 class="display-4 font-weight-bold">Selamat Datang di</h1>
-						<h1 class="display-4 font-weight-bold">Koperasi Salimah</h1>
-						<h1 class="display-4 font-weight-bold">Kota Bandung</h1>
-					</div>
+
+				<div id="banner-corousel" class="carousel slide carousel-fade" data-ride="carousel">
+				  <div class="carousel-inner">
+				  	<?php foreach ($banners['data'] as $index => $banner): ?>
+				  		<div class="carousel-item <?= $index == 0 ? 'active' : ''?>" data-interval="<?= ($index + 1) * 1000 ?>">
+					    	<a href="<?= $banner['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
+					    		 <img src="<?= $banner['uri'] ?>" class="d-block w-100 mx-auto img-fluid" alt="banner" loading="lazy" style="height: 350px;">
+					    	</a>
+					    </div>
+				  	<?php endforeach; ?>
+				  </div>
+				  <a class="carousel-control-prev" href="#banner-corousel" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#banner-corousel" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
 				</div>
 			</div>
 		</div>
@@ -75,7 +88,6 @@ $this->load->view('template/header');
 			</div>
 		</div>
 	</div>
-	<!-- END: Card DATA-->
 	
 	<div class="row">
 		<div class="col-12 mt-3">
@@ -99,21 +111,21 @@ $js = base_url('dist/js');
 $this->load->view('template/footer', [
 	'js' => '
 		<script>
-		let page = 1
-		let search = $("#input-search-product")
-		let tCari = $("#tombol-cari")
-		tCari.on("click", function() {
-			let url = "' . base_url('user/index/') . '1/" + search.val()
-			window.location.href = url
-		})
-		search.on("keypress", function(e) {
-			if (e.keyCode === 13) {
-				e.preventDefault();
+			let page = 1
+			let search = $("#input-search-product")
+			let tCari = $("#tombol-cari")
+			tCari.on("click", function() {
 				let url = "' . base_url('user/index/') . '1/" + search.val()
 				window.location.href = url
-				return false;
-			}
-		})
+			})
+			search.on("keypress", function(e) {
+				if (e.keyCode === 13) {
+					e.preventDefault();
+					let url = "' . base_url('user/index/') . '1/" + search.val()
+					window.location.href = url
+					return false;
+				}
+			})
 		</script>
 	'
 ]);
