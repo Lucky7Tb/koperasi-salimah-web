@@ -142,7 +142,7 @@ $this->load->view('template/header', [
 								<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description">
 									<div class="row">
 										<div class="col-md-12">
-											<p class="lead text-center">Rp. <?= $deskripsi ?></p>
+											<p class="lead text-center"><?= $deskripsi ?></p>
 										</div>
 									</div>
 								</div>

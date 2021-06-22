@@ -67,12 +67,15 @@
 						success: function(response) {
 							response = JSON.parse(response);
 							if (response.code === 200) {
-								if (response.data.level === "admin") {
+								if (response.data.level === 'admin') {
 									window.location.href = '<?= base_url('/admin') ?>';
 									return;
+								} else if(response.data.level === 'user') {
+									window.location.href = '<?= base_url('/') ?>';
+									return;
+								} else {
+									toastr.error('Maaf akun anda telah di block');
 								}
-								window.location.href = '<?= base_url('/') ?>';
-								return;
 							} else {
 								toastr.error(response.message);
 							}

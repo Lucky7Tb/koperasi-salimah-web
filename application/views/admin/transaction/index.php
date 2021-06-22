@@ -44,6 +44,50 @@ $this->load->view('admin/template/header', [
 	</div>
 </div>
 
+<!-- Download transaction modal -->
+<div class="modal fade" id="download-transaction-modal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Download transaksi</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="status_transaction">Status</label>
+					<select name="status_transaction" id="status_transaction" class="form-control custom-select" required>
+						<option value="-1">Semua</option>
+						<option value="0">Belum dibayar</option>
+						<option value="1">Terverifikasi</option>
+						<option value="2">Diproses</option>
+						<option value="3">Dikirim</option>
+						<option value="4">Diterima</option>
+						<option value="5">Pesanan dibatalkan</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-6">
+							<label for="start_date">Tanggal awal</label>
+							<input type="date" name="start_date" id="start_date" class="form-control" value="<?=  date("Y-m-d") ?>" required>
+						</div>
+						<div class="col-6">
+							<label for="end_date">Tanggal akhir</label>
+							<input type="date" name="end_date" id="end_date" class="form-control" value="<?=  date("Y-m-d") ?>" required>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-lg btn-primary" id="btn-transaction-download">Download</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="container-fluid site-width">
 	<div class="row">
 		<div class="col-12 align-self-center">
@@ -90,6 +134,11 @@ $this->load->view('admin/template/header', [
 													<i class="fas fa-filter">a-z</i>
 												</button>
 											</div>
+										</div>
+										<div class="mt-3">
+											<button class="btn btn-primary" data-target="#download-transaction-modal" data-toggle="modal">
+												<i class="fas fa-download"></i> Download transaksi
+											</button>
 										</div>
 									</div>
 								</div>

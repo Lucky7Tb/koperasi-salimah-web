@@ -24,4 +24,12 @@ class Dashboard extends CI_Controller
 		$data['title'] = 'Dashboard';
 		$this->load->view("admin/dashboard", $data);
 	}
+
+	public function getDashboardData()
+	{
+		$this->load->model('admin/Dashboard_model', 'dashboard');
+		$result = $this->dashboard->getDashboardData();
+
+		response($result, true);
+	}
 }

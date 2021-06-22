@@ -214,9 +214,9 @@ function renderResiDetail(data) {
 		$('#resi-detail').append(`
 			<tr>
 				<td>${manifest.manifest_description}</td>
+				<td>${manifest.city_name}</td>
 				<td>${moment(manifest.manifest_date).format('DD-MMM-YYYY')}</td>
 				<td>${manifest.manifest_time}</td>
-				<td>${manifest.city_name}</td>
 			</tr>
 		`);
 	});

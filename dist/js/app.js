@@ -85,11 +85,15 @@
     $('.sidebarCollapse').on('click', function () {
         $('body').toggleClass('compact-menu');
         $('.sidebar').toggleClass('active');
+        if ($('.sidebar').hasClass('active')) {
+            $('footer').css('left', '0');
+        }else {
+            $('footer').css('left', '15%');
+        }
     });
 
     $('.mobilesearch').on('click', function () {
         $('.search-form').toggleClass('d-none');
-
     });
 
     /////////////////////////// Datepicker ////////////////////////

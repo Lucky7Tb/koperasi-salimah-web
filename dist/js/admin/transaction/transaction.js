@@ -140,6 +140,12 @@ $('#order-direction-button').on('click', function () {
 	getTransactions(searchKeyword, page, filterKey, orderDirection);
 });
 
+$('#btn-transaction-download').on('click', function() {
+	location.assign(`
+		${global.base_url}admin/transaction/downloadTransaction?status=${$('#status_transaction').val()}&start_date=${$('#start_date').val()}&end_date=${$('#end_date').val()}
+	`);
+});
+
 function updateNumbering(pagination) {
 	numbering = pagination * 10 + 1;
 }

@@ -60,6 +60,15 @@ class Transaction_model extends CI_Model {
 
 		return $result;
 	}
+
+	public function downloadTransaction($data)
+	{
+		$endpoint = 'api/v1/admin/dashboard/Transaction/downloadTransaction';
+
+		$result = post_curl($endpoint, $data, $this->token, true);
+
+		return $result;
+	}
 }
 
 /* End of file Transaction_model.php */

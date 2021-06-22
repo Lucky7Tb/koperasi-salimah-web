@@ -117,7 +117,7 @@ function getWayFee() {
 						content += `
 							<div class="col-2">
 					 			<div class="form-check form-check-inline">
-									<input type="radio" class="form-check-input" name="courier-service-${counter}}" id="courier-${index}-${counter}" value="${courier.cost[0].value}" ${index === 0 ? 'checked' : ''} onchange="changeCourierService(this)" />
+									<input type="radio" class="form-check-input" name="courier-service-${counter}}" id="courier-${index}-${counter}" value="${courier.cost[0].value}" ${index === 0 ? 'checked' : ''} onchange="changeCourierService(this)" data-service="${courier.service}"/>
 									<label class="form-check-label" for="courier-${index}-${counter}">${courier.service}</label>
 								</div>
 				 			</div>
@@ -194,6 +194,7 @@ function changePaymentMethod(form) {
 function changeCourierService(form) {
 	$('input[type=radio]:checked').each(function(index, radio) {
 		checkout.wayFee[index] = radio.value
+		checkout.courierService[index] = radio.dataset.service;
 	});
 
 	renderTotalPrice();

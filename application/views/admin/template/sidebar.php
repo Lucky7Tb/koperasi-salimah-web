@@ -1,7 +1,11 @@
 <div class="sidebar ungu">
 	<div class="site-width">
 		<ul id="side-menu" class="sidebar-menu">
-			<li class="dropdown"><a href="#"><i class="icon-home mr-1"></i> Dashboard</a>
+			<li class="dropdown active">
+				<a href="#">
+					<i class="icon-home mr-1"></i> 
+					Dashboard
+				</a>
 				<ul>
 					<li class="<?= ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == null) ? 'active' : '' ?>">
 						<a href="<?= base_url('/admin/dashboard') ?>" class="<?= ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == null) ? '' : 'text-white' ?>">
