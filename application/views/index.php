@@ -113,7 +113,7 @@ $this->load->view('template/footer', [
 		<script>
 			let page = 1
 			let search = $("#input-search-product")
-			let tCari = $("#tombol-cari")
+			let tCari = $(".btn-search")
 			tCari.on("click", function() {
 				let url = "' . base_url('user/index/') . '1/" + search.val()
 				window.location.href = url
