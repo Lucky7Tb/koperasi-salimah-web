@@ -61,6 +61,15 @@ class Transaction_model extends CI_Model {
 		return $result;
 	}
 
+	public function checkOldTransaction()
+	{
+		$endpoint = 'api/v1/admin/dashboard/transaction/checkOldTransaction';
+
+		$result = get_curl($endpoint, $this->token);
+
+		return $result;
+	}
+
 	public function downloadTransaction($data)
 	{
 		$endpoint = 'api/v1/admin/dashboard/Transaction/downloadTransaction';

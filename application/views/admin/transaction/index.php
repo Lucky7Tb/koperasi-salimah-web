@@ -139,6 +139,9 @@ $this->load->view('admin/template/header', [
 											<button class="btn btn-primary" data-target="#download-transaction-modal" data-toggle="modal">
 												<i class="fas fa-download"></i> Download transaksi
 											</button>
+											<button class="btn btn-info" id="btn-update-old-transaction">
+												<i class="fas fa-marker"></i> Update transaksi lama
+											</button>
 										</div>
 									</div>
 								</div>

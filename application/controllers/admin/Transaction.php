@@ -85,16 +85,17 @@ class Transaction extends CI_Controller {
 		response($result, true);
 	}
 
+	public function checkOldTransaction()
+	{
+		$result = $this->transaction->checkOldTransaction();
+
+		response($result, true);
+	}
+
 	public function downloadTransaction()
 	{
 		$data = $this->input->get(null, true);
-
-		// $data = [
-		// 	'status' => '-1',
-		// 	'start_date' => '06/22/2021',
-  //   	'end_date' => '06/22/2021'
-  //   ];
-
+		
 		$result = $this->transaction->downloadTransaction($data);
 
 		if ($result['code'] !== 200) {

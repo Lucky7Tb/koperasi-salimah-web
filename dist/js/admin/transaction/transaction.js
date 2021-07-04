@@ -146,6 +146,29 @@ $('#btn-transaction-download').on('click', function() {
 	`);
 });
 
+$('#btn-update-old-transaction').on('click', function () {
+	$.ajax({
+		url: `${global.base_url}admin/transaction/checkOldTransaction`,
+		type: 'GET',
+		beforeSend: function() {
+			global.loading('btn-update-old-transaction', 'info', true, null);
+		},
+		success: function (response) {
+			response = JSON.parse(response);
+			if (response.code === 200) {
+				toastr.success(response.message);
+				getTransactions();
+				getTransactionsProof();
+			} else {
+				toastr.error('Terjadi kesalahan pada server');
+			}
+		},
+		complete: function () {
+			global.loading('btn-update-old-transaction', 'info', false, '<i class="fas fa-marker"></i> Update transaksi lama');
+		}
+	})
+})
+
 function updateNumbering(pagination) {
 	numbering = pagination * 10 + 1;
 }
