@@ -55,6 +55,12 @@
 							Transaksi
 						</a>
 					</li>
+					<li>
+						<a href="<?= base_url('/auth/logout') ?>" class="<?= $this->uri->segment(2) == 'transaction' ? '' : 'text-white' ?>">
+							<i class="icon-logout"></i>
+							logout
+						</a>
+					</li>
 				</ul>
 			</li>
 		</ul>

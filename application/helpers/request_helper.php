@@ -30,10 +30,12 @@ if (!function_exists('request')) {
 		}
 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		$result = curl_exec($ch);
 		if (curl_errno($ch)) {
-			echo 'Error:' . curl_error($ch);
+			return 'Error:' . curl_error($ch);
 		}
 		curl_close($ch);
 		

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Cart_model extends CI_Model {
 
 	private $token;
-	private $rajaOngkirKey = '2a97d6ba5a1b8566843fa3fb001e6b97';
+	private $rajaOngkirKey = 'b6c970c10f811f37c2566defe70f76a7';
 
 	public function __construct()
 	{

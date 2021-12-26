@@ -152,7 +152,6 @@ function showAddressModal() {
 	$('#address-form').trigger('reset');
 	$('#address_id').val('');
 	$('#address-modal').modal('show');
-	console.log($('#address_id').val());
 	global.getProvince(function(provinces) {
 		$.each(provinces, function(_, province) {
 			$('#province').append(`
