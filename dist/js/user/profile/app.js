@@ -1,8 +1,27 @@
 function initPlugiOption() {
-	$("#date_of_birth").datepicker({ format: "yyyy-mm-dd" });
-	$("select").select2({
-		  dropdownParent: $('#address-modal')
+	$('#date_of_birth').datepicker({ format: 'yyyy-mm-dd' });
+	$('#address-form select').select2({
+		dropdownParent: $('#address-modal'),
 	});
+	$('select[name="gender"]').niceSelect();
+	$('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
+	$('.tab ul.tabs li a').on('click', function (g) {
+		var tab = $(this).closest('.tab'),
+			index = $(this).closest('li').index();
+		tab.find('ul.tabs > li').removeClass('current');
+		$(this).closest('li').addClass('current');
+		tab
+			.find('.tab_content')
+			.find('div.tabs_item')
+			.not('div.tabs_item:eq(' + index + ')')
+			.slideUp();
+		tab
+			.find('.tab_content')
+			.find('div.tabs_item:eq(' + index + ')')
+			.slideDown();
+		g.preventDefault();
+	});
+
 }
 
 function getMyData() {
@@ -167,23 +186,28 @@ function renderAllAddress(data) {
 	$('#address-container').html('');
 	$.each(data, function(_, address) {
 		$('#address-container').append(`
-			<div class="col mb-2">
-				<div class="card h-100 bg-light" style="width: 18rem;">
-					<div class="card-body">
-						<address>
-							${address.address}, ${address.city}, ${address.subdistrict}, ${address.province}
-						</address>
-						<hr>
-						<p>Kode post: <strong>${address.postcode}</strong></p>
-						<p>Status: <span class="badge badge-${address.is_active == '1' ? 'success' : 'secondary'}">${address.is_active == '1' ? 'Aktif' : 'Tidak aktif'}</span></p>
-						
-						<div>
-							<button class="card-link btn btn-block btn-lg btn-primary" onclick="setActiveAddress(${address.id})">Jadikan alamat aktif</button>
-						</div>
-						<div class="mt-2">
-							<button class="card-link btn btn-block btn-lg btn-outline-info" onclick="getDetailAddress(${address.id})">Ubah alamat</button>
-						</div>
-					</div>
+			<div class="account-tab-item mb-2">
+				<div class="address-details">
+					<h2>
+						${address.address}
+					</h2>
+					<p>${address.city}, ${address.subdistrict}, ${address.province}</p>
+					<p>Kode post: <strong>${address.postcode}</strong></p>
+					<p>Status: <span class="badge badge-${
+						address.is_active == '1' ? 'success' : 'secondary'
+					}">${address.is_active == '1' ? 'Aktif' : 'Tidak aktif'}</span></p>
+					<button 
+						type="button"
+						class="default-btn btn-bg-three btn btn-block rounded-btn mt-3"
+						id="btn-change-profile"
+						onclick="setActiveAddress(${address.id})"
+					>Jadikan alamat aktif</button>
+					<button 
+						type="button" 
+						class="default-btn btn btn-outline-secondary btn-block rounded-btn text-dark"
+						id="btn-change-profile"
+						onclick="getDetailAddress(${address.id})"
+					>Ubah alamat</button>
 				</div>
 			</div>
 		`);
@@ -206,7 +230,7 @@ function renderCurrentAddress(data) {
 
 function setActiveAddress(idAddress) {
 	global.changeActiveAddress(idAddress, function(response) {
-		toastr.success(response.message);
+		toastr.success("Sukses ubah alamat aktif");
 		global.getCurrentAddress(renderCurrentAddress);
 		global.getAllAddress(renderAllAddress);
 	});
@@ -215,7 +239,7 @@ function setActiveAddress(idAddress) {
 function fillForm(data) {
 	$('#full_name').val(data.full_name);
 	$('#phone_number').val(data.phone_number);
-	$(`input[name=gender][value=${data.gender}]`).prop('checked', true);
+	$(`li[data-value='${data.gender}']`).addClass("selected focus");
 	const date = new Date(data.date_of_birth);
 	$('#date_of_birth').val(data.date_of_birth);
 	$('#date_of_birth').datepicker('update', date);

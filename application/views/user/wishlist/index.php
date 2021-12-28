@@ -1,11 +1,12 @@
 <?php
-$plugin = base_url('dist/vendors');
-$css = base_url('dist/css');
-$this->load->view('template/header');
+$userAssets = base_url('dist/user/assets');
+$globalPlugin = base_url('dist/vendors');
+$this->load->view('user/template/header');
 ?>
 
 <!-- Delete wishlist modal -->
-<div class="modal fade" id="deleteWishlistModal" tabindex="-1" aria-labelledby="deleteWishlistModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteWishlistModal" tabindex="-1" aria-labelledby="deleteWishlistModalLabel"
+	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -20,8 +21,8 @@ $this->load->view('template/header');
 					<input type="hidden" name="wishlist-id" id="wishlist-id">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-dark" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-danger" id="btn-delete-wishlist">Ya, hapus</button>
+					<button type="button" class="default-btn btn btn-outline-secondary text-dark" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="default-btn btn btn-bg-three" id="btn-delete-wishlist">Ya, hapus</button>
 				</div>
 			</form>
 		</div>
@@ -43,23 +44,25 @@ $this->load->view('template/header');
 	</div>
 	<div class="row">
 		<div class="col-12 mt-3">
-			<div class="card bottom">
-				<div class="card-body container">
-					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3" id="wishlist-container">
+			<section class="popular-product-area pt-100 pb-70">
+				<div class="container">
+					<div class="row pt-45" id="wishlist-container">
 
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	</div>
 </div>
 <?php
 $js = base_url('dist/js');
-$this->load->view('template/footer', [
+$this->load->view('user/template/footer', [
 	'js' => '
+		<script src="'. $userAssets .'/js/mixitup.min.js"></script>
 		<script src="' . $js . '/user/wishlist/app.js"></script>
 		<script>
 			getWishlist();
+			$("#Container").mixItUp();
 		</script>
 	'
 ]);

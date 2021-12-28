@@ -1,63 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<title>Daftar Akun</title>
-	<link rel="shortcut icon" href="<?= base_url('img/logo2.png') ?>" />
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<head>
+		<meta charset="UTF-8">
+		<title>Daftar</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="shortcut icon" href="<?= base_url('img/logo2.png') ?>" />
+		<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
+		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/bootstrap.min.css') ?>">
+		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/style.css')?>">
+		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/responsive.css')?>">
+	</head>
 
-	<link rel="stylesheet" href="<?= base_url('dist/vendors/bootstrap/css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
-	<link rel="stylesheet" href="<?= base_url('dist/css/main.css') ?>">
-</head>
+	<body id="main-container" class="default">
 
-<body id="main-container" class="default">
-	<div class="container">
-		<div class="row vh-100 justify-content-between align-items-center">
-			<div class="col-12">
-				<form action="post" class="row row-eq-height lockscreen  mt-5 mb-5">
-					<div class="lock-image col-12 col-sm-5" style="background-image: url('<?= base_url('img/salimah-pattern-1.png') ?>');"></div>
-					<div class="login-form col-12 col-sm-7">
-						<h4>Daftar</h4>
-						<div class="form-group mb-3">
-							<label for="username">Username</label>
-							<input type="text" class="form-control" id="username" placeholder="Username">
-						</div>
+		<div class="user-area pt-100 pb-70">
+			<div class="container">
+				<div class="user-width">
+					<div class="user-form">
+						<div class="contact-form">
+							<h2>Daftar</h2>
+							<form>
+								<div class="row">
+									<div class="col-lg-12 ">
+										<div class="form-group">
+											<input type="text" id="username" class="form-control" required placeholder="jhondoe123">
+										</div>
+									</div>
 
-						<div class="form-group mb-3">
-							<label for="email">Email</label>
-							<input type="text" class="form-control" id="email" placeholder="E-mail">
-						</div>
+									<div class="col-lg-12 ">
+										<div class="form-group">
+											<input type="email" id="email" class="form-control" placeholder="jhondoe@mail.com" required>
+										</div>
+									</div>
 
-						<div class="form-group mb-3">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="password">
-						</div>
-						<div class="form-group mb-3">
-							<label for="confirmPassword">Konfirmasi Password</label>
-							<input type="password" class="form-control" id="confirmPassword" placeholder="Konfirmasi password">
-						</div>
+									<div class="col-12">
+										<div class="form-group">
+											<input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
+										</div>
+									</div>
+									
+									<div class="col-12">
+										<div class="form-group">
+											<input class="form-control" id="confirmPassword" type="password" name="password" placeholder="Konfirmasi password" required>
+										</div>
+									</div>
 
-						<div class="form-group mb-0">
-							<button type="button" class="btn btn-primary btn-block mb-2" id="register">Daftar</button>
+									<div class="col-lg-12 ">
+										<button type="submit" id="btn-register" class="default-btn rounded-lg btn-bg-three">
+											Daftar sekarang
+										</button>
+									</div>
+
+									<div class="col-lg-12 text-center mt-5">
+										<strong>
+											<p class="bold">Sudah punya akun? <a href="<?= base_url('auth') ?>">Masuk</a></p>
+										</strong>
+									</div>
+								</div>
+							</form>
 						</div>
-						<br>
-						<div class="mt-2">Sudah punya akun? <a href="<?= base_url('auth') ?>">Masuk</a></div>
 					</div>
-				</form>
+				</div>
 			</div>
-
 		</div>
-	</div>
-	<script src="<?= base_url('dist/vendors/jquery/jquery-3.3.1.min.js') ?>"></script>
-	<script src="<?= base_url('dist/vendors/bootstrap/js/bootstrap.bundle.min.js') ?> "></script>
-	<script src="<?= base_url('dist/vendors/slimscroll/jquery.slimscroll.min.js') ?>"></script>
-	<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
-	<script src="<?= base_url('dist/js/global.js') ?>"></script>
-	<script>
+
+		<script src="<?= base_url('dist/vendors/jquery/jquery-3.3.1.min.js') ?>"></script>
+		<script src="<?= base_url('dist/user/assets/js/popper.min.js')?>"></script>
+		<script src="<?= base_url('dist/user/assets/js/bootstrap.min.js')?>"></script>
+		<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
+		<script src="<?= base_url('dist/js/global.js') ?>"></script>
+		<script>
 		$(document).ready(function() {
-			$("#register").on('click', function() {
+			$("#btn-register").on('click', function() {
 				var username = $("#username").val();
 				var email = $("#email").val();
 				var password = $("#password").val();
@@ -91,7 +106,7 @@
 									window.location.href = '<?= base_url('auth') ?>'
 
 								}, 2000);
-							}else {
+							} else {
 								toastr.error(response.message);
 							}
 						}
@@ -99,7 +114,7 @@
 				}
 			});
 		})
-	</script>
-</body>
+		</script>
+	</body>
 
 </html>

@@ -14,9 +14,22 @@ const checkout = {
 	paymentId: ''
 };
 
+$(document).ready(function () {
+	$('.sw-theme-default .toolbar > .btn').css('background-color', '#761fa8');
+	$('.sw-theme-default .toolbar > .btn').css('border', '#761fa8');
+});
 
 function initPluginOption() {
-	$('select').select2();
+	$('#smartwizard').smartWizard({
+		lang: {
+			next: 'Selanjutnya',
+			previous: 'Sebelumnya',
+		},
+	});
+	$('#shipping-row').slimScroll({
+		height: '500px',
+	});
+
 }
 
 function getData() {
@@ -55,6 +68,7 @@ function getDeliveryService() {
 				checkout.deliveryId = response.data[0].id;
 				checkout.courier = $('#courier-select option:first').val();
 				$('#courier-select').trigger('select');
+				$('#courier-select').niceSelect();
 			}else {
 				toastr.error('Terjadi kesalahan pada server');
 			}
@@ -110,12 +124,12 @@ function getWayFee() {
 					checkout.courierService.push(rajaongkir.results[0].costs[0].service);
 					let content = `
 						<div class='row mt-1'>
-						<p class="ml-2">Seller-${counter + 1}</p>
+						<p>Seller-${counter + 1}</p>
 					`;
 
 					$.each(rajaongkir.results[0].costs, function(index, courier) {
 						content += `
-							<div class="col-2">
+							<div class="col-3">
 					 			<div class="form-check form-check-inline">
 									<input type="radio" class="form-check-input" name="courier-service-${counter}}" id="courier-${index}-${counter}" value="${courier.cost[0].value}" ${index === 0 ? 'checked' : ''} onchange="changeCourierService(this)" data-service="${courier.service}"/>
 									<label class="form-check-label" for="courier-${index}-${counter}">${courier.service}</label>
@@ -211,7 +225,7 @@ function renderTotalPrice() {
 	const totalPrice = totalWayFee + checkout.totalPrice;
 
 	$('#cart-total').text(`Rp. ${global.rupiahFormat(totalPrice.toString())}`);
-	$('#cart-total-final').text(`Rp. ${global.rupiahFormat(totalPrice.toString())}`);
+	$('#cart-total-final').html(`<strong>Rp. ${global.rupiahFormat(totalPrice.toString())}</strong>`);
 }
 
 function renderCart(data) {
@@ -224,16 +238,20 @@ function renderCart(data) {
 			checkout.totalPrice += productPrice * cart.qty;
 			content += `
 				<tr>
-					<td>
-						<img src="${cart.product.uri}" alt="${cart.product.product_name}" class="img-fluid" width="60">
+					<td class="product-thumbnail">
+						<img src="${cart.product.uri}" alt="${
+				cart.product.product_name
+			}" class="img-fluid" width="60">
 					</td>
-					<td class="align-middle">${cart.product.product_name}</td>
-					<td class="align-middle">Rp. ${global.rupiahFormat(productPrice.toString())}</td>
-					<td class="w-25 align-middle">
+					<td class="product-name">${cart.product.product_name}</td>
+					<td class="w-25 product-quantity">
 						${cart.qty}
 					</td>
+					<td class="product-price">Rp. ${global.rupiahFormat(
+						productPrice.toString()
+					)}</td>
 				</tr>
-			`
+			`;
 		});
 		$('#cart-total-price').text(`Rp. ${global.rupiahFormat(checkout.totalPrice.toString())}`);
 		$('.cart-subTotal').text(`Rp. ${global.rupiahFormat(checkout.totalPrice.toString())}`);

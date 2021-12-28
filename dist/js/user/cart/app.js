@@ -1,4 +1,5 @@
 const listCart = [];
+let delayTimer;
 
 function getCart() {
 	listCart.splice(0, listCart.length);
@@ -20,28 +21,55 @@ function renderCart(data) {
 			const productPrice = parseInt(cart.product.price_after_discount);
 			totalPrice += productPrice * cart.qty;
 			content += `
-				<tr>
-					<td>
-						<img src="${cart.product.uri}" alt="${cart.product.product_name}" class="img-fluid" width="60">
-					</td>
-					<td class="align-middle">${cart.product.product_name}</td>
-					<td class="align-middle">Rp. ${global.rupiahFormat(productPrice.toString())}</td>
-					<td class="w-25 align-middle">
-						<input type="number" class="form-control" value="${cart.qty}" onblur="updateProductQty(${cart.id}, this)" min="1">
-					</td>
-					<td class="align-middle text-center">
-						<a href="javascript:void(0)" onclick="removeFormCart(${cart.id})">
-							<i class="icon-trash h5"></i>
-						</a>
-					</td>
-				</tr>
-			`
+			<tr>
+				<td class="product-thumbnail">
+					<a href="#">
+						<img s src="${cart.product.uri}" alt="${cart.product.product_name}">
+					</a>
+				</td>
+
+				<td class="product-name">
+					<a href="#">${cart.product.product_name}</a>
+				</td>
+
+				<td class="product-quantity">
+					<div class="input-counter">
+						<input 
+							type="number"
+							min="1"
+							value="${cart.qty}"
+							onblur="updateProductQty(${cart.id}, this)" 
+							onchange="changeProducQty(${cart.id}, this)" 
+						>
+					</div>
+				</td>
+
+				<td class="product-subtotal">
+					<span class="subtotal-amount">
+						Rp. ${global.rupiahFormat(productPrice.toString())}
+					</span>
+
+					<a href="javascript:void(0)" onclick="removeFormCart(${
+						cart.id
+					})" class="remove">
+						<i class='bx bx-trash'></i>
+					</a>
+				</td>
+			</tr>
+			`;
 		});
-		$('#cart-total-price').text(`Rp. ${global.rupiahFormat(totalPrice.toString())}`);
-	}else {
 		content += `
 			<tr>
-				<td colspan="5" class="text-center">Yah, cart nya kosong:(</td>
+				<td colspan="3">
+					<strong>Total harga</strong>
+				</td>
+				<td>Rp. ${global.rupiahFormat(totalPrice.toString())}</td>
+			</tr>;
+		`
+	} else {
+		content += `
+			<tr>
+				<td colspan="4" class="text-center">Yah, cart nya kosong:(</td>
 			</tr>
 		`;
 		$('#checkout-button').addClass('disabled');
@@ -49,6 +77,13 @@ function renderCart(data) {
 	}
 
 	$('#cart-product-content').html(content);
+}
+
+function changeProducQty(id, form) {
+	clearTimeout(delayTimer);
+	delayTimer = setTimeout(function () {
+		updateProductQty(id, form);	
+	}, 1500);
 }
 
 function updateProductQty(idCart, form) {

@@ -57,6 +57,13 @@ function renderHistoryTransactionData(transactions) {
 					<td>${transaction.transaction_token}</td>
 					<td>${moment(transaction.created_at).format('DD-MMM-YYYY HH:mm')}</td>
 					<td>${moment(transaction.updated_at).format('DD-MMM-YYYY HH:mm')}</td>
+					<td>
+						<a href="${global.base_url}transaction/detail/${
+				transaction.id
+			}" class='btn btn-bg-three text-white'>	
+							<i class='bx bx-menu'></i>
+						</a>
+					</td>
 				</tr>
 			`;
 		});
@@ -103,13 +110,9 @@ $('#history-order-direction-button').on('click', function () {
 	orderDirectionHistory = isASCHistory ? 'ASC' : 'DESC';
 
 	if (isASCHistory) {
-		$('#history-order-direction-button').addClass('btn-primary');
-		$('#history-order-direction-button').removeClass('btn-link');
-		$('.fa-filter').text('a-z');
+		$('#history-order-direction-button').html('<i class="bx bx-filter">a-z</i>');
 	} else {
-		$('#history-order-direction-button').addClass('btn-link');
-		$('#history-order-direction-button').removeClass('btn-primary');
-		$('.fa-filter').text('z-a');
+		$('#history-order-direction-button').html('<i class="bx bx-filter">z-a</i>');
 	}
 
 	updateHistoryNumbering(pageHistory);

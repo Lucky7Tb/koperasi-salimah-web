@@ -46,7 +46,11 @@ class User extends CI_Controller
 
 		$data['total'] = $this->produk->countAllProductsUser($search);
 		$config['total_rows'] = $data['total'];
-
+		$config['attributes'] = array('class' => 'page-numbers');
+		$config['next_link'] = '<i class="bx bx-chevron-right"></i>';
+		$config['prev_link'] = '<i class="bx bx-chevron-left"></i>';
+		$config['cur_tag_open'] = '<span class="page-numbers current" aria-current="page">';
+		$config['cur_tag_close'] = '</span>';
 		// initialize
 		$this->pagination->initialize($config);
 

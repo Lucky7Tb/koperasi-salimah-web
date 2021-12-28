@@ -47,7 +47,7 @@ global.getCart = function(callback) {
 	    if (response.code === 200) {
 	    	callback(response);
 	    } else {
-	    	toastr.error('Terjadi kesalahn pada server');
+	    	toastr.error('Terjadi kesalahan pada server');
 	    }
 	  },
 	});
@@ -67,8 +67,10 @@ global.addToWishlist = function(idProduct) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				toastr.success('Berhasil menambah ke wishlist');
-			}else {
-				window.location.href = global.base_url + "auth"
+			} else if (response.code === 403) {
+				toastr.warning('Produk sudah ada di wishlist');
+			} else {
+				window.location.href = global.base_url + 'auth';
 			}
 		}
 	});

@@ -5,6 +5,28 @@ let filterKey = $('#filter-transaction').val();
 let orderDirection = 'ASC';
 let isASC = true;
 
+$(document).ready(function () {	
+	getActiveTransactions();
+	getHistoryTransactions();
+	$('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
+	$('.tab ul.tabs li a').on('click', function (g) {
+		var tab = $(this).closest('.tab'),
+			index = $(this).closest('li').index();
+		tab.find('ul.tabs > li').removeClass('current');
+		$(this).closest('li').addClass('current');
+		tab
+			.find('.tab_content')
+			.find('div.tabs_item')
+			.not('div.tabs_item:eq(' + index + ')')
+			.slideUp();
+		tab
+			.find('.tab_content')
+			.find('div.tabs_item:eq(' + index + ')')
+			.slideDown();
+		g.preventDefault();
+	});
+});
+
 function getActiveTransactions(
 	search = '',
 	page = 0,
@@ -68,8 +90,8 @@ function renderTransactionData(transactions) {
 					<td>
 						<a href="${global.base_url}transaction/detail/${
 				transaction.id
-			}" class='btn btn-lg btn-info text-white'>	
-							<i class='icon-eye'></i>
+			}" class='btn btn-bg-three text-white'>	
+							<i class='bx bx-menu'></i>
 						</a>
 					</td>
 				</tr>
@@ -77,7 +99,7 @@ function renderTransactionData(transactions) {
 		});
 		$('#next-transaction-button').attr('disabled', false);
 	} else {
-		content += /*html*/ `
+		content += `
 			<tr>
 				<td colspan='7' class='text-center'>Tidak ada data</td>
 			</tr>
@@ -118,13 +140,9 @@ $('#order-direction-button').on('click', function () {
 	orderDirection = isASC ? 'ASC' : 'DESC';
 
 	if (isASC) {
-		$('#order-direction-button').addClass('btn-primary');
-		$('#order-direction-button').removeClass('btn-link');
-		$('.fa-filter').text('a-z');
+		$('#order-direction-button').html('<i class="bx bx-filter">a-z</i>');
 	} else {
-		$('#order-direction-button').addClass('btn-link');
-		$('#order-direction-button').removeClass('btn-primary');
-		$('.fa-filter').text('z-a');
+		$('#order-direction-button').html('<i class="bx bx-filter">z-a</i>');
 	}
 
 	updateNumbering(page);
