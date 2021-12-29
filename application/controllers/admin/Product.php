@@ -63,43 +63,7 @@ class Product extends CI_Controller
 
 		$this->load->view('admin/product/index', $data);
 	}
-
-//	public function index($page = 1, $search = null)
-//	{
-//		$data['title'] = 'Produk';
-
-//		if ($page != null and $page > 0) {
-//			$page--;
-//		} else {
-//			$page = 0;
-//		}
-
-//		if ($search != null) {
-//			$data['key'] = $search;
-//		} else {
-//			$data['key'] = '';
-//		}
-//
-//		$params = array(
-//			'page' => $page,
-//			'search' => $search
-//		);
-
-//		$config['base_url'] = base_url('admin/product/index');
-//		$config['first_url'] = base_url('admin/product/index/1/') . $search;
-//		$config['suffix'] = '/' . $search;
-
-//		$data['total'] = $this->produk->countAllNotVisible($params);
-//		$config['total_rows'] = $data['total'];
-
-	// initialize
-//		$this->pagination->initialize($config);
-
-//		$data['produk'] = $this->produk->notVisible($params);
-
-//		$this->load->view('admin/product/index', $data);
-//	}
-
+	
 	public function detail($id)
 	{
 		$data['title'] = 'Produk';
@@ -185,8 +149,6 @@ class Product extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->load->view('admin/product/edit', $data);
 		} else {
-//			var_dump($data);
-//			die;
 			$data = $this->input->post(array('product_name', 'price', 'stock', 'weight', 'description', 'is_visible'), true);
 			$data['slug'] = str_replace(' ', '-', strtolower($this->input->post('product_name')));
 			$data['width'] = 1;
@@ -214,76 +176,6 @@ class Product extends CI_Controller
 				redirect('admin/product');
 			}
 		}
-	}
-
-//	public function data($page = 0, $keyword = '')
-//	{
-//		$params = array(
-//			'search' => $keyword,
-//			'page' => $page
-//		);
-//
-//		$data['produk'] = $this->produk->getAllProducts($params);
-//
-//		if ($data['produk']['code'] === 200) {
-//			$this->load->view('admin/product/data', $data);
-//		}
-//	}
-
-	public function data($page = 1, $search = null)
-	{
-		if ($this->uri->segment(4)) {
-			$page = $this->uri->segment(4) - 1;
-		} else {
-			$page--;
-		}
-
-		$params = array(
-			'page' => $page,
-			'search' => $search
-		);
-
-//		$config['first_url'] = base_url('admin/product/index/1/') . $search;
-//		$config['suffix'] = '/' . $search;
-
-		$totalData = $this->produk->countAllProducts($params['search']);
-		$config['total_rows'] = $totalData;
-
-		// initialize
-		$this->pagination->initialize($config);
-
-		$data['produk'] = $this->produk->getAllProducts($params);
-		$data['pagination'] = $this->pagination->create_links();
-		$data['page'] = $page;
-
-//		echo json_encode($data);
-		var_dump($data);
-	}
-
-	public function coba($page = 1, $search = null)
-	{
-		$params = array(
-			'search' => $search
-		);
-		$data = $this->produk->notVisible($params);
-		var_dump($this->produk->countAllNotVisible($params));
-		$size = count($data) / 10;
-		$sisa = count($data) % 10;
-		var_dump($size);
-		var_dump($sisa);
-
-//		var_dump($data);
-//		die;
-		if ($page < $size) {
-			for ($i = 0; $i < 10; $i++) {
-				var_dump($data[$i]);
-			}
-		} else {
-			for ($i = 0; $i < $sisa; $i++) {
-				var_dump($data[$i]);
-			}
-		}
-//		die;
 	}
 
 	public function foto($id)
@@ -315,8 +207,6 @@ class Product extends CI_Controller
 	{
 		$data['id_m_products'] = $id;
 		$data['file_key'] = 'photo';
-
-//		echo json_encode($_FILES);
 
 		$this->produk->addProductPhotos($data);
 

@@ -1,36 +1,33 @@
 <?php
-$plugin = base_url('dist/vendors');
+$globalPlugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-		<link rel="stylesheet" href="' . $plugin . '/jquery-datepicker/css/datepicker.min.css">
-		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
+		<link rel="stylesheet" href="' . $globalPlugin . '/jquery-datepicker/css/datepicker.min.css">
+		<link rel="stylesheet" href="' . $globalPlugin . '/dropify/css/dropify.min.css">
 	'
 ]);
 ?>
-
-<!-- Delete banned -->
-<div class="modal fade" id="user-ban-modal">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Peringatan</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
+<div class="modal fade" id="user-ban-modal" tabindex="-1" aria-labelledby="user-ban-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="user-ban-modal-label">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
 				<p class="lead">Yakin ingin <strong>Banned </strong> user ini?</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
-				<button type="button" class="btn btn-lg btn-danger" id="btn-ban-user">Ya Banned</button>
+				<button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"
+					aria-label="Close">Tutup</button>
+				<button type="button" class="btn btn-danger" id="btn-ban-user">Ya Banned</button>
 			</div>
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 
-<div class="container-fluid site-width">
+<div class="container mb-3">
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
@@ -46,11 +43,12 @@ $this->load->view('admin/template/header', [
 			<div class="card bottom">
 				<div class="card-body" id="main">
 					<form method="post" id="user-form">
-						<div class="form-group">
+						<div class="form-group mb-3">
 							<label for="full_name">Nama lengkap</label>
-							<input type="text" name="full_name" id="full_name" class="form-control" placeholder="Masukan nama" required>
+							<input type="text" name="full_name" id="full_name" class="form-control" placeholder="Masukan nama"
+								required>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-3">
 							<div>
 								<label>Gender</label>
 							</div>
@@ -67,24 +65,22 @@ $this->load->view('admin/template/header', [
 								</label>
 							</div>
 						</div>
-						<div class="form-group">
-							<div>
-								<label>Tanggal lahir</label>
-							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text">
-										<i class="icon-calendar"></i>
-									</span>
-								</div>
-								<input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="Masukan tanggal lahir" autocomplete="off" required>
-							</div>
+						<div>
+							<label>Tanggal lahir</label>
 						</div>
-						<div class="form-group">
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1">
+								<i class="fas fa-calendar"></i>
+							</span>
+							<input type="text" class="form-control" name="date_of_birth" id="date_of_birth"
+								placeholder="Masukan tanggal lahir" autocomplete="off" required>
+						</div>
+						<div class="form-group mb-3">
 							<label for="phone_number">No telp</label>
-							<input type="number" class="form-control" name="phone_number" id="phone_number" placeholder="Masukan no telp" required>
+							<input type="number" class="form-control" name="phone_number" id="phone_number"
+								placeholder="Masukan no telp" required>
 						</div>
-						<div class="form-group" id="level-field-container">
+						<div class="form-group mb-3" id="level-field-container">
 							<div>
 								<label>Level</label>
 							</div>
@@ -101,11 +97,14 @@ $this->load->view('admin/template/header', [
 								</label>
 							</div>
 						</div>
-						<div class="form-group">
-							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#user-ban-modal">Banned user</button>
+						<div class="form-group mb-3">
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#user-ban-modal" data-bs-whatever="@mdo">Banned
+								user</button>
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-edit-user">Simpan</button>
-						<a href="<?= base_url('admin/user') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Kembali</a>
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-primary" id="btn-edit-user">Simpan</button>
+							<a href="<?= base_url('admin/user') ?>" class="btn btn-outline-dark text-center" role="button">Kembali</a>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -117,12 +116,8 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
+		<script src="' . $globalPlugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="' . $js . '/admin/user/edit.js"></script>
-		<script>
-			initOptionPlugin();
-			getUser();
-		</script>
 	'
 ]);
 ?>

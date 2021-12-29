@@ -47,7 +47,7 @@ global.getCart = function(callback) {
 	    if (response.code === 200) {
 	    	callback(response);
 	    } else {
-	    	toastr.error('Terjadi kesalahan pada server');
+	    	tata.error('Error', 'Terjadi kesalahan pada server');
 	    }
 	  },
 	});
@@ -66,9 +66,9 @@ global.addToWishlist = function(idProduct) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success('Berhasil menambah ke wishlist');
+				tata.success('Sukses', 'Berhasil menambah ke wishlist');
 			} else if (response.code === 403) {
-				toastr.warning('Produk sudah ada di wishlist');
+				tata.warning('Warning', 'Produk sudah ada di wishlist');
 			} else {
 				window.location.href = global.base_url + 'auth';
 			}
@@ -91,7 +91,7 @@ global.addToCart = function(idProduct, qtyProduct = 1) {
 			response = JSON.parse(response);
 
 			if (response.code === 200) {
-				toastr.success('Berhasil menambah ke keranjang');
+				tata.success('Sukses', 'Berhasil menambah ke keranjang');
 			}else {
 				window.location.href = global.base_url + "auth"
 			}
@@ -108,7 +108,7 @@ global.getProvince = function(callback) {
 			if (response.rajaongkir.status.code === 200) {
 				callback(response.rajaongkir.results);
 			}else {
-				toastr.error(response.rajaongkir.status.description);
+				tata.error('Error', response.rajaongkir.status.description);
 			}
 		}
 	});
@@ -123,7 +123,7 @@ global.getCities = function(provinceId, callback) {
 			if (response.rajaongkir.status.code === 200) {
 				callback(response.rajaongkir.results);
 			}else {
-				toastr.error(response.rajaongkir.status.description);
+				tata.error('Error', response.rajaongkir.status.description);
 			}
 		}
 	});
@@ -138,7 +138,7 @@ global.getSubdistricts = function(cityId, callback) {
 			if (response.rajaongkir.status.code === 200) {
 				callback(response.rajaongkir.results);
 			}else {
-				toastr.error(response.rajaongkir.status.description);
+				tata.error('Error', response.rajaongkir.status.description);
 			}
 		}
 	});
@@ -166,7 +166,7 @@ global.getAllAddress = function(callback) {
 			if (response.code === 200) {
 				callback(response.data);
 			}else {
-				toastr.error(response.message);
+				tata.error('Error', response.message);
 			}
 		}
 	});
@@ -189,7 +189,7 @@ global.addUpdateAddress = function(formData, callback) {
 			if (response.code === 200) {
 				callback(response);
 			}else {
-				toastr.error(response.message);
+				tata.error('Error', response.message);
 			}
 		},
 		complete: function() {
@@ -210,7 +210,7 @@ global.updateAddress = function(formData, callback) {
 			if (response.code === 200) {
 				callback(response);
 			}else {
-				toastr.error(response.message);
+				tata.error('Error', response.message);
 			}
 		}
 	});
@@ -227,13 +227,8 @@ global.changeActiveAddress = function(idAddress, callback) {
 			if (response.code === 200) {
 				callback(response);
 			}else {
-				toastr.error(response.message);
+				tata.error('Error', response.message);
 			}
 		}
 	});
-}
-
-toastr.options = {
-  "positionClass": "toast-top-center",
-  "hideDuration": "500",
 }

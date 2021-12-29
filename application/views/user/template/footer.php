@@ -67,13 +67,23 @@
 	<script src="<?= base_url('dist/user/assets/js/bootstrap.min.js') ?>"></script>
 	<script src="<?= base_url('dist/user/assets/js/meanmenu.js') ?>"></script>
 	<script src="<?= base_url('dist/user/assets/js/jquery-ui.min.js') ?>"></script>
-
-	<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
+	<script src="<?= base_url('dist/vendors/tata/tata.js') ?>"></script>
 	<script src="<?= base_url('dist/js/global.js') ?>"></script>
 	<script>
 		jQuery('.mean-menu').meanmenu({ 
         meanScreenWidth: "991"
     });
+		$(".side-nav-responsive .dot-menu").on("click", function(){
+			$(".side-nav-responsive .container .container").toggleClass("active");
+		});
+
+		$(".side-nav-responsive .dot-menu").on("click", function(){
+			$(".side-nav-responsive .container .container-2").toggleClass("active");
+		});
+
+		$(".side-nav-responsive .dot-menu").on("click", function(){
+			$(".side-nav-responsive .container .container-3").toggleClass("active");
+		});
 	</script>
 	<?= isset($js) ? $js : '' ?>
 	</body>

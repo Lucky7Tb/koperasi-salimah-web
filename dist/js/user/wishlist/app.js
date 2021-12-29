@@ -7,7 +7,7 @@ function getWishlist() {
 	   	if (response.code === 200) {
 	   		renderWishlistData(response.data);
 	   	}else {
-	   		toastr.error('Terjadi kesalahan pada server');
+	   		tata.error('Error', 'Terjadi kesalahan pada server');
 	   	}
 	  },
 	});	
@@ -25,11 +25,11 @@ $('#form-delete-wishlist').on('submit', function (e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if(response.code === 200) {
-				toastr.success("Sukses menghapus dari wishlist");
+				tata.success("Sukses", "Sukses menghapus dari wishlist");
 				$('#deleteWishlistModal').modal('hide');
 				getWishlist();
 			}else {
-				toastr.error('Terjadi Kesalahan pada server');
+				tata.error('Error', 'Terjadi Kesalahan pada server');
 			}
 		},
 		complete: function () {

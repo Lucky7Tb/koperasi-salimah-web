@@ -1,5 +1,10 @@
-let page = 0
-let searchKeyword = ''
+let page = 0;
+let searchKeyword = '';
+
+$(document).ready(function () {
+	$('#kategori').select2();
+	initOptionPlugin();
+});
 
 function getProducts(
 	search = '',

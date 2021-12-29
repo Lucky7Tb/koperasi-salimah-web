@@ -23,7 +23,7 @@ $('#banner-form').on('submit', function(e) {
 	const url = formData.get('url');
 
 	if (!url.match(regex)) {
-		toastr.error('format link banner tidak benar. Harus diawali dengan http:// atau https://');
+		tata.error('Error', 'format link banner tidak benar. Harus diawali dengan http:// atau https://');
 		return;
 	}
 
@@ -41,9 +41,9 @@ $('#banner-form').on('submit', function(e) {
 
 			if (response.code === 200) {
 				clearForm();
-				toastr.success('Berhasil menambah banner');
+				tata.success('Sukses', 'Berhasil menambah banner');
 			}else {
-				toastr.error(response.message);
+				tata.error('Error', response.message);
 			}
 		},
 		complete: function() {

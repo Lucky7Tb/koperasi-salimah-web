@@ -7,7 +7,7 @@ $this->load->view('admin/template/header', [
 		'
 ]);
 ?>
-<div class="container-fluid site-width">
+<div class="container">
 
 	<div class="row">
 		<div class="col-12 align-self-center">
@@ -24,7 +24,7 @@ $this->load->view('admin/template/header', [
 		<div class="col-12 mt-3">
 			<div class="card bottom">
 				<div class="card-header  justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/delivery') ?>">Kembali</a>
+					<a type="button" class="btn btn-outline-secondary" href="<?= base_url('admin/delivery') ?>">Kembali</a>
 				</div>
 				<div class="card-body">
 					<form class="row col-12" method="post" enctype="multipart/form-data">
@@ -40,7 +40,7 @@ $this->load->view('admin/template/header', [
 							</div>
 						</div>
 						<div class="col-12 col-sm-8">
-							<div class="form-group row">
+							<div class="form-group row mb-3">
 								<label for="name_expedition" class="col-sm-2 col-form-label">Nama Ekspedisi</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="name_expedition" placeholder="Nama Ekspedisi"
@@ -48,7 +48,7 @@ $this->load->view('admin/template/header', [
 									<?= form_error('name_expedition', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group row mb-2">
 								<label for="courier_code" class="col-sm-2 col-form-label">Kode Kurir</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="courier_code" placeholder="Kode Kurir"
@@ -56,10 +56,8 @@ $this->load->view('admin/template/header', [
 									<?= form_error('courier_code', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
-							<div class="form-group row">
-								<div class="col-sm-10">
-									<button type="submit" class="btn btn-primary">Simpan</button>
-								</div>
+							<div class="d-grid">
+								<button type="submit" class="btn btn-primary">Simpan</button>
 							</div>
 						</div>
 					</form>

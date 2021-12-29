@@ -5,6 +5,10 @@ let filterKey = $('#filter-payment').val();
 let orderDirection = 'ASC';
 let isASC = true;
 
+$(document).ready(function () {
+	getPayments();
+});
+
 function getPayments(
 	search = '',
 	page = 0,
@@ -22,7 +26,7 @@ function getPayments(
 			if (response.code === 200) {
 				renderPaymentData(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -34,11 +38,10 @@ function renderPaymentData(payments) {
 	$('#prev-button').attr('disabled', page === 0);
 
 	if (payments.length > 0) {
-		isNoData = false;
 		payments.forEach((payment) => {
 			const date = moment(payment.updated_at).format('DD-MMM-YYYY HH:mm');
 
-			content += /*html*/ `
+			content +=`
 				<tr>
 					<td>${numbering++}</td>
 					<td>
@@ -52,7 +55,7 @@ function renderPaymentData(payments) {
 					<td>${payment.name_account_bank}</td>
 					<td>${payment.number_account}</td>
 					<td>
-						<span class="badge badge-pill badge-${
+						<span class="badge badge-pill bg-${
 							payment.is_visible == '1' ? 'primary' : 'secondary'
 						}">
 							${payment.is_visible == '1' ? 'Aktif' : 'Tidak aktif'}
@@ -63,7 +66,7 @@ function renderPaymentData(payments) {
 						<a href='${global.base_url}admin/payment/edit/${
 				payment.id
 			}' class='btn btn-warning text-white'>	
-							<i class='icon-pencil'></i>
+							<i class='fas fa-pencil-alt'></i>
 						</a>
 					</td>
 					<td>
@@ -72,7 +75,7 @@ function renderPaymentData(payments) {
 						})" class="btn btn-danger text-white ${
 				payment.is_visible === '0' ? 'disabled' : ''
 			}" role="button">	
-							<i class='icon-power'></i>
+							<i class='fas fa-power-off'></i>
 						</a>
 					</td>
 				</tr>
@@ -80,7 +83,6 @@ function renderPaymentData(payments) {
 		});
 		$('#next-button').attr('disabled', false);
 	} else {
-		isNoData = true;
 		numbering -= numbering % 10;
 		content += /*html*/ `
 			<tr>
@@ -111,9 +113,9 @@ $('#btn-delete-payment').on('click', function () {
 			if (response.code === 200) {
 				$('#payment-delete-modal').modal('hide');
 				getPayments();
-				toastr.success('Berhasil menon-aktifkan metode pembayaran');
+				tata.success('Sukses', 'Berhasil menon-aktifkan metode pembayaran');
 			} else {
-				toastr.error('Terjadi kesalaha pada server');
+				tata.error('Error', 'Terjadi kesalaha pada server');
 			}
 		},
 		complete: function () {
@@ -154,11 +156,11 @@ $('#order-direction-button').on('click', function () {
 	if (isASC) {
 		$('#order-direction-button').addClass('btn-primary');
 		$('#order-direction-button').removeClass('btn-link');
-		$('.fa-filter').text('a-z');
+		$('#order-direction-button').html('<i class="fas fa-sort-up">a-z</i>');
 	} else {
 		$('#order-direction-button').addClass('btn-link');
 		$('#order-direction-button').removeClass('btn-primary');
-		$('.fa-filter').text('z-a');
+		$('#order-direction-button').html('<i class="fas fa-sort-down">z-a</i>');
 	}
 
 	updateNumbering(page);

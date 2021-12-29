@@ -1,6 +1,10 @@
 let idTransaction = window.location.href.split('/');
 idTransaction = idTransaction[idTransaction.length - 1];
 
+$(document).ready(function () {
+	getDetailTransaction();
+});
+
 function getDetailTransaction() {
 	$.ajax({
 		type: 'GET',
@@ -10,7 +14,7 @@ function getDetailTransaction() {
 			if (response.code === 200) {
 				renderDetailData(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -128,7 +132,9 @@ function renderDetailData(data) {
 							<label for="resi_number" class="text-primary">No Resi</label>
 							<input type="text" class="form-control" name="resi_number" id="resi_number" value="${data.delivery.resi_number ? data.delivery.resi_number : ''}">
 						</div>
-						<button class="btn btn-lg btn-block btn-primary mt-2" onclick="changeTransactionStatus()" id="btn-change-status">Simpan</button>
+						<div class="d-grid">
+							<button class="btn btn-primary mt-2" onclick="changeTransactionStatus()" id="btn-change-status">Simpan</button>
+						</div>
 					</div>
 				</div>
 
@@ -150,8 +156,9 @@ function renderDetailData(data) {
 						</tbody>
 					</table>
 				</div>
-
-				<a href="#" class="btn-lg btn-block btn-outline-dark text-center" role="button" onclick="history.back()">Kembali</a>
+				<div class="d-grid">
+					<a href="#" class="btn btn-outline-dark text-center" role="button" onclick="history.back()">Kembali</a>
+				</div>
 			</div>
 		</div>
 	`;
@@ -188,10 +195,10 @@ function changeTransactionStatus() {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success('Berhasil mengubah data');
+				tata.success('Sukses', 'Berhasil mengubah data');
 				getDetailTransaction();
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

@@ -10,26 +10,7 @@ $this->load->view('user/template/header', [
 ?>
 <div class="container mt-5 mt-lg-3">
 	<div class="row">
-		<div class="col-lg-3 col-md-4">
-			<div class="navbar-category">
-				<div class="dropdown category-list-dropdown">
-					<button class="btn dropdown-toggle" type="button" id="dropdownMenuButtoncategory" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-						<i class="bx bx-list-ul"></i>
-						Categories
-						<i class="bx bx-chevron-down"></i>
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButtoncategory">
-						<a href="#" class="nav-link-item">
-							Fish and Meat
-						</a>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-7 col-md-6">
+		<div class="col-12 mt-3">
 			<div class="nav-bottom-form-area">
 				<form class="nav-bottom-form">
 					<input type="text" class="form-control" id="input-search-product" placeholder="Search Your Item">

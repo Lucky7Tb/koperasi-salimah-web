@@ -1,10 +1,8 @@
 <?php
-$plugin = base_url('dist/vendors');
-$css = base_url('dist/css');
+$globalPlugin = base_url('dist/vendors');
 $this->load->view('admin/template/header', [
 	'css' => '
-		<link rel="stylesheet" href="' . $plugin . '/fancybox/jquery.fancybox.min.css">
-		<link rel="stylesheet" href="' . $plugin . '/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="' . $globalPlugin . '/fancybox/jquery.fancybox.min.css">
 	'
 ]);
 ?>
@@ -15,23 +13,21 @@ $this->load->view('admin/template/header', [
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="paymentDeleteModalLabel">Peringatan</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<p class="lead">Yakin ingin <strong>menon-aktifkan</strong> metode pembayaran ini?</p>
 				<input type="hidden" name="payment_id" id="payment_id">
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
-				<button type="button" class="btn btn-lg btn-danger" id="btn-delete-payment">Ya non-aktifkan</button>
+				<button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close">Tutup</button>
+				<button type="button" class="btn btn-danger" id="btn-delete-payment">Ya non-aktifkan</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="container-fluid site-width">
+<div class="container mb-3">
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
@@ -46,35 +42,40 @@ $this->load->view('admin/template/header', [
 		<div class="col-12 mt-3">
 			<div class="card bottom">
 				<div class="card-header justify-content-between align-items-center">
-					<a type="button" class="btn btn-lg btn-primary" href="<?= base_url('admin/payment/create') ?>">Tambah pembayaran</a>
+					<a type="button" class="btn btn btn-primary" href="<?= base_url('admin/payment/create') ?>">Tambah
+						pembayaran</a>
 				</div>
 				<div class="card-body" id="main">
 					<div class="table-responsive">
-						<div class="float-left">
-							<div class="form-group">
-								<div class="row">
-									<div class="col-6">
-										<select name="filter" id="filter-payment" class="form-control" style="width: 15em;">
-											<option value="bank_name">Nama bank</option>
-											<option value="name_account_bank">Pemilik akun bank</option>
-											<option value="is_visible">Status</option>
-										</select>
-									</div>
-									<div class="col-6">
-										<button class="btn btn-sm btn-primary ml-5" id="order-direction-button">
-											<i class="fas fa-filter">a-z</i>
-										</button>
+						<div class="d-flex flex-column flex-md-row justify-content-between mt-2 mb-3 px-2">
+							<div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-6">
+											<select name="filter" id="filter-payment" class="form-control"
+												style="width: 10em;">
+												<option value="bank_name">Nama bank</option>
+												<option value="name_account_bank">Pemilik akun bank</option>
+												<option value="is_visible">Status</option>
+											</select>
+										</div>
+										<div class="col-6">
+											<button class="btn btn-primary" style="margin-left: 2em" id="order-direction-button">
+												<i class="fas fa-sort-up">a-z</i>
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="float-right">
-							<div class="form-group">
-								<label>
-									Cari:
-									<input type="text" class="form-control" id="input-search-payment" placeholder="Cari...">
-								</label>
-								<button class="btn btn-primary" id="button-search">Cari</button>
+							<div>
+								<div class="d-flex justify-content-between">
+									<div style="margin-right: 2em">
+										<input type="text" class="form-control" id="input-search-payment" placeholder="Cari...">
+									</div>
+									<div>
+										<button class="btn btn-primary" id="button-search">Cari</button>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="table-responsive">
@@ -103,12 +104,12 @@ $this->load->view('admin/template/header', [
 						<div id="example_paginate">
 							<ul class="pagination">
 								<li class="paginate_button page-item previous">
-									<button class="btn btn-lg page-link" id="prev-button">
+									<button class="btn page-link" id="prev-button">
 										Kembali
 									</button>
 								</li>
 								<li class="paginate_button page-item next">
-									<button class="btn btn-lg page-link" id="next-button">
+									<button class="btn page-link" id="next-button">
 										Berikutnya
 									</button>
 								</li>
@@ -124,12 +125,9 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
-		<script src="' . $plugin . '/moment/moment.js"></script>
+		<script src="' . $globalPlugin . '/fancybox/jquery.fancybox.min.js"></script>
+		<script src="' . $globalPlugin . '/moment/moment.js"></script>
 		<script src="' . $js . '/admin/payment/app.js"></script>
-		<script>
-			getPayments();
-		</script>
 	'
 ]);
 ?>

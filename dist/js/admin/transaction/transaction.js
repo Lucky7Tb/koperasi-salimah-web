@@ -22,7 +22,7 @@ function getTransactions(
 			if (response.code === 200) {
 				renderTransactionData(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -70,15 +70,15 @@ function renderTransactionData(transactions) {
 					<td>${transaction.full_name}</td>
 					<td>${global.rupiahFormat(transaction.total_price)}</td>
 					<td>
-						<span class="badge badge-${badge}">${status}</span>
+						<span class="badge bg-${badge}">${status}</span>
 					</td>
 					<td>${transaction.transaction_token}</td>
 					<td>${date}</td>
 					<td>
 						<a href="${global.base_url}admin/transaction/detailTrasaction/${
 				transaction.id
-			}" class='btn btn-lg btn-info text-white'>	
-							<i class='icon-eye'></i>
+			}" class='btn btn-info text-white'>	
+							<i class='fas fa-eye'></i>
 						</a>
 					</td>
 				</tr>
@@ -156,11 +156,11 @@ $('#btn-update-old-transaction').on('click', function () {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success(response.message);
+				tata.success('Sukses', 'Berhasil update transaksi lama');
 				getTransactions();
 				getTransactionsProof();
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

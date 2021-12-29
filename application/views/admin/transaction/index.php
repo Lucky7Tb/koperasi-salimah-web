@@ -1,10 +1,8 @@
 <?php
-$css = base_url('dist/css');
-$plugin = base_url('dist/vendors');
+$globalPlugin = base_url('dist/vendors');
 $this->load->view('admin/template/header', [
 	'css' => '
-		<link rel="stylesheet" href="' . $plugin . '/fancybox/jquery.fancybox.min.css">
-		<link rel="stylesheet" href="' . $plugin . '/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="' . $globalPlugin . '/fancybox/jquery.fancybox.min.css">
 	'
 ]);
 ?>
@@ -15,9 +13,7 @@ $this->load->view('admin/template/header', [
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="transactionProof">Ubah status</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<form id="transaction-proof-form">
 				<div class="modal-body">
@@ -36,8 +32,8 @@ $this->load->view('admin/template/header', [
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-lg btn-primary" id="btn-change-proof-status">Simpan</button>
+					<button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close">Tutup</button>
+					<button type="submit" class="btn btn-primary" id="btn-change-proof-status">Simpan</button>
 				</div>
 			</form>
 		</div>
@@ -50,9 +46,7 @@ $this->load->view('admin/template/header', [
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Download transaksi</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
@@ -71,18 +65,20 @@ $this->load->view('admin/template/header', [
 					<div class="row">
 						<div class="col-6">
 							<label for="start_date">Tanggal awal</label>
-							<input type="date" name="start_date" id="start_date" class="form-control" value="<?=  date("Y-m-d") ?>" required>
+							<input type="date" name="start_date" id="start_date" class="form-control" value="<?=  date("Y-m-d") ?>"
+								required>
 						</div>
 						<div class="col-6">
 							<label for="end_date">Tanggal akhir</label>
-							<input type="date" name="end_date" id="end_date" class="form-control" value="<?=  date("Y-m-d") ?>" required>
+							<input type="date" name="end_date" id="end_date" class="form-control" value="<?=  date("Y-m-d") ?>"
+								required>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-lg btn-outline-dark" data-dismiss="modal">Tutup</button>
-				<button type="button" class="btn btn-lg btn-primary" id="btn-transaction-download">Download</button>
+				<button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close">Tutup</button>
+				<button type="button" class="btn btn-primary" id="btn-transaction-download">Download</button>
 			</div>
 		</div>
 	</div>
@@ -103,26 +99,27 @@ $this->load->view('admin/template/header', [
 		<div class="col-12 mt-3">
 			<div class="card bottom">
 				<div class="card-body" id="main">
-					<ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
-						<li class="nav-item" role="presentation">
-							<a class="nav-link active" id="pills-transaction-tab" data-toggle="pill" href="#pills-transaction" role="tab" aria-controls="pills-transaction" aria-selected="true">
+					<nav>
+						<div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+							<button class="nav-link active" id="nav-transaction" data-bs-toggle="tab" data-bs-target="#transaction"
+								role="tab" aria-selected="true">
 								Transaksi
-							</a>
-						</li>
-						<li class="nav-item" role="presentation">
-							<a class="nav-link" id="pills-transaction-proof-tab" data-toggle="pill" href="#pills-transaction-proof" role="tab" aria-controls="pills-transaction-proof" aria-selected="false">
+							</button>
+							<button class="nav-link" id="nav-proof-transaction" data-bs-toggle="tab"
+								data-bs-target="#proof-transaction" role="tab" aria-selected="true">
 								Bukti pembayaran
-							</a>
-						</li>
-					</ul>
-					<div class="tab-content" id="pills-tabContent">
-						<div class="tab-pane fade show active" id="pills-transaction" role="tabpanel" aria-labelledby="pills-home-tab">
-							<div class="table-responsive">
-								<div class="float-left">
+							</button>
+						</div>
+					</nav>
+					<div class="tab-content mt-3" id="nav-tabContent">
+						<div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
+							<div class="table-responsive px-2">
+								<div class="d-flex flex-column flex-md-row justify-content-between px-2 pt-2 mb-3">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-6">
-												<select name="filter" id="filter-transaction" class="form-control costume-select" style="width: 15em;">
+												<select name="filter" id="filter-transaction" class="form-control costume-select"
+													style="width: 10em;">
 													<option value="full_name">Nama</option>
 													<option value="status">Status</option>
 													<option value="total_price">Total bayar</option>
@@ -130,27 +127,34 @@ $this->load->view('admin/template/header', [
 												</select>
 											</div>
 											<div class="col-6">
-												<button class="btn btn-sm btn-primary ml-5" id="order-direction-button">
-													<i class="fas fa-filter">a-z</i>
+												<button class="btn btn-primary" id="order-direction-button">
+													<i class="fas fa-sort-up">a-z</i>
 												</button>
 											</div>
 										</div>
-										<div class="mt-3">
-											<button class="btn btn-primary" data-target="#download-transaction-modal" data-toggle="modal">
-												<i class="fas fa-download"></i> Download transaksi
-											</button>
-											<button class="btn btn-info" id="btn-update-old-transaction">
-												<i class="fas fa-marker"></i> Update transaksi lama
-											</button>
+										<div>
+											<div class="mt-3">
+												<button type="button" class="btn btn-primary mb-3 mb-md-0" data-bs-target="#download-transaction-modal"
+													data-bs-toggle="modal">
+													<i class="fas fa-download"></i> Download transaksi
+												</button>
+												<button class="btn btn-info text-white" id="btn-update-old-transaction">
+													<i class="fas fa-marker"></i> Update transaksi lama
+												</button>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="float-right">
-									<label>
-										Cari:
-										<input type="search" class="form-control form-control-lg" id="input-search-transaction" placeholder="Cari...">
-									</label>
-									<button class="btn btn-lg btn-primary" id="button-transaction-search">Cari</button>
+									<div>
+										<div class="d-flex justify-content-between mt-3 mt-md-0">
+											<div style="margin-right: 2em">
+												<input type="search" class="form-control" id="input-search-transaction"
+													placeholder="Cari transaksi">
+											</div>
+											<div>
+												<button class="btn btn-primary" id="button-transaction-search">Cari</button>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="table-responsive">
 									<table id="transaction-table" class="display table table-striped table-bordered text-center">
@@ -174,50 +178,53 @@ $this->load->view('admin/template/header', [
 									</table>
 								</div>
 							</div>
-							<div id="example_paginate">
+							<div id="example_paginate mt-3">
 								<ul class="pagination">
 									<li class="paginate_button page-item previous">
-										<button class="btn btn-lg page-link" id="prev-transaction-button">
+										<button class="btn page-link" id="prev-transaction-button">
 											Kembali
 										</button>
 									</li>
 									<li class="paginate_button page-item next">
-										<button class="page-link" id="next-transaction-button">
+										<button class="btn page-link" id="next-transaction-button">
 											Berikutnya
 										</button>
 									</li>
 								</ul>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="pills-transaction-proof" role="tabpanel" aria-labelledby="pills-transaction-proof-tab">
+						<div class="tab-pane fade" id="proof-transaction" role="tabpanel" aria-labelledby="proof-transaction-tab">
 							<div class="table-responsive">
-								<div class="float-left">
-									<div class="form-group">
-										<div class="row">
-											<div class="col-6">
-												<select name="filter" id="filter-transaction-proof" class="form-control costume-select" style="width: 15em;">
+								<div class="d-flex flex-column flex-md-row justify-content-between px-2 pt-2">
+									<div class="form-group mb-3 mb-md-0">
+										<div class="d-flex justify-content-between">
+											<div style="margin-right:2em">
+												<select name="filter" id="filter-transaction-proof" class="form-control costume-select"
+													style="width: 10em;">
 													<option value="full_name">Nama</option>
 													<option value="status">Status</option>
 													<option value="total_price">Total bayar</option>
 													<option value="updated_at">Tgl perubahan</option>
 												</select>
 											</div>
-											<div class="col-6">
-												<button class="btn btn-sm btn-primary ml-5" id="order-direction-proof-button">
-													<i class="fas fa-filter">a-z</i>
+											<div>
+												<button class="btn btn-primary" id="order-direction-proof-button">
+													<i class="fas fa-sort-up">a-z</i>
 												</button>
 											</div>
 										</div>
 									</div>
+									<div class="d-flex justify-content-between">
+										<div>
+											<input type="search" class="form-control" id="input-search-transaction-proof"
+												placeholder="Cari transaksi">
+										</div>
+										<div>
+											<button class="btn btn-primary" id="button-transaction-proof-search">Cari</button>
+										</div>
+									</div>
 								</div>
-								<div class="float-right">
-									<label>
-										Cari:
-										<input type="search" class="form-control form-control-lg" id="input-search-transaction-proof" placeholder="Cari...">
-									</label>
-									<button class="btn btn-lg btn-primary" id="button-transaction-proof-search">cari</button>
-								</div>
-								<div class="table-responsive">
+								<div class="table-responsive mt-3">
 									<table id="transaction-table" class="display table table-striped table-bordered text-center">
 										<thead>
 											<tr role="row">
@@ -240,15 +247,15 @@ $this->load->view('admin/template/header', [
 									</table>
 								</div>
 							</div>
-							<div id="example_paginate">
+							<div id="example_paginate mt-3">
 								<ul class="pagination">
 									<li class="paginate_button page-item previous">
-										<button class="btn btn-lg page-link" id="prev-transaction-proof-button">
+										<button class="btn page-link" id="prev-transaction-proof-button">
 											Kembali
 										</button>
 									</li>
 									<li class="paginate_button page-item next">
-										<button class="btn btn-lg page-link" id="next-transaction-proof-button">
+										<button class="btn page-link" id="next-transaction-proof-button">
 											Berikutnya
 										</button>
 									</li>
@@ -265,13 +272,15 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-		<script src="' . $plugin . '/fancybox/jquery.fancybox.min.js"></script>
-		<script src="' . $plugin . '/moment/moment.js"></script>
+		<script src="' . $globalPlugin . '/fancybox/jquery.fancybox.min.js"></script>
+		<script src="' . $globalPlugin . '/moment/moment.js"></script>
 		<script src="' . $js . '/admin/transaction/transaction.js"></script>
 		<script src="' . $js . '/admin/transaction/transaction-proof.js"></script>
 		<script>
-			getTransactions();
-			getTransactionsProof();
+		$(document).ready(function() {
+				getTransactions();
+				getTransactionsProof();
+			});
 		</script>
 	'
 ]);

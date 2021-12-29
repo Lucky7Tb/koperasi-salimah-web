@@ -1,16 +1,15 @@
 <?php
-$plugin = base_url('dist/vendors');
+$globalPlugin = base_url('dist/vendors');
 $css = base_url('dist/css');
 $this->load->view('admin/template/header', [
 	'css' => '
-		<link rel="stylesheet" href="' . $plugin . '/dropify/css/dropify.min.css">
-		<link rel="stylesheet" href="' . $plugin . '/select2/css/select2.min.css">
-		<link rel="stylesheet" href="' . $plugin . '/select2/css/select2-bootstrap.min.css">
+		<link rel="stylesheet" href="' . $globalPlugin . '/dropify/css/dropify.min.css">
+		<link rel="stylesheet" href="' . $globalPlugin . '/select2/css/select2.min.css">
+		<link rel="stylesheet" href="' . $globalPlugin . '/select2/css/select2-bootstrap.min.css">
 	'
 ]);
 ?>
-<div class="container-fluid site-width">
-
+<div class="container">
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
@@ -21,12 +20,13 @@ $this->load->view('admin/template/header', [
 		</div>
 	</div>
 
-	<!-- START: Card Data-->
 	<div class="row">
 		<div class="col-12 mt-3">
 			<div class="card">
 				<div class="card-header  justify-content-between align-items-center">
-					<a type="button" class="btn btn-primary" href="<?= base_url('admin/product') ?>">Kembali</a>
+					<a type="button" class="btn btn-outline-secondary" href="<?= base_url('admin/product') ?>">
+						Kembali
+					</a>
 				</div>
 				<div class="card-body">
 					<form class="row col-12" method="post" enctype="multipart/form-data">
@@ -42,7 +42,7 @@ $this->load->view('admin/template/header', [
 							</div>
 						</div>
 						<div class="col-12 col-sm-8">
-							<div class="form-group row">
+							<div class="form-group row mb-3">
 								<label for="nama_produk" class="col-sm-2 col-form-label">Nama Produk</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="nama_produk" placeholder="Nama Produk"
@@ -51,7 +51,7 @@ $this->load->view('admin/template/header', [
 									<?= form_error('product_name', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group row mb-3">
 								<label for="harga" class="col-sm-2 col-form-label">Harga</label>
 								<div class="col-sm-10">
 									<input type="number" class="form-control" id="harga" placeholder="Rp 00.000,00"
@@ -59,7 +59,7 @@ $this->load->view('admin/template/header', [
 									<?= form_error('price', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group row mb-3">
 								<label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
 								<div class="col-sm-10">
 									<select id="kategori" class="form-control" name="categories[]" multiple="multiple">
@@ -69,7 +69,7 @@ $this->load->view('admin/template/header', [
 									</select>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group row mb-3">
 								<label for="stok" class="col-sm-2 col-form-label">Stok</label>
 								<div class="col-sm-10">
 									<input type="number" class="form-control" id="stok" placeholder="000"
@@ -77,15 +77,15 @@ $this->load->view('admin/template/header', [
 									<?= form_error('stock', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group row mb-3">
 								<label for="weight" class="col-sm-2 col-form-label">Berat</label>
 								<div class="col-sm-10">
-									<input type="number" class="form-control" id="weight" placeholder="000"
+									<input type="number" class="form-control" id="weight" placeholder="000 gram"
 												 value="<?php set_value('weight') ?>" name="weight">
 									<?= form_error('weight', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group row mb-3">
 								<label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
 								<div class="col-sm-10">
 									<textarea name="description" id="deskripsi" cols="80" rows="5"
@@ -93,18 +93,13 @@ $this->load->view('admin/template/header', [
 									<?= form_error('description', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
-							<div class="form-group row">
-								<div class="col-sm-10">
-									<button type="submit" class="btn btn-primary">Simpan</button>
-								</div>
-							</div>
-
+						</div>
+						<div class="d-grid gap-2">
+								<button type="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					</form>
-
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
@@ -112,9 +107,9 @@ $this->load->view('admin/template/header', [
 $js = base_url('dist/js');
 $this->load->view('admin/template/footer', [
 	'js' => '
-		<script src="' . $plugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="' . $plugin . '/dropify/js/dropify.min.js"></script>
-		<script src="' . $plugin . '/select2/js/select2.full.min.js"></script>
+		<script src="' . $globalPlugin . '/jquery-datepicker/js/bootstrap-datepicker.min.js"></script>
+		<script src="' . $globalPlugin . '/dropify/js/dropify.min.js"></script>
+		<script src="' . $globalPlugin . '/select2/js/select2.full.min.js"></script>
 		<script src="' . $js . '/global.js"></script>
 		<script src="' . $js . '/admin/product/app.js"></script>
 		<script>

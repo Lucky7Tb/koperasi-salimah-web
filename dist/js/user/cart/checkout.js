@@ -70,7 +70,7 @@ function getDeliveryService() {
 				$('#courier-select').trigger('select');
 				$('#courier-select').niceSelect();
 			}else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		}
 	})
@@ -92,7 +92,7 @@ function getPaymentMethod() {
 				$('#payment-select').val($('#payment-select option:first').val());
 				$('#payment-select').trigger('change');
 			}else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		}
 	});	
@@ -140,7 +140,7 @@ function getWayFee() {
 					content += '</div>';
 					$('#courier-service-container').append(content);
 				}else {
-					toastr.error('Terjadi kesalahan pada server');
+					tata.error('Error', 'Terjadi kesalahan pada server');
 				}
 			},
 			complete: function() {
@@ -186,7 +186,7 @@ function prepareOrder() {
 
 				getWayFee();
 			}else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		}
 	});	
@@ -281,9 +281,9 @@ function createOrder() {
 			success: function(response) {
 				response = JSON.parse(response);
 				if (response.code === 200) {
-					toastr.success('Sukses membuat transaksi');
+					tata.success('Sukses', 'Sukses membuat transaksi');
 				}else {
-					toastr.error('Terjadi kesalahan pada server')
+					tata.error('Error', 'Terjadi kesalahan pada server')
 				}
 			},
 			complete: function() {

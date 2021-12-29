@@ -10,7 +10,7 @@ $this->load->view('user/template/header', [
 ?>
 <div id="whatsapp-chat-button" class="d-none" style="z-index: 999"></div>
 
-<div class="container-fluid mt-5 mt-sm-0">
+<div class="container mt-5 mt-sm-0">
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">

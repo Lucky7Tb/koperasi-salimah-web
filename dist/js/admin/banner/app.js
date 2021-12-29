@@ -1,54 +1,64 @@
+$(document).ready(function () {
+	getBanners();
+});
+
 function getBanners() {
 	$.ajax({
 		url: `${global.base_url}admin/banner/getBanners`,
 		type: 'GET',
-		success: function(response) {
+		success: function (response) {
 			response = JSON.parse(response);
 
 			if (response.code === 200) {
 				renderBannerData(response.data);
-			}else {
-				toastr.error(response.message);
+			} else {
+				tata.error('Error', response.message);
 			}
-		}
+		},
 	});
 }
 
 function renderBannerData(banners) {
-	let content  = '';
+	let content = '';
 
 	$('#banner-data-content').html('');
 
 	if (banners.length > 0) {
-			$.each(banners, function(index, banner) {
-		 		content += `
+		$.each(banners, function (index, banner) {
+			content += `
 		 			<tr>
 		 				<td>${index + 1}</td>
 		 				<td>
 		 					<a href='${banner.uri}' data-fancybox data-caption='${banner.url}'>
-								<div style="width: 64px; height: 64px; background-size: cover; background-image: url('${banner.uri}'); background-position: center;" class='mx-auto'></div>
+								<div style="width: 64px; height: 64px; background-size: cover; background-image: url('${
+									banner.uri
+								}'); background-position: center;" class='mx-auto'></div>
 							</a>
 		 				</td>
 		 				<td>
-		 					<a href="${banner.url}" class="btn btn-link" target="_blank" rel="noopener noreferrer nofollow">
+		 					<a href="${
+								banner.url
+							}" class="btn btn-link" target="_blank" rel="noopener noreferrer nofollow">
 		 						Buka link
 		 					</a>
 		 				</td>
 		 				<td>${moment(banner.updated_at).format('DD-MMM-YYYY HH:mm')}</td>
 		 				<td>
-						<button class="btn btn-danger text-white" onclick="confirmDeleteBanner(${banner.id})">
-							<i class='icon-trash'></i>
+						<button class="btn btn-danger text-white" onclick="confirmDeleteBanner(${
+							banner.id
+						})">
+							<i class='fas fa-trash'></i>
 						</button>
 					</td>
 		 			</tr>
 		 		`;
-			});
-	}else {
+		});
+	} else {
 		content += `
 			<tr>
 				<td colspan="5">Tidak ada data</td>
 			</tr>
-		`
+		`;
 	}
 
 	$('#banner-data-content').append(content);
@@ -69,23 +79,23 @@ function deleteBanner() {
 		processData: false,
 		contentType: false,
 		data: formData,
-		beforeSend: function() {
+		beforeSend: function () {
 			global.loading('btn-delete-banner', 'danger', true, null);
 		},
 		success: function (response) {
 			response = JSON.parse(response);
 
 			if (response.code === 200) {
-				toastr.success('Berhasil menghapus banner');
+				tata.success('Sukses', 'Berhasil menghapus banner');
 				$('#banner-delete-modal').modal('hide');
 				$('#id_banner').val('');
 				getBanners();
-			}else {
-				toastr.error('Terjadi kesalahan pada server');
+			} else {
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
-		complete: function() {
+		complete: function () {
 			global.loading('btn-delete-banner', 'danger', false, 'Ya, hapus');
-		}
+		},
 	});
 }

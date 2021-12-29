@@ -1,4 +1,4 @@
-<header class="top-header" style="background-color: #491369">
+<nav class="top-header" style="background-color: #491369">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-lg-3 col-md-4">
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 	</div>
-</header>
+</nav>
 
 <!-- Start Navbar Area -->
 <div class="navbar-area">
@@ -105,9 +105,8 @@
 							<ul class="nav-right-list">
 								<li><a href="<?= base_url('transaction') ?>"><i class='bx bx-money'></i></a></li>
 								<li><a href="<?= base_url('wishlist') ?>"><i class='bx bx-heart'></i></a></li>
-								<li class="cart-span">
+								<li>
 									<a href="<?= base_url('cart') ?>"><i class='bx bx-cart'></i></a>
-									<span>1</span>
 								</li>
 							</ul>
 						</div>

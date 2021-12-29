@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/meanmenu.css')?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/style.css')?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/responsive.css')?>">
-		<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
+		<link rel="stylesheet" href="<?= base_url('dist/vendors/tata/index.css') ?>">
 
 		<!-- END: Custom CSS-->
 		<?= isset($css) ? $css : '' ?>

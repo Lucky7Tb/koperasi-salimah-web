@@ -1,30 +1,23 @@
 </main>
-<!-- END: Content-->
-
-<footer class="ungu putih left">
-	<p class="lead text-center">Made with <span style="color: red">&hearts;</span> Koperasi salimah team</p>
+<footer class="py-4 bg-light mt-auto">
+	<div class="container-fluid px-4">
+		<div class="d-flex align-items-center justify-content-between small">
+			<div class="text-muted">Copyright &copy; Koperasi salimah <?= date("Y") ?></div>
+		</div>
+	</div>
 </footer>
+</div>
+</div>
 
-<!-- START: Back to top-->
-<a href="#" class="scrollup text-center">
-	<i class="icon-arrow-up"></i>
-</a>
-<!-- END: Back to top-->
 
-<!-- START: Template JS-->
 <script src="<?= base_url('dist/vendors/jquery/jquery-3.3.1.min.js') ?>"></script>
-<script src="<?= base_url('dist/vendors/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+</script>
 <script src="<?= base_url('dist/vendors/slimscroll/jquery.slimscroll.min.js') ?>"></script>
-<!-- END: Template JS-->
+<script src="<?= base_url('dist/vendors/tata/tata.js') ?>"></script>
+<script src="<?= base_url('dist/admin/assets/js/scripts.js') ?>"></script>
 
-<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
-
-<!-- START: APP JS-->
 <script src="<?= base_url('dist/js/global.js') ?>"></script>
-<script src="<?= base_url('dist/js/app.js') ?>"></script>
-<!-- END: APP JS-->
-
-<!-- Other js -->
 <?= isset($js) ? $js : ''; ?>
 </body>
 

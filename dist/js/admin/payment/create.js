@@ -1,3 +1,7 @@
+$(document).ready(function () {
+	initPlugiOption();
+});
+
 function initPlugiOption() {
 	$('#photo').dropify({
 		messages: {
@@ -29,9 +33,9 @@ $('#payment-form').on('submit', function (e) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				clearForm();
-				toastr.success('Berhasil menambahkan metode pembayaran');
+				tata.success('Sukses', 'Berhasil menambahkan metode pembayaran');
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

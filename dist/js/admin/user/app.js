@@ -5,6 +5,10 @@ let filterKey = $('#filter-user').val();
 let orderDirection = 'ASC';
 let isASC = true;
 
+$(document).ready(function () {
+	getUsers();
+});
+
 function getUsers(
 	search = '',
 	page = 0,
@@ -22,7 +26,7 @@ function getUsers(
 			if (response.code === 200) {
 				renderUserData(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -53,7 +57,7 @@ function renderUserData(users) {
 					<td>${user.gender === 'l' ? 'Laki-laki' : 'Perempuan'}</td>
 					<td>${user.phone_number ? user.phone_number : '-'}</td>
 					<td>
-						<span class="badge badge-pill badge-${badge}">${user.type}</span>
+						<span class="badge badge-pill bg-${badge}">${user.type}</span>
 					</td>
 					<td>
 						<a href="${global.base_url}admin/user/edit/${
@@ -61,7 +65,7 @@ function renderUserData(users) {
 			}" class="btn btn-warning text-white ${
 				user.type === 'Banned' ? 'disabled' : ''
 			}">	
-							<i class='icon-pencil'></i>
+							<i class='fas fa-pencil-alt'></i>
 						</a>
 					</td>
 				</tr>
@@ -112,11 +116,15 @@ $('#order-direction-button').on('click', function () {
 	if (isASC) {
 		$('#order-direction-button').addClass('btn-primary');
 		$('#order-direction-button').removeClass('btn-link');
-		$('.fa-filter').text('a-z');
+		$('#order-direction-button').html(
+			'<i class="fas fa-sort-up">a-z</i>'
+		);
 	} else {
 		$('#order-direction-button').addClass('btn-link');
 		$('#order-direction-button').removeClass('btn-primary');
-		$('.fa-filter').text('z-a');
+		$('#order-direction-button').html(
+			'<i class="fas fa-sort-down">z-a</i>'
+		);
 	}
 
 	updateNumbering(page);

@@ -7,7 +7,7 @@ $this->load->view('admin/template/header', [
 	'
 ]);
 ?>
-<div class="container-fluid site-width">
+<div class="container">
 	<div class="row">
 		<div class="col-12 align-self-center">
 			<div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
@@ -23,16 +23,18 @@ $this->load->view('admin/template/header', [
 			<div class="card bottom">
 				<div class="card-body" id="main">
 					<form method="post" id="banner-form">
-						<div class="form-group">
+						<div class="form-group mb-3">
 							<label for="url">Link banner</label>
 							<input type="text" name="url" id="url" class="form-control" placeholder="Masukan link banner" required>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-3">
 							<label for="photo">Foto banner</label>
 							<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary" id="btn-add-banner">Simpan</button>
-						<a href="<?= base_url('admin/banner') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Kembali</a>
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-primary" id="btn-add-banner">Simpan</button>
+							<a href="<?= base_url('admin/banner') ?>" class="btn btn-outline-dark text-center" role="button">Kembali</a>
+						</div>
 					</form>
 				</div>
 			</div>

@@ -105,7 +105,7 @@ function updateProductQty(idCart, form) {
 	    if (response.code === 200) {
 	    	getCart();
 	    }else {
-	    	toastr.error(response.message)
+	    	tata.error("Error", response.message)
 	    }
 	  },
 	});	
@@ -120,10 +120,10 @@ function removeFormCart(idCart) {
 	  success: function(response) {
 	    response = JSON.parse(response);
 	    if (response.code === 200) {
-	    	toastr.success('Produk berhasil dihapus dari cart');
+	    	tata.success('Sukses', 'Produk berhasil dihapus dari cart');
 	    	getCart();
 	    }else {
-	    	toastr.error('Terjadi kesalahan pada server')
+	    	tata.error('Error', 'Terjadi kesalahan pada server')
 	    }
 	  },
 	});	

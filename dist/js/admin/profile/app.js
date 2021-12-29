@@ -1,3 +1,8 @@
+$(document).ready(function () {
+	initPlugiOption();
+	getMyData();
+});
+
 function initPlugiOption() {
 	$("#date_of_birth").datepicker({ format: "yyyy-mm-dd" });
 	$("select").select2({
@@ -56,7 +61,7 @@ $('#address-form').on('submit', function(e) {
 	formData.append('subdistrict', $('#subdistrict option:selected').text());
 
 	global.addUpdateAddress(formData, function(response) {
-		toastr.success('Berhasil mengubah alamat')
+		tata.success('Sukses', 'Berhasil mengubah alamat')
 		$('#address-modal').modal('hide');
 		$('#address-form').trigger('reset');
 		$('#address_id').val('');
@@ -79,11 +84,11 @@ $('#form-update-photo').on('submit', function(e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success('Berhasil mengubah foto profile');
+				tata.success('Sukses', 'Berhasil mengubah foto profile');
 				getProfile();
 				clearForm();
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		}
 	});
@@ -106,10 +111,10 @@ $('#form-profile').on('submit', function (e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success('Berhasil mengubah profile');
+				tata.success('Sukses', 'Berhasil mengubah profile');
 				getProfile();
 			}else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {  
@@ -127,7 +132,7 @@ function getProfile() {
 			if (response.code === 200) {
 				fillForm(response.data);
 			}else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		}
 	});
@@ -142,7 +147,7 @@ function getDetailAddress(addressId) {
 			if (response.code === 200) {
 				fillFormAddress(response.data); 	
 			}else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		}
 	});
@@ -175,13 +180,11 @@ function renderAllAddress(data) {
 						</address>
 						<hr>
 						<p>Kode post: <strong>${address.postcode}</strong></p>
-						<p>Status: <span class="badge badge-${address.is_active == '1' ? 'success' : 'secondary'}">${address.is_active == '1' ? 'Aktif' : 'Tidak aktif'}</span></p>
+						<p>Status: <span class="badge bg-${address.is_active == '1' ? 'success' : 'secondary'}">${address.is_active == '1' ? 'Aktif' : 'Tidak aktif'}</span></p>
 						
-						<div>
-							<button class="card-link btn btn-block btn-lg btn-primary" onclick="setActiveAddress(${address.id})">Jadikan alamat aktif</button>
-						</div>
-						<div class="mt-2">
-							<button class="card-link btn btn-block btn-lg btn-outline-info" onclick="getDetailAddress(${address.id})">Ubah alamat</button>
+						<div class="d-grid gap-2">
+							<button class="btn btn-primary" onclick="setActiveAddress(${address.id})">Jadikan alamat aktif</button>
+							<button class="btn btn-outline-info" onclick="getDetailAddress(${address.id})">Ubah alamat</button>
 						</div>
 					</div>
 				</div>
@@ -199,14 +202,14 @@ function renderCurrentAddress(data) {
 			</address>
 			<hr>
 			<p class="lead">Kode pos: <strong>${data.postcode}</strong></p>
-			<p>Status: <span class="badge badge-success">Aktif</span></p>
+			<p>Status: <span class="badge bg-success">Aktif</span></p>
 		</div>
 	`);
 }
 
 function setActiveAddress(idAddress) {
 	global.changeActiveAddress(idAddress, function(response) {
-		toastr.success(response.message);
+		tata.success('Sukses', response.message);
 		global.getCurrentAddress(renderCurrentAddress);
 		global.getAllAddress(renderAllAddress);
 	});

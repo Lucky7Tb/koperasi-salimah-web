@@ -44,7 +44,7 @@ function getActiveTransactions(
 			if (response.code === 200) {
 				renderTransactionData(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});

@@ -22,7 +22,7 @@ function getHistoryTransactions(
 			if (response.code === 200) {
 				renderHistoryTransactionData(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});

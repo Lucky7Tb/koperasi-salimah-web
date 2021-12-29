@@ -24,34 +24,33 @@ $this->load->view('admin/template/header');
 						$deskripsi = $category['data']['description'];
 						$status = $category['data']['is_visible'];
 						?>
-						<div class="form-group">
+						<div class="form-group mb-3">
 							<label for="full_name">Nama kategori</label>
 							<input type="text" name="nama_kategori" id="nama_kategori" class="form-control"
-										 placeholder="Masukan nama kategori" value="<?= set_value('nama_kategori', $kategori)?>">
+								placeholder="Masukan nama kategori" value="<?= set_value('nama_kategori', $kategori)?>">
 							<?= form_error('nama_kategori', '<small class="text-danger pl-3">', '</small>') ?>
 						</div>
-						<div class="form-group">
+						<div class="form-group  mb-3">
 							<label for="full_name">Deskripsi kategori</label>
 							<input type="text" name="deskripsi" id="deskripsi" class="form-control"
-										 placeholder="Masukan deskripsi kategori" value="<?= set_value('deskripsi', $deskripsi)?>">
+								placeholder="Masukan deskripsi kategori" value="<?= set_value('deskripsi', $deskripsi)?>">
 							<?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>') ?>
 						</div>
-						<div class="form-group row">
-							<label for="weight" class="col-sm-2 col-form-label">Status</label>
-							<div class="col-sm-10">
-								<?php for ($i = 0; $i < 2; $i++) : ?>
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="status" id="status<?= $i ?>"
-													 value="<?= $i ?>" <?= $i == $status ? 'checked' : '' ?>>
-										<label class="form-check-label" for="status<?= $i ?>">
-											<?= $i == 0 ? 'Tidak Aktif' : 'Aktif' ?>
-										</label>
-									</div>
-								<?php endfor; ?>
-							</div>
+						<div for="weight" class="col-sm-2 col-form-label">Status</div>
+						<?php for ($i = 0; $i < 2; $i++) : ?>
+						<div class="form-check form-check-inline mb-3">
+							<input class="form-check-input" type="radio" name="status" id="status<?= $i ?>" value="<?= $i ?>"
+								<?= $i == $status ? 'checked' : '' ?>>
+							<label class="form-check-label" for="status<?= $i ?>">
+								<?= $i == 0 ? 'Tidak Aktif' : 'Aktif' ?>
+							</label>
 						</div>
-						<button type="submit" class="btn-lg btn-block btn-primary">Simpan</button>
-						<a href="<?= base_url('admin/product_Categories') ?>" class="btn-lg btn-block btn-outline-dark text-center" role="button">Kembali</a>
+						<?php endfor; ?>
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-primary">Simpan</button>
+							<a href="<?= base_url('admin/product_Categories') ?>" class="btn btn-block btn-outline-dark text-center"
+								role="button">Kembali</a>
+						</div>
 					</form>
 				</div>
 			</div>

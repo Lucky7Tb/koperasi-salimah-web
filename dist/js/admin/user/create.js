@@ -1,3 +1,7 @@
+$(document).ready(function () {
+	initOptionPlugin();
+});
+
 function initOptionPlugin() {
 	$("#date_of_birth").datepicker({ format: "yyyy-mm-dd" });
 	$("#photo").dropify({
@@ -30,9 +34,9 @@ $("#user-form").on("submit", function (e) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
 				clearForm();
-				toastr.success('Berhasil menambahkan user');
+				tata.success('Sukses', 'Berhasil menambahkan user');
 			} else {
-				toastr.error(response.message);
+				tata.error('Erorr', response.message);
 			}
 		},
 		complete: function () {

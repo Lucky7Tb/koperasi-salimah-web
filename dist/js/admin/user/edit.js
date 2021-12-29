@@ -1,6 +1,11 @@
 let id = window.location.href.split('/');
 id = id[id.length - 1];
 
+$(document).ready(function () {
+	initOptionPlugin();
+	getUser();
+});
+
 function initOptionPlugin() {
 	$('#date_of_birth').datepicker({ format: 'yyyy-mm-dd' });
 }
@@ -14,7 +19,7 @@ function getUser() {
 			if (response.code === 200) {
 				fillForm(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -37,12 +42,12 @@ $('#user-form').on('submit', function (e) {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success('Berhasil mengubah data user');
+				tata.success('Sukses', 'Berhasil mengubah data user');
 				setTimeout(function () {
 					window.location.href = global.base_url + 'admin/user';
 				}, 1000);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () { 
@@ -68,13 +73,13 @@ $('#btn-ban-user').on('click', function () {
 		success: function (response) {
 			response = JSON.parse(response);
 			if (response.code === 200) {
-				toastr.success('Berhasil me-nonaktifkan user');
+				tata.success('Sukses', 'Berhasil me-nonaktifkan user');
 				$('#user-ban-modal').modal('hide')
 				setTimeout(function () {
 					window.location.href = global.base_url + 'admin/user';
 				}, 1000);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {

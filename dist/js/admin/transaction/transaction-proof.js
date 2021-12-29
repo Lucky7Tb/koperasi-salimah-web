@@ -22,7 +22,7 @@ function getTransactionsProof(
 			if (response.code === 200) {
 				renderTransactionWithProofData(response.data);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 	});
@@ -71,16 +71,16 @@ function renderTransactionWithProofData(transactions) {
 					<td>${transaction.full_name}</td>
 					<td>Rp. ${global.rupiahFormat(transaction.total_price)}</td>
 					<td>
-						<span class="badge badge-${badge}">${status}</span>
+						<span class="badge bg-${badge}">${status}</span>
 					</td>
 					<td>${transaction.transaction_token}</td>
 					<td>${date}</td>
 					<td>
-						<a href="#transaction-proof-modal" data-toggle="modal" class='btn btn-lg btn-info text-white' onclick="changeStatus(${
+						<button data-bs-toggle="modal" data-bs-target="#transaction-proof-modal" class='btn btn-info text-white' onclick="changeStatus(${
 							transaction.id
 						})">	
-							<i class='icon-eye'></i>
-						</a>
+							<i class='fas fa-eye'></i>
+						</button>
 					</td>
 				</tr>
 			`;
@@ -121,9 +121,9 @@ $('#transaction-proof-form').on('submit', function (e) {
 				updateNumbering(page);
 				getTransactionsProof();
 				getTransactions();
-				toastr.success('Berhasil mengubah status pembayaran');
+				tata.success('Sukses', 'Berhasil mengubah status pembayaran');
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function () {
@@ -184,11 +184,15 @@ $('#order-direction-proof-button').on('click', function () {
 	if (isASCProof) {
 		$('#order-direction-proof-button').addClass('btn-primary');
 		$('#order-direction-proof-button').removeClass('btn-link');
-		$('.fa-filter').text('a-z');
+		$('#order-direction-proof-button').html(
+			'<i class="fas fa-sort-up">a-z</i>'
+		);
 	} else {
 		$('#order-direction-proof-button').addClass('btn-link');
 		$('#order-direction-proof-button').removeClass('btn-primary');
-		$('.fa-filter').text('z-a');
+		$('#order-direction-proof-button').html(
+			'<i class="fas fa-sort-down">z-a</i>'
+		);
 	}
 
 	updateHistoryNumbering(page);

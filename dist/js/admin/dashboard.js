@@ -18,30 +18,23 @@ function getDashboardData() {
 				const latest_product = response.data.last_product
 
 				$('#latest_product').append(`
-					<div class="card">
+					<div class="card mb-3">
 						<div class="card-content">
 							<div class="card-image business-card">
 								<div class="background-image-maker" style="background-image: url(${latest_product.uri});"></div>
 								<div class="holder-image">
 									<img src="${latest_product.uri}" alt="${latest_product.product_name}" class="img-fluid">
 								</div>
-								<div class="like"><i class="ion ion-clock"></i>${latest_product.updated_at}</div>
 							</div>
-							<div class="card-body">
+							<div class="card-body text-center">
 								<h4 class="card-title mb-3 mt-2">${latest_product.product_name}</h4>
 								<p class="card-text text-truncate">${latest_product.description}</p>
-								<div class="row mt-4 mb-3">
-									<div class="col-6">
-										<b><i class="fas fa-dollar-sign"></i> Harga</b><br>
-										${latest_product.price_after_discount}
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
 				`);
 			} else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		}
 	});

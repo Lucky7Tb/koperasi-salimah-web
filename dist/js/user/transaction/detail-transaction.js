@@ -62,12 +62,12 @@ $('#transaction-proof-form').on('submit', function(e) {
 	  success: function(response) {
 	    response = JSON.parse(response);
 	    if(response.code === 200) {
-	    	toastr.success('Berhasil upload bukti transaksi');
+	    	tata.success('Sukses', 'Berhasil upload bukti transaksi');
 	    	setTimeout(function() {
 	    		history.back();
 	    	}, 1000);
 	    }else {
-	    	toastr.error('Terjadi kesalahan pada server');
+	    	tata.error('Error', 'Terjadi kesalahan pada server');
 	    }
 	  },
 	  complete: function(response) {
@@ -86,7 +86,7 @@ function getDetailTransaction(idTransaction) {
 	    if(response.code === 200) {
 	    	renderTransactionDetailData(response.data);
 	    }else {
-	    	toastr.error(response.message);
+	    	tata.error('Error', response.message);
 	    }
 	  },
 	});
@@ -108,7 +108,7 @@ function trackResi(resiNumber, courierCode) {
 			if (rajaongkir.status.code === 200) {
 				renderResiDetail(rajaongkir.result.manifest);
 			}else {
-				toastr.error(rajaongkir.status.description);
+				tata.error('Error', rajaongkir.status.description);
 			}
 		}
 	});
@@ -234,12 +234,12 @@ function confirmTransaction(transactionId) {
 			if (response.code === 200) {
 				$('#confirm-modal').modal('hide');
 				$('#confirm-button-container').addClass("d-none");
-				toastr.success('Sukses dikonfirmasi');
+				tata.success('Sukses', 'Sukses dikonfirmasi');
 				setTimeout(function() {
 					window.location.href = global.base_url + 'transaction';
 				}, 2000);
 			}else {
-				toastr.error('Terjadi kesalahan pada server');
+				tata.error('Error', 'Terjadi kesalahan pada server');
 			}
 		},
 		complete: function() {
