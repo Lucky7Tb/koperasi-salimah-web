@@ -65,9 +65,9 @@
 				var password = $("#password").val();
 
 				if (usermail.length == "") {
-					toastr.warning('Warning', 'Harap masukan username/email')
+					tata.warning('Warning', 'Harap masukan username/email')
 				} else if (password.length == "") {
-					toastr.warning('Warning', 'Harap masukan password')
+					tata.warning('Warning', 'Harap masukan password')
 				} else {
 					const formData = new FormData();
 					formData.append('username', usermail);
@@ -89,10 +89,10 @@
 									window.location.href = '<?= base_url('/') ?>';
 									return;
 								} else {
-									toastr.error('Error', 'Maaf akun anda telah di block');
+									tata.error('Error', 'Maaf akun anda telah di block');
 								}
 							} else {
-								toastr.error('Error', response.message);
+								tata.error('Error', response.message);
 							}
 						}
 					});
