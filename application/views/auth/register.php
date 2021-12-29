@@ -72,7 +72,8 @@
 		<script src="<?= base_url('dist/js/global.js') ?>"></script>
 		<script>
 		$(document).ready(function() {
-			$("#btn-register").on('click', function() {
+			$("#btn-register").on('click', function(e) {
+				e.preventDefault();
 				var username = $("#username").val();
 				var email = $("#email").val();
 				var password = $("#password").val();
@@ -104,7 +105,6 @@
 								tata.success('Sukses', 'Registrasi berhasil');
 								setTimeout(function() {
 									window.location.href = '<?= base_url('auth') ?>'
-
 								}, 2000);
 							} else {
 								tata.error('Error', response.message);
