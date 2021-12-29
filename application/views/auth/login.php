@@ -65,9 +65,9 @@
 				var password = $("#password").val();
 
 				if (usermail.length == "") {
-					tata.warning('Warning', 'Harap masukan username/email')
+					tata.error('Warning', 'Harap masukan username/email')
 				} else if (password.length == "") {
-					tata.warning('Warning', 'Harap masukan password')
+					tata.error('Warning', 'Harap masukan password')
 				} else {
 					const formData = new FormData();
 					formData.append('username', usermail);

@@ -80,13 +80,13 @@
 				var confirmPassword = $("#confirmPassword").val();
 
 				if (username == "") {
-					tata.warning('Warning', 'Harap masukan username')
+					tata.error('Warning', 'Harap masukan username')
 				} else if (email == "") {
-					tata.warning('Warning', 'Harap masukan email')
+					tata.error('Warning', 'Harap masukan email')
 				} else if (password == "") {
-					tata.warning('Warning', 'Harap masukan password')
+					tata.error('Warning', 'Harap masukan password')
 				} else if (password != confirmPassword) {
-					tata.warning('Warning', 'Password tidak sama')
+					tata.error('Warning', 'Password tidak sama')
 				} else {
 					const formData = new FormData();
 					formData.append('username', username);

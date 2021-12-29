@@ -68,7 +68,7 @@ global.addToWishlist = function(idProduct) {
 			if (response.code === 200) {
 				tata.success('Sukses', 'Berhasil menambah ke wishlist');
 			} else if (response.code === 403) {
-				tata.warning('Warning', 'Produk sudah ada di wishlist');
+				tata.error('Warning', 'Produk sudah ada di wishlist');
 			} else {
 				window.location.href = global.base_url + 'auth';
 			}
