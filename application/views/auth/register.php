@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<title>Daftar</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="shortcut icon" href="<?= base_url('img/logo2.png') ?>" />
+		<link rel="shortcut icon" href="<?= base_url('dist/images/logo2.png') ?>" />
 		<link rel="stylesheet" href="<?= base_url('dist/vendors/tata/index.css') ?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/bootstrap.min.css') ?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/style.css')?>">
