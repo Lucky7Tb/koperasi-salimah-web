@@ -6,7 +6,7 @@
 		<title>Daftar</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="shortcut icon" href="<?= base_url('img/logo2.png') ?>" />
-		<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
+		<link rel="stylesheet" href="<?= base_url('dist/vendors/tata/index.css') ?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/bootstrap.min.css') ?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/style.css')?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/responsive.css')?>">
@@ -68,7 +68,7 @@
 		<script src="<?= base_url('dist/vendors/jquery/jquery-3.3.1.min.js') ?>"></script>
 		<script src="<?= base_url('dist/user/assets/js/popper.min.js')?>"></script>
 		<script src="<?= base_url('dist/user/assets/js/bootstrap.min.js')?>"></script>
-		<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
+		<script src="<?= base_url('dist/vendors/tata/tata.js') ?>"></script>
 		<script src="<?= base_url('dist/js/global.js') ?>"></script>
 		<script>
 		$(document).ready(function() {
@@ -79,13 +79,13 @@
 				var confirmPassword = $("#confirmPassword").val();
 
 				if (username == "") {
-					toastr.warning('Harap masukan username')
+					tata.warning('Warning', 'Harap masukan username')
 				} else if (email == "") {
-					toastr.warning('Harap masukan email')
+					tata.warning('Warning', 'Harap masukan email')
 				} else if (password == "") {
-					toastr.warning('Harap masukan password')
+					tata.warning('Warning', 'Harap masukan password')
 				} else if (password != confirmPassword) {
-					toastr.warning('Password tidak sama')
+					tata.warning('Warning', 'Password tidak sama')
 				} else {
 					const formData = new FormData();
 					formData.append('username', username);
@@ -101,13 +101,13 @@
 						success: function(response) {
 							response = JSON.parse(response);
 							if (response.code === 200) {
-								toastr.success('Registrasi berhasil');
+								tata.success('Sukses', 'Registrasi berhasil');
 								setTimeout(function() {
 									window.location.href = '<?= base_url('auth') ?>'
 
 								}, 2000);
 							} else {
-								toastr.error(response.message);
+								tata.error('Error', response.message);
 							}
 						}
 					});

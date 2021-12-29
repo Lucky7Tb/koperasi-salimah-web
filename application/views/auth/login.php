@@ -6,7 +6,7 @@
 		<title>Masuk</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="shortcut icon" href="<?= base_url('img/logo2.png') ?>" />
-		<link rel="stylesheet" href="<?= base_url('dist/vendors/toastr/toastr.min.css') ?>">
+		<link rel="stylesheet" href="<?= base_url('dist/vendors/tata/index.css') ?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/bootstrap.min.css') ?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/style.css')?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/responsive.css')?>">
@@ -55,7 +55,7 @@
 		<script src="<?= base_url('dist/vendors/jquery/jquery-3.3.1.min.js') ?>"></script>
 		<script src="<?= base_url('dist/user/assets/js/popper.min.js')?>"></script>
 		<script src="<?= base_url('dist/user/assets/js/bootstrap.min.js')?>"></script>
-		<script src="<?= base_url('dist/vendors/toastr/toastr.min.js') ?>"></script>
+		<script src="<?= base_url('dist/vendors/tata/tata.js') ?>"></script>
 		<script src="<?= base_url('dist/js/global.js') ?>"></script>
 		<script>
 		$(document).ready(function() {
@@ -65,9 +65,9 @@
 				var password = $("#password").val();
 
 				if (usermail.length == "") {
-					toastr.warning('Harap masukan username/email')
+					toastr.warning('Warning', 'Harap masukan username/email')
 				} else if (password.length == "") {
-					toastr.warning('Harap masukan password')
+					toastr.warning('Warning', 'Harap masukan password')
 				} else {
 					const formData = new FormData();
 					formData.append('username', usermail);
@@ -89,10 +89,10 @@
 									window.location.href = '<?= base_url('/') ?>';
 									return;
 								} else {
-									toastr.error('Maaf akun anda telah di block');
+									toastr.error('Error', 'Maaf akun anda telah di block');
 								}
 							} else {
-								toastr.error(response.message);
+								toastr.error('Error', response.message);
 							}
 						}
 					});
