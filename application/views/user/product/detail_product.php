@@ -151,6 +151,7 @@ $js = base_url('dist/js');
 $this->load->view('user/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/whatsapp/floating-wpp.min.js"></script>
+		<script src="'. $userAssets .'/js/mixitup.min.js"></script>
 		<script src="'. $userAssets .'/js/owl.carousel.min.js"></script>
 		<script src="' . $js . '/user/product/product-detail.js"></script>
 		<script src="' . $js . '/user/app.js"></script>
