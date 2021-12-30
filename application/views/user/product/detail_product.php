@@ -149,6 +149,7 @@ $this->load->view('user/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/whatsapp/floating-wpp.min.js"></script>
 		<script src="' . $js . '/user/product/product-detail.js"></script>
+		<script src="' . $js . '/user/app.js"></script>
 		<script>
 			$("#whatsapp-chat-button").floatingWhatsApp({
 		    phone: "'. $phoneNumber.'",
