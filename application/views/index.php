@@ -26,14 +26,16 @@ $this->load->view('user/template/header', [
 <div class="container-fluid">
 	<div class="col-12">
 		<div>
-			<div class="owl-carousel owl-theme">
+			<div class="banner-slider owl-carousel owl-theme">
 				<?php if($banners['data']): ?>
 				<?php foreach ($banners['data'] as $index => $banner): ?>
-				<div class="banner-slider-item" style="height: 650px">
-					<div class="banner-slider-img">
-						<a href="<?= $banner['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
-							<img src="<?= $banner['uri'] ?>" loading="lazy" alt="Banner Images" class="img-fluid" style="height: 650px">
-						</a>
+				<div class="container-fluid">
+					<div class="banner-slider-item" style="height: 650px">
+						<div class="banner-slider-img">
+							<a href="<?= $banner['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
+								<img src="<?= $banner['uri'] ?>" loading="lazy" alt="Banner Images" class="img-fluid" style="height: 650px">
+							</a>
+						</div>
 					</div>
 				</div>
 				<?php endforeach; ?>
