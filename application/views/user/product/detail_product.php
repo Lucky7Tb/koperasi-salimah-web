@@ -47,7 +47,7 @@ $this->load->view('user/template/header', [
 										<div class="row align-items-center">
 											<div class="col-12">
 												<div class="banner-slider-img">
-													<img src="<?= $uri ?>" loading="lazy" alt="<?= $namaProduk ?>" style="height: 350px;"
+													<img src="<?= $uri ?>" alt="<?= $namaProduk ?>" style="height: 350px;"
 														class="img-fluid d-block mx-auto">
 												</div>
 											</div>
@@ -60,7 +60,7 @@ $this->load->view('user/template/header', [
 											<div class="row align-items-center">
 												<div class="col-12">
 													<div class="banner-slider-img">
-														<img src="<?= $photo['uri'] ?>" loading="lazy" alt="<?= $namaProduk ?>" style="height: 350px;"
+														<img src="<?= $photo['uri'] ?>" alt="<?= $namaProduk ?>" style="height: 350px;"
 															class="img-fluid d-block mx-auto">
 													</div>
 												</div>
