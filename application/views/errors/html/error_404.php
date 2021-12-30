@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
-		<link rel="stylesheet" href="<?= config_item('base_url').'/dist/assets/css/bootstrap.min.css'?>">
-		<link rel="stylesheet" href="<?= config_item('base_url').'/dist/assets/css/style.css'?>">
-		<link rel="stylesheet" href="<?= config_item('base_url').'/dist/assets/css/responsive.css'?>">
+		<link rel="stylesheet" href="<?= config_item('base_url').'/dist/user/assets/css/bootstrap.min.css'?>">
+		<link rel="stylesheet" href="<?= config_item('base_url').'/dist/user/assets/css/style.css'?>">
+		<link rel="stylesheet" href="<?= config_item('base_url').'/dist/user/assets/css/responsive.css'?>">
 		<link rel="shortcut icon" href="<?= config_item('base_url').'/dist/images/logo2.png' ?>" />
 		<title>Koperasi salimah</title>
 	</head>

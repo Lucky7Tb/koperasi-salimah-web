@@ -55,7 +55,7 @@ class Product_Categories extends CI_Controller
 		$data['kategori'] = $this->category->getAllCategories($params);
 		$data['page'] = $page * 10;
 
-		$this->load->view('admin/product_Categories/index', $data);
+		$this->load->view('admin/product_categories/index', $data);
 	}
 
 	public function tambah()
@@ -66,7 +66,7 @@ class Product_Categories extends CI_Controller
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('admin/product_Categories/add', $data);
+			$this->load->view('admin/product_categories/add', $data);
 		} else {
 			$namaKategori = $this->input->post('nama_kategori');
 			$deskripsi = $this->input->post('deskripsi');
@@ -111,7 +111,7 @@ class Product_Categories extends CI_Controller
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('admin/product_Categories/edit', $data);
+			$this->load->view('admin/product_categories/edit', $data);
 		} else {
 			$data['category'] = $this->input->post('nama_kategori');
 			$data['slug'] = strtolower($this->input->post('nama_kategori'));
