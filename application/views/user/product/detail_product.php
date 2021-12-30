@@ -50,21 +50,19 @@ $this->load->view('user/template/header', [
 											</div>
 										</div>
 									</div>
-								</div>
-								<?php foreach ($productPhotos as $photo) : ?>
-								<div class="container-fluid">
-									<div class="banner-slider-item">
-										<div class="row align-items-center">
-											<div class="col-12">
-												<div class="banner-slider-img">
-													<img src="<?= $photo['uri'] ?>" loading="lazy" alt="<?= $namaProduk ?>" style="height: 350px;"
-														class="img-fluid d-block mx-auto">
+									<?php foreach ($productPhotos as $photo) : ?>
+										<div class="banner-slider-item">
+											<div class="row align-items-center">
+												<div class="col-12">
+													<div class="banner-slider-img">
+														<img src="<?= $photo['uri'] ?>" loading="lazy" alt="<?= $namaProduk ?>" style="height: 350px;"
+															class="img-fluid d-block mx-auto">
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
+									<?php endforeach; ?>
 								</div>
-								<?php endforeach; ?>
 							</div>
 						</div>
 					</div>
