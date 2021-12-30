@@ -109,7 +109,7 @@ class Product extends CI_Controller
 				redirect('admin/product');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Produk gagal ditambah</div>');
-
+				
 				redirect('admin/product');
 			}
 		}

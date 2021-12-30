@@ -14,39 +14,6 @@ class Product_model extends CI_Model
 		$this->token = $this->session->userdata('token');
 	}
 
-	// get
-//	public function getAllProducts($params = null, $start = 0, $finish = null)
-//	{
-//		$end = 'api/v1/admin/dashboard/product/getProducts';
-//
-//		$data = get_curl($end, $this->token, $params);
-//
-//		if ($finish == null or $start > $finish) {
-//			$finish = $this->countNotVisible();
-//		}
-//
-//		$arrProduk = array();
-//		$j = 0;
-//		foreach ($data['data'] as $produk) {
-//			$arrProduk[$j++] = $produk;
-//		}
-//
-//		$data['data'] = array();
-//
-//		$i = $start;
-//		$j = 0;
-//		while ($j < $finish) {
-//			if ($arrProduk[$i]['is_visible'] == 1) {
-//				$data['data'][$j++] = $arrProduk[$i];
-//			}
-//			$i++;
-//		}
-//
-//		$data['size'] = count($data['data']);
-//
-//		return $data;
-//	}
-
 	public function getAllProducts($params = null)
 	{
 		$end = 'api/v1/admin/dashboard/product/getProducts';

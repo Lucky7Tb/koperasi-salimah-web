@@ -38,7 +38,7 @@ class Wishlist extends CI_Controller {
 	public function addWishlist()
 	{
 		if (!isLogin()) {
-			response(["code" => 403, "message" => "Harap login terlebih dahulu"], true);
+			response(["code" => 401, "message" => "Harap login terlebih dahulu"], true);
 		}
 
 		$data = $this->input->post(null, true);
