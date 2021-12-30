@@ -155,7 +155,7 @@ $this->load->view('user/template/header', [
 									<div class="row">
 										<div class="col-12">
 											<div class="form-group">
-												<label for="gender">Pilih kurir</label>
+												<label for="gender">Mau transfer kemana?</label>
 												<select id="payment-select" class="form-control w-100" onchange="changePaymentMethod(this)">
 												</select>
 											</div>

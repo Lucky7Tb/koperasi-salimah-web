@@ -40,8 +40,8 @@ $this->load->view('user/template/header', [
 			<div class="row align-items-center">
 				<div class="col-lg-6 col-md-12">
 					<div class="product-detls-image">
-						<div class="banner-slider-area">
-							<div class="banner-slider owl-carousel owl-theme">
+						<div>
+							<div class="owl-carousel owl-theme">
 								<div class="container-fluid">
 									<div class="banner-slider-item">
 										<div class="row align-items-center">
@@ -53,7 +53,9 @@ $this->load->view('user/template/header', [
 											</div>
 										</div>
 									</div>
-									<?php foreach ($productPhotos as $photo) : ?>
+								</div>
+								<?php foreach ($productPhotos as $photo) : ?>
+									<div class="container-fluid">
 										<div class="banner-slider-item">
 											<div class="row align-items-center">
 												<div class="col-12">
@@ -64,8 +66,8 @@ $this->load->view('user/template/header', [
 												</div>
 											</div>
 										</div>
-									<?php endforeach; ?>
-								</div>
+									</div>
+								<?php endforeach; ?>
 							</div>
 						</div>
 					</div>
@@ -154,7 +156,6 @@ $this->load->view('user/template/footer', [
 		<script src="'. $userAssets .'/js/mixitup.min.js"></script>
 		<script src="'. $userAssets .'/js/owl.carousel.min.js"></script>
 		<script src="' . $js . '/user/product/product-detail.js"></script>
-		<script src="' . $js . '/user/app.js"></script>
 		<script>
 			$("#whatsapp-chat-button").floatingWhatsApp({
 		    phone: "'. $phoneNumber.'",
