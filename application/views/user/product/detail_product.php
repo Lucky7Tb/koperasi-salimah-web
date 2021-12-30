@@ -13,9 +13,12 @@ $phoneNumber[0] = '62';
 $phoneNumber = join($phoneNumber);
 $plugin = base_url('dist/vendors');
 $css = base_url('dist/css');
+$userAssets = base_url('dist/user/assets');
 $this->load->view('user/template/header', [
 	'css' => '
 		<link rel="stylesheet" href="' . $plugin . '/whatsapp/floating-wpp.min.css">
+		<link rel="stylesheet" href="' . $userAssets . '/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="' . $userAssets . '/css/owl.theme.default.min.css">
 	'
 ]);
 ?>
@@ -148,6 +151,7 @@ $js = base_url('dist/js');
 $this->load->view('user/template/footer', [
 	'js' => '
 		<script src="' . $plugin . '/whatsapp/floating-wpp.min.js"></script>
+		<script src="'. $userAssets .'/js/owl.carousel.min.js"></script>
 		<script src="' . $js . '/user/product/product-detail.js"></script>
 		<script src="' . $js . '/user/app.js"></script>
 		<script>
