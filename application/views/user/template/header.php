@@ -10,7 +10,7 @@
 
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/bootstrap.min.css')?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/animate.min.css')?>">
-		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/boxicons.min.css')?>">
+		<link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/meanmenu.css')?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/style.css')?>">
 		<link rel="stylesheet" href="<?= base_url('dist/user/assets/css/responsive.css')?>">

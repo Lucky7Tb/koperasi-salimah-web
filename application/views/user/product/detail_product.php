@@ -77,7 +77,9 @@ $this->load->view('user/template/header', [
 					<div class="product-desc">
 						<h3><?= $namaProduk ?></h3>
 						<div class="price">
-							<span class="new-price">Rp. <?= number_format($harga, '2', ',', '.') ?></span>
+							<h4>
+								<span class="new-price">Rp. <?= number_format($harga, '2', ',', '.') ?></span>
+							</h4>
 						</div>
 						<div class="price">
 							<span class="new-price">Sisa stok: <?= $produk['stock'] ?></span>
@@ -92,10 +94,8 @@ $this->load->view('user/template/header', [
 						<div class="input-count-area">
 							<h3>Jumlah</h3>
 							<div class="input-counter">
-								<span class="minus-btn"><i class='bx bx-minus'></i></span>
-								<input type="text" class="form-control" min="1" value="1" id="product-qty"
+								<input type="number" class="form-control" min="1" value="1" id="product-qty"
 									onchange="this.value == '0' ? '1' : this.value">
-								<span class="plus-btn"><i class='bx bx-plus'></i></span>
 							</div>
 						</div>
 

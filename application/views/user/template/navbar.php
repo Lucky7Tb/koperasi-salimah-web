@@ -5,19 +5,16 @@
 				<div class="top-header-social">
 					<ul>
 						<li>
-							<a href="#" target="_blank">
-								<i class='bx bxl-facebook'></i>
-							</a>
+							<a href="https://www.facebook.com/salimahfood" target="_blank"><i class='bx bxl-facebook'></i></a>
 						</li>
 						<li>
-							<a href="#" target="_blank">
-								<i class='bx bxl-twitter'></i>
-							</a>
+							<a href="https://www.instagram.com/salimahfoodofficial/" target="_blank"><i class='bx bxl-instagram'></i></a>
 						</li>
 						<li>
-							<a href="#" target="_blank">
-								<i class='bx bxl-instagram'></i>
-							</a>
+							<a href="https://www.tiktok.com/@salimahfoodofficial" target="_blank"><i class='bx bxl-tiktok'></i></a>
+						</li>
+						<li>
+							<a href="https://www.youtube.com/channel/UCZdzt-ScWWnnm3lWD-PaMAA" target="_blank"><i class='bx bxl-youtube'></i></a>
 						</li>
 					</ul>
 				</div>
