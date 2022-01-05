@@ -127,13 +127,13 @@ $('#order-direction-button').on('click', function () {
 	orderDirection = isASC ? 'ASC' : 'DESC';
 
 	if (isASC) {
-		$('#order-direction-button').addClass('btn-primary');
-		$('#order-direction-button').removeClass('btn-link');
-		$('.fa-filter').text('a-z');
+		$('#order-direction-button').html(
+			'<i class="fas fa-sort-alpha-up"></i>'
+		);
 	} else {
-		$('#order-direction-button').addClass('btn-link');
-		$('#order-direction-button').removeClass('btn-primary');
-		$('.fa-filter').text('z-a');
+		$('#order-direction-button').html(
+			'<i class="fas fa-sort-alpha-down"></i>'
+		);
 	}
 
 	updateNumbering(page);

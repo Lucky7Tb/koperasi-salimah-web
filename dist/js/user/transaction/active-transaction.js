@@ -140,9 +140,9 @@ $('#order-direction-button').on('click', function () {
 	orderDirection = isASC ? 'ASC' : 'DESC';
 
 	if (isASC) {
-		$('#order-direction-button').html('<i class="bx bx-filter">a-z</i>');
+		$('#order-direction-button').html("<i class='bx bx-sort-a-z'></i>");
 	} else {
-		$('#order-direction-button').html('<i class="bx bx-filter">z-a</i>');
+		$('#order-direction-button').html("<i class='bx bx-sort-z-a'></i>");
 	}
 
 	updateNumbering(page);

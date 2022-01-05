@@ -110,9 +110,9 @@ $('#history-order-direction-button').on('click', function () {
 	orderDirectionHistory = isASCHistory ? 'ASC' : 'DESC';
 
 	if (isASCHistory) {
-		$('#history-order-direction-button').html('<i class="bx bx-filter">a-z</i>');
+		$('#history-order-direction-button').html("<i class='bx bx-sort-a-z'></i>");
 	} else {
-		$('#history-order-direction-button').html('<i class="bx bx-filter">z-a</i>');
+		$('#history-order-direction-button').html("<i class='bx bx-sort-z-a'></i>");
 	}
 
 	updateHistoryNumbering(pageHistory);

@@ -61,7 +61,7 @@ $this->load->view('admin/template/header', [
 										</div>
 										<div class="col-6">
 											<button class="btn btn-primary" style="margin-left: 2em" id="order-direction-button">
-												<i class="fas fa-sort-up">a-z</i>
+													<i class='fas fa-sort-alpha-up'></i>
 											</button>
 										</div>
 									</div>

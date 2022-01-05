@@ -182,17 +182,9 @@ $('#order-direction-proof-button').on('click', function () {
 	orderDirectionProof = isASCProof ? 'ASC' : 'DESC';
 
 	if (isASCProof) {
-		$('#order-direction-proof-button').addClass('btn-primary');
-		$('#order-direction-proof-button').removeClass('btn-link');
-		$('#order-direction-proof-button').html(
-			'<i class="fas fa-sort-up">a-z</i>'
-		);
+		$('#order-direction-proof-button').html('<i class="fas fa-sort-alpha-up"></i>');
 	} else {
-		$('#order-direction-proof-button').addClass('btn-link');
-		$('#order-direction-proof-button').removeClass('btn-primary');
-		$('#order-direction-proof-button').html(
-			'<i class="fas fa-sort-down">z-a</i>'
-		);
+		$('#order-direction-proof-button').html('<i class="fas fa-sort-alpha-down"></i>');
 	}
 
 	updateHistoryNumbering(page);

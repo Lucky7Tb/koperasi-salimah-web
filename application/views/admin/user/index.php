@@ -33,7 +33,7 @@ $this->load->view('admin/template/header');
 										</div>
 										<div class="col-6">
 											<button class="btn btn-primary" id="order-direction-button" style="margin-left: 2em">
-													<i class="fas fa-sort-up">a-z</i>
+													<i class='fas fa-sort-alpha-up'></i>
 											</button>
 										</div>
 									</div>

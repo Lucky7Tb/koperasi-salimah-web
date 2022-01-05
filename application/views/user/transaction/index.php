@@ -55,7 +55,7 @@ $this->load->view('user/template/header', [
 														</div>
 														<div>
 															<button class="btn btn-bg-three text-white ml-2" id="order-direction-button">
-																<i class="bx bx-filter">a-z</i>
+																<i class='bx bx-sort-a-z'></i>
 															</button>
 														</div>
 													</div>
@@ -122,7 +122,7 @@ $this->load->view('user/template/header', [
 														</div>
 														<div>
 															<button class="btn btn-bg-three text-white ml-2" id="history-order-direction-button">
-																<i class="bx bx-filter">a-z</i>
+																<i class='bx bx-sort-a-z'></i>
 															</button>
 														</div>
 													</div>
