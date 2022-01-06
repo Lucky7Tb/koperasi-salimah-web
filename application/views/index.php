@@ -33,7 +33,7 @@ $this->load->view('user/template/header', [
 					<div class="banner-slider-item" style="height: 650px">
 						<div class="banner-slider-img">
 							<a href="<?= $banner['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
-								<img src="<?= $banner['uri'] ?>" alt="Banner Images" class="img-fluid" style="height: 650px">
+								<img src="<?= $banner['uri'] ?>" alt="Banner Images" class="img-fluid" style="height: 350px">
 							</a>
 						</div>
 					</div>

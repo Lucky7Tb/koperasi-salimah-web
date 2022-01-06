@@ -28,7 +28,7 @@ $this->load->view('admin/template/header', [
 							<input type="text" name="url" id="url" class="form-control" placeholder="Masukan link banner" required>
 						</div>
 						<div class="form-group mb-3">
-							<label for="photo">Foto banner</label>
+							<label for="photo">Foto banner (1500px x 350px)</label>
 							<input name="photo" class="dropify" id="photo" type="file" data-max-file-size="2M" data-max-file-size-preview="2M" data-allowed-file-extensions="png jpg jpeg" required />
 						</div>
 						<div class="d-grid gap-2">

@@ -84,7 +84,9 @@ $this->load->view('user/template/header', [
 						<div class="price">
 							<span class="new-price">Sisa stok: <?= $produk['stock'] ?></span>
 						</div>
-						<p><?= $deskripsi ?></p>
+						<div class="price">
+							<span class="new-price">Berat: <?= $produk['weight'] ?> gram</span>
+						</div>
 						<p>
 							Kategori:
 							<?php foreach ($kategori as $c) : ?>

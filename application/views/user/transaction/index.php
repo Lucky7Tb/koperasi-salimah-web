@@ -1,10 +1,6 @@
 <?php
 $globalPlugin = base_url('dist/vendors');
-$this->load->view('user/template/header', [
-	'css' => '
-		<link rel="stylesheet" href="'. $globalPlugin .'/fontawesome/css/all.min.css">
-	'
-]);
+$this->load->view('user/template/header');
 ?>
 <div class="product-tab pb-70 mt-5 mt-sm-1">
 	<div class="container">
