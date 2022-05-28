@@ -17,7 +17,6 @@
 							<ul class="footer-list-contact">
 								<li>
 									<i class='bx bx-phone-call'></i>
-									21710
 									<a href="tel:+62(822)-1902-1710">082219021710</a>
 								</li>
 								<li>
