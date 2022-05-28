@@ -178,7 +178,7 @@ $this->load->view('user/template/header', [
 			</div>
 			<div class="modal-body">
 				<h3 class="text-center">Harap scan gambar Qris ini</h3>
-				<img src="<?= base_url('dist/images/qris.jpeg') ?>" alt="Qris" loading="lazy" class="img-fluid d-block mx-auto">
+				<img src="<?= base_url('dist/images/Qris.jpeg') ?>" alt="Qris" loading="lazy" class="img-fluid d-block mx-auto">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="default-btn btn btn-outline-secondary text-dark"

@@ -51,7 +51,7 @@ $this->load->view('user/template/header', [
 			</li>
 		</ul>
 
-		<div class="tab-content" style="min-height: 180px">
+		<div class="tab-content" style="min-height: 500px">
 			<div id="step-1" class="tab-pane" role="tabpanel">
 				<section class="cart-wraps-area">
 					<div class="container">
@@ -70,7 +70,7 @@ $this->load->view('user/template/header', [
 													</tr>
 												</thead>
 
-												<tbody id="cart-product-content">
+												<tbody id="cart-product-content" class="h-full">
 												</tbody>
 											</table>
 										</div>

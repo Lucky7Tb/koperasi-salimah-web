@@ -12,16 +12,17 @@
 								</a>
 							</div>
 							<div class="w-100">
-								PT. Salimah Prakarsa Cemerlang, organisasi Persaudaraan Muslimah (Salimah) sebagai wujud komitmen organisasi  untuk memberikan  solusi  bagi  permasalahan ekonomi umat islam.
+								PT. Salimah Prakarsa Cemerlang, organisasi Persaudaraan Muslimah (Salimah) sebagai wujud komitmen organisasi untuk memberikan solusi bagi permasalahan ekonomi umat islam.
 							</div>
 							<ul class="footer-list-contact">
 								<li>
 									<i class='bx bx-phone-call'></i>
-									<a href="tel:+62(811)-110-0677">0811-1100-677</a>
+									21710
+									<a href="tel:+62(822)-1902-1710">082219021710</a>
 								</li>
 								<li>
 									<i class='bx bx-envelope'></i>
-									<a href="mailto:marketingsalimahfood@gmail.com">marketingsalimahfood@gmail.com</a>
+									<a href="mailto:kossumabandung@gmail.com">kossumabandung@gmail.com</a>
 								</li>
 							</ul>
 						</div>
@@ -37,7 +38,7 @@
 									<a href="https://www.facebook.com/salimahfood" target="_blank"><i class='bx bxl-facebook'></i></a>
 								</li>
 								<li>
-									<a href="https://www.instagram.com/salimahfoodofficial/" target="_blank"><i class='bx bxl-instagram'></i></a>
+									<a href="https://www.instagram.com/kossumabandung" target="_blank"><i class='bx bxl-instagram'></i></a>
 								</li>
 								<li>
 									<a href="https://www.tiktok.com/@salimahfoodofficial" target="_blank"><i class='bx bxl-tiktok'></i></a>
@@ -70,18 +71,18 @@
 	<script src="<?= base_url('dist/vendors/tata/tata.js') ?>"></script>
 	<script src="<?= base_url('dist/js/global.js') ?>"></script>
 	<script>
-		jQuery('.mean-menu').meanmenu({ 
-        meanScreenWidth: "991"
-    });
-		$(".side-nav-responsive .dot-menu").on("click", function(){
+		jQuery('.mean-menu').meanmenu({
+			meanScreenWidth: "991"
+		});
+		$(".side-nav-responsive .dot-menu").on("click", function() {
 			$(".side-nav-responsive .container .container").toggleClass("active");
 		});
 
-		$(".side-nav-responsive .dot-menu").on("click", function(){
+		$(".side-nav-responsive .dot-menu").on("click", function() {
 			$(".side-nav-responsive .container .container-2").toggleClass("active");
 		});
 
-		$(".side-nav-responsive .dot-menu").on("click", function(){
+		$(".side-nav-responsive .dot-menu").on("click", function() {
 			$(".side-nav-responsive .container .container-3").toggleClass("active");
 		});
 	</script>

@@ -8,7 +8,7 @@
 							<a href="https://www.facebook.com/salimahfood" target="_blank"><i class='bx bxl-facebook'></i></a>
 						</li>
 						<li>
-							<a href="https://www.instagram.com/salimahfoodofficial/" target="_blank"><i class='bx bxl-instagram'></i></a>
+							<a href="https://www.instagram.com/kossumabandung" target="_blank"><i class='bx bxl-instagram'></i></a>
 						</li>
 						<li>
 							<a href="https://www.tiktok.com/@salimahfoodofficial" target="_blank"><i class='bx bxl-tiktok'></i></a>
@@ -25,10 +25,10 @@
 					<div class="top-header-right-item">
 						<ul class="top-header-list">
 							<li><a href="<?= base_url('profile') ?>">Profilku</a></li>
-							<?php if ($this->session->userdata('token') == null): ?>
-							<li><a href="<?= base_url('auth') ?>">Masuk</a></li>
-							<?php else: ?>
-							<li><a href="<?= base_url('auth/logout') ?>">Keluar</a></li>
+							<?php if ($this->session->userdata('token') == null) : ?>
+								<li><a href="<?= base_url('auth') ?>">Masuk</a></li>
+							<?php else : ?>
+								<li><a href="<?= base_url('auth/logout') ?>">Keluar</a></li>
 							<?php endif; ?>
 						</ul>
 					</div>
@@ -109,7 +109,7 @@
 						</div>
 					</div>
 				</div>
-			</div> 
+			</div>
 		</div>
 	</div>
 </div>

@@ -28,18 +28,6 @@ class Auth extends CI_Controller {
 		$this->load->view('auth/register');
 	}
 
-	public function forgetPassword()
-	{
-		if (isLogin()) {
-			if (isAdmin()) {
-				redirect('/admin');
-			}
-			redirect('/');
-		}
-
-		$this->load->view('auth/forget_password');
-	}
-
 	public function doRegister()
 	{
 		$this->load->model('Auth_model', 'auth');
@@ -71,6 +59,57 @@ class Auth extends CI_Controller {
 		}
 		
 		response($result, true);
+	}
+
+	public function showSendEmailForm()
+	{
+		if (isLogin()) {
+			if (isAdmin()) {
+				redirect('/admin');
+			}
+			redirect('/');
+		}
+
+		$this->load->view('auth/send_email_form');
+	}
+	
+	public function doSendEmail()
+	{
+		$this->load->model('Auth_model', 'auth');
+
+		$data = $this->input->post(null, true);
+
+		$result = $this->auth->doSendEmail($data);
+
+		response($result);
+	}
+
+	public function forgotPassword()
+	{
+		$email = $this->input->get('email', true);
+		$token = $this->input->get('token', true);
+
+		if (empty($email) || empty($token)) {
+			redirect('/auth');
+		}
+
+		$this->load->view('auth/forgot_password', [
+			'email' => $email,
+			'token' => $token
+		]);
+	}
+	
+	public function doResetPassword()
+	{
+		$this->load->model('Auth_model', 'auth');
+
+		$password = $this->input->post('password', true);
+		$email = $this->input->post('email', true);
+		$token = $this->input->post('token', true);
+
+		$result = $this->auth->doResetPassword($password, $email, $token);
+		
+		response($result);
 	}
 
 	public function logout()

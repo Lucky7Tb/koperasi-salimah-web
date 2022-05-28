@@ -20,6 +20,25 @@ class Auth_model extends CI_Model {
 		return $result;
 	}
 
+	public function doSendEmail($data)
+	{
+		$endpoint = API.'/api/v1/auth/user/sendEmail';
+		$result = request($endpoint, 'POST', $data, [
+			'Content-Type' => 'application/json'
+		]);
+
+		return $result;
+	}
+
+	public function doResetPassword($password, $email, $token)
+	{
+		$endpoint = API.'/api/v1/auth/user/changePassword?email='.$email.'&token='.$token;
+		$result = request($endpoint, 'POST', ['password' => $password], [
+			'Content-Type' => 'application/json'
+		]);
+
+		return $result;
+	}
 }
 
 /* End of file Auth_model.php */
